@@ -3,7 +3,7 @@ package ngs.controller;
 import ngs.model.*;
 
 public class ConfAbbCorsiHandler {
-
+//COMMENTO PROVA
 	M_DescrizioneCorso descCorso;
 	M_TipologiaCorso tipCorso;
 
