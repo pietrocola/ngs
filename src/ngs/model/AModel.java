@@ -4,11 +4,7 @@ import ngs.peristentmodel.*;
 
 public abstract class AModel {
 
-	private APersistentModel model;
+	protected APersistentModel model;
 
-	public APersistentModel getPersistentModel() {
-		// TODO - implement AModel.getPersistentModel
-		throw new UnsupportedOperationException();
-	}
-
+	public abstract APersistentModel getPersistentModel(); 
 }

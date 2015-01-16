@@ -19,123 +19,123 @@ import org.hibernate.LockMode;
 import java.util.List;
 
 public class TipologiaCorsoDAO {
-	public static TipologiaCorso loadTipologiaCorsoByORMID(String nomeTip) throws PersistentException {
+	public static TipologiaCorso loadTipologiaCorsoByORMID(String nomeTip) {
 		try {
 			PersistentSession session = ngs.peristentmodel.NextGenSport2PersistentManager.instance().getSession();
 			return loadTipologiaCorsoByORMID(session, nomeTip);
 		}
 		catch (Exception e) {
-			throw new PersistentException(e);
+			return null;
 		}
 	}
 	
-	public static TipologiaCorso getTipologiaCorsoByORMID(String nomeTip) throws PersistentException {
+	public static TipologiaCorso getTipologiaCorsoByORMID(String nomeTip) {
 		try {
 			PersistentSession session = ngs.peristentmodel.NextGenSport2PersistentManager.instance().getSession();
 			return getTipologiaCorsoByORMID(session, nomeTip);
 		}
 		catch (Exception e) {
-			throw new PersistentException(e);
+			return null;
 		}
 	}
 	
-	public static TipologiaCorso loadTipologiaCorsoByORMID(String nomeTip, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static TipologiaCorso loadTipologiaCorsoByORMID(String nomeTip, org.hibernate.LockMode lockMode) {
 		try {
 			PersistentSession session = ngs.peristentmodel.NextGenSport2PersistentManager.instance().getSession();
 			return loadTipologiaCorsoByORMID(session, nomeTip, lockMode);
 		}
 		catch (Exception e) {
-			throw new PersistentException(e);
+			return null;
 		}
 	}
 	
-	public static TipologiaCorso getTipologiaCorsoByORMID(String nomeTip, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static TipologiaCorso getTipologiaCorsoByORMID(String nomeTip, org.hibernate.LockMode lockMode) {
 		try {
 			PersistentSession session = ngs.peristentmodel.NextGenSport2PersistentManager.instance().getSession();
 			return getTipologiaCorsoByORMID(session, nomeTip, lockMode);
 		}
 		catch (Exception e) {
-			throw new PersistentException(e);
+			return null;
 		}
 	}
 	
-	public static TipologiaCorso loadTipologiaCorsoByORMID(PersistentSession session, String nomeTip) throws PersistentException {
+	public static TipologiaCorso loadTipologiaCorsoByORMID(PersistentSession session, String nomeTip) {
 		try {
 			return (TipologiaCorso) session.load(ngs.peristentmodel.TipologiaCorso.class, nomeTip);
 		}
 		catch (Exception e) {
-			throw new PersistentException(e);
+			return null;
 		}
 	}
 	
-	public static TipologiaCorso getTipologiaCorsoByORMID(PersistentSession session, String nomeTip) throws PersistentException {
+	public static TipologiaCorso getTipologiaCorsoByORMID(PersistentSession session, String nomeTip) {
 		try {
 			return (TipologiaCorso) session.get(ngs.peristentmodel.TipologiaCorso.class, nomeTip);
 		}
 		catch (Exception e) {
-			throw new PersistentException(e);
+			return null;
 		}
 	}
 	
-	public static TipologiaCorso loadTipologiaCorsoByORMID(PersistentSession session, String nomeTip, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static TipologiaCorso loadTipologiaCorsoByORMID(PersistentSession session, String nomeTip, org.hibernate.LockMode lockMode) {
 		try {
 			return (TipologiaCorso) session.load(ngs.peristentmodel.TipologiaCorso.class, nomeTip, lockMode);
 		}
 		catch (Exception e) {
-			throw new PersistentException(e);
+			return null;
 		}
 	}
 	
-	public static TipologiaCorso getTipologiaCorsoByORMID(PersistentSession session, String nomeTip, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static TipologiaCorso getTipologiaCorsoByORMID(PersistentSession session, String nomeTip, org.hibernate.LockMode lockMode) {
 		try {
 			return (TipologiaCorso) session.get(ngs.peristentmodel.TipologiaCorso.class, nomeTip, lockMode);
 		}
 		catch (Exception e) {
-			throw new PersistentException(e);
+			return null;
 		}
 	}
 	
-	public static List queryTipologiaCorso(String condition, String orderBy) throws PersistentException {
+	public static List queryTipologiaCorso(String condition, String orderBy) {
 		try {
 			PersistentSession session = ngs.peristentmodel.NextGenSport2PersistentManager.instance().getSession();
 			return queryTipologiaCorso(session, condition, orderBy);
 		}
 		catch (Exception e) {
-			throw new PersistentException(e);
+			return null;
 		}
 	}
 	
-	public static List queryTipologiaCorso(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static List queryTipologiaCorso(String condition, String orderBy, org.hibernate.LockMode lockMode) {
 		try {
 			PersistentSession session = ngs.peristentmodel.NextGenSport2PersistentManager.instance().getSession();
 			return queryTipologiaCorso(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
-			throw new PersistentException(e);
+			return null;
 		}
 	}
 	
-	public static TipologiaCorso[] listTipologiaCorsoByQuery(String condition, String orderBy) throws PersistentException {
+	public static TipologiaCorso[] listTipologiaCorsoByQuery(String condition, String orderBy) {
 		try {
 			PersistentSession session = ngs.peristentmodel.NextGenSport2PersistentManager.instance().getSession();
 			return listTipologiaCorsoByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
-			throw new PersistentException(e);
+			return null;
 		}
 	}
 	
-	public static TipologiaCorso[] listTipologiaCorsoByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static TipologiaCorso[] listTipologiaCorsoByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) {
 		try {
 			PersistentSession session = ngs.peristentmodel.NextGenSport2PersistentManager.instance().getSession();
 			return listTipologiaCorsoByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
-			throw new PersistentException(e);
+			return null;
 		}
 	}
 	
-	public static List queryTipologiaCorso(PersistentSession session, String condition, String orderBy) throws PersistentException {
+	public static List queryTipologiaCorso(PersistentSession session, String condition, String orderBy) {
 		StringBuffer sb = new StringBuffer("From ngs.peristentmodel.TipologiaCorso as TipologiaCorso");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
@@ -146,11 +146,11 @@ public class TipologiaCorsoDAO {
 			return query.list();
 		}
 		catch (Exception e) {
-			throw new PersistentException(e);
+			return null;
 		}
 	}
 	
-	public static List queryTipologiaCorso(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static List queryTipologiaCorso(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) {
 		StringBuffer sb = new StringBuffer("From ngs.peristentmodel.TipologiaCorso as TipologiaCorso");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
@@ -162,51 +162,51 @@ public class TipologiaCorsoDAO {
 			return query.list();
 		}
 		catch (Exception e) {
-			throw new PersistentException(e);
+			return null;
 		}
 	}
 	
-	public static TipologiaCorso[] listTipologiaCorsoByQuery(PersistentSession session, String condition, String orderBy) throws PersistentException {
+	public static TipologiaCorso[] listTipologiaCorsoByQuery(PersistentSession session, String condition, String orderBy) {
 		try {
 			List list = queryTipologiaCorso(session, condition, orderBy);
 			return (TipologiaCorso[]) list.toArray(new TipologiaCorso[list.size()]);
 		}
 		catch (Exception e) {
-			throw new PersistentException(e);
+			return null;
 		}
 	}
 	
-	public static TipologiaCorso[] listTipologiaCorsoByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static TipologiaCorso[] listTipologiaCorsoByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) {
 		try {
 			List list = queryTipologiaCorso(session, condition, orderBy, lockMode);
 			return (TipologiaCorso[]) list.toArray(new TipologiaCorso[list.size()]);
 		}
 		catch (Exception e) {
-			throw new PersistentException(e);
+			return null;
 		}
 	}
 	
-	public static TipologiaCorso loadTipologiaCorsoByQuery(String condition, String orderBy) throws PersistentException {
+	public static TipologiaCorso loadTipologiaCorsoByQuery(String condition, String orderBy) {
 		try {
 			PersistentSession session = ngs.peristentmodel.NextGenSport2PersistentManager.instance().getSession();
 			return loadTipologiaCorsoByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
-			throw new PersistentException(e);
+			return null;
 		}
 	}
 	
-	public static TipologiaCorso loadTipologiaCorsoByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static TipologiaCorso loadTipologiaCorsoByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) {
 		try {
 			PersistentSession session = ngs.peristentmodel.NextGenSport2PersistentManager.instance().getSession();
 			return loadTipologiaCorsoByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
-			throw new PersistentException(e);
+			return null;
 		}
 	}
 	
-	public static TipologiaCorso loadTipologiaCorsoByQuery(PersistentSession session, String condition, String orderBy) throws PersistentException {
+	public static TipologiaCorso loadTipologiaCorsoByQuery(PersistentSession session, String condition, String orderBy) {
 		TipologiaCorso[] tipologiaCorsos = listTipologiaCorsoByQuery(session, condition, orderBy);
 		if (tipologiaCorsos != null && tipologiaCorsos.length > 0)
 			return tipologiaCorsos[0];
@@ -214,7 +214,7 @@ public class TipologiaCorsoDAO {
 			return null;
 	}
 	
-	public static TipologiaCorso loadTipologiaCorsoByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static TipologiaCorso loadTipologiaCorsoByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) {
 		TipologiaCorso[] tipologiaCorsos = listTipologiaCorsoByQuery(session, condition, orderBy, lockMode);
 		if (tipologiaCorsos != null && tipologiaCorsos.length > 0)
 			return tipologiaCorsos[0];
@@ -222,27 +222,27 @@ public class TipologiaCorsoDAO {
 			return null;
 	}
 	
-	public static java.util.Iterator iterateTipologiaCorsoByQuery(String condition, String orderBy) throws PersistentException {
+	public static java.util.Iterator iterateTipologiaCorsoByQuery(String condition, String orderBy) {
 		try {
 			PersistentSession session = ngs.peristentmodel.NextGenSport2PersistentManager.instance().getSession();
 			return iterateTipologiaCorsoByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
-			throw new PersistentException(e);
+			return null;
 		}
 	}
 	
-	public static java.util.Iterator iterateTipologiaCorsoByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static java.util.Iterator iterateTipologiaCorsoByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) {
 		try {
 			PersistentSession session = ngs.peristentmodel.NextGenSport2PersistentManager.instance().getSession();
 			return iterateTipologiaCorsoByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
-			throw new PersistentException(e);
+			return null;
 		}
 	}
 	
-	public static java.util.Iterator iterateTipologiaCorsoByQuery(PersistentSession session, String condition, String orderBy) throws PersistentException {
+	public static java.util.Iterator iterateTipologiaCorsoByQuery(PersistentSession session, String condition, String orderBy) {
 		StringBuffer sb = new StringBuffer("From ngs.peristentmodel.TipologiaCorso as TipologiaCorso");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
@@ -253,11 +253,11 @@ public class TipologiaCorsoDAO {
 			return query.iterate();
 		}
 		catch (Exception e) {
-			throw new PersistentException(e);
+			return null;
 		}
 	}
 	
-	public static java.util.Iterator iterateTipologiaCorsoByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static java.util.Iterator iterateTipologiaCorsoByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) {
 		StringBuffer sb = new StringBuffer("From ngs.peristentmodel.TipologiaCorso as TipologiaCorso");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
@@ -269,7 +269,7 @@ public class TipologiaCorsoDAO {
 			return query.iterate();
 		}
 		catch (Exception e) {
-			throw new PersistentException(e);
+			return null;
 		}
 	}
 	
@@ -277,43 +277,43 @@ public class TipologiaCorsoDAO {
 		return new ngs.peristentmodel.TipologiaCorso();
 	}
 	
-	public static boolean save(ngs.peristentmodel.TipologiaCorso tipologiaCorso) throws PersistentException {
+	public static boolean save(ngs.peristentmodel.TipologiaCorso tipologiaCorso) {
 		try {
 			ngs.peristentmodel.NextGenSport2PersistentManager.instance().saveObject(tipologiaCorso);
 			return true;
 		}
 		catch (Exception e) {
-			throw new PersistentException(e);
+			return false;
 		}
 	}
 	
-	public static boolean delete(ngs.peristentmodel.TipologiaCorso tipologiaCorso) throws PersistentException {
+	public static boolean delete(ngs.peristentmodel.TipologiaCorso tipologiaCorso) {
 		try {
 			ngs.peristentmodel.NextGenSport2PersistentManager.instance().deleteObject(tipologiaCorso);
 			return true;
 		}
 		catch (Exception e) {
-			throw new PersistentException(e);
+			return false;
 		}
 	}
 	
-	public static boolean refresh(ngs.peristentmodel.TipologiaCorso tipologiaCorso) throws PersistentException {
+	public static boolean refresh(ngs.peristentmodel.TipologiaCorso tipologiaCorso) {
 		try {
 			ngs.peristentmodel.NextGenSport2PersistentManager.instance().getSession().refresh(tipologiaCorso);
 			return true;
 		}
 		catch (Exception e) {
-			throw new PersistentException(e);
+			return false;
 		}
 	}
 	
-	public static boolean evict(ngs.peristentmodel.TipologiaCorso tipologiaCorso) throws PersistentException {
+	public static boolean evict(ngs.peristentmodel.TipologiaCorso tipologiaCorso) {
 		try {
 			ngs.peristentmodel.NextGenSport2PersistentManager.instance().getSession().evict(tipologiaCorso);
 			return true;
 		}
 		catch (Exception e) {
-			throw new PersistentException(e);
+			return false;
 		}
 	}
 	

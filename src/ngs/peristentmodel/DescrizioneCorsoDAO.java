@@ -19,123 +19,123 @@ import org.hibernate.LockMode;
 import java.util.List;
 
 public class DescrizioneCorsoDAO {
-	public static DescrizioneCorso loadDescrizioneCorsoByORMID(String nomeCorso) throws PersistentException {
+	public static DescrizioneCorso loadDescrizioneCorsoByORMID(String nomeCorso) {
 		try {
 			PersistentSession session = ngs.peristentmodel.NextGenSport2PersistentManager.instance().getSession();
 			return loadDescrizioneCorsoByORMID(session, nomeCorso);
 		}
 		catch (Exception e) {
-			throw new PersistentException(e);
+			return null;
 		}
 	}
 	
-	public static DescrizioneCorso getDescrizioneCorsoByORMID(String nomeCorso) throws PersistentException {
+	public static DescrizioneCorso getDescrizioneCorsoByORMID(String nomeCorso) {
 		try {
 			PersistentSession session = ngs.peristentmodel.NextGenSport2PersistentManager.instance().getSession();
 			return getDescrizioneCorsoByORMID(session, nomeCorso);
 		}
 		catch (Exception e) {
-			throw new PersistentException(e);
+			return null;
 		}
 	}
 	
-	public static DescrizioneCorso loadDescrizioneCorsoByORMID(String nomeCorso, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static DescrizioneCorso loadDescrizioneCorsoByORMID(String nomeCorso, org.hibernate.LockMode lockMode) {
 		try {
 			PersistentSession session = ngs.peristentmodel.NextGenSport2PersistentManager.instance().getSession();
 			return loadDescrizioneCorsoByORMID(session, nomeCorso, lockMode);
 		}
 		catch (Exception e) {
-			throw new PersistentException(e);
+			return null;
 		}
 	}
 	
-	public static DescrizioneCorso getDescrizioneCorsoByORMID(String nomeCorso, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static DescrizioneCorso getDescrizioneCorsoByORMID(String nomeCorso, org.hibernate.LockMode lockMode) {
 		try {
 			PersistentSession session = ngs.peristentmodel.NextGenSport2PersistentManager.instance().getSession();
 			return getDescrizioneCorsoByORMID(session, nomeCorso, lockMode);
 		}
 		catch (Exception e) {
-			throw new PersistentException(e);
+			return null;
 		}
 	}
 	
-	public static DescrizioneCorso loadDescrizioneCorsoByORMID(PersistentSession session, String nomeCorso) throws PersistentException {
+	public static DescrizioneCorso loadDescrizioneCorsoByORMID(PersistentSession session, String nomeCorso) {
 		try {
 			return (DescrizioneCorso) session.load(ngs.peristentmodel.DescrizioneCorso.class, nomeCorso);
 		}
 		catch (Exception e) {
-			throw new PersistentException(e);
+			return null;
 		}
 	}
 	
-	public static DescrizioneCorso getDescrizioneCorsoByORMID(PersistentSession session, String nomeCorso) throws PersistentException {
+	public static DescrizioneCorso getDescrizioneCorsoByORMID(PersistentSession session, String nomeCorso) {
 		try {
 			return (DescrizioneCorso) session.get(ngs.peristentmodel.DescrizioneCorso.class, nomeCorso);
 		}
 		catch (Exception e) {
-			throw new PersistentException(e);
+			return null;
 		}
 	}
 	
-	public static DescrizioneCorso loadDescrizioneCorsoByORMID(PersistentSession session, String nomeCorso, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static DescrizioneCorso loadDescrizioneCorsoByORMID(PersistentSession session, String nomeCorso, org.hibernate.LockMode lockMode) {
 		try {
 			return (DescrizioneCorso) session.load(ngs.peristentmodel.DescrizioneCorso.class, nomeCorso, lockMode);
 		}
 		catch (Exception e) {
-			throw new PersistentException(e);
+			return null;
 		}
 	}
 	
-	public static DescrizioneCorso getDescrizioneCorsoByORMID(PersistentSession session, String nomeCorso, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static DescrizioneCorso getDescrizioneCorsoByORMID(PersistentSession session, String nomeCorso, org.hibernate.LockMode lockMode) {
 		try {
 			return (DescrizioneCorso) session.get(ngs.peristentmodel.DescrizioneCorso.class, nomeCorso, lockMode);
 		}
 		catch (Exception e) {
-			throw new PersistentException(e);
+			return null;
 		}
 	}
 	
-	public static List queryDescrizioneCorso(String condition, String orderBy) throws PersistentException {
+	public static List queryDescrizioneCorso(String condition, String orderBy) {
 		try {
 			PersistentSession session = ngs.peristentmodel.NextGenSport2PersistentManager.instance().getSession();
 			return queryDescrizioneCorso(session, condition, orderBy);
 		}
 		catch (Exception e) {
-			throw new PersistentException(e);
+			return null;
 		}
 	}
 	
-	public static List queryDescrizioneCorso(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static List queryDescrizioneCorso(String condition, String orderBy, org.hibernate.LockMode lockMode) {
 		try {
 			PersistentSession session = ngs.peristentmodel.NextGenSport2PersistentManager.instance().getSession();
 			return queryDescrizioneCorso(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
-			throw new PersistentException(e);
+			return null;
 		}
 	}
 	
-	public static DescrizioneCorso[] listDescrizioneCorsoByQuery(String condition, String orderBy) throws PersistentException {
+	public static DescrizioneCorso[] listDescrizioneCorsoByQuery(String condition, String orderBy) {
 		try {
 			PersistentSession session = ngs.peristentmodel.NextGenSport2PersistentManager.instance().getSession();
 			return listDescrizioneCorsoByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
-			throw new PersistentException(e);
+			return null;
 		}
 	}
 	
-	public static DescrizioneCorso[] listDescrizioneCorsoByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static DescrizioneCorso[] listDescrizioneCorsoByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) {
 		try {
 			PersistentSession session = ngs.peristentmodel.NextGenSport2PersistentManager.instance().getSession();
 			return listDescrizioneCorsoByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
-			throw new PersistentException(e);
+			return null;
 		}
 	}
 	
-	public static List queryDescrizioneCorso(PersistentSession session, String condition, String orderBy) throws PersistentException {
+	public static List queryDescrizioneCorso(PersistentSession session, String condition, String orderBy) {
 		StringBuffer sb = new StringBuffer("From ngs.peristentmodel.DescrizioneCorso as DescrizioneCorso");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
@@ -146,11 +146,11 @@ public class DescrizioneCorsoDAO {
 			return query.list();
 		}
 		catch (Exception e) {
-			throw new PersistentException(e);
+			return null;
 		}
 	}
 	
-	public static List queryDescrizioneCorso(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static List queryDescrizioneCorso(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) {
 		StringBuffer sb = new StringBuffer("From ngs.peristentmodel.DescrizioneCorso as DescrizioneCorso");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
@@ -162,51 +162,51 @@ public class DescrizioneCorsoDAO {
 			return query.list();
 		}
 		catch (Exception e) {
-			throw new PersistentException(e);
+			return null;
 		}
 	}
 	
-	public static DescrizioneCorso[] listDescrizioneCorsoByQuery(PersistentSession session, String condition, String orderBy) throws PersistentException {
+	public static DescrizioneCorso[] listDescrizioneCorsoByQuery(PersistentSession session, String condition, String orderBy) {
 		try {
 			List list = queryDescrizioneCorso(session, condition, orderBy);
 			return (DescrizioneCorso[]) list.toArray(new DescrizioneCorso[list.size()]);
 		}
 		catch (Exception e) {
-			throw new PersistentException(e);
+			return null;
 		}
 	}
 	
-	public static DescrizioneCorso[] listDescrizioneCorsoByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static DescrizioneCorso[] listDescrizioneCorsoByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) {
 		try {
 			List list = queryDescrizioneCorso(session, condition, orderBy, lockMode);
 			return (DescrizioneCorso[]) list.toArray(new DescrizioneCorso[list.size()]);
 		}
 		catch (Exception e) {
-			throw new PersistentException(e);
+			return null;
 		}
 	}
 	
-	public static DescrizioneCorso loadDescrizioneCorsoByQuery(String condition, String orderBy) throws PersistentException {
+	public static DescrizioneCorso loadDescrizioneCorsoByQuery(String condition, String orderBy) {
 		try {
 			PersistentSession session = ngs.peristentmodel.NextGenSport2PersistentManager.instance().getSession();
 			return loadDescrizioneCorsoByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
-			throw new PersistentException(e);
+			return null;
 		}
 	}
 	
-	public static DescrizioneCorso loadDescrizioneCorsoByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static DescrizioneCorso loadDescrizioneCorsoByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) {
 		try {
 			PersistentSession session = ngs.peristentmodel.NextGenSport2PersistentManager.instance().getSession();
 			return loadDescrizioneCorsoByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
-			throw new PersistentException(e);
+			return null;
 		}
 	}
 	
-	public static DescrizioneCorso loadDescrizioneCorsoByQuery(PersistentSession session, String condition, String orderBy) throws PersistentException {
+	public static DescrizioneCorso loadDescrizioneCorsoByQuery(PersistentSession session, String condition, String orderBy) {
 		DescrizioneCorso[] descrizioneCorsos = listDescrizioneCorsoByQuery(session, condition, orderBy);
 		if (descrizioneCorsos != null && descrizioneCorsos.length > 0)
 			return descrizioneCorsos[0];
@@ -214,7 +214,7 @@ public class DescrizioneCorsoDAO {
 			return null;
 	}
 	
-	public static DescrizioneCorso loadDescrizioneCorsoByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static DescrizioneCorso loadDescrizioneCorsoByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) {
 		DescrizioneCorso[] descrizioneCorsos = listDescrizioneCorsoByQuery(session, condition, orderBy, lockMode);
 		if (descrizioneCorsos != null && descrizioneCorsos.length > 0)
 			return descrizioneCorsos[0];
@@ -222,27 +222,27 @@ public class DescrizioneCorsoDAO {
 			return null;
 	}
 	
-	public static java.util.Iterator iterateDescrizioneCorsoByQuery(String condition, String orderBy) throws PersistentException {
+	public static java.util.Iterator iterateDescrizioneCorsoByQuery(String condition, String orderBy) {
 		try {
 			PersistentSession session = ngs.peristentmodel.NextGenSport2PersistentManager.instance().getSession();
 			return iterateDescrizioneCorsoByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
-			throw new PersistentException(e);
+			return null;
 		}
 	}
 	
-	public static java.util.Iterator iterateDescrizioneCorsoByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static java.util.Iterator iterateDescrizioneCorsoByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) {
 		try {
 			PersistentSession session = ngs.peristentmodel.NextGenSport2PersistentManager.instance().getSession();
 			return iterateDescrizioneCorsoByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
-			throw new PersistentException(e);
+			return null;
 		}
 	}
 	
-	public static java.util.Iterator iterateDescrizioneCorsoByQuery(PersistentSession session, String condition, String orderBy) throws PersistentException {
+	public static java.util.Iterator iterateDescrizioneCorsoByQuery(PersistentSession session, String condition, String orderBy) {
 		StringBuffer sb = new StringBuffer("From ngs.peristentmodel.DescrizioneCorso as DescrizioneCorso");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
@@ -253,11 +253,11 @@ public class DescrizioneCorsoDAO {
 			return query.iterate();
 		}
 		catch (Exception e) {
-			throw new PersistentException(e);
+			return null;
 		}
 	}
 	
-	public static java.util.Iterator iterateDescrizioneCorsoByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
+	public static java.util.Iterator iterateDescrizioneCorsoByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) {
 		StringBuffer sb = new StringBuffer("From ngs.peristentmodel.DescrizioneCorso as DescrizioneCorso");
 		if (condition != null)
 			sb.append(" Where ").append(condition);
@@ -269,7 +269,7 @@ public class DescrizioneCorsoDAO {
 			return query.iterate();
 		}
 		catch (Exception e) {
-			throw new PersistentException(e);
+			return null;
 		}
 	}
 	
@@ -277,43 +277,43 @@ public class DescrizioneCorsoDAO {
 		return new ngs.peristentmodel.DescrizioneCorso();
 	}
 	
-	public static boolean save(ngs.peristentmodel.DescrizioneCorso descrizioneCorso) throws PersistentException {
+	public static boolean save(ngs.peristentmodel.DescrizioneCorso descrizioneCorso) {
 		try {
 			ngs.peristentmodel.NextGenSport2PersistentManager.instance().saveObject(descrizioneCorso);
 			return true;
 		}
 		catch (Exception e) {
-			throw new PersistentException(e);
+			return false;
 		}
 	}
 	
-	public static boolean delete(ngs.peristentmodel.DescrizioneCorso descrizioneCorso) throws PersistentException {
+	public static boolean delete(ngs.peristentmodel.DescrizioneCorso descrizioneCorso) {
 		try {
 			ngs.peristentmodel.NextGenSport2PersistentManager.instance().deleteObject(descrizioneCorso);
 			return true;
 		}
 		catch (Exception e) {
-			throw new PersistentException(e);
+			return false;
 		}
 	}
 	
-	public static boolean refresh(ngs.peristentmodel.DescrizioneCorso descrizioneCorso) throws PersistentException {
+	public static boolean refresh(ngs.peristentmodel.DescrizioneCorso descrizioneCorso) {
 		try {
 			ngs.peristentmodel.NextGenSport2PersistentManager.instance().getSession().refresh(descrizioneCorso);
 			return true;
 		}
 		catch (Exception e) {
-			throw new PersistentException(e);
+			return false;
 		}
 	}
 	
-	public static boolean evict(ngs.peristentmodel.DescrizioneCorso descrizioneCorso) throws PersistentException {
+	public static boolean evict(ngs.peristentmodel.DescrizioneCorso descrizioneCorso) {
 		try {
 			ngs.peristentmodel.NextGenSport2PersistentManager.instance().getSession().evict(descrizioneCorso);
 			return true;
 		}
 		catch (Exception e) {
-			throw new PersistentException(e);
+			return false;
 		}
 	}
 	
