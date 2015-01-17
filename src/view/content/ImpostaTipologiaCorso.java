@@ -61,7 +61,9 @@ public class ImpostaTipologiaCorso extends JPanel {
 						if(aux==true)
 						{
 							if(ConfAbbCorsiHandler.getInstance().impostaTipologiaCorso(nomeTip)==true)
-							{label.setText("TIPOLOGIA '"+nomeTip+"' INSERITA CORRETTAMENTE");}
+								label.setText("TIPOLOGIA '"+nomeTip+"' INSERITA CORRETTAMENTE");
+							else
+								JOptionPane.showMessageDialog(null,"Connessione al database non riuscita","ERRORE",JOptionPane.ERROR_MESSAGE,new ImageIcon(ImpostaTipologiaCorso.class.getResource("/view/img/errore.png")));
 						}
 						else
 						{
