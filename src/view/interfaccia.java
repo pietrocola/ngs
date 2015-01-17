@@ -30,7 +30,7 @@ import view.content.ImpostaTipologiaCorso;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
 
-public class Interfaccia {
+public class interfaccia {
 
 	private JFrame frame;
 	private JMenuBar menuBar;
@@ -43,7 +43,7 @@ public class Interfaccia {
 	private JMenu mnImpostaTipologiaCorso;
 	private JMenuItem mntmAggiungi;
 	private JMenuItem mntmConfiguraCorso;
-//commento prova
+//commento provaaaaaa
 	private JPanel panel;
 	/**
 	 * Launch the application.
@@ -52,7 +52,7 @@ public class Interfaccia {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Interfaccia window = new Interfaccia();
+					interfaccia window = new interfaccia();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -65,7 +65,7 @@ public class Interfaccia {
 	 * Create the application.
 	 * @throws PropertyVetoException 
 	 */
-	public Interfaccia() throws PropertyVetoException {
+	public interfaccia() throws PropertyVetoException {
 		initialize();
 	}
 
@@ -99,7 +99,7 @@ public class Interfaccia {
 			frame.getContentPane().add(toolBar, BorderLayout.NORTH);
 			{
 				btnCorso = new JButton("CORSO");
-				btnCorso.setIcon(new ImageIcon(Interfaccia.class.getResource("/view/img/trave.png")));
+				btnCorso.setIcon(new ImageIcon(interfaccia.class.getResource("/view/img/trave.png")));
 				btnCorso.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						popupMenu.show(btnCorso, 0, btnCorso.getY()+btnCorso.getHeight());
