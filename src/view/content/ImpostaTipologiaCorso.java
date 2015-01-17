@@ -1,5 +1,5 @@
 package view.content;
-
+//commento prova
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JLabel;

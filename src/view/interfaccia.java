@@ -43,7 +43,7 @@ public class Interfaccia {
 	private JMenu mnImpostaTipologiaCorso;
 	private JMenuItem mntmAggiungi;
 	private JMenuItem mntmConfiguraCorso;
-
+//commento prova
 	private JPanel panel;
 	/**
 	 * Launch the application.
