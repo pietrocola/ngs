@@ -33,11 +33,17 @@ public class M_TipologiaCorso extends AModel {
 	public boolean verificaNomeTipologiaCorso(String text) throws PersistentException {
 		// TODO Auto-generated method stub
 		
-		System.out.println(TipologiaCorsoDAO.getTipologiaCorsoByORMID(text).getNomeTip());
-		
-		
-		return (Boolean) null;
-		
+		if(TipologiaCorsoDAO.getTipologiaCorsoByORMID(text)==null)
+		{
+			//System.out.println("errore: tipologia non presente");
+			return true; // la tipologia non esiste
+		}
+		else
+		{
+			//System.out.println(TipologiaCorsoDAO.getTipologiaCorsoByORMID(text).getNomeTip());
+			return false; // la tipologia è gia presente!!
+		}
+		    
 		/*
 		if(TipologiaCorsoDAO.queryTipologiaCorso("nomeTip=lol", null).isEmpty())
 		{ System.out.println("vettore vuoto");	return true;}

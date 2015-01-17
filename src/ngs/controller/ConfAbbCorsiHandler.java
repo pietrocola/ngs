@@ -28,12 +28,12 @@ public class ConfAbbCorsiHandler {
 	 */
 	
 	
-	public void impostaTipologiaCorso(String nomeTip) throws PersistentException {
+	public boolean impostaTipologiaCorso(String nomeTip) throws PersistentException {
 		// TODO - implement ConfAbbCorsiHandler.impostaTipologiaCorso
 		
 		//System.out.println(nomeTip);
 		descCorso = new M_DescrizioneCorso();
-		descCorso.impostaTipologiaCorso(nomeTip);
+		return descCorso.impostaTipologiaCorso(nomeTip);
 		
 		//throw new UnsupportedOperationException();
 	}
@@ -60,6 +60,7 @@ public class ConfAbbCorsiHandler {
 	public boolean verificaNomeTipologiaCorso(String text) throws PersistentException {
 		// TODO Auto-generated method stub
 		tipCorso= new M_TipologiaCorso();
+		//System.out.println(tipCorso.verificaNomeTipologiaCorso(text));
 		return tipCorso.verificaNomeTipologiaCorso(text);
 	}
 

@@ -76,6 +76,8 @@ public class interfaccia {
 	private void initialize() throws PropertyVetoException {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
+		//frame.setSize(600, 600);
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		{
 			menuBar = new JMenuBar();

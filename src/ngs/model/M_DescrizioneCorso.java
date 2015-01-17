@@ -22,7 +22,7 @@ public class M_DescrizioneCorso extends AModel {
 	 * @throws PersistentException 
 	 */
 	
-	public void impostaTipologiaCorso(String nomeTip) throws PersistentException {
+	public boolean impostaTipologiaCorso(String nomeTip) throws PersistentException {
 		// TODO - implement M_DescrizioneCorso.impostaTipologiaCorso
 		
 	    TipologiaCorso tp = (TipologiaCorso)this.getPersistentModel();
@@ -33,8 +33,8 @@ public class M_DescrizioneCorso extends AModel {
 		//TipologiaCorsoDAO tpd=new TipologiaCorsoDAO();
 		//boolean aux;
 		//aux=tpd.save(tp);
-	    Boolean aux=TipologiaCorsoDAO.save(tp);
-	    System.out.println(aux);
+	    return TipologiaCorsoDAO.save(tp);
+	    //System.out.println(aux);
 		//throw new UnsupportedOperationException();
 	}
 

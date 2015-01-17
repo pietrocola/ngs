@@ -17,15 +17,24 @@ import java.awt.event.KeyEvent;
 import java.awt.event.InputMethodListener;
 import java.awt.event.InputMethodEvent;
 
+import javax.swing.ImageIcon;
+
+import java.awt.Color;
+
+import javax.swing.border.LineBorder;
+import java.awt.Font;
+
 public class ImpostaTipologiaCorso extends JPanel {
 	private JLabel lblNomeTipologia;
 	private JTextField textField;
 	private JButton btnSalva;
+	private JLabel label;
 
 	/**
 	 * Create the panel.
 	 */
 	public ImpostaTipologiaCorso() {
+		setForeground(Color.GREEN);
 		setLayout(null);
 		{
 			lblNomeTipologia = new JLabel("nome tipologia");
@@ -43,22 +52,40 @@ public class ImpostaTipologiaCorso extends JPanel {
 			btnSalva.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					String nomeTip = textField.getText();
+					if(nomeTip.length()==0) JOptionPane.showMessageDialog(null,"Inserire una tipologia","ERRORE",JOptionPane.ERROR_MESSAGE,new ImageIcon(ImpostaTipologiaCorso.class.getResource("/view/img/errore.png")));
+					else{
 					try {
-						
-						
-						
-						ConfAbbCorsiHandler.getInstance().verificaNomeTipologiaCorso(textField.getText());
-						
+						label.setText("");
+						boolean aux;
+						aux=ConfAbbCorsiHandler.getInstance().verificaNomeTipologiaCorso(textField.getText());
+						if(aux==true)
+						{
+							if(ConfAbbCorsiHandler.getInstance().impostaTipologiaCorso(nomeTip)==true)
+							{label.setText("TIPOLOGIA '"+nomeTip+"' INSERITA CORRETTAMENTE");}
+						}
+						else
+						{
+							//System.out.println("errore");
+							JOptionPane.showMessageDialog(null,"La tipologia scelta è già stata inserita","ERRORE",JOptionPane.ERROR_MESSAGE,new ImageIcon(ImpostaTipologiaCorso.class.getResource("/view/img/errore.png")));
+						}
 						
 						
 					} catch (PersistentException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
+					}
 				}
 			});
 			btnSalva.setBounds(163, 96, 89, 23);
 			add(btnSalva);
+		}
+		{
+			label = new JLabel("");
+			label.setFont(new Font("Tahoma", Font.BOLD, 15));
+			label.setForeground(Color.GREEN);
+			label.setBounds(163, 152, 421, 14);
+			add(label);
 		}
 
 	}
