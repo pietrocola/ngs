@@ -1,8 +1,11 @@
 package ngs.model;
 
+import java.util.ArrayList;
+
 import org.orm.PersistentException;
 
 import ngs.peristentmodel.APersistentModel;
+import ngs.peristentmodel.TipologiaCorso;
 import ngs.peristentmodel.TipologiaCorsoDAO;
 
 public class M_TipologiaCorso extends AModel {
@@ -16,9 +19,37 @@ public class M_TipologiaCorso extends AModel {
 		throw new UnsupportedOperationException();
 	}
 
+	
+	/**
+	 * restituisce tutte le tipologie memorizzate
+	 * @return
+	 */
 	public java.util.ArrayList<String> getNomiTipologie() {
 		// TODO - implement M_TipologiaCorso.getNomiTipologie
-		throw new UnsupportedOperationException();
+		
+		ArrayList<String> arrayNomiTip = new ArrayList<String>();
+		
+		TipologiaCorso tip=(TipologiaCorso)this.getPersistentModel();
+		
+		
+		//if(TipologiaCorsoDAO.listTipologiaCorsoByQuery(null, null)==null)
+			//System.out.println("ciao");
+		
+		for(int i=0;i<TipologiaCorsoDAO.listTipologiaCorsoByQuery(null, null).length;i++){
+			arrayNomiTip.add(TipologiaCorsoDAO.listTipologiaCorsoByQuery(null, null)[i].getNomeTip());
+			//System.out.println(TipologiaCorsoDAO.listTipologiaCorsoByQuery(null, null)[i].getNomeTip());
+		     //System.out.println(TipologiaCorsoDAO.listTipologiaCorsoByQuery(null, null)[i].getNomeTip().getClass());
+		}
+		
+		//for(String s: arrayNomiTip)
+			//System.out.println(s);
+		
+		//ArrayList<String> arrayNomiTip = new ArrayList<String>();
+	
+		
+		return arrayNomiTip;	
+		
+		//throw new UnsupportedOperationException();
 	}
 
 	@Override
@@ -50,6 +81,13 @@ public class M_TipologiaCorso extends AModel {
 		else
 		{System.out.println("vet pieno"); return false;}
 		*/
+	}
+
+
+	public TipologiaCorso getTipologia(String nomeCorso) {
+		// TODO Auto-generated method stub
+		//TipologiaCorso tp=(TipologiaCorso)this.getPersistentModel();
+		return TipologiaCorsoDAO.getTipologiaCorsoByORMID(nomeCorso);
 	}
 	
 

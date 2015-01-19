@@ -3,6 +3,7 @@ package ngs.model;
 import org.orm.PersistentException;
 
 import ngs.peristentmodel.APersistentModel;
+import ngs.peristentmodel.DescrizioneCorsoDAO;
 import ngs.peristentmodel.TipologiaCorso;
 import ngs.peristentmodel.TipologiaCorsoDAO;
 
@@ -44,6 +45,20 @@ public class M_DescrizioneCorso extends AModel {
 	public APersistentModel getPersistentModel() {
 		// TODO Auto-generated method stub
 		return this.model;
+	}
+
+
+
+	public boolean verificaNomeDescrizioneCorso(String nomeDesc) {
+		// TODO Auto-generated method stub
+		if(DescrizioneCorsoDAO.getDescrizioneCorsoByORMID(nomeDesc)==null)
+		{
+			return true; // la descrizione corso non esiste
+		}
+		else
+		{
+			return false; // la descrzione corso è gia presente!!
+		}
 	}
 
 }

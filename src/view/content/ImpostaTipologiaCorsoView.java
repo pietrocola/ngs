@@ -22,9 +22,11 @@ import javax.swing.ImageIcon;
 import java.awt.Color;
 
 import javax.swing.border.LineBorder;
-import java.awt.Font;
 
-public class ImpostaTipologiaCorso extends JPanel {
+import java.awt.Font;
+import javax.swing.SwingConstants;
+
+public class ImpostaTipologiaCorsoView extends JPanel {
 	private JLabel lblNomeTipologia;
 	private JTextField textField;
 	private JButton btnSalva;
@@ -33,17 +35,17 @@ public class ImpostaTipologiaCorso extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public ImpostaTipologiaCorso() {
+	public ImpostaTipologiaCorsoView() {
 		setForeground(Color.GREEN);
 		setLayout(null);
 		{
 			lblNomeTipologia = new JLabel("nome tipologia");
-			lblNomeTipologia.setBounds(40, 53, 97, 14);
+			lblNomeTipologia.setBounds(40, 55, 97, 14);
 			add(lblNomeTipologia);
 		}
 		{
 			textField = new JTextField();
-			textField.setBounds(163, 50, 126, 20);
+			textField.setBounds(193, 52, 126, 20);
 			add(textField);
 			textField.setColumns(10);
 		}
@@ -52,7 +54,7 @@ public class ImpostaTipologiaCorso extends JPanel {
 			btnSalva.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					String nomeTip = textField.getText();
-					if(nomeTip.length()==0) JOptionPane.showMessageDialog(null,"Inserire una tipologia","ERRORE",JOptionPane.ERROR_MESSAGE,new ImageIcon(ImpostaTipologiaCorso.class.getResource("/view/img/errore.png")));
+					if(nomeTip.length()==0) JOptionPane.showMessageDialog(null,"Inserire una tipologia","ERRORE",JOptionPane.ERROR_MESSAGE,new ImageIcon(ImpostaTipologiaCorsoView.class.getResource("/view/img/errore.png")));
 					else{
 					try {
 						label.setText("");
@@ -60,15 +62,19 @@ public class ImpostaTipologiaCorso extends JPanel {
 						aux=ConfAbbCorsiHandler.getInstance().verificaNomeTipologiaCorso(textField.getText());
 						if(aux==true)
 						{
-							if(ConfAbbCorsiHandler.getInstance().impostaTipologiaCorso(nomeTip)==true)
-								label.setText("TIPOLOGIA '"+nomeTip+"' INSERITA CORRETTAMENTE");
+							String riepilogo="Confermare la creazione della tipologia corso?\n   NOME TIPOLOGIA: "+textField.getText()+"\n\n";
+							int risposta=JOptionPane.showConfirmDialog(null,riepilogo,"CONFERMA",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+							if(risposta==JOptionPane.YES_OPTION) {
+								if(ConfAbbCorsiHandler.getInstance().impostaTipologiaCorso(nomeTip)==true)
+									label.setText("TIPOLOGIA INSERITA CORRETTAMENTE");
 							else
-								JOptionPane.showMessageDialog(null,"Connessione al database non riuscita","ERRORE",JOptionPane.ERROR_MESSAGE,new ImageIcon(ImpostaTipologiaCorso.class.getResource("/view/img/errore.png")));
+								JOptionPane.showMessageDialog(null,"Connessione al database non riuscita","ERRORE",JOptionPane.ERROR_MESSAGE,new ImageIcon(ImpostaTipologiaCorsoView.class.getResource("/view/img/errore.png")));
+							}
 						}
 						else
 						{
 							//System.out.println("errore");
-							JOptionPane.showMessageDialog(null,"La tipologia scelta è già stata inserita","ERRORE",JOptionPane.ERROR_MESSAGE,new ImageIcon(ImpostaTipologiaCorso.class.getResource("/view/img/errore.png")));
+							JOptionPane.showMessageDialog(null,"La tipologia scelta è già stata inserita","ERRORE",JOptionPane.ERROR_MESSAGE,new ImageIcon(ImpostaTipologiaCorsoView.class.getResource("/view/img/errore.png")));
 						}
 						
 						
@@ -79,14 +85,14 @@ public class ImpostaTipologiaCorso extends JPanel {
 					}
 				}
 			});
-			btnSalva.setBounds(163, 96, 89, 23);
+			btnSalva.setBounds(193, 100, 89, 23);
 			add(btnSalva);
 		}
 		{
 			label = new JLabel("");
 			label.setFont(new Font("Tahoma", Font.BOLD, 15));
-			label.setForeground(Color.GREEN);
-			label.setBounds(163, 152, 421, 14);
+			label.setForeground(new Color(0, 128, 0));
+			label.setBounds(193, 153, 421, 14);
 			add(label);
 		}
 

@@ -26,9 +26,20 @@ import java.beans.PropertyVetoException;
 
 import javax.swing.ImageIcon;
 
-import view.content.ImpostaTipologiaCorso;
+import view.content.ConfiguraCorsoView;
+import view.content.ImpostaTipologiaCorsoView;
+
 import javax.swing.border.LineBorder;
+
 import java.awt.Color;
+import java.awt.Toolkit;
+
+import javax.swing.JSplitPane;
+import javax.swing.JTabbedPane;
+import javax.swing.JScrollPane;
+import javax.swing.JDesktopPane;
+
+import ngs.model.M_TipologiaCorso;
 
 public class interfaccia {
 
@@ -38,13 +49,14 @@ public class interfaccia {
 	private JMenu mnModifica;
 	private JMenu menu;
 	private JToolBar toolBar;
-	private JButton btnCorso;
+	private JButton btnCorsi;
 	private JPopupMenu popupMenu;
 	private JMenu mnImpostaTipologiaCorso;
 	private JMenuItem mntmAggiungi;
 	private JMenuItem mntmConfiguraCorso;
 //commento provaaaaaa
 	private JPanel panel;
+	private JButton btnAbbonamenti;
 	/**
 	 * Launch the application.
 	 */
@@ -76,6 +88,7 @@ public class interfaccia {
 	private void initialize() throws PropertyVetoException {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
+		
 		//frame.setSize(600, 600);
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -83,11 +96,11 @@ public class interfaccia {
 			menuBar = new JMenuBar();
 			frame.setJMenuBar(menuBar);
 			{
-				mnFile = new JMenu("file");
+				mnFile = new JMenu("File");
 				menuBar.add(mnFile);
 			}
 			{
-				mnModifica = new JMenu("modifica");
+				mnModifica = new JMenu("Modifica");
 				menuBar.add(mnModifica);
 			}
 			{
@@ -100,17 +113,17 @@ public class interfaccia {
 			toolBar.setFloatable(false);
 			frame.getContentPane().add(toolBar, BorderLayout.NORTH);
 			{
-				btnCorso = new JButton("CORSO");
-				btnCorso.setIcon(new ImageIcon(interfaccia.class.getResource("/view/img/trave.png")));
-				btnCorso.addActionListener(new ActionListener() {
+				btnCorsi = new JButton("GESTIONE CORSI ");
+				btnCorsi.setIcon(new ImageIcon(interfaccia.class.getResource("/view/img/yoga.png")));
+				btnCorsi.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						popupMenu.show(btnCorso, 0, btnCorso.getY()+btnCorso.getHeight());
+						popupMenu.show(btnCorsi, 0, btnCorsi.getY()+btnCorsi.getHeight());
 					}
 				});
-				toolBar.add(btnCorso);
+				toolBar.add(btnCorsi);
 				{
 					popupMenu = new JPopupMenu();
-					addPopup(btnCorso, popupMenu);
+					addPopup(btnCorsi, popupMenu);
 					{
 						mnImpostaTipologiaCorso = new JMenu("imposta tipologia corso");
 						popupMenu.add(mnImpostaTipologiaCorso);
@@ -119,13 +132,21 @@ public class interfaccia {
 							mntmAggiungi.addActionListener(new ActionListener() {
 								public void actionPerformed(ActionEvent e) {
 									//JInternalFrame internalFrame = new JInternalFrame("home->corso->imposta tipologia corso");
+
+									clearMainPanel(frame);
+
 									
-									ImpostaTipologiaCorso itc=new ImpostaTipologiaCorso();
+									ImpostaTipologiaCorsoView itc=new ImpostaTipologiaCorsoView();
 									//internalFrame.getContentPane().add(itc,BorderLayout.CENTER);
-									frame.getContentPane().add(itc, BorderLayout.CENTER);
+									
+									frame.getContentPane().add(itc, BorderLayout.CENTER); 
+									
+									
 									//internalFrame.setVisible(true);
-									frame.getContentPane().revalidate();
-									frame.repaint();
+									frame.getContentPane().revalidate(); 
+									
+									frame.repaint(); 
+									
 								}
 							});
 							mnImpostaTipologiaCorso.add(mntmAggiungi);
@@ -133,9 +154,31 @@ public class interfaccia {
 					}
 					{
 						mntmConfiguraCorso = new JMenuItem("configura corso");
+						mntmConfiguraCorso.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent arg0) {
+								
+								
+								clearMainPanel(frame);
+								
+								
+								ConfiguraCorsoView cfv=new ConfiguraCorsoView();
+								//internalFrame.getContentPane().add(itc,BorderLayout.CENTER);
+								frame.getContentPane().add(cfv, BorderLayout.CENTER);
+								
+								//internalFrame.setVisible(true);
+								frame.getContentPane().revalidate();
+								frame.repaint();
+								
+							}
+						});
 						popupMenu.add(mntmConfiguraCorso);
 					}
 				}
+			}
+			{
+				btnAbbonamenti = new JButton("GESTIONE ABBONAMENTI");
+				btnAbbonamenti.setIcon(new ImageIcon(interfaccia.class.getResource("/view/img/abbonamento1.png")));
+				toolBar.add(btnAbbonamenti);
 			}
 		}
 	}
@@ -147,4 +190,19 @@ public class interfaccia {
 			}
 		});
 	}
+	
+	
+	
+	/**
+	 * Pulisce il panel variabile e riaggiunge la toolBar con in bottoni
+	 */
+	public void clearMainPanel(JFrame frame)
+	   {		   
+			frame.getContentPane().removeAll();
+			frame.getContentPane().repaint();
+			frame.getContentPane().add(toolBar, BorderLayout.NORTH);
+	   }
+	
+	
+	
 }
