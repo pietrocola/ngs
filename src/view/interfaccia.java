@@ -29,6 +29,7 @@ import javax.swing.ImageIcon;
 
 import view.content.ConfiguraCorsoView;
 import view.content.ImpostaTipologiaCorsoView;
+import view.utility.ProvaMap;
 
 import javax.swing.border.LineBorder;
 
@@ -75,6 +76,7 @@ public class interfaccia {
 			public void run() {
 
 				try {
+					
 					interfaccia window = new interfaccia();
 					Thread.sleep(1500);
 					window.frame.setVisible(true);
@@ -131,7 +133,7 @@ public class interfaccia {
 			{
 				btnCorsi = new JButton("GESTIONE CORSI ");
 				btnCorsi.setIcon(new ImageIcon(interfaccia.class
-						.getResource("/view/img/yoga.png")));
+						.getResource("/view/img/yoga50.png")));
 				btnCorsi.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						popupMenu.show(btnCorsi, 0,
