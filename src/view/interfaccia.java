@@ -58,6 +58,9 @@ public class interfaccia {
 
 	private JPanel panel;
 	private JButton btnAbbonamenti;
+	private JButton btnStruttura;
+	private JButton btnClienti;
+	private JButton btnPersonale;
 
 	/**
 	 * Launch the application.
@@ -102,8 +105,8 @@ public class interfaccia {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 
-		// frame.setSize(600, 600);
-		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		frame.setSize(800, 600);
+		//frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		{
 			menuBar = new JMenuBar();
@@ -200,6 +203,23 @@ public class interfaccia {
 						.getResource("/view/img/abbonamento1.png")));
 				toolBar.add(btnAbbonamenti);
 			}
+			
+			{
+				btnStruttura = new JButton("STRUTTURA");
+				btnStruttura.setIcon(new ImageIcon(interfaccia.class.getResource("/view/img/struttura.png")));
+				toolBar.add(btnStruttura);
+			}
+			{
+				btnClienti = new JButton("CLIENTI");
+				btnClienti.setIcon(new ImageIcon(interfaccia.class.getResource("/view/img/cliente.png")));
+				toolBar.add(btnClienti);
+			}
+			{
+				btnPersonale = new JButton("PERSONALE");
+				btnPersonale.setIcon(new ImageIcon(interfaccia.class.getResource("/view/img/personale.png")));
+				toolBar.add(btnPersonale);
+			}
+			
 		}
 	}
 

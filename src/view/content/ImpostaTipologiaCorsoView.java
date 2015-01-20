@@ -1,5 +1,5 @@
 package view.content;
-//commento prova
+
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -8,6 +8,7 @@ import javax.swing.JButton;
 
 import org.orm.PersistentException;
 
+import view.utility.Message;
 import ngs.controller.ConfAbbCorsiHandler;
 
 import java.awt.event.ActionListener;
@@ -24,6 +25,7 @@ import java.awt.Color;
 import javax.swing.border.LineBorder;
 
 import java.awt.Font;
+
 import javax.swing.SwingConstants;
 
 public class ImpostaTipologiaCorsoView extends JPanel {
@@ -64,46 +66,15 @@ public class ImpostaTipologiaCorsoView extends JPanel {
 		}
 		
 	}
+
 	
-	public void errorMessage(String titolo, String messaggio)
-	{																																			
-		JOptionPane.showMessageDialog(null,messaggio,titolo,JOptionPane.ERROR_MESSAGE,new ImageIcon(ImpostaTipologiaCorsoView.class.getResource("/view/img/statusDialog/small/erroreBox.png")));
-	}
-	
-	public void noConnectionDBMessage(String titolo, String messaggio)
-	{
-		JOptionPane.showMessageDialog(null,messaggio,titolo,JOptionPane.ERROR_MESSAGE,new ImageIcon(ImpostaTipologiaCorsoView.class.getResource("/view/img/statusDialog/small/transito.png")));
-	}
-	
-	public int questionConfirmMessage(String titolo, String messaggio)
-	{
-		return JOptionPane.showConfirmDialog(null,messaggio,titolo,JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,new ImageIcon(ImpostaTipologiaCorsoView.class.getResource("/view/img/statusDialog/small/domanda.png")));
-	}
-	
-	/*
-	 * messaggio in label
-	 * @param messaggio stringa
-	 * @tipoMessaggio bool: true, messaggio verde : false, messaggio rosso
-	 */
-	public void confirmLabel(String messaggio, boolean tipoMessaggio)
-	{
-		label.setText(messaggio);
-		if(tipoMessaggio)
-			{
-				label.setForeground(new Color(0, 153, 0));
-			}
-			else 
-			{
-				label.setForeground(Color.RED);
-			}		
-	}
 	
 	public void inviaTipologiaCorso(String nomeTip) throws PersistentException
 	{
 		if(ConfAbbCorsiHandler.getInstance().impostaTipologiaCorso(nomeTip)==true)
-			confirmLabel("TIPOLOGIA INSERITA CORRETTAMENTE",true);
+			Message.confirmLabel("TIPOLOGIA INSERITA CORRETTAMENTE",true,label);
 		else
-			noConnectionDBMessage("Errore connessione", "Connessione al database non riuscita");
+			Message.noConnectionDBMessage("Errore connessione", "Connessione al database non riuscita");
 	}
 	
 	public boolean checkExistNomeTipologiaCorso() throws PersistentException
@@ -116,7 +87,7 @@ public class ImpostaTipologiaCorsoView extends JPanel {
 		btnSalva.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String nomeTip = textField.getText();
-				if(nomeTip.length()==0) errorMessage("ERRORE", "Inserire una tipologia");
+				if(nomeTip.length()==0) Message.errorMessage("ERRORE", "Inserire una tipologia");
 				else{
 					try {
 							label.setText("");
@@ -125,7 +96,7 @@ public class ImpostaTipologiaCorsoView extends JPanel {
 							if(aux==true)
 							{
 								String riepilogo="Confermare la creazione della tipologia corso?\n   NOME TIPOLOGIA: "+textField.getText()+"\n\n";
-								int risposta=questionConfirmMessage("CONFERMA",riepilogo);
+								int risposta=Message.questionConfirmMessage("CONFERMA",riepilogo);
 								if(risposta==JOptionPane.YES_OPTION) 
 								{
 									inviaTipologiaCorso(nomeTip);
@@ -134,7 +105,7 @@ public class ImpostaTipologiaCorsoView extends JPanel {
 							else
 							{
 								//System.out.println("errore");
-								errorMessage("ERRORE","La tipologia scelta è già stata inserita");
+								Message.errorMessage("ERRORE","La tipologia scelta è già stata inserita");
 								
 							}						
 					} catch (PersistentException e1) {
