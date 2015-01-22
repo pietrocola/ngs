@@ -67,21 +67,6 @@ public class ImpostaTipologiaCorsoView extends JPanel {
 		
 	}
 
-	
-	
-	public void inviaTipologiaCorso(String nomeTip) throws PersistentException
-	{
-		if(ConfAbbCorsiHandler.getInstance().impostaTipologiaCorso(nomeTip)==true)
-			Message.confirmLabel("TIPOLOGIA INSERITA CORRETTAMENTE",true,label);
-		else
-			Message.noConnectionDBMessage("Errore connessione", "Connessione al database non riuscita");
-	}
-	
-	public boolean checkExistNomeTipologiaCorso() throws PersistentException
-	{
-		return ConfAbbCorsiHandler.getInstance().verificaNomeTipologiaCorso(textField.getText());
-	}
-	
 	public void ascoltatoreInserisciTipologia()
 	{
 		btnSalva.addActionListener(new ActionListener() {
@@ -92,14 +77,17 @@ public class ImpostaTipologiaCorsoView extends JPanel {
 					try {
 							label.setText("");
 							boolean aux;
-							aux=checkExistNomeTipologiaCorso();
+							aux=ConfAbbCorsiHandler.getInstance().verificaNomeTipologiaCorso(textField.getText());
 							if(aux==true)
 							{
 								String riepilogo="Confermare la creazione della tipologia corso?\n   NOME TIPOLOGIA: "+textField.getText()+"\n\n";
 								int risposta=Message.questionConfirmMessage("CONFERMA",riepilogo);
 								if(risposta==JOptionPane.YES_OPTION) 
 								{
-									inviaTipologiaCorso(nomeTip);
+									if(ConfAbbCorsiHandler.getInstance().impostaTipologiaCorso(nomeTip)==true)
+										Message.confirmLabel("TIPOLOGIA INSERITA CORRETTAMENTE",true,label);
+									else
+										Message.noConnectionDBMessage("ERRORE CONNESSIONE", "Connessione al database non riuscita");
 								}
 							}
 							else

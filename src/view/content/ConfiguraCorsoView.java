@@ -28,6 +28,8 @@ import javax.swing.JDialog;
 import java.awt.Window.Type;
 import java.awt.Font;
 
+import view.utility.Message;
+
 public class ConfiguraCorsoView extends JPanel {
 	private JLabel lblNomeCorso;
 	private JLabel lblTipologia;
@@ -55,37 +57,7 @@ public class ConfiguraCorsoView extends JPanel {
 		}
 		{
 			comboBox = new JComboBox();
-			comboBox.addFocusListener(new FocusAdapter() {
-				@Override
-				public void focusGained(FocusEvent e) {
-					
-					//if(ConfAbbCorsiHandler.getInstance().getNomiTipologie()==null)
-						//System.out.println(ConfAbbCorsiHandler.getInstance().getNomiTipologie());
-				
-					if(TipologiaCorsoDAO.listTipologiaCorsoByQuery(null, null)==null){
-						comboBox.setEnabled(false);
-						JOptionPane.showMessageDialog(null,"Connesione al database assente","ERRORE",JOptionPane.ERROR_MESSAGE,new ImageIcon(ImpostaTipologiaCorsoView.class.getResource("/view/img/errore.png")));
-						comboBox.setEnabled(true);
-					}
-					else
-					{
-					
-					ArrayList<String> nomiTip = ConfAbbCorsiHandler.getInstance().getNomiTipologie();
-					if(nomiTip.size()==0){
-						System.out.println(nomiTip.size());
-						comboBox.setEnabled(false);
-						JOptionPane.showMessageDialog(null,"Nessuna tipologia corso presente","ERRORE",JOptionPane.ERROR_MESSAGE,new ImageIcon(ImpostaTipologiaCorsoView.class.getResource("/view/img/errore.png")));
-					}
-					else{
-						DefaultComboBoxModel dcbm=new DefaultComboBoxModel();
-						for(String s : ConfAbbCorsiHandler.getInstance().getNomiTipologie()){
-							dcbm.addElement(s);
-						    comboBox.setModel(dcbm);
-					   }
-					}
-					}
-				}
-			});
+			ascoltatoreGetTipologie();
 			comboBox.setBounds(193, 96, 102, 20);
 			
 			add(comboBox);
@@ -104,67 +76,7 @@ public class ConfiguraCorsoView extends JPanel {
 		}
 		{
 			btnSalva = new JButton("salva");
-			btnSalva.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-					
-					label.setText("");
-					String nomeCorso=textField.getText();
-					String nomeTipologia=(String) comboBox.getSelectedItem();
-					Boolean aux;
-					String prenotazione=(String) comboBox_1.getSelectedItem();
-				    if(prenotazione=="si") aux=true; else aux=false;
-
-				    //System.out.println(nomeTipologia.length());
-				    
-				    if(nomeCorso.length()==0 || comboBox.getItemCount()==0)
-				    	JOptionPane.showMessageDialog(null,"Compilare tutti i campi","ERRORE",JOptionPane.ERROR_MESSAGE,new ImageIcon(ImpostaTipologiaCorsoView.class.getResource("/view/img/errore.png")));
-				    else
-				    {
-				    
-				    boolean aux1;
-					aux1=ConfAbbCorsiHandler.getInstance().verificaNomeDescrizioneCorso(nomeCorso);
-					
-					if(aux1==true)
-					{
-						String riepilogo="Confermare la creazione del corso?\n   NOME: "+nomeCorso+"\n   TIPOLOGIA: "+nomeTipologia+"\n   PRENOTAZIONE: "+prenotazione+"\n\n";
-						int risposta=JOptionPane.showConfirmDialog(null,riepilogo,"CONFERMA",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
-						if(risposta==JOptionPane.YES_OPTION) {
-							if(ConfAbbCorsiHandler.getInstance().configuraCorso(nomeCorso,aux,nomeTipologia)==true){
-								
-								
-								label.setText("CORSO INSERITO CORRETTAMENTE");
-							    // fare un riepilogo decente!!
-								//JOptionPane.showConfirmDialog(parentComponent, "ciao");
-							}
-							else
-								JOptionPane.showMessageDialog(null,"Connessione al database non riuscita","ERRORE",JOptionPane.ERROR_MESSAGE,new ImageIcon(ImpostaTipologiaCorsoView.class.getResource("/view/img/errore.png")));
-						}
-						else if(risposta==JOptionPane.NO_OPTION){}
-						
-						/*
-						if(ConfAbbCorsiHandler.getInstance().configuraCorso(nomeCorso,aux,nomeTipologia)==true){
-							
-							
-							label.setText("CORSO INSERITO CORRETTAMENTE");
-						    // fare un riepilogo decente!!
-							//JOptionPane.showConfirmDialog(parentComponent, "ciao");
-						}
-						else
-							JOptionPane.showMessageDialog(null,"Connessione al database non riuscita","ERRORE",JOptionPane.ERROR_MESSAGE,new ImageIcon(ImpostaTipologiaCorsoView.class.getResource("/view/img/errore.png")));
-					*/
-					}
-					else
-					{
-						//System.out.println("errore");
-						JOptionPane.showMessageDialog(null,"Il nome del corso scelto è già stato inserito","ERRORE",JOptionPane.ERROR_MESSAGE,new ImageIcon(ImpostaTipologiaCorsoView.class.getResource("/view/img/errore.png")));
-					}
-					
-				    }	
-						
-					
-					
-				}
-			});
+			ascoltatoreSalvaCorso();
 			btnSalva.setBounds(193, 181, 89, 23);
 			add(btnSalva);
 		}
@@ -183,6 +95,91 @@ public class ConfiguraCorsoView extends JPanel {
 		}
 		
 		
+	}
+	
+	private void ascoltatoreSalvaCorso() 
+	{
+		btnSalva.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				label.setText("");
+				String nomeCorso=textField.getText();
+				String nomeTipologia=(String) comboBox.getSelectedItem();
+				Boolean aux;
+				String prenotazione=(String) comboBox_1.getSelectedItem();
+			    if(prenotazione=="si") aux=true; else aux=false;
+			     
+			    if(nomeCorso.length()==0 || comboBox.getItemCount()==0)
+			    	Message.errorMessage("ERRORE", "Compilare tutti i campi");
+			    else
+			    {
+			    
+				    boolean aux1;
+					aux1=ConfAbbCorsiHandler.getInstance().verificaNomeDescrizioneCorso(nomeCorso);
+					
+					if(aux1==true)
+					{
+						String riepilogo="Confermare la creazione del corso?\n   NOME: "+nomeCorso+"\n   TIPOLOGIA: "+nomeTipologia+"\n   PRENOTAZIONE: "+prenotazione+"\n\n";
+						int risposta = Message.questionConfirmMessage("CONFERMA", riepilogo);
+						if(risposta==JOptionPane.YES_OPTION) 
+						{
+							if(ConfAbbCorsiHandler.getInstance().configuraCorso(nomeCorso,aux,nomeTipologia)==true)
+							{									
+								Message.confirmLabel("CORSO INSERITO CORRETTAMENTE", true, label);
+																   
+							}
+							else
+								Message.noConnectionDBMessage("ERRORE CONNESSIONE", "Connessione al database non riuscita");
+								
+						}
+						else if(risposta==JOptionPane.NO_OPTION){}							
+					}
+					else
+					{
+						Message.errorMessage("ERRORE", "Il nome del corso scelto è già stato inserito");
+					}
+				
+			    }	
+					
+				
+				
+			}
+		});
+		
+	}
+	public void ascoltatoreGetTipologie()
+	{
+		comboBox.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				
+				//if(ConfAbbCorsiHandler.getInstance().getNomiTipologie()==null)
+					//System.out.println(ConfAbbCorsiHandler.getInstance().getNomiTipologie());
+			
+				if(TipologiaCorsoDAO.listTipologiaCorsoByQuery(null, null)==null){
+					comboBox.setEnabled(false);
+					Message.noConnectionDBMessage("ERRORE CONNESSIONE", "Connessione al database non riuscita");						
+					comboBox.setEnabled(true);
+				}
+				else
+				{
+				
+				ArrayList<String> nomiTip = ConfAbbCorsiHandler.getInstance().getNomiTipologie();
+				if(nomiTip.size()==0){
+					//System.out.println(nomiTip.size());
+					comboBox.setEnabled(false);
+					Message.errorMessage("ERRORE","Nessuna tipologia corso presente");						
+				}
+				else{
+					DefaultComboBoxModel dcbm=new DefaultComboBoxModel();
+					for(String s : ConfAbbCorsiHandler.getInstance().getNomiTipologie()){
+						dcbm.addElement(s);
+					    comboBox.setModel(dcbm);
+				   }
+				}
+				}
+			}
+		});
 	}
 }
 

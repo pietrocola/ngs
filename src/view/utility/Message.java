@@ -10,28 +10,27 @@ import view.content.ImpostaTipologiaCorsoView;
 
 public class Message {
 	
-	public Message(){}
+	public Message(){}	
 	
-	
-	
-	
-	
-	public static void errorMessage(String titolo, String messaggio)
+	/*
+	 * TITOLO: ERRORE
+	 */
+	public static void errorMessage(String titolo ,String messaggio)
 	{																																			
 		JOptionPane.showMessageDialog(null,messaggio,titolo,JOptionPane.ERROR_MESSAGE,new ImageIcon(ImpostaTipologiaCorsoView.class.getResource("/view/img/statusDialog/small/erroreBox.png")));
 	}
 	
-	
-	
-	
+	/*
+	 * TITOLO: ERRORE CONNESSIONE
+	 */
 	public static void noConnectionDBMessage(String titolo, String messaggio)
 	{
 		JOptionPane.showMessageDialog(null,messaggio,titolo,JOptionPane.ERROR_MESSAGE,new ImageIcon(ImpostaTipologiaCorsoView.class.getResource("/view/img/statusDialog/small/transito.png")));
 	}
 	
-	
-	
-	
+	/*
+	 * TITOLO: CONFERMA
+	 */
 	public static int questionConfirmMessage(String titolo, String messaggio)
 	{
 		return JOptionPane.showConfirmDialog(null,messaggio,titolo,JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,new ImageIcon(ImpostaTipologiaCorsoView.class.getResource("/view/img/statusDialog/small/domanda.png")));
