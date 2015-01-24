@@ -29,7 +29,7 @@
     <Column name="TipologiaCorsoID">
       <PrimaryKey>false</PrimaryKey>
       <ForeignKey>true</ForeignKey>
-      <ReferencedColumn>ngs.peristentmodel.TipologiaCorso.ID</ReferencedColumn>
+      <ReferencedColumn>ngs.persistentmodel.TipologiaCorso.ID</ReferencedColumn>
       <Type>27</Type>
       <Length>255</Length>
       <Nullable>true</Nullable>
@@ -43,8 +43,237 @@
       <ForeignKey>false</ForeignKey>
       <Type>1</Type>
       <Length>1</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+  </Entity>
+  <Entity name="SalaPesi">
+    <Column name="NomeSala">
+      <PrimaryKey>true</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>27</Type>
+      <Length>255</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>assigned</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+  </Entity>
+  <Entity name="FasciaOrariaSalaPesi">
+    <Column name="ID">
+      <PrimaryKey>true</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>9</Type>
+      <Length>11</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="OraInizio">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>9</Type>
+      <Length>11</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="OraFine">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>9</Type>
+      <Length>11</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+  </Entity>
+  <Entity name="CategoriaCliente">
+    <Column name="NomeCat">
+      <PrimaryKey>true</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>27</Type>
+      <Length>255</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>assigned</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+  </Entity>
+  <Entity name="DescrizioneAbbonamento">
+    <Column name="NomeAbbonamento">
+      <PrimaryKey>true</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>27</Type>
+      <Length>255</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>assigned</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="CategoriaClienteNomeCat">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>true</ForeignKey>
+      <ReferencedColumn>ngs.persistentmodel.CategoriaCliente.NomeCat</ReferencedColumn>
+      <Type>27</Type>
+      <Length>255</Length>
       <Nullable>true</Nullable>
       <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="PrezzoBaseMensile">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>4</Type>
+      <Length>0</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+  </Entity>
+  <Entity name="PoliticaScontoAbbonamento">
+    <Column name="NomePolitica">
+      <PrimaryKey>true</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>27</Type>
+      <Length>255</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>assigned</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="CategoriaClienteNomeCat">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>true</ForeignKey>
+      <ReferencedColumn>ngs.persistentmodel.CategoriaCliente.NomeCat</ReferencedColumn>
+      <Type>27</Type>
+      <Length>255</Length>
+      <Nullable>true</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="UnMese">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>4</Type>
+      <Length>0</Length>
+      <Nullable>true</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="TreMesi">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>4</Type>
+      <Length>0</Length>
+      <Nullable>true</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="SeiMesi">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>4</Type>
+      <Length>0</Length>
+      <Nullable>true</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="DodiciMesi">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>4</Type>
+      <Length>0</Length>
+      <Nullable>true</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="Discriminator">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>27</Type>
+      <Length>255</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+  </Entity>
+  <Entity name="DescrizioneAbbonamento_SalaPesi">
+    <Column name="DescrizioneAbbonamentoNomeAbbonamento">
+      <PrimaryKey>true</PrimaryKey>
+      <ForeignKey>true</ForeignKey>
+      <ReferencedColumn>ngs.persistentmodel.DescrizioneAbbonamento.NomeAbbonamento</ReferencedColumn>
+      <Type>27</Type>
+      <Length>255</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>assigned</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="SalaPesiNomeSala">
+      <PrimaryKey>true</PrimaryKey>
+      <ForeignKey>true</ForeignKey>
+      <ReferencedColumn>ngs.persistentmodel.SalaPesi.NomeSala</ReferencedColumn>
+      <Type>27</Type>
+      <Length>255</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>assigned</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+  </Entity>
+  <Entity name="DescrizioneAbbonamento_DescrizioneCorso">
+    <Column name="DescrizioneAbbonamentoNomeAbbonamento">
+      <PrimaryKey>true</PrimaryKey>
+      <ForeignKey>true</ForeignKey>
+      <ReferencedColumn>ngs.persistentmodel.DescrizioneAbbonamento.NomeAbbonamento</ReferencedColumn>
+      <Type>27</Type>
+      <Length>255</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>assigned</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="DescrizioneCorsoID">
+      <PrimaryKey>true</PrimaryKey>
+      <ForeignKey>true</ForeignKey>
+      <ReferencedColumn>ngs.persistentmodel.DescrizioneCorso.ID</ReferencedColumn>
+      <Type>27</Type>
+      <Length>255</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>assigned</IDGenerator>
       <Unique>false</Unique>
       <Index>false</Index>
       <UserTypes/>
@@ -55,6 +284,66 @@
     <ReferencedTable>TipologiaCorso</ReferencedTable>
     <Columns>
       <Column>TipologiaCorsoID</Column>
+    </Columns>
+    <RefColumns>
+      <Column>ID</Column>
+    </RefColumns>
+  </ForeignKey>
+  <ForeignKey name="FKDescrizion772374">
+    <ReferenceTable>DescrizioneAbbonamento</ReferenceTable>
+    <ReferencedTable>CategoriaCliente</ReferencedTable>
+    <Columns>
+      <Column>CategoriaClienteNomeCat</Column>
+    </Columns>
+    <RefColumns>
+      <Column>NomeCat</Column>
+    </RefColumns>
+  </ForeignKey>
+  <ForeignKey name="FKDescrizion113963">
+    <ReferenceTable>DescrizioneAbbonamento_SalaPesi</ReferenceTable>
+    <ReferencedTable>DescrizioneAbbonamento</ReferencedTable>
+    <Columns>
+      <Column>DescrizioneAbbonamentoNomeAbbonamento</Column>
+    </Columns>
+    <RefColumns>
+      <Column>NomeAbbonamento</Column>
+    </RefColumns>
+  </ForeignKey>
+  <ForeignKey name="FKDescrizion832237">
+    <ReferenceTable>DescrizioneAbbonamento_SalaPesi</ReferenceTable>
+    <ReferencedTable>SalaPesi</ReferencedTable>
+    <Columns>
+      <Column>SalaPesiNomeSala</Column>
+    </Columns>
+    <RefColumns>
+      <Column>NomeSala</Column>
+    </RefColumns>
+  </ForeignKey>
+  <ForeignKey name="FKPoliticaSc491180">
+    <ReferenceTable>PoliticaScontoAbbonamento</ReferenceTable>
+    <ReferencedTable>CategoriaCliente</ReferencedTable>
+    <Columns>
+      <Column>CategoriaClienteNomeCat</Column>
+    </Columns>
+    <RefColumns>
+      <Column>NomeCat</Column>
+    </RefColumns>
+  </ForeignKey>
+  <ForeignKey name="FKDescrizion175514">
+    <ReferenceTable>DescrizioneAbbonamento_DescrizioneCorso</ReferenceTable>
+    <ReferencedTable>DescrizioneAbbonamento</ReferencedTable>
+    <Columns>
+      <Column>DescrizioneAbbonamentoNomeAbbonamento</Column>
+    </Columns>
+    <RefColumns>
+      <Column>NomeAbbonamento</Column>
+    </RefColumns>
+  </ForeignKey>
+  <ForeignKey name="FKDescrizion963998">
+    <ReferenceTable>DescrizioneAbbonamento_DescrizioneCorso</ReferenceTable>
+    <ReferencedTable>DescrizioneCorso</ReferencedTable>
+    <Columns>
+      <Column>DescrizioneCorsoID</Column>
     </Columns>
     <RefColumns>
       <Column>ID</Column>

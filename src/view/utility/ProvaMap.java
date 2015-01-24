@@ -8,7 +8,7 @@ import java.util.TreeMap;
 
 
 
-import ngs.peristentmodel.TipologiaCorso;
+import ngs.persistentmodel.TipologiaCorso;
 
 public class ProvaMap {
 	

@@ -7,14 +7,32 @@ package ormsamples;
 import org.orm.*;
 public class DeleteNextGenSport2Data {
 	public void deleteTestData() throws PersistentException {
-		PersistentTransaction t = ngs.peristentmodel.NextGenSport2PersistentManager.instance().getSession().beginTransaction();
+		PersistentTransaction t = ngs.persistentmodel.NextGenSport2PersistentManager.instance().getSession().beginTransaction();
 		try {
-			ngs.peristentmodel.TipologiaCorso lngsperistentmodelTipologiaCorso = ngs.peristentmodel.TipologiaCorsoDAO.loadTipologiaCorsoByQuery(null, null);
+			ngs.persistentmodel.SalaPesi lngspersistentmodelSalaPesi = ngs.persistentmodel.SalaPesiDAO.loadSalaPesiByQuery(null, null);
 			// Delete the persistent object
-			ngs.peristentmodel.TipologiaCorsoDAO.delete(lngsperistentmodelTipologiaCorso);
-			ngs.peristentmodel.DescrizioneCorso lngsperistentmodelDescrizioneCorso = ngs.peristentmodel.DescrizioneCorsoDAO.loadDescrizioneCorsoByQuery(null, null);
+			ngs.persistentmodel.SalaPesiDAO.delete(lngspersistentmodelSalaPesi);
+			ngs.persistentmodel.FasciaOrariaSalaPesi lngspersistentmodelFasciaOrariaSalaPesi = ngs.persistentmodel.FasciaOrariaSalaPesiDAO.loadFasciaOrariaSalaPesiByQuery(null, null);
 			// Delete the persistent object
-			ngs.peristentmodel.DescrizioneCorsoDAO.delete(lngsperistentmodelDescrizioneCorso);
+			ngs.persistentmodel.FasciaOrariaSalaPesiDAO.delete(lngspersistentmodelFasciaOrariaSalaPesi);
+			ngs.persistentmodel.CategoriaCliente lngspersistentmodelCategoriaCliente = ngs.persistentmodel.CategoriaClienteDAO.loadCategoriaClienteByQuery(null, null);
+			// Delete the persistent object
+			ngs.persistentmodel.CategoriaClienteDAO.delete(lngspersistentmodelCategoriaCliente);
+			ngs.persistentmodel.DescrizioneAbbonamento lngspersistentmodelDescrizioneAbbonamento = ngs.persistentmodel.DescrizioneAbbonamentoDAO.loadDescrizioneAbbonamentoByQuery(null, null);
+			// Delete the persistent object
+			ngs.persistentmodel.DescrizioneAbbonamentoDAO.delete(lngspersistentmodelDescrizioneAbbonamento);
+			ngs.persistentmodel.PoliticaScontoAbbonamento lngspersistentmodelPoliticaScontoAbbonamento = ngs.persistentmodel.PoliticaScontoAbbonamentoDAO.loadPoliticaScontoAbbonamentoByQuery(null, null);
+			// Delete the persistent object
+			ngs.persistentmodel.PoliticaScontoAbbonamentoDAO.delete(lngspersistentmodelPoliticaScontoAbbonamento);
+			ngs.persistentmodel.PoliticaScontoPercentuale lngspersistentmodelPoliticaScontoPercentuale = ngs.persistentmodel.PoliticaScontoPercentualeDAO.loadPoliticaScontoPercentualeByQuery(null, null);
+			// Delete the persistent object
+			ngs.persistentmodel.PoliticaScontoPercentualeDAO.delete(lngspersistentmodelPoliticaScontoPercentuale);
+			ngs.persistentmodel.TipologiaCorso lngspersistentmodelTipologiaCorso = ngs.persistentmodel.TipologiaCorsoDAO.loadTipologiaCorsoByQuery(null, null);
+			// Delete the persistent object
+			ngs.persistentmodel.TipologiaCorsoDAO.delete(lngspersistentmodelTipologiaCorso);
+			ngs.persistentmodel.DescrizioneCorso lngspersistentmodelDescrizioneCorso = ngs.persistentmodel.DescrizioneCorsoDAO.loadDescrizioneCorsoByQuery(null, null);
+			// Delete the persistent object
+			ngs.persistentmodel.DescrizioneCorsoDAO.delete(lngspersistentmodelDescrizioneCorso);
 			t.commit();
 		}
 		catch (Exception e) {
@@ -30,7 +48,7 @@ public class DeleteNextGenSport2Data {
 				deleteNextGenSport2Data.deleteTestData();
 			}
 			finally {
-				ngs.peristentmodel.NextGenSport2PersistentManager.instance().disposePersistentManager();
+				ngs.persistentmodel.NextGenSport2PersistentManager.instance().disposePersistentManager();
 			}
 		}
 		catch (Exception e) {

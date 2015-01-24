@@ -1,11 +1,13 @@
 package ngs.controller;
 
+import java.util.ArrayList;
+
 import org.orm.PersistentException;
 
 import ngs.model.*;
-import ngs.peristentmodel.DescrizioneCorso;
-import ngs.peristentmodel.DescrizioneCorsoDAO;
-import ngs.peristentmodel.TipologiaCorsoDAO;
+import ngs.persistentmodel.*;
+
+
 
 public class ConfAbbCorsiHandler {
 //COMMENTO PROVA
@@ -14,6 +16,12 @@ public class ConfAbbCorsiHandler {
 
 	//PATTERN SINGLETON
 	public static ConfAbbCorsiHandler instance;
+	M_DescrizioneAbbonamento descAbb;
+	M_CategoriaCliente catCliente;
+	M_SalaPesi salaPesi;
+	
+
+	
 	//PATTER SINGLETON
 	public static ConfAbbCorsiHandler getInstance()
 	{
@@ -42,7 +50,6 @@ public class ConfAbbCorsiHandler {
 	}
 
 	
-	
 	/**
 	 * restituisce tutte le tipologie memorizzate
 	 * @return
@@ -64,6 +71,7 @@ public class ConfAbbCorsiHandler {
 		// TODO - implement ConfAbbCorsiHandler.configuraCorso
 		tipCorso = new M_TipologiaCorso();
 		
+
 		DescrizioneCorso dc=DescrizioneCorsoDAO.createDescrizioneCorso();
 		dc.setNomeCorso(nomeCorso);
 		dc.setTipCorso(tipCorso.getTipologia(nomeTip));
@@ -74,9 +82,6 @@ public class ConfAbbCorsiHandler {
 		//throw new UnsupportedOperationException();
 	}
 
-	
-	
-	
 	
 	public boolean verificaNomeTipologiaCorso(String text) throws PersistentException {
 		// TODO Auto-generated method stub
@@ -94,6 +99,80 @@ public class ConfAbbCorsiHandler {
 
 	}
 
+	/**
+	 * 
+	 * @param nomeCat
+	 */
+	public boolean impostaCategoriaCliente(String nomeCat) {
+		
+		descAbb = new M_DescrizioneAbbonamento();
+		return descAbb.impostaCategoriaCliente(nomeCat);
+		//throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * 
+	 * @param oraInizio
+	 * @param oraFine
+	 */
+	public boolean impostaFasciaOrariaSalaPesi(int oraInizio, int oraFine) {
+		throw new UnsupportedOperationException();
+	}
+
+	
+	
+	
+	/**
+	 * restituisce tutti i corsi presenti su db
+	 * @return
+	 */
+	public ArrayList<DescrizioneCorso> getDescrizioniCorsi() {
+		
+		descCorso=new M_DescrizioneCorso();
+		return descCorso.getDescrizioniCorsi();
+
+	}
+
+	
+	
+	
+	
+	public ArrayList<SalaPesi> getSalePesi() {
+		throw new UnsupportedOperationException();
+	}
+
+	public ArrayList<FasciaOrariaSalaPesi> getFasceOrarieSalaPesi() {
+		throw new UnsupportedOperationException();
+	}
+
+	public boolean configuraAbbonamento() {
+		throw new UnsupportedOperationException();
+	}
 
 
+	public ArrayList<CategoriaCliente> getCategorieClienti() {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * 
+	 * @param categoriaCliente
+	 * @param nomePolitica
+	 * @param unMese
+	 * @param treMesi
+	 * @param seiMesi
+	 * @param dodiciMesi
+	 */
+	public void impostaPoliticaScontoPercentuale(CategoriaCliente categoriaCliente, String nomePolitica, float unMese, float treMesi, float seiMesi, float dodiciMesi) {
+		throw new UnsupportedOperationException();
+	}
+
+	public boolean verificaNomeCategoriaCliente(String nomeCat) {
+		catCliente= new M_CategoriaCliente();
+		//System.out.println(tipCorso.verificaNomeTipologiaCorso(text));
+		return catCliente.verificaNomeCategoriaCliente(nomeCat);
+	}
+
+
+	
 }

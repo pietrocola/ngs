@@ -1,6 +1,6 @@
 package ngs.model;
 
-import ngs.peristentmodel.*;
+import ngs.persistentmodel.*;
 
 public abstract class AModel {
 

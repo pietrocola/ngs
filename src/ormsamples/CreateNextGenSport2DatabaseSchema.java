@@ -8,8 +8,8 @@ import org.orm.*;
 public class CreateNextGenSport2DatabaseSchema {
 	public static void main(String[] args) {
 		try {
-			ORMDatabaseInitiator.createSchema(ngs.peristentmodel.NextGenSport2PersistentManager.instance());
-			ngs.peristentmodel.NextGenSport2PersistentManager.instance().disposePersistentManager();
+			ORMDatabaseInitiator.createSchema(ngs.persistentmodel.NextGenSport2PersistentManager.instance());
+			ngs.persistentmodel.NextGenSport2PersistentManager.instance().disposePersistentManager();
 		}
 		catch (Exception e) {
 			e.printStackTrace();

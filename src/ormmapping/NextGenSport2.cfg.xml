@@ -17,7 +17,12 @@ License Type: Academic
 		<property name="show_sql">false</property>
 		<property name="query.substitutions">true 1, false 0, yes 'Y', no 'N'</property>
 		<!-- mapping files -->
-		<mapping resource="ormmapping/ngs/peristentmodel/DescrizioneCorso.hbm.xml" />
-		<mapping resource="ormmapping/ngs/peristentmodel/TipologiaCorso.hbm.xml" />
+		<mapping resource="ormmapping/ngs/persistentmodel/CategoriaCliente.hbm.xml" />
+		<mapping resource="ormmapping/ngs/persistentmodel/DescrizioneAbbonamento.hbm.xml" />
+		<mapping resource="ormmapping/ngs/persistentmodel/DescrizioneCorso.hbm.xml" />
+		<mapping resource="ormmapping/ngs/persistentmodel/FasciaOrariaSalaPesi.hbm.xml" />
+		<mapping resource="ormmapping/ngs/persistentmodel/PoliticaScontoAbbonamento.hbm.xml" />
+		<mapping resource="ormmapping/ngs/persistentmodel/SalaPesi.hbm.xml" />
+		<mapping resource="ormmapping/ngs/persistentmodel/TipologiaCorso.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>

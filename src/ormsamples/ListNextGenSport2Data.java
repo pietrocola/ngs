@@ -9,46 +9,166 @@ public class ListNextGenSport2Data {
 	private static final int ROW_COUNT = 100;
 	
 	public void listTestData() throws PersistentException {
-		System.out.println("Listing TipologiaCorso...");
-		ngs.peristentmodel.TipologiaCorso[] ngsperistentmodelTipologiaCorsos = ngs.peristentmodel.TipologiaCorsoDAO.listTipologiaCorsoByQuery(null, null);
-		int length = Math.min(ngsperistentmodelTipologiaCorsos.length, ROW_COUNT);
+		System.out.println("Listing SalaPesi...");
+		ngs.persistentmodel.SalaPesi[] ngspersistentmodelSalaPesis = ngs.persistentmodel.SalaPesiDAO.listSalaPesiByQuery(null, null);
+		int length = Math.min(ngspersistentmodelSalaPesis.length, ROW_COUNT);
 		for (int i = 0; i < length; i++) {
-			System.out.println(ngsperistentmodelTipologiaCorsos[i]);
+			System.out.println(ngspersistentmodelSalaPesis[i]);
+		}
+		System.out.println(length + " record(s) retrieved.");
+		
+		System.out.println("Listing FasciaOrariaSalaPesi...");
+		ngs.persistentmodel.FasciaOrariaSalaPesi[] ngspersistentmodelFasciaOrariaSalaPesis = ngs.persistentmodel.FasciaOrariaSalaPesiDAO.listFasciaOrariaSalaPesiByQuery(null, null);
+		length = Math.min(ngspersistentmodelFasciaOrariaSalaPesis.length, ROW_COUNT);
+		for (int i = 0; i < length; i++) {
+			System.out.println(ngspersistentmodelFasciaOrariaSalaPesis[i]);
+		}
+		System.out.println(length + " record(s) retrieved.");
+		
+		System.out.println("Listing CategoriaCliente...");
+		ngs.persistentmodel.CategoriaCliente[] ngspersistentmodelCategoriaClientes = ngs.persistentmodel.CategoriaClienteDAO.listCategoriaClienteByQuery(null, null);
+		length = Math.min(ngspersistentmodelCategoriaClientes.length, ROW_COUNT);
+		for (int i = 0; i < length; i++) {
+			System.out.println(ngspersistentmodelCategoriaClientes[i]);
+		}
+		System.out.println(length + " record(s) retrieved.");
+		
+		System.out.println("Listing DescrizioneAbbonamento...");
+		ngs.persistentmodel.DescrizioneAbbonamento[] ngspersistentmodelDescrizioneAbbonamentos = ngs.persistentmodel.DescrizioneAbbonamentoDAO.listDescrizioneAbbonamentoByQuery(null, null);
+		length = Math.min(ngspersistentmodelDescrizioneAbbonamentos.length, ROW_COUNT);
+		for (int i = 0; i < length; i++) {
+			System.out.println(ngspersistentmodelDescrizioneAbbonamentos[i]);
+		}
+		System.out.println(length + " record(s) retrieved.");
+		
+		System.out.println("Listing PoliticaScontoAbbonamento...");
+		ngs.persistentmodel.PoliticaScontoAbbonamento[] ngspersistentmodelPoliticaScontoAbbonamentos = ngs.persistentmodel.PoliticaScontoAbbonamentoDAO.listPoliticaScontoAbbonamentoByQuery(null, null);
+		length = Math.min(ngspersistentmodelPoliticaScontoAbbonamentos.length, ROW_COUNT);
+		for (int i = 0; i < length; i++) {
+			System.out.println(ngspersistentmodelPoliticaScontoAbbonamentos[i]);
+		}
+		System.out.println(length + " record(s) retrieved.");
+		
+		System.out.println("Listing PoliticaScontoPercentuale...");
+		ngs.persistentmodel.PoliticaScontoPercentuale[] ngspersistentmodelPoliticaScontoPercentuales = ngs.persistentmodel.PoliticaScontoPercentualeDAO.listPoliticaScontoPercentualeByQuery(null, null);
+		length = Math.min(ngspersistentmodelPoliticaScontoPercentuales.length, ROW_COUNT);
+		for (int i = 0; i < length; i++) {
+			System.out.println(ngspersistentmodelPoliticaScontoPercentuales[i]);
+		}
+		System.out.println(length + " record(s) retrieved.");
+		
+		System.out.println("Listing TipologiaCorso...");
+		ngs.persistentmodel.TipologiaCorso[] ngspersistentmodelTipologiaCorsos = ngs.persistentmodel.TipologiaCorsoDAO.listTipologiaCorsoByQuery(null, null);
+		length = Math.min(ngspersistentmodelTipologiaCorsos.length, ROW_COUNT);
+		for (int i = 0; i < length; i++) {
+			System.out.println(ngspersistentmodelTipologiaCorsos[i]);
 		}
 		System.out.println(length + " record(s) retrieved.");
 		
 		System.out.println("Listing DescrizioneCorso...");
-		ngs.peristentmodel.DescrizioneCorso[] ngsperistentmodelDescrizioneCorsos = ngs.peristentmodel.DescrizioneCorsoDAO.listDescrizioneCorsoByQuery(null, null);
-		length = Math.min(ngsperistentmodelDescrizioneCorsos.length, ROW_COUNT);
+		ngs.persistentmodel.DescrizioneCorso[] ngspersistentmodelDescrizioneCorsos = ngs.persistentmodel.DescrizioneCorsoDAO.listDescrizioneCorsoByQuery(null, null);
+		length = Math.min(ngspersistentmodelDescrizioneCorsos.length, ROW_COUNT);
 		for (int i = 0; i < length; i++) {
-			System.out.println(ngsperistentmodelDescrizioneCorsos[i]);
+			System.out.println(ngspersistentmodelDescrizioneCorsos[i]);
 		}
 		System.out.println(length + " record(s) retrieved.");
 		
 	}
 	
 	public void listByCriteria() throws PersistentException {
-		System.out.println("Listing TipologiaCorso by Criteria...");
-		ngs.peristentmodel.TipologiaCorsoCriteria lngsperistentmodelTipologiaCorsoCriteria = new ngs.peristentmodel.TipologiaCorsoCriteria();
+		System.out.println("Listing SalaPesi by Criteria...");
+		ngs.persistentmodel.SalaPesiCriteria lngspersistentmodelSalaPesiCriteria = new ngs.persistentmodel.SalaPesiCriteria();
 		// Please uncomment the follow line and fill in parameter(s) 
-		//lngsperistentmodelTipologiaCorsoCriteria.nomeTip.eq();
-		lngsperistentmodelTipologiaCorsoCriteria.setMaxResults(ROW_COUNT);
-		ngs.peristentmodel.TipologiaCorso[] ngsperistentmodelTipologiaCorsos = lngsperistentmodelTipologiaCorsoCriteria.listTipologiaCorso();
-		int length =ngsperistentmodelTipologiaCorsos== null ? 0 : Math.min(ngsperistentmodelTipologiaCorsos.length, ROW_COUNT); 
+		//lngspersistentmodelSalaPesiCriteria.nomeSala.eq();
+		lngspersistentmodelSalaPesiCriteria.setMaxResults(ROW_COUNT);
+		ngs.persistentmodel.SalaPesi[] ngspersistentmodelSalaPesis = lngspersistentmodelSalaPesiCriteria.listSalaPesi();
+		int length =ngspersistentmodelSalaPesis== null ? 0 : Math.min(ngspersistentmodelSalaPesis.length, ROW_COUNT); 
 		for (int i = 0; i < length; i++) {
-			 System.out.println(ngsperistentmodelTipologiaCorsos[i]);
+			 System.out.println(ngspersistentmodelSalaPesis[i]);
+		}
+		System.out.println(length + " SalaPesi record(s) retrieved."); 
+		
+		System.out.println("Listing FasciaOrariaSalaPesi by Criteria...");
+		ngs.persistentmodel.FasciaOrariaSalaPesiCriteria lngspersistentmodelFasciaOrariaSalaPesiCriteria = new ngs.persistentmodel.FasciaOrariaSalaPesiCriteria();
+		// Please uncomment the follow line and fill in parameter(s) 
+		//lngspersistentmodelFasciaOrariaSalaPesiCriteria.ID.eq();
+		lngspersistentmodelFasciaOrariaSalaPesiCriteria.setMaxResults(ROW_COUNT);
+		ngs.persistentmodel.FasciaOrariaSalaPesi[] ngspersistentmodelFasciaOrariaSalaPesis = lngspersistentmodelFasciaOrariaSalaPesiCriteria.listFasciaOrariaSalaPesi();
+		length =ngspersistentmodelFasciaOrariaSalaPesis== null ? 0 : Math.min(ngspersistentmodelFasciaOrariaSalaPesis.length, ROW_COUNT); 
+		for (int i = 0; i < length; i++) {
+			 System.out.println(ngspersistentmodelFasciaOrariaSalaPesis[i]);
+		}
+		System.out.println(length + " FasciaOrariaSalaPesi record(s) retrieved."); 
+		
+		System.out.println("Listing CategoriaCliente by Criteria...");
+		ngs.persistentmodel.CategoriaClienteCriteria lngspersistentmodelCategoriaClienteCriteria = new ngs.persistentmodel.CategoriaClienteCriteria();
+		// Please uncomment the follow line and fill in parameter(s) 
+		//lngspersistentmodelCategoriaClienteCriteria.nomeCat.eq();
+		lngspersistentmodelCategoriaClienteCriteria.setMaxResults(ROW_COUNT);
+		ngs.persistentmodel.CategoriaCliente[] ngspersistentmodelCategoriaClientes = lngspersistentmodelCategoriaClienteCriteria.listCategoriaCliente();
+		length =ngspersistentmodelCategoriaClientes== null ? 0 : Math.min(ngspersistentmodelCategoriaClientes.length, ROW_COUNT); 
+		for (int i = 0; i < length; i++) {
+			 System.out.println(ngspersistentmodelCategoriaClientes[i]);
+		}
+		System.out.println(length + " CategoriaCliente record(s) retrieved."); 
+		
+		System.out.println("Listing DescrizioneAbbonamento by Criteria...");
+		ngs.persistentmodel.DescrizioneAbbonamentoCriteria lngspersistentmodelDescrizioneAbbonamentoCriteria = new ngs.persistentmodel.DescrizioneAbbonamentoCriteria();
+		// Please uncomment the follow line and fill in parameter(s) 
+		//lngspersistentmodelDescrizioneAbbonamentoCriteria.nomeAbbonamento.eq();
+		lngspersistentmodelDescrizioneAbbonamentoCriteria.setMaxResults(ROW_COUNT);
+		ngs.persistentmodel.DescrizioneAbbonamento[] ngspersistentmodelDescrizioneAbbonamentos = lngspersistentmodelDescrizioneAbbonamentoCriteria.listDescrizioneAbbonamento();
+		length =ngspersistentmodelDescrizioneAbbonamentos== null ? 0 : Math.min(ngspersistentmodelDescrizioneAbbonamentos.length, ROW_COUNT); 
+		for (int i = 0; i < length; i++) {
+			 System.out.println(ngspersistentmodelDescrizioneAbbonamentos[i]);
+		}
+		System.out.println(length + " DescrizioneAbbonamento record(s) retrieved."); 
+		
+		System.out.println("Listing PoliticaScontoAbbonamento by Criteria...");
+		ngs.persistentmodel.PoliticaScontoAbbonamentoCriteria lngspersistentmodelPoliticaScontoAbbonamentoCriteria = new ngs.persistentmodel.PoliticaScontoAbbonamentoCriteria();
+		// Please uncomment the follow line and fill in parameter(s) 
+		//lngspersistentmodelPoliticaScontoAbbonamentoCriteria.nomePolitica.eq();
+		lngspersistentmodelPoliticaScontoAbbonamentoCriteria.setMaxResults(ROW_COUNT);
+		ngs.persistentmodel.PoliticaScontoAbbonamento[] ngspersistentmodelPoliticaScontoAbbonamentos = lngspersistentmodelPoliticaScontoAbbonamentoCriteria.listPoliticaScontoAbbonamento();
+		length =ngspersistentmodelPoliticaScontoAbbonamentos== null ? 0 : Math.min(ngspersistentmodelPoliticaScontoAbbonamentos.length, ROW_COUNT); 
+		for (int i = 0; i < length; i++) {
+			 System.out.println(ngspersistentmodelPoliticaScontoAbbonamentos[i]);
+		}
+		System.out.println(length + " PoliticaScontoAbbonamento record(s) retrieved."); 
+		
+		System.out.println("Listing PoliticaScontoPercentuale by Criteria...");
+		ngs.persistentmodel.PoliticaScontoPercentualeCriteria lngspersistentmodelPoliticaScontoPercentualeCriteria = new ngs.persistentmodel.PoliticaScontoPercentualeCriteria();
+		// Please uncomment the follow line and fill in parameter(s) 
+		//lngspersistentmodelPoliticaScontoPercentualeCriteria.nomePolitica.eq();
+		lngspersistentmodelPoliticaScontoPercentualeCriteria.setMaxResults(ROW_COUNT);
+		ngs.persistentmodel.PoliticaScontoPercentuale[] ngspersistentmodelPoliticaScontoPercentuales = lngspersistentmodelPoliticaScontoPercentualeCriteria.listPoliticaScontoPercentuale();
+		length =ngspersistentmodelPoliticaScontoPercentuales== null ? 0 : Math.min(ngspersistentmodelPoliticaScontoPercentuales.length, ROW_COUNT); 
+		for (int i = 0; i < length; i++) {
+			 System.out.println(ngspersistentmodelPoliticaScontoPercentuales[i]);
+		}
+		System.out.println(length + " PoliticaScontoPercentuale record(s) retrieved."); 
+		
+		System.out.println("Listing TipologiaCorso by Criteria...");
+		ngs.persistentmodel.TipologiaCorsoCriteria lngspersistentmodelTipologiaCorsoCriteria = new ngs.persistentmodel.TipologiaCorsoCriteria();
+		// Please uncomment the follow line and fill in parameter(s) 
+		//lngspersistentmodelTipologiaCorsoCriteria.nomeTip.eq();
+		lngspersistentmodelTipologiaCorsoCriteria.setMaxResults(ROW_COUNT);
+		ngs.persistentmodel.TipologiaCorso[] ngspersistentmodelTipologiaCorsos = lngspersistentmodelTipologiaCorsoCriteria.listTipologiaCorso();
+		length =ngspersistentmodelTipologiaCorsos== null ? 0 : Math.min(ngspersistentmodelTipologiaCorsos.length, ROW_COUNT); 
+		for (int i = 0; i < length; i++) {
+			 System.out.println(ngspersistentmodelTipologiaCorsos[i]);
 		}
 		System.out.println(length + " TipologiaCorso record(s) retrieved."); 
 		
 		System.out.println("Listing DescrizioneCorso by Criteria...");
-		ngs.peristentmodel.DescrizioneCorsoCriteria lngsperistentmodelDescrizioneCorsoCriteria = new ngs.peristentmodel.DescrizioneCorsoCriteria();
+		ngs.persistentmodel.DescrizioneCorsoCriteria lngspersistentmodelDescrizioneCorsoCriteria = new ngs.persistentmodel.DescrizioneCorsoCriteria();
 		// Please uncomment the follow line and fill in parameter(s) 
-		//lngsperistentmodelDescrizioneCorsoCriteria.nomeCorso.eq();
-		lngsperistentmodelDescrizioneCorsoCriteria.setMaxResults(ROW_COUNT);
-		ngs.peristentmodel.DescrizioneCorso[] ngsperistentmodelDescrizioneCorsos = lngsperistentmodelDescrizioneCorsoCriteria.listDescrizioneCorso();
-		length =ngsperistentmodelDescrizioneCorsos== null ? 0 : Math.min(ngsperistentmodelDescrizioneCorsos.length, ROW_COUNT); 
+		//lngspersistentmodelDescrizioneCorsoCriteria.nomeCorso.eq();
+		lngspersistentmodelDescrizioneCorsoCriteria.setMaxResults(ROW_COUNT);
+		ngs.persistentmodel.DescrizioneCorso[] ngspersistentmodelDescrizioneCorsos = lngspersistentmodelDescrizioneCorsoCriteria.listDescrizioneCorso();
+		length =ngspersistentmodelDescrizioneCorsos== null ? 0 : Math.min(ngspersistentmodelDescrizioneCorsos.length, ROW_COUNT); 
 		for (int i = 0; i < length; i++) {
-			 System.out.println(ngsperistentmodelDescrizioneCorsos[i]);
+			 System.out.println(ngspersistentmodelDescrizioneCorsos[i]);
 		}
 		System.out.println(length + " DescrizioneCorso record(s) retrieved."); 
 		
@@ -62,7 +182,7 @@ public class ListNextGenSport2Data {
 				//listNextGenSport2Data.listByCriteria();
 			}
 			finally {
-				ngs.peristentmodel.NextGenSport2PersistentManager.instance().disposePersistentManager();
+				ngs.persistentmodel.NextGenSport2PersistentManager.instance().disposePersistentManager();
 			}
 		}
 		catch (Exception e) {

@@ -27,7 +27,9 @@ import java.beans.PropertyVetoException;
 
 import javax.swing.ImageIcon;
 
+import view.content.ConfiguraAbbonamentoView;
 import view.content.ConfiguraCorsoView;
+import view.content.ImpostaCategoriaClienteView;
 import view.content.ImpostaTipologiaCorsoView;
 import view.utility.ProvaMap;
 
@@ -42,6 +44,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JDesktopPane;
 
 import ngs.model.M_TipologiaCorso;
+
 import javax.swing.JLabel;
 
 public class interfaccia {
@@ -67,6 +70,10 @@ public class interfaccia {
 	private JButton btnStruttura;
 	private JButton btnClienti;
 	private JButton btnPersonale;
+	private JPopupMenu popupMenu_1;
+	private JMenuItem mntmImpostaCategoriaCliente;
+	private JPopupMenu popupMenu_2;
+	private JMenuItem mntmConfiguraAbbonamento;
 
 	/**
 	 * Launch the application.
@@ -152,8 +159,7 @@ public class interfaccia {
 						popupMenu.add(mnImpostaTipologiaCorso);
 						{
 							mntmAggiungi = new JMenuItem("aggiungi");
-							ascoltatoreAggiungi();
-							
+							ascoltatoreAggiungi();							
 							mnImpostaTipologiaCorso.add(mntmAggiungi);
 						}
 					}
@@ -166,8 +172,22 @@ public class interfaccia {
 			}
 			{
 				btnAbbonamenti = new JButton("GESTIONE ABBONAMENTI");
+				btnAbbonamenti.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						popupMenu_2.show(btnAbbonamenti, 0,	btnAbbonamenti.getY() + btnAbbonamenti.getHeight());
+					}
+				});
 				btnAbbonamenti.setIcon(new ImageIcon(interfaccia.class.getResource("/view/img/abbonamento1.png")));
 				toolBar.add(btnAbbonamenti);
+				{
+					popupMenu_2 = new JPopupMenu();
+					addPopup(btnAbbonamenti, popupMenu_2);
+					{
+						mntmConfiguraAbbonamento = new JMenuItem("configura abbonamento");
+						ascoltatoreConfiguraAbbonamento();
+						popupMenu_2.add(mntmConfiguraAbbonamento);
+					}
+				}
 			}
 			
 			{
@@ -177,8 +197,22 @@ public class interfaccia {
 			}
 			{
 				btnClienti = new JButton("CLIENTI");
+				btnClienti.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						popupMenu_1.show(btnClienti, 0,	btnClienti.getY() + btnClienti.getHeight());
+					}
+				});
 				btnClienti.setIcon(new ImageIcon(interfaccia.class.getResource("/view/img/cliente.png")));
 				toolBar.add(btnClienti);
+				{
+					popupMenu_1 = new JPopupMenu();
+					addPopup(btnClienti, popupMenu_1);
+					{
+						mntmImpostaCategoriaCliente = new JMenuItem("imposta categoria cliente");
+						ascoltatoreImpostaCategoriaCliente();
+						popupMenu_1.add(mntmImpostaCategoriaCliente);
+					}
+				}
 			}
 			{
 				btnPersonale = new JButton("PERSONALE");
@@ -251,6 +285,49 @@ public class interfaccia {
 			}
 		});
 	}
+
+	
+	
+	
+public void ascoltatoreImpostaCategoriaCliente()
+	{
+	  mntmImpostaCategoriaCliente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+
+				clearMainPanel(frame);
+
+				ImpostaCategoriaClienteView cfv = new ImpostaCategoriaClienteView();
+				// internalFrame.getContentPane().add(itc,BorderLayout.CENTER);
+				frame.getContentPane().add(cfv,	BorderLayout.CENTER);
+
+				// internalFrame.setVisible(true);
+				frame.getContentPane().revalidate();
+				frame.repaint();
+
+			}
+		});
+	}
+
+
+public void ascoltatoreConfiguraAbbonamento()
+{
+  mntmConfiguraAbbonamento.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent arg0) {
+
+			clearMainPanel(frame);
+
+			ConfiguraAbbonamentoView cfv = new ConfiguraAbbonamentoView();
+			// internalFrame.getContentPane().add(itc,BorderLayout.CENTER);
+			frame.getContentPane().add(cfv,	BorderLayout.CENTER);
+
+			// internalFrame.setVisible(true);
+			frame.getContentPane().revalidate();
+			frame.repaint();
+
+		}
+	});
+}
+
 
 }
 

@@ -14,7 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 
 import ngs.controller.ConfAbbCorsiHandler;
-import ngs.peristentmodel.TipologiaCorsoDAO;
+import ngs.persistentmodel.TipologiaCorsoDAO;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;

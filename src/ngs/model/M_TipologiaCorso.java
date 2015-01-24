@@ -4,9 +4,7 @@ import java.util.ArrayList;
 
 import org.orm.PersistentException;
 
-import ngs.peristentmodel.APersistentModel;
-import ngs.peristentmodel.TipologiaCorso;
-import ngs.peristentmodel.TipologiaCorsoDAO;
+import ngs.persistentmodel.*;
 
 public class M_TipologiaCorso extends AModel {
 
@@ -84,6 +82,10 @@ public class M_TipologiaCorso extends AModel {
 	}
 
 
+	/**
+	 * 
+	 * @param nomeCorso
+	 */
 	public TipologiaCorso getTipologia(String nomeCorso) {
 		// TODO Auto-generated method stub
 		//TipologiaCorso tp=(TipologiaCorso)this.getPersistentModel();

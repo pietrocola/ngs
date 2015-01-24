@@ -1,11 +1,10 @@
 package ngs.model;
 
+import java.util.ArrayList;
+
 import org.orm.PersistentException;
 
-import ngs.peristentmodel.APersistentModel;
-import ngs.peristentmodel.DescrizioneCorsoDAO;
-import ngs.peristentmodel.TipologiaCorso;
-import ngs.peristentmodel.TipologiaCorsoDAO;
+import ngs.persistentmodel.*;
 
 
 public class M_DescrizioneCorso extends AModel {
@@ -60,5 +59,26 @@ public class M_DescrizioneCorso extends AModel {
 			return false; // la descrzione corso è gia presente!!
 		}
 	}
+
+	public ArrayList<DescrizioneCorso> getDescrizioniCorsi() {
+		
+		ArrayList<DescrizioneCorso> arrayCorsi = new ArrayList<DescrizioneCorso>();
+		
+		DescrizioneCorso des=(DescrizioneCorso)this.getPersistentModel();
+		
+		
+		//if(TipologiaCorsoDAO.listTipologiaCorsoByQuery(null, null)==null)
+			//System.out.println("ciao");
+		
+		for(int i=0;i<DescrizioneCorsoDAO.listDescrizioneCorsoByQuery(null, null).length;i++)
+			arrayCorsi.add(DescrizioneCorsoDAO.listDescrizioneCorsoByQuery(null, null)[i]);
+			//System.out.println(TipologiaCorsoDAO.listTipologiaCorsoByQuery(null, null)[i].getNomeTip());
+		     //System.out.println(TipologiaCorsoDAO.listTipologiaCorsoByQuery(null, null)[i].getNomeTip().getClass());
+		
+		
+		return arrayCorsi;
+	}
+
+	
 
 }
