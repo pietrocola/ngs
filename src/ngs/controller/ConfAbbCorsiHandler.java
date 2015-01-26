@@ -1,6 +1,8 @@
 package ngs.controller;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.orm.PersistentException;
 
@@ -105,10 +107,14 @@ public class ConfAbbCorsiHandler {
 	 */
 	public boolean impostaCategoriaCliente(String nomeCat) {
 		
-		descAbb = new M_DescrizioneAbbonamento();
-		return descAbb.impostaCategoriaCliente(nomeCat);
+	    CategoriaCliente cc=CategoriaClienteDAO.createCategoriaCliente();
+	    cc.setNomeCat(nomeCat);
+
+	    return CategoriaClienteDAO.save(cc);
+		
 		//throw new UnsupportedOperationException();
 	}
+
 
 	/**
 	 * 
@@ -136,17 +142,41 @@ public class ConfAbbCorsiHandler {
 	
 	
 	
-	
+	/**
+	 * restituisce tutte le sale pesi presenti su db
+	 * @return
+	 */
 	public ArrayList<SalaPesi> getSalePesi() {
-		throw new UnsupportedOperationException();
+		
+		salaPesi=new M_SalaPesi();
+		return salaPesi.getSalePesi();
 	}
 
+
+	
+	
+	
+	
 	public ArrayList<FasciaOrariaSalaPesi> getFasceOrarieSalaPesi() {
 		throw new UnsupportedOperationException();
 	}
 
-	public boolean configuraAbbonamento() {
-		throw new UnsupportedOperationException();
+	
+	/**
+	 * salva su db una descrizioneAbbonamento
+	 * @param nomeAbb
+	 * @param prezzoBaseMensile
+	 * @param elencoCorsiSelezionati
+	 * @param elencoSalePesiSelezionate
+	 * @return
+	 */
+	public boolean configuraAbbonamento(String nomeAbb, float prezzoBaseMensile, Set<DescrizioneCorso> elencoCorsiSelezionati, Set<SalaPesi> elencoSalePesiSelezionate) {
+	    DescrizioneAbbonamento da=DescrizioneAbbonamentoDAO.createDescrizioneAbbonamento();
+	    da.setNomeAbbonamento(nomeAbb);
+	    da.setPrezzoBaseMensile(prezzoBaseMensile);
+	    da.setElencoCorsi(elencoCorsiSelezionati);
+	    da.setElencoSalePesi(elencoSalePesiSelezionate);
+	    return DescrizioneAbbonamentoDAO.save(da);
 	}
 
 
@@ -171,6 +201,11 @@ public class ConfAbbCorsiHandler {
 		catCliente= new M_CategoriaCliente();
 		//System.out.println(tipCorso.verificaNomeTipologiaCorso(text));
 		return catCliente.verificaNomeCategoriaCliente(nomeCat);
+	}
+
+	public boolean verificaNomeDescrizioneAbbonamento(String nomeAbb) {
+		descAbb= new M_DescrizioneAbbonamento();
+		return descAbb.verificaNomeDescrizioneAbbonamento(nomeAbb);
 	}
 
 

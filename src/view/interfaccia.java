@@ -30,6 +30,7 @@ import javax.swing.ImageIcon;
 import view.content.ConfiguraAbbonamentoView;
 import view.content.ConfiguraCorsoView;
 import view.content.ImpostaCategoriaClienteView;
+import view.content.ImpostaPoliticaScontoPercentualeView;
 import view.content.ImpostaTipologiaCorsoView;
 import view.utility.ProvaMap;
 
@@ -74,6 +75,8 @@ public class interfaccia {
 	private JMenuItem mntmImpostaCategoriaCliente;
 	private JPopupMenu popupMenu_2;
 	private JMenuItem mntmConfiguraAbbonamento;
+	private JMenu mnImpostaPoliticaSconto;
+	private JMenuItem mntmScontoPercentuale;
 
 	/**
 	 * Launch the application.
@@ -196,7 +199,7 @@ public class interfaccia {
 				toolBar.add(btnStruttura);
 			}
 			{
-				btnClienti = new JButton("CLIENTI");
+				btnClienti = new JButton("CLIENTI ");
 				btnClienti.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						popupMenu_1.show(btnClienti, 0,	btnClienti.getY() + btnClienti.getHeight());
@@ -211,6 +214,15 @@ public class interfaccia {
 						mntmImpostaCategoriaCliente = new JMenuItem("imposta categoria cliente");
 						ascoltatoreImpostaCategoriaCliente();
 						popupMenu_1.add(mntmImpostaCategoriaCliente);
+					}
+					{
+						mnImpostaPoliticaSconto = new JMenu("imposta politica sconto");
+						popupMenu_1.add(mnImpostaPoliticaSconto);
+						{
+							mntmScontoPercentuale = new JMenuItem("sconto percentuale");
+							ascoltatoreScontoPercentuale();
+							mnImpostaPoliticaSconto.add(mntmScontoPercentuale);
+						}
 					}
 				}
 			}
@@ -266,6 +278,34 @@ public class interfaccia {
 				}
 			});
 		}
+	
+	
+	
+	public void ascoltatoreScontoPercentuale()
+	{
+		mntmScontoPercentuale.addActionListener(new ActionListener() {
+			public void actionPerformed(
+					ActionEvent e) {
+						// JInternalFrame internalFrame =
+						// new JInternalFrame("home->corso->imposta tipologia corso");		
+						clearMainPanel(frame);
+		
+						ImpostaPoliticaScontoPercentualeView psp = new ImpostaPoliticaScontoPercentualeView();
+						// internalFrame.getContentPane().add(itc,BorderLayout.CENTER);
+		
+						frame.getContentPane().add(psp,
+								BorderLayout.CENTER);
+		
+						// internalFrame.setVisible(true);
+						frame.getContentPane().revalidate();
+		
+						frame.repaint();
+
+				}
+			});
+		}
+	
+	
 	
 	public void ascoltatoreConfiguraCoroso()
 	{

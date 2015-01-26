@@ -20,8 +20,6 @@ import org.orm.criteria.*;
 
 public class DescrizioneAbbonamentoCriteria extends AbstractORMCriteria {
 	public final StringExpression nomeAbbonamento;
-	public final StringExpression elencoCategorieId;
-	public final AssociationExpression elencoCategorie;
 	public final FloatExpression prezzoBaseMensile;
 	public final CollectionExpression elencoSalePesi;
 	public final CollectionExpression elencoCorsi;
@@ -29,8 +27,6 @@ public class DescrizioneAbbonamentoCriteria extends AbstractORMCriteria {
 	public DescrizioneAbbonamentoCriteria(Criteria criteria) {
 		super(criteria);
 		nomeAbbonamento = new StringExpression("nomeAbbonamento", this);
-		elencoCategorieId = new StringExpression("elencoCategorie.nomeCat", this);
-		elencoCategorie = new AssociationExpression("elencoCategorie", this);
 		prezzoBaseMensile = new FloatExpression("prezzoBaseMensile", this);
 		elencoSalePesi = new CollectionExpression("elencoSalePesi", this);
 		elencoCorsi = new CollectionExpression("elencoCorsi", this);
@@ -42,10 +38,6 @@ public class DescrizioneAbbonamentoCriteria extends AbstractORMCriteria {
 	
 	public DescrizioneAbbonamentoCriteria() throws PersistentException {
 		this(ngs.persistentmodel.NextGenSport2PersistentManager.instance().getSession());
-	}
-	
-	public CategoriaClienteCriteria createElencoCategorieCriteria() {
-		return new CategoriaClienteCriteria(createCriteria("elencoCategorie"));
 	}
 	
 	public SalaPesiCriteria createElencoSalePesiCriteria() {

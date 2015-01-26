@@ -10,8 +10,6 @@ License Type: Academic
 			<generator class="assigned">
 			</generator>
 		</id>
-		<many-to-one name="elencoCategorie" cascade="lock" column="CategoriaClienteNomeCat" class="ngs.persistentmodel.CategoriaCliente" not-null="false" lazy="no-proxy">
-		</many-to-one>
 		<property name="prezzoBaseMensile" column="PrezzoBaseMensile" type="float" not-null="true" lazy="false"/>
 		<set name="elencoSalePesi" table="DescrizioneAbbonamento_SalaPesi" lazy="true" cascade="save-update,lock">
 			<key column="DescrizioneAbbonamentoNomeAbbonamento" not-null="true"/>

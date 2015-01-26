@@ -123,18 +123,6 @@
       <Index>false</Index>
       <UserTypes/>
     </Column>
-    <Column name="CategoriaClienteNomeCat">
-      <PrimaryKey>false</PrimaryKey>
-      <ForeignKey>true</ForeignKey>
-      <ReferencedColumn>ngs.persistentmodel.CategoriaCliente.NomeCat</ReferencedColumn>
-      <Type>27</Type>
-      <Length>255</Length>
-      <Nullable>true</Nullable>
-      <IDGenerator>native</IDGenerator>
-      <Unique>false</Unique>
-      <Index>false</Index>
-      <UserTypes/>
-    </Column>
     <Column name="PrezzoBaseMensile">
       <PrimaryKey>false</PrimaryKey>
       <ForeignKey>false</ForeignKey>
@@ -287,16 +275,6 @@
     </Columns>
     <RefColumns>
       <Column>ID</Column>
-    </RefColumns>
-  </ForeignKey>
-  <ForeignKey name="FKDescrizion772374">
-    <ReferenceTable>DescrizioneAbbonamento</ReferenceTable>
-    <ReferencedTable>CategoriaCliente</ReferencedTable>
-    <Columns>
-      <Column>CategoriaClienteNomeCat</Column>
-    </Columns>
-    <RefColumns>
-      <Column>NomeCat</Column>
     </RefColumns>
   </ForeignKey>
   <ForeignKey name="FKDescrizion113963">

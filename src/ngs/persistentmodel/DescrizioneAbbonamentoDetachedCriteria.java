@@ -20,8 +20,6 @@ import org.orm.criteria.*;
 
 public class DescrizioneAbbonamentoDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final StringExpression nomeAbbonamento;
-	public final StringExpression elencoCategorieId;
-	public final AssociationExpression elencoCategorie;
 	public final FloatExpression prezzoBaseMensile;
 	public final CollectionExpression elencoSalePesi;
 	public final CollectionExpression elencoCorsi;
@@ -29,8 +27,6 @@ public class DescrizioneAbbonamentoDetachedCriteria extends AbstractORMDetachedC
 	public DescrizioneAbbonamentoDetachedCriteria() {
 		super(ngs.persistentmodel.DescrizioneAbbonamento.class, ngs.persistentmodel.DescrizioneAbbonamentoCriteria.class);
 		nomeAbbonamento = new StringExpression("nomeAbbonamento", this.getDetachedCriteria());
-		elencoCategorieId = new StringExpression("elencoCategorie.nomeCat", this.getDetachedCriteria());
-		elencoCategorie = new AssociationExpression("elencoCategorie", this.getDetachedCriteria());
 		prezzoBaseMensile = new FloatExpression("prezzoBaseMensile", this.getDetachedCriteria());
 		elencoSalePesi = new CollectionExpression("elencoSalePesi", this.getDetachedCriteria());
 		elencoCorsi = new CollectionExpression("elencoCorsi", this.getDetachedCriteria());
@@ -39,15 +35,9 @@ public class DescrizioneAbbonamentoDetachedCriteria extends AbstractORMDetachedC
 	public DescrizioneAbbonamentoDetachedCriteria(DetachedCriteria aDetachedCriteria) {
 		super(aDetachedCriteria, ngs.persistentmodel.DescrizioneAbbonamentoCriteria.class);
 		nomeAbbonamento = new StringExpression("nomeAbbonamento", this.getDetachedCriteria());
-		elencoCategorieId = new StringExpression("elencoCategorie.nomeCat", this.getDetachedCriteria());
-		elencoCategorie = new AssociationExpression("elencoCategorie", this.getDetachedCriteria());
 		prezzoBaseMensile = new FloatExpression("prezzoBaseMensile", this.getDetachedCriteria());
 		elencoSalePesi = new CollectionExpression("elencoSalePesi", this.getDetachedCriteria());
 		elencoCorsi = new CollectionExpression("elencoCorsi", this.getDetachedCriteria());
-	}
-	
-	public CategoriaClienteDetachedCriteria createElencoCategorieCriteria() {
-		return new CategoriaClienteDetachedCriteria(createCriteria("elencoCategorie"));
 	}
 	
 	public SalaPesiDetachedCriteria createElencoSalePesiCriteria() {

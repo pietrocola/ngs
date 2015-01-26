@@ -36,8 +36,6 @@ public class DescrizioneAbbonamento extends ngs.persistentmodel.APersistentModel
 	
 	private String nomeAbbonamento;
 	
-	private ngs.persistentmodel.CategoriaCliente elencoCategorie;
-	
 	private float prezzoBaseMensile;
 	
 	private java.util.Set elencoSalePesi = new java.util.HashSet();
@@ -62,14 +60,6 @@ public class DescrizioneAbbonamento extends ngs.persistentmodel.APersistentModel
 	
 	public float getPrezzoBaseMensile() {
 		return prezzoBaseMensile;
-	}
-	
-	public void setElencoCategorie(ngs.persistentmodel.CategoriaCliente value) {
-		this.elencoCategorie = value;
-	}
-	
-	public ngs.persistentmodel.CategoriaCliente getElencoCategorie() {
-		return elencoCategorie;
 	}
 	
 	public void setElencoSalePesi(java.util.Set value) {

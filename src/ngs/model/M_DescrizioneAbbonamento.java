@@ -4,6 +4,8 @@ import ngs.model.strategy.*;
 import ngs.persistentmodel.APersistentModel;
 import ngs.persistentmodel.CategoriaCliente;
 import ngs.persistentmodel.CategoriaClienteDAO;
+import ngs.persistentmodel.DescrizioneAbbonamentoDAO;
+import ngs.persistentmodel.DescrizioneCorsoDAO;
 import ngs.persistentmodel.TipologiaCorso;
 import ngs.persistentmodel.TipologiaCorsoDAO;
 
@@ -11,20 +13,6 @@ public class M_DescrizioneAbbonamento extends AModel {
 
 	IPoliticaScontoAbbonamentoStrategy prezzoStrategy;
 
-	/**
-	 * 
-	 * @param nomeCat
-	 */
-	public boolean impostaCategoriaCliente(String nomeCat) {
-		
-	    CategoriaCliente cc = (CategoriaCliente)this.getPersistentModel();
-	    cc=CategoriaClienteDAO.createCategoriaCliente();
-	    cc.setNomeCat(nomeCat);
-
-	    return CategoriaClienteDAO.save(cc);
-		
-		//throw new UnsupportedOperationException();
-	}
 
 	public float calcolaPrezzo() {
 		throw new UnsupportedOperationException();
@@ -34,6 +22,17 @@ public class M_DescrizioneAbbonamento extends AModel {
 	public APersistentModel getPersistentModel() {
 		// TODO Auto-generated method stub
 		return this.model;
+	}
+
+	public boolean verificaNomeDescrizioneAbbonamento(String nomeAbb) {
+		if(DescrizioneAbbonamentoDAO.getDescrizioneAbbonamentoByORMID(nomeAbb)==null)
+		{
+			return true; // la descrizione abbonamento non esiste
+		}
+		else
+		{
+			return false; // la descrzione abbonamento è gia presente!!
+		}
 	}
 
 }
