@@ -13,7 +13,7 @@ License Type: Academic
 		<discriminator column="Discriminator" type="string"/>
 		<many-to-one name="categoriaCliente" cascade="lock" column="CategoriaClienteNomeCat" class="ngs.persistentmodel.CategoriaCliente" not-null="false" lazy="no-proxy">
 		</many-to-one>
-		<subclass name="ngs.persistentmodel.PoliticaScontoPercentuale" discriminator-value="PoliticaScontoPercentuale" lazy="false">
+		<subclass name="ngs.persistentmodel.ScontoPercentuale" discriminator-value="PoliticaScontoPercentuale" lazy="false">
 			<property name="unMese" column="UnMese" type="float" not-null="false" lazy="false"/>
 			<property name="treMesi" column="TreMesi" type="float" not-null="false" lazy="false"/>
 			<property name="seiMesi" column="SeiMesi" type="float" not-null="false" lazy="false"/>

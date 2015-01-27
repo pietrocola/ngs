@@ -74,8 +74,8 @@ public class ImpostaCategoriaClienteView extends JPanel {
 						{
 							if(ConfAbbCorsiHandler.getInstance().impostaCategoriaCliente(nomeCat)==true)
 								Message.confirmLabel("CATEGORIA INSERITA CORRETTAMENTE",true,label);
-							else
-								Message.noConnectionDBMessage("ERRORE CONNESSIONE", "Connessione al database non riuscita");
+							else{}
+								//Message.noConnectionDBMessage("ERRORE CONNESSIONE", "Connessione al database non riuscita");
 						}
 					}
 					else

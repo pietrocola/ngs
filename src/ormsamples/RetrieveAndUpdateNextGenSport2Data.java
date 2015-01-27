@@ -24,9 +24,9 @@ public class RetrieveAndUpdateNextGenSport2Data {
 			ngs.persistentmodel.PoliticaScontoAbbonamento lngspersistentmodelPoliticaScontoAbbonamento = ngs.persistentmodel.PoliticaScontoAbbonamentoDAO.loadPoliticaScontoAbbonamentoByQuery(null, null);
 			// Update the properties of the persistent object
 			ngs.persistentmodel.PoliticaScontoAbbonamentoDAO.save(lngspersistentmodelPoliticaScontoAbbonamento);
-			ngs.persistentmodel.PoliticaScontoPercentuale lngspersistentmodelPoliticaScontoPercentuale = ngs.persistentmodel.PoliticaScontoPercentualeDAO.loadPoliticaScontoPercentualeByQuery(null, null);
+			ngs.persistentmodel.ScontoPercentuale lngspersistentmodelScontoPercentuale = ngs.persistentmodel.ScontoPercentualeDAO.loadScontoPercentualeByQuery(null, null);
 			// Update the properties of the persistent object
-			ngs.persistentmodel.PoliticaScontoPercentualeDAO.save(lngspersistentmodelPoliticaScontoPercentuale);
+			ngs.persistentmodel.ScontoPercentualeDAO.save(lngspersistentmodelScontoPercentuale);
 			ngs.persistentmodel.TipologiaCorso lngspersistentmodelTipologiaCorso = ngs.persistentmodel.TipologiaCorsoDAO.loadTipologiaCorsoByQuery(null, null);
 			// Update the properties of the persistent object
 			ngs.persistentmodel.TipologiaCorsoDAO.save(lngspersistentmodelTipologiaCorso);
@@ -72,11 +72,11 @@ public class RetrieveAndUpdateNextGenSport2Data {
 		//lngspersistentmodelPoliticaScontoAbbonamentoCriteria.nomePolitica.eq();
 		System.out.println(lngspersistentmodelPoliticaScontoAbbonamentoCriteria.uniquePoliticaScontoAbbonamento());
 		
-		System.out.println("Retrieving PoliticaScontoPercentuale by PoliticaScontoPercentualeCriteria");
-		ngs.persistentmodel.PoliticaScontoPercentualeCriteria lngspersistentmodelPoliticaScontoPercentualeCriteria = new ngs.persistentmodel.PoliticaScontoPercentualeCriteria();
+		System.out.println("Retrieving ScontoPercentuale by ScontoPercentualeCriteria");
+		ngs.persistentmodel.ScontoPercentualeCriteria lngspersistentmodelScontoPercentualeCriteria = new ngs.persistentmodel.ScontoPercentualeCriteria();
 		// Please uncomment the follow line and fill in parameter(s)
-		//lngspersistentmodelPoliticaScontoPercentualeCriteria.nomePolitica.eq();
-		System.out.println(lngspersistentmodelPoliticaScontoPercentualeCriteria.uniquePoliticaScontoPercentuale());
+		//lngspersistentmodelScontoPercentualeCriteria.nomePolitica.eq();
+		System.out.println(lngspersistentmodelScontoPercentualeCriteria.uniqueScontoPercentuale());
 		
 		System.out.println("Retrieving TipologiaCorso by TipologiaCorsoCriteria");
 		ngs.persistentmodel.TipologiaCorsoCriteria lngspersistentmodelTipologiaCorsoCriteria = new ngs.persistentmodel.TipologiaCorsoCriteria();

@@ -49,11 +49,11 @@ public class ListNextGenSport2Data {
 		}
 		System.out.println(length + " record(s) retrieved.");
 		
-		System.out.println("Listing PoliticaScontoPercentuale...");
-		ngs.persistentmodel.PoliticaScontoPercentuale[] ngspersistentmodelPoliticaScontoPercentuales = ngs.persistentmodel.PoliticaScontoPercentualeDAO.listPoliticaScontoPercentualeByQuery(null, null);
-		length = Math.min(ngspersistentmodelPoliticaScontoPercentuales.length, ROW_COUNT);
+		System.out.println("Listing ScontoPercentuale...");
+		ngs.persistentmodel.ScontoPercentuale[] ngspersistentmodelScontoPercentuales = ngs.persistentmodel.ScontoPercentualeDAO.listScontoPercentualeByQuery(null, null);
+		length = Math.min(ngspersistentmodelScontoPercentuales.length, ROW_COUNT);
 		for (int i = 0; i < length; i++) {
-			System.out.println(ngspersistentmodelPoliticaScontoPercentuales[i]);
+			System.out.println(ngspersistentmodelScontoPercentuales[i]);
 		}
 		System.out.println(length + " record(s) retrieved.");
 		
@@ -136,17 +136,17 @@ public class ListNextGenSport2Data {
 		}
 		System.out.println(length + " PoliticaScontoAbbonamento record(s) retrieved."); 
 		
-		System.out.println("Listing PoliticaScontoPercentuale by Criteria...");
-		ngs.persistentmodel.PoliticaScontoPercentualeCriteria lngspersistentmodelPoliticaScontoPercentualeCriteria = new ngs.persistentmodel.PoliticaScontoPercentualeCriteria();
+		System.out.println("Listing ScontoPercentuale by Criteria...");
+		ngs.persistentmodel.ScontoPercentualeCriteria lngspersistentmodelScontoPercentualeCriteria = new ngs.persistentmodel.ScontoPercentualeCriteria();
 		// Please uncomment the follow line and fill in parameter(s) 
-		//lngspersistentmodelPoliticaScontoPercentualeCriteria.nomePolitica.eq();
-		lngspersistentmodelPoliticaScontoPercentualeCriteria.setMaxResults(ROW_COUNT);
-		ngs.persistentmodel.PoliticaScontoPercentuale[] ngspersistentmodelPoliticaScontoPercentuales = lngspersistentmodelPoliticaScontoPercentualeCriteria.listPoliticaScontoPercentuale();
-		length =ngspersistentmodelPoliticaScontoPercentuales== null ? 0 : Math.min(ngspersistentmodelPoliticaScontoPercentuales.length, ROW_COUNT); 
+		//lngspersistentmodelScontoPercentualeCriteria.nomePolitica.eq();
+		lngspersistentmodelScontoPercentualeCriteria.setMaxResults(ROW_COUNT);
+		ngs.persistentmodel.ScontoPercentuale[] ngspersistentmodelScontoPercentuales = lngspersistentmodelScontoPercentualeCriteria.listScontoPercentuale();
+		length =ngspersistentmodelScontoPercentuales== null ? 0 : Math.min(ngspersistentmodelScontoPercentuales.length, ROW_COUNT); 
 		for (int i = 0; i < length; i++) {
-			 System.out.println(ngspersistentmodelPoliticaScontoPercentuales[i]);
+			 System.out.println(ngspersistentmodelScontoPercentuales[i]);
 		}
-		System.out.println(length + " PoliticaScontoPercentuale record(s) retrieved."); 
+		System.out.println(length + " ScontoPercentuale record(s) retrieved."); 
 		
 		System.out.println("Listing TipologiaCorso by Criteria...");
 		ngs.persistentmodel.TipologiaCorsoCriteria lngspersistentmodelTipologiaCorsoCriteria = new ngs.persistentmodel.TipologiaCorsoCriteria();

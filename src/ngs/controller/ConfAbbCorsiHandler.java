@@ -7,6 +7,7 @@ import java.util.Set;
 import org.orm.PersistentException;
 
 import ngs.model.*;
+import ngs.model.strategy.ScontoPercentualeStrategy;
 import ngs.persistentmodel.*;
 
 
@@ -21,7 +22,7 @@ public class ConfAbbCorsiHandler {
 	M_DescrizioneAbbonamento descAbb;
 	M_CategoriaCliente catCliente;
 	M_SalaPesi salaPesi;
-	
+	ScontoPercentualeStrategy scontoPercentuale;
 
 	
 	//PATTER SINGLETON
@@ -180,10 +181,20 @@ public class ConfAbbCorsiHandler {
 	}
 
 
+	/**
+	 * prende le categorie clienti da db
+	 * @return
+	 */
+	
 	public ArrayList<CategoriaCliente> getCategorieClienti() {
-		throw new UnsupportedOperationException();
+		
+		catCliente=new M_CategoriaCliente();
+		return catCliente.getCategorieClienti();
 	}
 
+	
+	
+	
 	/**
 	 * 
 	 * @param categoriaCliente
@@ -193,10 +204,22 @@ public class ConfAbbCorsiHandler {
 	 * @param seiMesi
 	 * @param dodiciMesi
 	 */
-	public void impostaPoliticaScontoPercentuale(CategoriaCliente categoriaCliente, String nomePolitica, float unMese, float treMesi, float seiMesi, float dodiciMesi) {
-		throw new UnsupportedOperationException();
+	public boolean impostaPoliticaScontoPercentuale(CategoriaCliente categoriaCliente, String nomePolitica, float unMese, float treMesi, float seiMesi, float dodiciMesi) {
+	    ScontoPercentuale sps=ScontoPercentualeDAO.createScontoPercentuale();
+	    sps.setCategoriaCliente(categoriaCliente);
+	    sps.setNomePolitica(nomePolitica);
+	    sps.setUnMese(unMese);
+	    sps.setTreMesi(treMesi);
+	    sps.setSeiMesi(seiMesi);
+	    sps.setDodiciMesi(dodiciMesi);
+
+	    return ScontoPercentualeDAO.save(sps);
 	}
 
+	
+	
+	
+	
 	public boolean verificaNomeCategoriaCliente(String nomeCat) {
 		catCliente= new M_CategoriaCliente();
 		//System.out.println(tipCorso.verificaNomeTipologiaCorso(text));
@@ -206,6 +229,14 @@ public class ConfAbbCorsiHandler {
 	public boolean verificaNomeDescrizioneAbbonamento(String nomeAbb) {
 		descAbb= new M_DescrizioneAbbonamento();
 		return descAbb.verificaNomeDescrizioneAbbonamento(nomeAbb);
+	}
+
+	public boolean verificaNomePoliticaScontoPercentuale(String nomePolitica) {
+		// TODO Auto-generated method stub
+		
+		scontoPercentuale= new ScontoPercentualeStrategy();
+		return scontoPercentuale.verificaNomePoliticaScontoPercentuale(nomePolitica);
+	
 	}
 
 

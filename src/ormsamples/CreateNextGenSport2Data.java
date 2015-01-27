@@ -24,9 +24,9 @@ public class CreateNextGenSport2Data {
 			ngs.persistentmodel.PoliticaScontoAbbonamento lngspersistentmodelPoliticaScontoAbbonamento = ngs.persistentmodel.PoliticaScontoAbbonamentoDAO.createPoliticaScontoAbbonamento();
 			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : nomePolitica
 			ngs.persistentmodel.PoliticaScontoAbbonamentoDAO.save(lngspersistentmodelPoliticaScontoAbbonamento);
-			ngs.persistentmodel.PoliticaScontoPercentuale lngspersistentmodelPoliticaScontoPercentuale = ngs.persistentmodel.PoliticaScontoPercentualeDAO.createPoliticaScontoPercentuale();
+			ngs.persistentmodel.ScontoPercentuale lngspersistentmodelScontoPercentuale = ngs.persistentmodel.ScontoPercentualeDAO.createScontoPercentuale();
 			// Initialize the properties of the persistent object here
-			ngs.persistentmodel.PoliticaScontoPercentualeDAO.save(lngspersistentmodelPoliticaScontoPercentuale);
+			ngs.persistentmodel.ScontoPercentualeDAO.save(lngspersistentmodelScontoPercentuale);
 			ngs.persistentmodel.TipologiaCorso lngspersistentmodelTipologiaCorso = ngs.persistentmodel.TipologiaCorsoDAO.createTipologiaCorso();
 			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : nomeTip
 			ngs.persistentmodel.TipologiaCorsoDAO.save(lngspersistentmodelTipologiaCorso);

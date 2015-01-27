@@ -4,13 +4,33 @@ import java.util.ArrayList;
 import ngs.persistentmodel.APersistentModel;
 import ngs.persistentmodel.CategoriaCliente;
 import ngs.persistentmodel.CategoriaClienteDAO;
+import ngs.persistentmodel.TipologiaCorso;
 import ngs.persistentmodel.TipologiaCorsoDAO;
 public class M_CategoriaCliente extends AModel {
 
+	
+	
+	/**
+	 * prende le categorie clienti da db
+	 * @return
+	 */
 	public ArrayList<CategoriaCliente> getCategorieClienti() {
-		throw new UnsupportedOperationException();
+		
+		ArrayList<CategoriaCliente> arrayCat = new ArrayList<CategoriaCliente>();
+		
+		CategoriaCliente cat=(CategoriaCliente)this.getPersistentModel();
+		
+		for(int i=0;i<CategoriaClienteDAO.listCategoriaClienteByQuery(null, null).length;i++){
+			arrayCat.add(CategoriaClienteDAO.listCategoriaClienteByQuery(null, null)[i]);
+
+		}
+		
+		return arrayCat;	
 	}
 
+	
+	
+	
 	@Override
 	public APersistentModel getPersistentModel() {
 		// TODO Auto-generated method stub
@@ -30,5 +50,10 @@ public class M_CategoriaCliente extends AModel {
 		}
 		    
 	}
-
+	
+	
+	public CategoriaCliente getCategoriaCliente(String nomeCat)
+	{
+		return CategoriaClienteDAO.getCategoriaClienteByORMID(nomeCat);
+	}
 }

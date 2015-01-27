@@ -87,8 +87,8 @@ public class ConfiguraAbbonamentoView extends JPanel {
 		{
 
 			aux=aux+50;
-			lblPrezzoAbb = new JLabel("prezzo base mensile");
-			lblPrezzoAbb.setBounds(40, aux, 133, 14);
+			lblPrezzoAbb = new JLabel("prezzo base mensile (\u20AC)");
+			lblPrezzoAbb.setBounds(40, aux, 143, 14);
 			add(lblPrezzoAbb);
 		}
 		{
@@ -126,8 +126,9 @@ public class ConfiguraAbbonamentoView extends JPanel {
 		//
 		//ArrayList<DescrizioneCorso> arrayCorsi=new ArrayList<DescrizioneCorso>();		
 			arrayCorsi=ConfAbbCorsiHandler.getInstance().getDescrizioniCorsi();
-			for(DescrizioneCorso dc:arrayCorsi)
-				System.out.println("corso da db:"+dc.getNomeCorso());
+			
+			//for(DescrizioneCorso dc:arrayCorsi)
+				//System.out.println("corso da db:"+dc.getNomeCorso());
 			
 			//int i=0;
 			//int aux;
@@ -143,7 +144,7 @@ public class ConfiguraAbbonamentoView extends JPanel {
 					//System.out.println(acbc.get(j).getLabel());
 					aux=aux+50;
 					acbc.get(j).setBounds(100, aux, 400, 23);
-					System.out.println("corso da label:"+acbc.get(j).getLabel());
+					//System.out.println("corso da label:"+acbc.get(j).getLabel());
 					//i=i+50;
 					add(acbc.get(j));
 				}
@@ -218,7 +219,7 @@ public class ConfiguraAbbonamentoView extends JPanel {
 					
 					if(acbc.get(i).isSelected()==true){
 						elencoCorsiSelezionati.add(arrayCorsi.get(i));
-						System.out.println(arrayCorsi.get(i).getNomeCorso());
+						//System.out.println(arrayCorsi.get(i).getNomeCorso());
 					}
 				}
 				Set<SalaPesi> elencoSalePesiSelezionate= new HashSet<SalaPesi>();
@@ -226,7 +227,7 @@ public class ConfiguraAbbonamentoView extends JPanel {
 				{
 					if(acbsp.get(i).isSelected()){
 						elencoSalePesiSelezionate.add(arraySalePesi.get(i));
-						System.out.println(arraySalePesi.get(i).getNomeSala());
+						//System.out.println(arraySalePesi.get(i).getNomeSala());
 					}
 				}
 				
@@ -238,14 +239,15 @@ public class ConfiguraAbbonamentoView extends JPanel {
 					{
 						String nomiCorsi="";
 						for(DescrizioneCorso dc:elencoCorsiSelezionati){
-							nomiCorsi=nomiCorsi+dc.getNomeCorso()+", ";
+							nomiCorsi=nomiCorsi+dc.getNomeCorso()+"  ";
 						}
+						if(nomiCorsi.length()==0) nomiCorsi="nessun corso selezionato";
 						String nomiSale="";
 						for(SalaPesi sp:elencoSalePesiSelezionate){
-							nomiSale=nomiSale+sp.getNomeSala()+", ";
+							nomiSale=nomiSale+sp.getNomeSala()+"  ";
 						}
-							
-						String riepilogo="Confermare la creazione dell'abbonamento?\n   NOME: "+nomeAbb+"\n   CORSI: "+nomiCorsi+"\n   SALE PESI: "+nomiSale+"\n PREZZO BASE MENSILE: "+prezzo+"\n\n";
+						if(nomiSale.length()==0) nomiSale="nessuna sala selezionata";	
+						String riepilogo="Confermare la creazione dell'abbonamento?\n   NOME: "+nomeAbb+"\n   CORSI: "+nomiCorsi+"\n   SALE PESI: "+nomiSale+"\n   PREZZO BASE MENSILE: "+prezzo+"€\n\n";
 						int risposta = Message.questionConfirmMessage("CONFERMA", riepilogo);
 						if(risposta==JOptionPane.YES_OPTION) 
 						{
@@ -255,8 +257,8 @@ public class ConfiguraAbbonamentoView extends JPanel {
 								Message.confirmLabel("ABBONAMENTO INSERITO CORRETTAMENTE", true, lblConfermaAbb);
 																   
 							}
-							else
-								Message.noConnectionDBMessage("ERRORE CONNESSIONE", "Connessione al database non riuscita");
+							else{}
+								//Message.noConnectionDBMessage("ERRORE CONNESSIONE", "Connessione al database non riuscita");
 								
 						}
 						else if(risposta==JOptionPane.NO_OPTION){}							

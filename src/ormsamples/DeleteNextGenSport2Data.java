@@ -24,9 +24,9 @@ public class DeleteNextGenSport2Data {
 			ngs.persistentmodel.PoliticaScontoAbbonamento lngspersistentmodelPoliticaScontoAbbonamento = ngs.persistentmodel.PoliticaScontoAbbonamentoDAO.loadPoliticaScontoAbbonamentoByQuery(null, null);
 			// Delete the persistent object
 			ngs.persistentmodel.PoliticaScontoAbbonamentoDAO.delete(lngspersistentmodelPoliticaScontoAbbonamento);
-			ngs.persistentmodel.PoliticaScontoPercentuale lngspersistentmodelPoliticaScontoPercentuale = ngs.persistentmodel.PoliticaScontoPercentualeDAO.loadPoliticaScontoPercentualeByQuery(null, null);
+			ngs.persistentmodel.ScontoPercentuale lngspersistentmodelScontoPercentuale = ngs.persistentmodel.ScontoPercentualeDAO.loadScontoPercentualeByQuery(null, null);
 			// Delete the persistent object
-			ngs.persistentmodel.PoliticaScontoPercentualeDAO.delete(lngspersistentmodelPoliticaScontoPercentuale);
+			ngs.persistentmodel.ScontoPercentualeDAO.delete(lngspersistentmodelScontoPercentuale);
 			ngs.persistentmodel.TipologiaCorso lngspersistentmodelTipologiaCorso = ngs.persistentmodel.TipologiaCorsoDAO.loadTipologiaCorsoByQuery(null, null);
 			// Delete the persistent object
 			ngs.persistentmodel.TipologiaCorsoDAO.delete(lngspersistentmodelTipologiaCorso);

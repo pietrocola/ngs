@@ -128,8 +128,8 @@ public class ConfiguraCorsoView extends JPanel {
 								Message.confirmLabel("CORSO INSERITO CORRETTAMENTE", true, label);
 																   
 							}
-							else
-								Message.noConnectionDBMessage("ERRORE CONNESSIONE", "Connessione al database non riuscita");
+							else{}
+								//Message.noConnectionDBMessage("ERRORE CONNESSIONE", "Connessione al database non riuscita");
 								
 						}
 						else if(risposta==JOptionPane.NO_OPTION){}							
@@ -156,6 +156,7 @@ public class ConfiguraCorsoView extends JPanel {
 				//if(ConfAbbCorsiHandler.getInstance().getNomiTipologie()==null)
 					//System.out.println(ConfAbbCorsiHandler.getInstance().getNomiTipologie());
 			
+				/*
 				if(TipologiaCorsoDAO.listTipologiaCorsoByQuery(null, null)==null){
 					comboBox.setEnabled(false);
 					Message.noConnectionDBMessage("ERRORE CONNESSIONE", "Connessione al database non riuscita");						
@@ -163,7 +164,7 @@ public class ConfiguraCorsoView extends JPanel {
 				}
 				else
 				{
-				
+				*/
 				ArrayList<String> nomiTip = ConfAbbCorsiHandler.getInstance().getNomiTipologie();
 				if(nomiTip.size()==0){
 					//System.out.println(nomiTip.size());
@@ -178,7 +179,7 @@ public class ConfiguraCorsoView extends JPanel {
 				   }
 				}
 				}
-			}
+			//}
 		});
 	}
 }
