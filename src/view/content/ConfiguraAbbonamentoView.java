@@ -123,13 +123,8 @@ public class ConfiguraAbbonamentoView extends JPanel {
 	
 	public void stampaCorsi()
 	{
-		//ArrayList<DescrizioneCorso> arrayCorsi=new ArrayList<DescrizioneCorso>();
-		if(ConfAbbCorsiHandler.getInstance().getDescrizioniCorsi()==null)
-			{
-				Message.noConnectionDBMessage("ERRORE CONNESSIONE", "Connessione al database non riusita");
-			}
-		else
-		{
+		//
+		//ArrayList<DescrizioneCorso> arrayCorsi=new ArrayList<DescrizioneCorso>();		
 			arrayCorsi=ConfAbbCorsiHandler.getInstance().getDescrizioniCorsi();
 			for(DescrizioneCorso dc:arrayCorsi)
 				System.out.println("corso da db:"+dc.getNomeCorso());
@@ -176,7 +171,7 @@ public class ConfiguraAbbonamentoView extends JPanel {
 			//chckbxNewCheckBox=null;
 		}	
 		*/	
-	}
+	
 	
 	public void stampaSalePesi()
 	{
