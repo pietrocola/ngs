@@ -6,12 +6,12 @@ License Type: Academic
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 	<class name="ngs.persistentmodel.PoliticaScontoAbbonamento" table="PoliticaScontoAbbonamento" lazy="false" discriminator-value="PoliticaScontoAbbonamento">
-		<id name="nomePolitica" column="NomePolitica" type="string">
+		<id name="nomePolitica" column="ID" type="string">
 			<generator class="assigned">
 			</generator>
 		</id>
 		<discriminator column="Discriminator" type="string"/>
-		<many-to-one name="categoriaCliente" cascade="lock" column="CategoriaClienteNomeCat" class="ngs.persistentmodel.CategoriaCliente" not-null="false" lazy="no-proxy">
+		<many-to-one name="categoriaCliente" cascade="lock" column="CategoriaClienteID" class="ngs.persistentmodel.CategoriaCliente" not-null="false" lazy="no-proxy">
 		</many-to-one>
 		<subclass name="ngs.persistentmodel.ScontoPercentuale" discriminator-value="PoliticaScontoPercentuale" lazy="false">
 			<property name="unMese" column="UnMese" type="float" not-null="false" lazy="false"/>

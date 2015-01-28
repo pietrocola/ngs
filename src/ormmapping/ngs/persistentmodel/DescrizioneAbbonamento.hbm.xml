@@ -6,18 +6,18 @@ License Type: Academic
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 	<class name="ngs.persistentmodel.DescrizioneAbbonamento" table="DescrizioneAbbonamento" lazy="false">
-		<id name="nomeAbbonamento" column="NomeAbbonamento" type="string">
+		<id name="nomeAbbonamento" column="ID" type="string">
 			<generator class="assigned">
 			</generator>
 		</id>
 		<property name="prezzoBaseMensile" column="PrezzoBaseMensile" type="float" not-null="true" lazy="false"/>
 		<set name="elencoSalePesi" table="DescrizioneAbbonamento_SalaPesi" lazy="true" cascade="save-update,lock">
-			<key column="DescrizioneAbbonamentoNomeAbbonamento" not-null="true"/>
-			<many-to-many column="SalaPesiNomeSala" class="ngs.persistentmodel.SalaPesi">
+			<key column="DescrizioneAbbonamentoID" not-null="true"/>
+			<many-to-many column="SalaPesiID" class="ngs.persistentmodel.SalaPesi">
 			</many-to-many>
 		</set>
 		<set name="elencoCorsi" table="DescrizioneAbbonamento_DescrizioneCorso" lazy="true" cascade="save-update,lock">
-			<key column="DescrizioneAbbonamentoNomeAbbonamento" not-null="true"/>
+			<key column="DescrizioneAbbonamentoID" not-null="true"/>
 			<many-to-many column="DescrizioneCorsoID" class="ngs.persistentmodel.DescrizioneCorso">
 			</many-to-many>
 		</set>

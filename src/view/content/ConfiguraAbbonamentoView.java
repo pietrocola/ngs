@@ -30,8 +30,9 @@ import javax.swing.JTable;
 import view.utility.Message;
 
 import java.awt.Font;
+import javax.swing.ScrollPaneConstants;
 
-public class ConfiguraAbbonamentoView extends JPanel {
+public class ConfiguraAbbonamentoView extends JScrollPane{
 	//private JCheckBox chckbxNewCheckBox;
 	private JLabel lblNomeAbb;
 	private JTextField textFieldNomeAbb;
@@ -50,51 +51,59 @@ public class ConfiguraAbbonamentoView extends JPanel {
 	static ArrayList<JCheckBox> acbsp=new ArrayList<JCheckBox>();
 	private JButton btnSalva;
 	private JLabel lblConfermaAbb;
+	private JLabel lblNewLabel;
+	private JLabel label;
+	private JLabel label_1;
+	private JLabel label_2;
 
 	/**
 	 * Create the panel.
 	 */
 	public ConfiguraAbbonamentoView() {
-		setLayout(null);
+		setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+		JPanel panel = new JPanel();
+		setViewportView(panel);
+		panel.setLayout(null);
 		{
 			lblNomeAbb = new JLabel("nome abbonamento");
 			lblNomeAbb.setBounds(40, 55, 133, 14);
-			add(lblNomeAbb);
+			panel.add(lblNomeAbb);
 		}
 		{
 			textFieldNomeAbb = new JTextField();
 			textFieldNomeAbb.setBounds(193, 52, 155, 20);
-			add(textFieldNomeAbb);
+			panel.add(textFieldNomeAbb);
 			textFieldNomeAbb.setColumns(10);
 		}
 		{
 			lblTitoloCorsi=new JLabel("CORSI DISPONIBILI:");
 			lblTitoloCorsi.setBounds(40, 105, 133, 14);
-			add(lblTitoloCorsi);
+			panel.add(lblTitoloCorsi);
 		}
 		{
-			stampaCorsi();
+			stampaCorsi(panel);
 		}		
 		{
 			aux=aux+50;
 			lblTitoloSale=new JLabel("SALE PESI DISPONIBILI:");
 			lblTitoloSale.setBounds(40, aux, 133, 14);
-			add(lblTitoloSale);
+			panel.add(lblTitoloSale);
 		}
 		{
-			stampaSalePesi();
+			stampaSalePesi(panel);
 		}		
 		{
 
 			aux=aux+50;
 			lblPrezzoAbb = new JLabel("prezzo base mensile (\u20AC)");
 			lblPrezzoAbb.setBounds(40, aux, 143, 14);
-			add(lblPrezzoAbb);
+			panel.add(lblPrezzoAbb);
 		}
 		{
 			textFieldPrezzoAbb = new JTextField();
 			textFieldPrezzoAbb.setBounds(193, aux-2, 86, 20);
-			add(textFieldPrezzoAbb);
+			panel.add(textFieldPrezzoAbb);
 			textFieldPrezzoAbb.setColumns(10);
 		}
 		{
@@ -104,14 +113,34 @@ public class ConfiguraAbbonamentoView extends JPanel {
 			btnSalva.setBounds(193, aux, 89, 23);
 			if(arraySalePesi.size()==0 && arrayCorsi.size()==0)
 				btnSalva.setEnabled(false);
-			add(btnSalva);
+			panel.add(btnSalva);
 		}
 		{
 			aux=aux+50;
 			lblConfermaAbb = new JLabel("");
 			lblConfermaAbb.setBounds(193, aux, 400, 14);
 			lblConfermaAbb.setFont(new Font("Tahoma", Font.BOLD, 15));
-			add(lblConfermaAbb);
+			panel.add(lblConfermaAbb);
+		}
+		{
+			lblNewLabel = new JLabel("New label");
+			lblNewLabel.setBounds(193, 342, 46, 14);
+			panel.add(lblNewLabel);
+		}
+		{
+			label = new JLabel("New label");
+			label.setBounds(193, 385, 46, 14);
+			panel.add(label);
+		}
+		{
+			label_1 = new JLabel("New label");
+			label_1.setBounds(193, 410, 46, 14);
+			panel.add(label_1);
+		}
+		{
+			label_2 = new JLabel("New label");
+			label_2.setBounds(193, 451, 46, 14);
+			panel.add(label_2);
 		}
 				
 		aux=105;
@@ -121,7 +150,7 @@ public class ConfiguraAbbonamentoView extends JPanel {
 		//acbsp.clear();
 	}
 	
-	public void stampaCorsi()
+	public void stampaCorsi(JPanel panel)
 	{
 		//
 		//ArrayList<DescrizioneCorso> arrayCorsi=new ArrayList<DescrizioneCorso>();		
@@ -146,7 +175,7 @@ public class ConfiguraAbbonamentoView extends JPanel {
 					acbc.get(j).setBounds(100, aux, 400, 23);
 					//System.out.println("corso da label:"+acbc.get(j).getLabel());
 					//i=i+50;
-					add(acbc.get(j));
+					panel.add(acbc.get(j));
 				}
 			}
 			else
@@ -156,7 +185,7 @@ public class ConfiguraAbbonamentoView extends JPanel {
 	            Message.confirmLabel("non sono presenti corsi", false, lblNoCorsi);
 				lblNoCorsi.setBounds(100, aux, 400, 14);
 				lblNoCorsi.setFont(new Font("Tahoma", Font.BOLD, 15));
-				add(lblNoCorsi);
+				panel.add(lblNoCorsi);
 			}
 		}
 		
@@ -174,7 +203,7 @@ public class ConfiguraAbbonamentoView extends JPanel {
 		*/	
 	
 	
-	public void stampaSalePesi()
+	public void stampaSalePesi(JPanel  panel)
 	{
 		{			
 			//ArrayList<SalaPesi> arraySalePesi=new ArrayList<SalaPesi>();
@@ -189,9 +218,9 @@ public class ConfiguraAbbonamentoView extends JPanel {
 					//System.out.println(nome);
 					acbsp.add(new JCheckBox(nome));
 					aux=aux+50;
-					acbsp.get(j).setBounds(100, aux, 97, 23);					
+					acbsp.get(j).setBounds(100, aux, 400, 23);					
 					//i=i+50;
-					add(acbsp.get(j));
+					panel.add(acbsp.get(j));
 				}
 			}
 			else
@@ -201,7 +230,7 @@ public class ConfiguraAbbonamentoView extends JPanel {
                 Message.confirmLabel("non sono presenti sale pesi", false, lblNoSale);
                 lblNoSale.setBounds(100, aux, 400, 14);
     			lblNoSale.setFont(new Font("Tahoma", Font.BOLD, 15));
-    			add(lblNoSale);
+    			panel.add(lblNoSale);
 			}
 
 		}		

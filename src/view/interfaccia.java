@@ -32,6 +32,7 @@ import view.content.ConfiguraCorsoView;
 import view.content.ImpostaCategoriaClienteView;
 import view.content.ImpostaPoliticaScontoPercentualeView;
 import view.content.ImpostaTipologiaCorsoView;
+import view.content.VisualizzaTotaliView;
 import view.utility.ProvaMap;
 
 import javax.swing.border.LineBorder;
@@ -77,6 +78,7 @@ public class interfaccia {
 	private JMenuItem mntmConfiguraAbbonamento;
 	private JMenu mnImpostaPoliticaSconto;
 	private JMenuItem mntmScontoPercentuale;
+	private JMenuItem mntmCalcolaPrezzoAbbonamento;
 
 	/**
 	 * Launch the application.
@@ -189,6 +191,11 @@ public class interfaccia {
 						mntmConfiguraAbbonamento = new JMenuItem("configura abbonamento");
 						ascoltatoreConfiguraAbbonamento();
 						popupMenu_2.add(mntmConfiguraAbbonamento);
+					}
+					{
+						mntmCalcolaPrezzoAbbonamento = new JMenuItem("Calcola prezzo abbonamento");
+						ascoltatoreCalcolaPrezzoAbbonamento();						
+						popupMenu_2.add(mntmCalcolaPrezzoAbbonamento);
 					}
 				}
 			}
@@ -329,45 +336,64 @@ public class interfaccia {
 	
 	
 	
-public void ascoltatoreImpostaCategoriaCliente()
+	public void ascoltatoreImpostaCategoriaCliente()
+		{
+		  mntmImpostaCategoriaCliente.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+	
+					clearMainPanel(frame);
+	
+					ImpostaCategoriaClienteView cfv = new ImpostaCategoriaClienteView();
+					// internalFrame.getContentPane().add(itc,BorderLayout.CENTER);
+					frame.getContentPane().add(cfv,	BorderLayout.CENTER);
+	
+					// internalFrame.setVisible(true);
+					frame.getContentPane().revalidate();
+					frame.repaint();
+	
+				}
+			});
+		}
+	
+	
+	public void ascoltatoreConfiguraAbbonamento()
 	{
-	  mntmImpostaCategoriaCliente.addActionListener(new ActionListener() {
+	  mntmConfiguraAbbonamento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-
+	
 				clearMainPanel(frame);
-
-				ImpostaCategoriaClienteView cfv = new ImpostaCategoriaClienteView();
+	
+				ConfiguraAbbonamentoView cfv = new ConfiguraAbbonamentoView();
 				// internalFrame.getContentPane().add(itc,BorderLayout.CENTER);
 				frame.getContentPane().add(cfv,	BorderLayout.CENTER);
-
+	
 				// internalFrame.setVisible(true);
 				frame.getContentPane().revalidate();
 				frame.repaint();
-
+	
 			}
 		});
 	}
-
-
-public void ascoltatoreConfiguraAbbonamento()
-{
-  mntmConfiguraAbbonamento.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent arg0) {
-
-			clearMainPanel(frame);
-
-			ConfiguraAbbonamentoView cfv = new ConfiguraAbbonamentoView();
-			// internalFrame.getContentPane().add(itc,BorderLayout.CENTER);
-			frame.getContentPane().add(cfv,	BorderLayout.CENTER);
-
-			// internalFrame.setVisible(true);
-			frame.getContentPane().revalidate();
-			frame.repaint();
-
-		}
-	});
-}
-
+	
+	public void ascoltatoreCalcolaPrezzoAbbonamento()
+	{
+		mntmCalcolaPrezzoAbbonamento.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				clearMainPanel(frame);
+				
+				VisualizzaTotaliView vtv = new VisualizzaTotaliView();
+				// internalFrame.getContentPane().add(itc,BorderLayout.CENTER);
+				frame.getContentPane().add(vtv,	BorderLayout.CENTER);
+	
+				// internalFrame.setVisible(true);
+				frame.getContentPane().revalidate();
+				frame.repaint();
+			}
+		});
+				
+	
+		
+	}
 
 }
 

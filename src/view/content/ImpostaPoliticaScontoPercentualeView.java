@@ -223,6 +223,7 @@ public void resetLabelConfermaInserimento(JTextField tf){
 		tf.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent arg0) {
+				
 				label.setText("");
 			}
 		});
