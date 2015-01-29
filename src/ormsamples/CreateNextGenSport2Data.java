@@ -33,6 +33,9 @@ public class CreateNextGenSport2Data {
 			ngs.persistentmodel.DescrizioneCorso lngspersistentmodelDescrizioneCorso = ngs.persistentmodel.DescrizioneCorsoDAO.createDescrizioneCorso();
 			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : prenotazione, nomeCorso
 			ngs.persistentmodel.DescrizioneCorsoDAO.save(lngspersistentmodelDescrizioneCorso);
+			ngs.persistentmodel.PreventivoAbbonamento lngspersistentmodelPreventivoAbbonamento = ngs.persistentmodel.PreventivoAbbonamentoDAO.createPreventivoAbbonamento();
+			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : numeroMesi, prezzo
+			ngs.persistentmodel.PreventivoAbbonamentoDAO.save(lngspersistentmodelPreventivoAbbonamento);
 			t.commit();
 		}
 		catch (Exception e) {

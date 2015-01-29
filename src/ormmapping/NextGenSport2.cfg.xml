@@ -28,6 +28,7 @@ License Type: Academic
 		<mapping resource="ormmapping/ngs/persistentmodel/DescrizioneCorso.hbm.xml" />
 		<mapping resource="ormmapping/ngs/persistentmodel/FasciaOrariaSalaPesi.hbm.xml" />
 		<mapping resource="ormmapping/ngs/persistentmodel/PoliticaScontoAbbonamento.hbm.xml" />
+		<mapping resource="ormmapping/ngs/persistentmodel/PreventivoAbbonamento.hbm.xml" />
 		<mapping resource="ormmapping/ngs/persistentmodel/SalaPesi.hbm.xml" />
 		<mapping resource="ormmapping/ngs/persistentmodel/TipologiaCorso.hbm.xml" />
 	</session-factory>

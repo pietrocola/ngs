@@ -22,20 +22,16 @@ public class ScontoPercentualeDetachedCriteria extends AbstractORMDetachedCriter
 	public final StringExpression nomePolitica;
 	public final StringExpression categoriaClienteId;
 	public final AssociationExpression categoriaCliente;
-	public final FloatExpression unMese;
-	public final FloatExpression treMesi;
-	public final FloatExpression seiMesi;
-	public final FloatExpression dodiciMesi;
+	public final IntegerExpression numeroMesi;
+	public final FloatExpression scontoPercentuale;
 	
 	public ScontoPercentualeDetachedCriteria() {
 		super(ngs.persistentmodel.ScontoPercentuale.class, ngs.persistentmodel.ScontoPercentualeCriteria.class);
 		nomePolitica = new StringExpression("nomePolitica", this.getDetachedCriteria());
 		categoriaClienteId = new StringExpression("categoriaCliente.nomeCat", this.getDetachedCriteria());
 		categoriaCliente = new AssociationExpression("categoriaCliente", this.getDetachedCriteria());
-		unMese = new FloatExpression("unMese", this.getDetachedCriteria());
-		treMesi = new FloatExpression("treMesi", this.getDetachedCriteria());
-		seiMesi = new FloatExpression("seiMesi", this.getDetachedCriteria());
-		dodiciMesi = new FloatExpression("dodiciMesi", this.getDetachedCriteria());
+		numeroMesi = new IntegerExpression("numeroMesi", this.getDetachedCriteria());
+		scontoPercentuale = new FloatExpression("scontoPercentuale", this.getDetachedCriteria());
 	}
 	
 	public ScontoPercentualeDetachedCriteria(DetachedCriteria aDetachedCriteria) {
@@ -43,10 +39,8 @@ public class ScontoPercentualeDetachedCriteria extends AbstractORMDetachedCriter
 		nomePolitica = new StringExpression("nomePolitica", this.getDetachedCriteria());
 		categoriaClienteId = new StringExpression("categoriaCliente.nomeCat", this.getDetachedCriteria());
 		categoriaCliente = new AssociationExpression("categoriaCliente", this.getDetachedCriteria());
-		unMese = new FloatExpression("unMese", this.getDetachedCriteria());
-		treMesi = new FloatExpression("treMesi", this.getDetachedCriteria());
-		seiMesi = new FloatExpression("seiMesi", this.getDetachedCriteria());
-		dodiciMesi = new FloatExpression("dodiciMesi", this.getDetachedCriteria());
+		numeroMesi = new IntegerExpression("numeroMesi", this.getDetachedCriteria());
+		scontoPercentuale = new FloatExpression("scontoPercentuale", this.getDetachedCriteria());
 	}
 	
 	public CategoriaClienteDetachedCriteria createCategoriaClienteCriteria() {

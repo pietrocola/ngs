@@ -73,6 +73,14 @@ public class ListNextGenSport2Data {
 		}
 		System.out.println(length + " record(s) retrieved.");
 		
+		System.out.println("Listing PreventivoAbbonamento...");
+		ngs.persistentmodel.PreventivoAbbonamento[] ngspersistentmodelPreventivoAbbonamentos = ngs.persistentmodel.PreventivoAbbonamentoDAO.listPreventivoAbbonamentoByQuery(null, null);
+		length = Math.min(ngspersistentmodelPreventivoAbbonamentos.length, ROW_COUNT);
+		for (int i = 0; i < length; i++) {
+			System.out.println(ngspersistentmodelPreventivoAbbonamentos[i]);
+		}
+		System.out.println(length + " record(s) retrieved.");
+		
 	}
 	
 	public void listByCriteria() throws PersistentException {
@@ -171,6 +179,18 @@ public class ListNextGenSport2Data {
 			 System.out.println(ngspersistentmodelDescrizioneCorsos[i]);
 		}
 		System.out.println(length + " DescrizioneCorso record(s) retrieved."); 
+		
+		System.out.println("Listing PreventivoAbbonamento by Criteria...");
+		ngs.persistentmodel.PreventivoAbbonamentoCriteria lngspersistentmodelPreventivoAbbonamentoCriteria = new ngs.persistentmodel.PreventivoAbbonamentoCriteria();
+		// Please uncomment the follow line and fill in parameter(s) 
+		//lngspersistentmodelPreventivoAbbonamentoCriteria.ID.eq();
+		lngspersistentmodelPreventivoAbbonamentoCriteria.setMaxResults(ROW_COUNT);
+		ngs.persistentmodel.PreventivoAbbonamento[] ngspersistentmodelPreventivoAbbonamentos = lngspersistentmodelPreventivoAbbonamentoCriteria.listPreventivoAbbonamento();
+		length =ngspersistentmodelPreventivoAbbonamentos== null ? 0 : Math.min(ngspersistentmodelPreventivoAbbonamentos.length, ROW_COUNT); 
+		for (int i = 0; i < length; i++) {
+			 System.out.println(ngspersistentmodelPreventivoAbbonamentos[i]);
+		}
+		System.out.println(length + " PreventivoAbbonamento record(s) retrieved."); 
 		
 	}
 	

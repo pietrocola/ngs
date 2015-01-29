@@ -6,9 +6,11 @@ import java.util.Set;
 
 import org.orm.PersistentException;
 
+import ngs.factory.PoliticaScontoAbbonamentoStrategyFactory;
 import ngs.model.*;
 import ngs.model.strategy.ScontoPercentualeStrategy;
 import ngs.persistentmodel.*;
+import ngs.model.strategy.*;
 
 
 
@@ -23,6 +25,7 @@ public class ConfAbbCorsiHandler {
 	M_CategoriaCliente catCliente;
 	M_SalaPesi salaPesi;
 	ScontoPercentualeStrategy scontoPercentuale;
+	IPoliticaScontoAbbonamentoStrategy politicaScontoAbbStrategy;
 
 	
 	//PATTER SINGLETON
@@ -195,26 +198,6 @@ public class ConfAbbCorsiHandler {
 	
 	
 	
-	/**
-	 * 
-	 * @param categoriaCliente
-	 * @param nomePolitica
-	 * @param unMese
-	 * @param treMesi
-	 * @param seiMesi
-	 * @param dodiciMesi
-	 */
-	public boolean impostaPoliticaScontoPercentuale(CategoriaCliente categoriaCliente, String nomePolitica, float unMese, float treMesi, float seiMesi, float dodiciMesi) {
-	    ScontoPercentuale sps=ScontoPercentualeDAO.createScontoPercentuale();
-	    sps.setCategoriaCliente(categoriaCliente);
-	    sps.setNomePolitica(nomePolitica);
-	    sps.setUnMese(unMese);
-	    sps.setTreMesi(treMesi);
-	    sps.setSeiMesi(seiMesi);
-	    sps.setDodiciMesi(dodiciMesi);
-
-	    return ScontoPercentualeDAO.save(sps);
-	}
 
 	
 	
@@ -238,6 +221,62 @@ public class ConfAbbCorsiHandler {
 		return scontoPercentuale.verificaNomePoliticaScontoPercentuale(nomePolitica);
 	
 	}
+
+
+
+	/**
+	 * 
+	 * @param categoriaCliente
+	 * @param nomePolitica
+	 * @param numeroMesi
+	 * @param scontoPercentuale
+	 */
+	public boolean impostaPoliticaScontoPercentuale(CategoriaCliente categoriaCliente, String nomePolitica, int numeroMesi, float scontoPercentuale) {
+	    
+		return PoliticaScontoAbbonamentoStrategyFactory.getInstance().impostaPoliticaScontoPercentuale(categoriaCliente,nomePolitica,numeroMesi,scontoPercentuale);
+		
+		/*
+		ScontoPercentuale sps=ScontoPercentualeDAO.createScontoPercentuale();
+	    sps.setCategoriaCliente(categoriaCliente);
+	    sps.setNomePolitica(nomePolitica);
+	    sps.setNumeroMesi(numeroMesi);
+	    sps.setScontoPercentuale(scontoPercentuale);
+
+	    return ScontoPercentualeDAO.save(sps);
+	    */
+		
+	}
+
+	public ArrayList<DescrizioneAbbonamento> getAbbonamenti() {
+		return null;
+		//descCorso=new M_DescrizioneCorso();
+		//return descCorso.getDescrizioniCorsi();
+	}
+
+	public ArrayList<IPoliticaScontoAbbonamentoStrategy> getPoliticheSconto() {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * 
+	 * @param descAbb
+	 * @param politicaSconto
+	 */
+	public float calcolaPrezzoAbbonamento(DescrizioneAbbonamento descAbb, IPoliticaScontoAbbonamentoStrategy politicaSconto) {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * 
+	 * @param descAbb
+	 * @param politicaSconto
+	 * @param prezzo
+	 */
+	public boolean creaPreventivoAbbonamento(DescrizioneAbbonamento descAbb, IPoliticaScontoAbbonamentoStrategy politicaSconto, float prezzo) {
+		throw new UnsupportedOperationException();
+	}
+
+
 
 
 	

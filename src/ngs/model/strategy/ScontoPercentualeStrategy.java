@@ -1,5 +1,7 @@
 package ngs.model.strategy;
 
+import java.util.ArrayList;
+
 import ngs.model.*;
 import ngs.persistentmodel.APersistentModel;
 import ngs.persistentmodel.CategoriaCliente;
@@ -10,10 +12,10 @@ public class ScontoPercentualeStrategy extends AModel implements IPoliticaSconto
 
 	/**
 	 * 
-	 * @param catCliente
-	 * @param durataMesi
+	 * @param pbm
+	 * @param numMesi
 	 */
-	public float calcolaPrezzoAbbonamento(CategoriaCliente catCliente, int durataMesi) {
+	public float calcolaPrezzoAbbonamento(float pbm, int numMesi) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -34,6 +36,18 @@ public class ScontoPercentualeStrategy extends AModel implements IPoliticaSconto
 		{
 			return false; // la descrzione corso è gia presente!!
 		}
+	}
+
+	public ArrayList<IPoliticaScontoAbbonamentoStrategy> getPoliticheSconto() {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * 
+	 * @param politicaSconto
+	 */
+	public int getNumeroMesi(IPoliticaScontoAbbonamentoStrategy politicaSconto) {
+		throw new UnsupportedOperationException();
 	}
 
 }

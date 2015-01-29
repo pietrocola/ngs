@@ -17,44 +17,24 @@ public class ScontoPercentuale extends ngs.persistentmodel.PoliticaScontoAbbonam
 	public ScontoPercentuale() {
 	}
 	
-	private float unMese;
+	private int numeroMesi;
 	
-	private float treMesi;
+	private float scontoPercentuale;
 	
-	private float seiMesi;
-	
-	private float dodiciMesi;
-	
-	public void setUnMese(float value) {
-		this.unMese = value;
+	public void setNumeroMesi(int value) {
+		this.numeroMesi = value;
 	}
 	
-	public float getUnMese() {
-		return unMese;
+	public int getNumeroMesi() {
+		return numeroMesi;
 	}
 	
-	public void setTreMesi(float value) {
-		this.treMesi = value;
+	public void setScontoPercentuale(float value) {
+		this.scontoPercentuale = value;
 	}
 	
-	public float getTreMesi() {
-		return treMesi;
-	}
-	
-	public void setSeiMesi(float value) {
-		this.seiMesi = value;
-	}
-	
-	public float getSeiMesi() {
-		return seiMesi;
-	}
-	
-	public void setDodiciMesi(float value) {
-		this.dodiciMesi = value;
-	}
-	
-	public float getDodiciMesi() {
-		return dodiciMesi;
+	public float getScontoPercentuale() {
+		return scontoPercentuale;
 	}
 	
 	public String toString() {

@@ -33,6 +33,9 @@ public class RetrieveAndUpdateNextGenSport2Data {
 			ngs.persistentmodel.DescrizioneCorso lngspersistentmodelDescrizioneCorso = ngs.persistentmodel.DescrizioneCorsoDAO.loadDescrizioneCorsoByQuery(null, null);
 			// Update the properties of the persistent object
 			ngs.persistentmodel.DescrizioneCorsoDAO.save(lngspersistentmodelDescrizioneCorso);
+			ngs.persistentmodel.PreventivoAbbonamento lngspersistentmodelPreventivoAbbonamento = ngs.persistentmodel.PreventivoAbbonamentoDAO.loadPreventivoAbbonamentoByQuery(null, null);
+			// Update the properties of the persistent object
+			ngs.persistentmodel.PreventivoAbbonamentoDAO.save(lngspersistentmodelPreventivoAbbonamento);
 			t.commit();
 		}
 		catch (Exception e) {
@@ -89,6 +92,12 @@ public class RetrieveAndUpdateNextGenSport2Data {
 		// Please uncomment the follow line and fill in parameter(s)
 		//lngspersistentmodelDescrizioneCorsoCriteria.nomeCorso.eq();
 		System.out.println(lngspersistentmodelDescrizioneCorsoCriteria.uniqueDescrizioneCorso());
+		
+		System.out.println("Retrieving PreventivoAbbonamento by PreventivoAbbonamentoCriteria");
+		ngs.persistentmodel.PreventivoAbbonamentoCriteria lngspersistentmodelPreventivoAbbonamentoCriteria = new ngs.persistentmodel.PreventivoAbbonamentoCriteria();
+		// Please uncomment the follow line and fill in parameter(s)
+		//lngspersistentmodelPreventivoAbbonamentoCriteria.ID.eq();
+		System.out.println(lngspersistentmodelPreventivoAbbonamentoCriteria.uniquePreventivoAbbonamento());
 		
 	}
 	

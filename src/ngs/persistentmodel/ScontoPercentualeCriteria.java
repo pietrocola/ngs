@@ -22,20 +22,16 @@ public class ScontoPercentualeCriteria extends AbstractORMCriteria {
 	public final StringExpression nomePolitica;
 	public final StringExpression categoriaClienteId;
 	public final AssociationExpression categoriaCliente;
-	public final FloatExpression unMese;
-	public final FloatExpression treMesi;
-	public final FloatExpression seiMesi;
-	public final FloatExpression dodiciMesi;
+	public final IntegerExpression numeroMesi;
+	public final FloatExpression scontoPercentuale;
 	
 	public ScontoPercentualeCriteria(Criteria criteria) {
 		super(criteria);
 		nomePolitica = new StringExpression("nomePolitica", this);
 		categoriaClienteId = new StringExpression("categoriaCliente.nomeCat", this);
 		categoriaCliente = new AssociationExpression("categoriaCliente", this);
-		unMese = new FloatExpression("unMese", this);
-		treMesi = new FloatExpression("treMesi", this);
-		seiMesi = new FloatExpression("seiMesi", this);
-		dodiciMesi = new FloatExpression("dodiciMesi", this);
+		numeroMesi = new IntegerExpression("numeroMesi", this);
+		scontoPercentuale = new FloatExpression("scontoPercentuale", this);
 	}
 	
 	public ScontoPercentualeCriteria(PersistentSession session) {

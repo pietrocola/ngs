@@ -6,7 +6,7 @@ License Type: Academic
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 	<class name="ngs.persistentmodel.SalaPesi" table="SalaPesi" lazy="false">
-		<id name="nomeSala" column="ID" type="string">
+		<id name="nomeSala" column="NomeSala" type="string">
 			<generator class="assigned">
 			</generator>
 		</id>

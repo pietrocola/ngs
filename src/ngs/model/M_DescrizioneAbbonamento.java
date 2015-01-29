@@ -1,9 +1,12 @@
 package ngs.model;
 
+import java.util.ArrayList;
+
 import ngs.model.strategy.*;
 import ngs.persistentmodel.APersistentModel;
 import ngs.persistentmodel.CategoriaCliente;
 import ngs.persistentmodel.CategoriaClienteDAO;
+import ngs.persistentmodel.DescrizioneAbbonamento;
 import ngs.persistentmodel.DescrizioneAbbonamentoDAO;
 import ngs.persistentmodel.DescrizioneCorsoDAO;
 import ngs.persistentmodel.TipologiaCorso;
@@ -33,6 +36,18 @@ public class M_DescrizioneAbbonamento extends AModel {
 		{
 			return false; // la descrzione abbonamento è gia presente!!
 		}
+	}
+
+	public ArrayList<DescrizioneAbbonamento> getAbbonamenti() {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * 
+	 * @param descAbb
+	 */
+	public float getPrezzoBaseMensile(DescrizioneAbbonamento descAbb) {
+		throw new UnsupportedOperationException();
 	}
 
 }

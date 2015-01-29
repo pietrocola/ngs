@@ -33,6 +33,9 @@ public class DeleteNextGenSport2Data {
 			ngs.persistentmodel.DescrizioneCorso lngspersistentmodelDescrizioneCorso = ngs.persistentmodel.DescrizioneCorsoDAO.loadDescrizioneCorsoByQuery(null, null);
 			// Delete the persistent object
 			ngs.persistentmodel.DescrizioneCorsoDAO.delete(lngspersistentmodelDescrizioneCorso);
+			ngs.persistentmodel.PreventivoAbbonamento lngspersistentmodelPreventivoAbbonamento = ngs.persistentmodel.PreventivoAbbonamentoDAO.loadPreventivoAbbonamentoByQuery(null, null);
+			// Delete the persistent object
+			ngs.persistentmodel.PreventivoAbbonamentoDAO.delete(lngspersistentmodelPreventivoAbbonamento);
 			t.commit();
 		}
 		catch (Exception e) {

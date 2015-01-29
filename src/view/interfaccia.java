@@ -32,7 +32,7 @@ import view.content.ConfiguraCorsoView;
 import view.content.ImpostaCategoriaClienteView;
 import view.content.ImpostaPoliticaScontoPercentualeView;
 import view.content.ImpostaTipologiaCorsoView;
-import view.content.VisualizzaTotaliView;
+import view.content.CreaPreventivoView;
 import view.utility.ProvaMap;
 
 import javax.swing.border.LineBorder;
@@ -45,6 +45,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.JScrollPane;
 import javax.swing.JDesktopPane;
 
+import ngs.factory.PoliticaScontoAbbonamentoStrategyFactory;
 import ngs.model.M_TipologiaCorso;
 
 import javax.swing.JLabel;
@@ -94,6 +95,7 @@ public class interfaccia {
 
 				try {
 					
+
 					interfaccia window = new interfaccia();
 					Thread.sleep(1500);
 					window.frame.setVisible(true);
@@ -381,7 +383,7 @@ public class interfaccia {
 			public void actionPerformed(ActionEvent arg0) {
 				clearMainPanel(frame);
 				
-				VisualizzaTotaliView vtv = new VisualizzaTotaliView();
+				CreaPreventivoView vtv = new CreaPreventivoView();
 				// internalFrame.getContentPane().add(itc,BorderLayout.CENTER);
 				frame.getContentPane().add(vtv,	BorderLayout.CENTER);
 	
