@@ -19,6 +19,7 @@ import javax.swing.JInternalFrame;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JScrollBar;
+import javax.swing.Scrollable;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -29,10 +30,13 @@ import javax.swing.JTable;
 
 import view.utility.Message;
 
+import java.awt.Dimension;
 import java.awt.Font;
-import javax.swing.ScrollPaneConstants;
 
-public class ConfiguraAbbonamentoView extends JScrollPane{
+import javax.swing.ScrollPaneConstants;
+import javax.swing.border.BevelBorder;
+
+public class ConfiguraAbbonamentoView extends JPanel{
 	//private JCheckBox chckbxNewCheckBox;
 	private JLabel lblNomeAbb;
 	private JTextField textFieldNomeAbb;
@@ -51,20 +55,20 @@ public class ConfiguraAbbonamentoView extends JScrollPane{
 	static ArrayList<JCheckBox> acbsp=new ArrayList<JCheckBox>();
 	private JButton btnSalva;
 	private JLabel lblConfermaAbb;
-	private JLabel lblNewLabel;
-	private JLabel label;
-	private JLabel label_1;
-	private JLabel label_2;
 
 	/**
 	 * Create the panel.
 	 */
 	public ConfiguraAbbonamentoView() {
-		setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+		
+		setLayout(null);		
+		
+		//panel che andrà nella scrollPane
 		JPanel panel = new JPanel();
-		setViewportView(panel);
-		panel.setLayout(null);
+		panel.setLayout(null);	
+		
+		
+						
 		{
 			lblNomeAbb = new JLabel("nome abbonamento");
 			lblNomeAbb.setBounds(40, 55, 133, 14);
@@ -122,28 +126,20 @@ public class ConfiguraAbbonamentoView extends JScrollPane{
 			lblConfermaAbb.setFont(new Font("Tahoma", Font.BOLD, 15));
 			panel.add(lblConfermaAbb);
 		}
-		{
-			lblNewLabel = new JLabel("New label");
-			lblNewLabel.setBounds(193, 342, 46, 14);
-			panel.add(lblNewLabel);
-		}
-		{
-			label = new JLabel("New label");
-			label.setBounds(193, 385, 46, 14);
-			panel.add(label);
-		}
-		{
-			label_1 = new JLabel("New label");
-			label_1.setBounds(193, 410, 46, 14);
-			panel.add(label_1);
-		}
-		{
-			label_2 = new JLabel("New label");
-			label_2.setBounds(193, 451, 46, 14);
-			panel.add(label_2);
-		}
-				
+		panel.setPreferredSize(new Dimension(1366,aux+100));
 		aux=105;
+		
+		
+		//panel.revalidate();
+		//panel.repaint();
+		JScrollPane scroll = new JScrollPane(); 
+		scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		//scroll.setPreferredSize(new Dimension(800,600));
+		scroll.setBounds(0,0, 800, 600);
+		scroll.setMaximumSize(new Dimension(800,600));
+		scroll.setViewportView(panel);
+		add(scroll);		//aggiunge la scrollPane nel pannello principale
+		
 		//arrayCorsi.clear();
 		//acbc.clear();
 		//arraySalePesi.clear();

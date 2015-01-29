@@ -10,6 +10,7 @@ import javax.swing.JList;
 import javax.swing.ListModel;
 
 import java.awt.Component;
+import javax.swing.ScrollPaneConstants;
 
 
 public class VisualizzaTotaliView extends JPanel{
@@ -22,8 +23,6 @@ public class VisualizzaTotaliView extends JPanel{
 	private JLabel lblPoliticaSconto;
 	private JScrollPane scrollPane_2;
 	private JList list_2;
-	private JScrollPane scrollPane_3;
-	private JPanel panel;
 
 	/**
 	 * Create the panel.
@@ -83,21 +82,11 @@ public class VisualizzaTotaliView extends JPanel{
 				DefaultListModel defList = new DefaultListModel();
 				for(int i=1; i<51; i++)
 				{
-					defList.addElement("stringa"+i);
+					defList.addElement("stringa stringa stringa stringa stringa "+i);
 				}
 				
 				list_2 = new JList(defList);
 				scrollPane_2.setViewportView(list_2);
-			}
-		}
-		{
-			scrollPane_3 = new JScrollPane();
-			scrollPane_3.setBounds(86, 291, 49, 45);
-			add(scrollPane_3);
-			{
-				panel = new JPanel();
-				scrollPane_3.setViewportView(panel);
-				panel.setLayout(null);
 			}
 		}
 		
