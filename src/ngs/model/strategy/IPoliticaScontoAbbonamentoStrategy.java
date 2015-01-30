@@ -3,6 +3,7 @@ package ngs.model.strategy;
 import java.util.ArrayList;
 
 import ngs.persistentmodel.CategoriaCliente;
+import ngs.persistentmodel.PoliticaScontoAbbonamento;
 
 public interface IPoliticaScontoAbbonamentoStrategy {
 
@@ -14,12 +15,14 @@ public interface IPoliticaScontoAbbonamentoStrategy {
 	 */
 	float calcolaPrezzoAbbonamento(float pbm, int numMesi);
 
-	ArrayList<IPoliticaScontoAbbonamentoStrategy> getPoliticheSconto();
+	ArrayList<PoliticaScontoAbbonamento> getPoliticheSconto(CategoriaCliente cat);
 
 	/**
 	 * 
 	 * @param politicaSconto
 	 */
-	int getNumeroMesi(IPoliticaScontoAbbonamentoStrategy politicaSconto);
+	int getNumeroMesi(PoliticaScontoAbbonamento politicaSconto);
+	
+	float getPercentuale(PoliticaScontoAbbonamento politicaSconto);
 
 }

@@ -8,6 +8,7 @@ import ngs.persistentmodel.CategoriaCliente;
 import ngs.persistentmodel.CategoriaClienteDAO;
 import ngs.persistentmodel.DescrizioneAbbonamento;
 import ngs.persistentmodel.DescrizioneAbbonamentoDAO;
+import ngs.persistentmodel.DescrizioneCorso;
 import ngs.persistentmodel.DescrizioneCorsoDAO;
 import ngs.persistentmodel.TipologiaCorso;
 import ngs.persistentmodel.TipologiaCorsoDAO;
@@ -38,8 +39,12 @@ public class M_DescrizioneAbbonamento extends AModel {
 		}
 	}
 
-	public ArrayList<DescrizioneAbbonamento> getAbbonamenti() {
-		throw new UnsupportedOperationException();
+	public ArrayList<DescrizioneAbbonamento> getDescrizioniAbbonamenti() {
+		ArrayList<DescrizioneAbbonamento> arrayAbb = new ArrayList<DescrizioneAbbonamento>();
+		DescrizioneAbbonamento des=(DescrizioneAbbonamento)this.getPersistentModel();
+		for(int i=0;i<DescrizioneAbbonamentoDAO.listDescrizioneAbbonamentoByQuery(null, null).length;i++)
+			arrayAbb.add(DescrizioneAbbonamentoDAO.listDescrizioneAbbonamentoByQuery(null, null)[i]);
+		return arrayAbb;
 	}
 
 	/**

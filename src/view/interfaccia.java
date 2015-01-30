@@ -49,6 +49,8 @@ import ngs.factory.PoliticaScontoAbbonamentoStrategyFactory;
 import ngs.model.M_TipologiaCorso;
 
 import javax.swing.JLabel;
+import javax.swing.JSeparator;
+import javax.swing.SwingConstants;
 
 public class interfaccia {
 
@@ -70,7 +72,7 @@ public class interfaccia {
 
 	private JPanel panel;
 	private JButton btnAbbonamenti;
-	private JButton btnStruttura;
+	private JButton btnPreventiviAbbonamenti;
 	private JButton btnClienti;
 	private JButton btnPersonale;
 	private JPopupMenu popupMenu_1;
@@ -79,7 +81,18 @@ public class interfaccia {
 	private JMenuItem mntmConfiguraAbbonamento;
 	private JMenu mnImpostaPoliticaSconto;
 	private JMenuItem mntmScontoPercentuale;
-	private JMenuItem mntmCalcolaPrezzoAbbonamento;
+	
+	private JMenuItem mntmModifica;
+	private JMenuItem mntmElimina;
+	private JMenuItem mntmModificaCorso;
+	private JMenuItem mntmEliminaCorso;
+	private JMenuItem mntmModificaAbbonamento;
+	private JMenuItem mntmEliminaAbbonamento;
+	private JPopupMenu popupMenu_3;
+	private JMenuItem mntmCreaPreventivo;
+	private JMenuItem mntmModificaPreventivo;
+	private JMenuItem mntmEliminaPreventivo;
+	
 
 	/**
 	 * Launch the application.
@@ -162,18 +175,38 @@ public class interfaccia {
 					popupMenu = new JPopupMenu();
 					//addPopup(btnCorsi, popupMenu);
 					{
-						mnImpostaTipologiaCorso = new JMenu("imposta tipologia corso");
+						mnImpostaTipologiaCorso = new JMenu("tipologia corso");
 						popupMenu.add(mnImpostaTipologiaCorso);
 						{
 							mntmAggiungi = new JMenuItem("aggiungi");
 							ascoltatoreAggiungi();							
 							mnImpostaTipologiaCorso.add(mntmAggiungi);
 						}
+						{
+							mntmModifica = new JMenuItem("modifica");
+							mntmModifica.setEnabled(false);							
+							mnImpostaTipologiaCorso.add(mntmModifica);
+						}
+						{
+							mntmElimina = new JMenuItem("elimina");
+							mntmElimina.setEnabled(false);							
+							mnImpostaTipologiaCorso.add(mntmElimina);
+						}
 					}
 					{
 						mntmConfiguraCorso = new JMenuItem("configura corso");
-						ascoltatoreConfiguraCoroso();						
+						ascoltatoreConfiguraCorso();						
 						popupMenu.add(mntmConfiguraCorso);
+					}
+					{
+						mntmModificaCorso = new JMenuItem("modifica corso");
+						mntmModificaCorso.setEnabled(false);						
+						popupMenu.add(mntmModificaCorso);
+					}
+					{
+						mntmEliminaCorso = new JMenuItem("elimina corso");
+						mntmEliminaCorso.setEnabled(false);					
+						popupMenu.add(mntmEliminaCorso);
 					}
 				}
 			}
@@ -195,17 +228,62 @@ public class interfaccia {
 						popupMenu_2.add(mntmConfiguraAbbonamento);
 					}
 					{
-						mntmCalcolaPrezzoAbbonamento = new JMenuItem("Calcola prezzo abbonamento");
-						ascoltatoreCalcolaPrezzoAbbonamento();						
-						popupMenu_2.add(mntmCalcolaPrezzoAbbonamento);
+						//ascoltatoreCalcolaPrezzoAbbonamento();						
+						{
+							mntmModificaAbbonamento = new JMenuItem("modifica abbonamento");
+							mntmModificaAbbonamento.setEnabled(false);
+							popupMenu_2.add(mntmModificaAbbonamento);
+						}
+						{
+							mntmEliminaAbbonamento = new JMenuItem("elimina abbonamento");
+							mntmEliminaAbbonamento.setEnabled(false);
+							popupMenu_2.add(mntmEliminaAbbonamento);
+						}
 					}
 				}
 			}
 			
 			{
-				btnStruttura = new JButton("STRUTTURA");
-				btnStruttura.setIcon(new ImageIcon(interfaccia.class.getResource("/view/img/struttura.png")));
-				toolBar.add(btnStruttura);
+				btnPreventiviAbbonamenti = new JButton("PREVENTIVI ABBONAMENTI ");
+				btnPreventiviAbbonamenti.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						popupMenu_3.show(btnPreventiviAbbonamenti, 0,	btnPreventiviAbbonamenti.getY() + btnPreventiviAbbonamenti.getHeight());
+					}
+				});
+				btnPreventiviAbbonamenti.setIcon(new ImageIcon(interfaccia.class.getResource("/view/img/struttura.png")));
+				toolBar.add(btnPreventiviAbbonamenti);
+				{
+					popupMenu_3 = new JPopupMenu();
+					addPopup(btnPreventiviAbbonamenti, popupMenu_3);
+					{
+						mntmCreaPreventivo = new JMenuItem("calcola prezzi / crea preventivo");
+						mntmCreaPreventivo.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								clearMainPanel(frame);
+								
+								CreaPreventivoView vtv = new CreaPreventivoView();
+								// internalFrame.getContentPane().add(itc,BorderLayout.CENTER);
+								frame.getContentPane().add(vtv,	BorderLayout.CENTER);
+					
+								// internalFrame.setVisible(true);
+								frame.getContentPane().revalidate();
+								frame.repaint();
+							}
+						});
+						//ascoltatoreCalcolaPrezzoAbbonamento();						
+						popupMenu_3.add(mntmCreaPreventivo);
+					}
+					{
+						mntmModificaPreventivo = new JMenuItem("modifica preventivo");
+						mntmModificaPreventivo.setEnabled(false);
+						popupMenu_3.add(mntmModificaPreventivo);
+					}
+					{
+						mntmEliminaPreventivo = new JMenuItem("elimina preventivo");
+						mntmEliminaPreventivo.setEnabled(false);
+						popupMenu_3.add(mntmEliminaPreventivo);
+					}
+				}
 			}
 			{
 				btnClienti = new JButton("CLIENTI ");
@@ -316,7 +394,7 @@ public class interfaccia {
 	
 	
 	
-	public void ascoltatoreConfiguraCoroso()
+	public void ascoltatoreConfiguraCorso()
 	{
 		mntmConfiguraCorso.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -377,9 +455,9 @@ public class interfaccia {
 		});
 	}
 	
-	public void ascoltatoreCalcolaPrezzoAbbonamento()
+	/*public void ascoltatoreCalcolaPrezzoAbbonamento()
 	{
-		mntmCalcolaPrezzoAbbonamento.addActionListener(new ActionListener() {
+		mntmCreaPreventivo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				clearMainPanel(frame);
 				
@@ -395,7 +473,7 @@ public class interfaccia {
 				
 	
 		
-	}
+	}*/
 
 }
 

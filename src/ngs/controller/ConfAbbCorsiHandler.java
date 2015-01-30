@@ -247,14 +247,20 @@ public class ConfAbbCorsiHandler {
 		
 	}
 
-	public ArrayList<DescrizioneAbbonamento> getAbbonamenti() {
-		return null;
-		//descCorso=new M_DescrizioneCorso();
-		//return descCorso.getDescrizioniCorsi();
+	public ArrayList<DescrizioneAbbonamento> getDescrizioniAbbonamenti() {
+		descAbb=new M_DescrizioneAbbonamento();
+		return descAbb.getDescrizioniAbbonamenti();
 	}
 
-	public ArrayList<IPoliticaScontoAbbonamentoStrategy> getPoliticheSconto() {
-		throw new UnsupportedOperationException();
+	
+	
+	public ArrayList<PoliticaScontoAbbonamento> getPoliticheSconto(CategoriaCliente cat) {
+		
+		
+		
+		politicaScontoAbbStrategy= new ScontoPercentualeStrategy();
+		return politicaScontoAbbStrategy.getPoliticheSconto(cat);
+
 	}
 
 	/**
@@ -262,8 +268,11 @@ public class ConfAbbCorsiHandler {
 	 * @param descAbb
 	 * @param politicaSconto
 	 */
-	public float calcolaPrezzoAbbonamento(DescrizioneAbbonamento descAbb, IPoliticaScontoAbbonamentoStrategy politicaSconto) {
-		throw new UnsupportedOperationException();
+	public float calcolaPrezzoAbbonamento(DescrizioneAbbonamento descAbb, PoliticaScontoAbbonamento politicaSconto) {
+		float pbm=descAbb.getPrezzoBaseMensile();
+		int numMesi=politicaScontoAbbStrategy.getNumeroMesi(politicaSconto);
+		float percentuale=politicaScontoAbbStrategy.getPercentuale(politicaSconto);
+		return ((pbm*numMesi)-(((pbm*numMesi)*percentuale)/100));
 	}
 
 	/**
@@ -272,8 +281,14 @@ public class ConfAbbCorsiHandler {
 	 * @param politicaSconto
 	 * @param prezzo
 	 */
-	public boolean creaPreventivoAbbonamento(DescrizioneAbbonamento descAbb, IPoliticaScontoAbbonamentoStrategy politicaSconto, float prezzo) {
-		throw new UnsupportedOperationException();
+	public boolean creaPreventivoAbbonamento(DescrizioneAbbonamento descAbb, PoliticaScontoAbbonamento politicaSconto, float prezzo) {
+		int numMesi=politicaScontoAbbStrategy.getNumeroMesi(politicaSconto);
+	    PreventivoAbbonamento pa=PreventivoAbbonamentoDAO.createPreventivoAbbonamento();
+	    pa.setDescAbb(descAbb);
+	    pa.setPoliticaSconto(politicaSconto);
+	    pa.setPrezzo(prezzo);
+	    pa.setNumeroMesi(numMesi);
+	    return PreventivoAbbonamentoDAO.save(pa);
 	}
 
 

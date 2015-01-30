@@ -60,7 +60,7 @@ public class M_DescrizioneCorso extends AModel {
 		
 		ArrayList<DescrizioneCorso> arrayCorsi = new ArrayList<DescrizioneCorso>();
 		
-		DescrizioneCorso des=(DescrizioneCorso)this.getPersistentModel();
+		//DescrizioneCorso des=(DescrizioneCorso)this.getPersistentModel();
 		
 		
 		//if(TipologiaCorsoDAO.listTipologiaCorsoByQuery(null, null)==null)
