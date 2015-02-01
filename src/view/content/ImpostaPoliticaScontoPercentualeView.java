@@ -45,28 +45,7 @@ public class ImpostaPoliticaScontoPercentualeView extends JPanel {
 		}
 		{
 			comboBox = new JComboBox();
-			comboBox.addFocusListener(new FocusAdapter() {
-				@Override
-				public void focusGained(FocusEvent arg0) {
-					
-					label.setText("");
-					ArrayList<CategoriaCliente> cc=ConfAbbCorsiHandler.getInstance().getCategorieClienti();
-					if(cc.size()==0){
-						comboBox.setEnabled(false);
-						Message.errorMessage("ERRORE", "Nessuna categoria cliente presente");
-						btnSalva.setEnabled(false);
-					}
-					else{
-						DefaultComboBoxModel dcbm=new DefaultComboBoxModel();
-						for(CategoriaCliente cat:cc){
-							dcbm.addElement(cat.getNomeCat());
-							comboBox.setModel(dcbm);
-						}
-							
-					}
-					
-				}
-			});
+			ascoltatoreListaCategorieClienti();			
 			comboBox.setBounds(189, 52, 108, 20);
 			add(comboBox);
 		}
@@ -122,6 +101,34 @@ public class ImpostaPoliticaScontoPercentualeView extends JPanel {
 	}
 	
 	
+	private void ascoltatoreListaCategorieClienti() 
+	{
+		comboBox.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent arg0) {
+				
+				label.setText("");
+				ArrayList<CategoriaCliente> cc=ConfAbbCorsiHandler.getInstance().getCategorieClienti();
+				if(cc.size()==0){
+					comboBox.setEnabled(false);
+					Message.errorMessage("ERRORE", "Nessuna categoria cliente presente");
+					btnSalva.setEnabled(false);
+				}
+				else{
+					DefaultComboBoxModel dcbm=new DefaultComboBoxModel();
+					for(CategoriaCliente cat:cc){
+						dcbm.addElement(cat.getNomeCat());
+						comboBox.setModel(dcbm);
+					}
+						
+				}
+				
+			}
+		});
+		
+	}
+
+
 	public void ascoltatoreSalvaScontoPercentuale()
 	{
 		btnSalva.addActionListener(new ActionListener() {

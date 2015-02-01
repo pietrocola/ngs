@@ -297,8 +297,10 @@ public class CreaPreventivoView extends JPanel{
 						 }
 						 else
 						 {
-							 Message.errorMessage("ERRORE", "Nessuna politica sconto presente");
-							 list_2.setEnabled(false);
+							 list_2 = new JList();
+							 list_2.setEnabled(false);	
+							 scrollPane_2.setViewportView(list_2);
+							 Message.errorMessage("ERRORE", "Nessuna politica sconto presente per questa categoria");							 
 						 }
 						 
 					}					

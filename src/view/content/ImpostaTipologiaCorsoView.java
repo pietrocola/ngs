@@ -86,8 +86,11 @@ public class ImpostaTipologiaCorsoView extends JPanel {
 								{
 									if(ConfAbbCorsiHandler.getInstance().impostaTipologiaCorso(nomeTip)==true)
 										Message.confirmLabel("TIPOLOGIA INSERITA CORRETTAMENTE",true,label);
-									else{}
-										//Message.noConnectionDBMessage("ERRORE CONNESSIONE", "Connessione al database non riuscita");
+									else
+									{
+										//Message.noConnectionDBMessage("ERRORE CONNESSIONE", "Connessione al database non riuscita");										
+									}
+										
 								}
 							}
 							else

@@ -65,7 +65,6 @@ public class interfaccia {
 	private JMenu mnModifica;
 	private JMenu menu;
 	private JToolBar toolBar;
-	private JButton btnCorsi;
 	private JPopupMenu popupMenu;
 	private JMenu mnImpostaTipologiaCorso;
 	private JMenuItem mntmAggiungi;
@@ -97,6 +96,9 @@ public class interfaccia {
 	private JMenuItem mntmCancellaCategoriaCliente;
 	private JMenuItem mntmModifica_1;
 	private JMenuItem mntmElimina_1;
+	private JPanel panel_1;
+	private JButton btnCorsi;
+	
 	
 
 	/**
@@ -168,14 +170,6 @@ public class interfaccia {
 			toolBar.setFloatable(false);
 			frame.getContentPane().add(toolBar, BorderLayout.NORTH);
 			{
-				btnCorsi = new JButton("GESTIONE CORSI ");
-				btnCorsi.setIcon(new ImageIcon(interfaccia.class.getResource("/view/img/yoga50.png")));
-				btnCorsi.setBorderPainted(false);
-				btnCorsi.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						popupMenu.show(btnCorsi, 0,	btnCorsi.getY() + btnCorsi.getHeight());
-					}
-				});
 				{
 					btnHome = new JButton("");
 					btnHome.addActionListener(new ActionListener() {
@@ -195,16 +189,27 @@ public class interfaccia {
 					btnHome.setBorderPainted(false);
 					toolBar.add(btnHome);
 				}
+				
+			}
+			{
+				btnCorsi = new JButton("GESTIONE CORSI");
+				btnCorsi.setIcon(new ImageIcon(interfaccia.class.getResource("/view/img/yoga50.png")));
+				btnCorsi.setBorderPainted(false);
+				btnCorsi.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						popupMenu.show(btnCorsi, 0,	btnCorsi.getY() + btnCorsi.getHeight());
+					}
+				});
 				toolBar.add(btnCorsi);
 				{
 					popupMenu = new JPopupMenu();
-					//addPopup(btnCorsi, popupMenu);
+					addPopup(btnCorsi, popupMenu);
 					{
 						mnImpostaTipologiaCorso = new JMenu("tipologia corso");
 						popupMenu.add(mnImpostaTipologiaCorso);
 						{
 							mntmAggiungi = new JMenuItem("aggiungi");
-							ascoltatoreAggiungi();							
+							ascoltatoreAggiungiTipologia();							
 							mnImpostaTipologiaCorso.add(mntmAggiungi);
 						}
 						{
@@ -242,7 +247,7 @@ public class interfaccia {
 					public void actionPerformed(ActionEvent e) {
 						popupMenu_2.show(btnAbbonamenti, 0,	btnAbbonamenti.getY() + btnAbbonamenti.getHeight());
 					}
-				});
+				});				
 				btnAbbonamenti.setIcon(new ImageIcon(interfaccia.class.getResource("/view/img/abbonamento1.png")));
 				toolBar.add(btnAbbonamenti);
 				{
@@ -284,19 +289,7 @@ public class interfaccia {
 					addPopup(btnPreventiviAbbonamenti, popupMenu_3);
 					{
 						mntmCreaPreventivo = new JMenuItem("calcola prezzi / crea preventivo");
-						mntmCreaPreventivo.addActionListener(new ActionListener() {
-							public void actionPerformed(ActionEvent e) {
-								clearMainPanel(frame);
-								
-								CreaPreventivoView vtv = new CreaPreventivoView();
-								// internalFrame.getContentPane().add(itc,BorderLayout.CENTER);
-								frame.getContentPane().add(vtv,	BorderLayout.CENTER);
-					
-								// internalFrame.setVisible(true);
-								frame.getContentPane().revalidate();
-								frame.repaint();
-							}
-						});
+						ascoltatoreCreaPreventivo();						
 						//ascoltatoreCalcolaPrezzoAbbonamento();						
 						popupMenu_3.add(mntmCreaPreventivo);
 					}
@@ -363,6 +356,40 @@ public class interfaccia {
 			}
 			
 		}
+		{
+			/*
+			 * stampa home all'avvio
+			 */
+			panel_1 = new JPanel();
+			frame.getContentPane().add(panel_1, BorderLayout.CENTER);
+			clearMainPanel(frame);
+			
+			Home home = new Home();
+			// internalFrame.getContentPane().add(itc,BorderLayout.CENTER);
+			frame.getContentPane().add(home,	BorderLayout.CENTER);
+
+			// internalFrame.setVisible(true);
+			frame.getContentPane().revalidate();
+			frame.repaint();
+		}
+	}
+
+	private void ascoltatoreCreaPreventivo() 
+	{
+		mntmCreaPreventivo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				clearMainPanel(frame);
+				
+				CreaPreventivoView vtv = new CreaPreventivoView();
+				// internalFrame.getContentPane().add(itc,BorderLayout.CENTER);
+				frame.getContentPane().add(vtv,	BorderLayout.CENTER);
+	
+				// internalFrame.setVisible(true);
+				frame.getContentPane().revalidate();
+				frame.repaint();
+			}
+		});
+		
 	}
 
 	/*
@@ -385,7 +412,7 @@ public class interfaccia {
 		frame.getContentPane().add(toolBar, BorderLayout.NORTH);
 	}
 	
-	public void ascoltatoreAggiungi()
+	public void ascoltatoreAggiungiTipologia()
 	{
 		mntmAggiungi.addActionListener(new ActionListener() {
 			public void actionPerformed(

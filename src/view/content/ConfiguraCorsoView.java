@@ -128,8 +128,10 @@ public class ConfiguraCorsoView extends JPanel {
 								Message.confirmLabel("CORSO INSERITO CORRETTAMENTE", true, label);
 																   
 							}
-							else{}
+							else
+							{
 								//Message.noConnectionDBMessage("ERRORE CONNESSIONE", "Connessione al database non riuscita");
+							}		
 								
 						}
 						else if(risposta==JOptionPane.NO_OPTION){}							
@@ -137,12 +139,8 @@ public class ConfiguraCorsoView extends JPanel {
 					else
 					{
 						Message.errorMessage("ERRORE", "Il nome del corso scelto è già stato inserito");
-					}
-				
-			    }	
-					
-				
-				
+					}				
+			    }					
 			}
 		});
 		
