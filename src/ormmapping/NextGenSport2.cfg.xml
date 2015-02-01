@@ -11,9 +11,9 @@ License Type: Academic
    	<!-- properties -->
 		<property name="dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
 		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="connection.url">jdbc:mysql://localhost/ngs</property>
-		<property name="connection.username">root</property>
-		<property name="connection.password"></property>
+		<property name="connection.url">jdbc:mysql://db4free.net:3306/ngsport</property>
+		<property name="connection.username">ngsport</property>
+		<property name="connection.password">ngsport</property>
 		<property name="hibernate.connection.provider_class">org.hibernate.service.jdbc.connections.internal.C3P0ConnectionProvider</property>
 		<property name="hibernate.c3p0.acquire_increment">1</property>
 		<property name="hibernate.c3p0.idle_test_period">0</property>

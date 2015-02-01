@@ -1,6 +1,7 @@
 package view.utility;
 
 import java.awt.Color;
+import java.awt.Font;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -46,9 +47,10 @@ public class Message {
 	public static void confirmLabel(String messaggio, boolean tipoMessaggio, JLabel label)
 	{
 		label.setText(messaggio);
+		label.setFont(new Font("Tahoma", Font.BOLD, 15));
 		if(tipoMessaggio)
 			{
-				label.setForeground(new Color(0, 153, 0));
+				label.setForeground(new Color(0, 153, 0));				
 			}
 			else 
 			{

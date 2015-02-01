@@ -18,8 +18,8 @@ public class SplashScreen extends JWindow{
 
 	 private static final long serialVersionUID = 0;
 	 private static final String COPYRIGHT  = "\u00a9";
-	 private static final int WIDTH = 450;
-	 private static final int HEIGHT = 250;
+	 private static final int WIDTH = 550;		//dimensioni immagine
+	 private static final int HEIGHT = 364;
 	 
 	 public SplashScreen() {
 	 	
@@ -43,8 +43,8 @@ public class SplashScreen extends JWindow{
 	        JLabel label = new JLabel(new ImageIcon(interfaccia.class.getResource("/view/img/splash.jpg")));	        
 	        label.setOpaque(true);	           
 	        panel.add(label, BorderLayout.CENTER);
-	        JLabel copyrt = new JLabel("Copyright "+COPYRIGHT+" nextGenSport", JLabel.CENTER);
-	        panel.add(copyrt, BorderLayout.SOUTH);    
+	       // JLabel copyrt = new JLabel("Copyright "+COPYRIGHT+" nextGenSport", JLabel.CENTER);
+	       // panel.add(copyrt, BorderLayout.SOUTH);    
 	        
 	        setOpacity(1f); //opacità esempio:setOpacity(0.8f)
 	        

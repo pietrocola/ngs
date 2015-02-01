@@ -6,7 +6,7 @@ License Type: Academic
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 	<class name="ngs.persistentmodel.TipologiaCorso" table="TipologiaCorso" lazy="false">
-		<id name="nomeTip" column="ID" type="string">
+		<id name="nomeTip" column="nomeTip" type="string">
 			<generator class="assigned">
 			</generator>
 		</id>

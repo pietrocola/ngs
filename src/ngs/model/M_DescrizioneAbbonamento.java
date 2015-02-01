@@ -48,11 +48,20 @@ public class M_DescrizioneAbbonamento extends AModel {
 	}
 
 	/**
-	 * 
+	 *  
 	 * @param descAbb
 	 */
 	public float getPrezzoBaseMensile(DescrizioneAbbonamento descAbb) {
 		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 *  Restituisce la Descrizione Abbonamento dato il suo nome
+	 */
+	public DescrizioneAbbonamento getDescrizioneAbbonamento(String nomeAbbonamento) 
+	{		
+		DescrizioneAbbonamentoDAO desc= new DescrizioneAbbonamentoDAO();		
+		return desc.loadDescrizioneAbbonamentoByORMID(nomeAbbonamento);		
 	}
 
 }

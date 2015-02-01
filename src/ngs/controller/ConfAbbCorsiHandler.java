@@ -256,11 +256,8 @@ public class ConfAbbCorsiHandler {
 	
 	public ArrayList<PoliticaScontoAbbonamento> getPoliticheSconto(CategoriaCliente cat) {
 		
-		
-		
 		politicaScontoAbbStrategy= new ScontoPercentualeStrategy();
 		return politicaScontoAbbStrategy.getPoliticheSconto(cat);
-
 	}
 
 	/**
@@ -284,15 +281,39 @@ public class ConfAbbCorsiHandler {
 	public boolean creaPreventivoAbbonamento(DescrizioneAbbonamento descAbb, PoliticaScontoAbbonamento politicaSconto, float prezzo) {
 		int numMesi=politicaScontoAbbStrategy.getNumeroMesi(politicaSconto);
 	    PreventivoAbbonamento pa=PreventivoAbbonamentoDAO.createPreventivoAbbonamento();
-	    pa.setDescAbb(descAbb);
-	    pa.setPoliticaSconto(politicaSconto);
-	    pa.setPrezzo(prezzo);
-	    pa.setNumeroMesi(numMesi);
-	    return PreventivoAbbonamentoDAO.save(pa);
+	    
+		    pa.setDescAbb(descAbb);
+		    pa.setPoliticaSconto(politicaSconto);
+		    pa.setPrezzo(prezzo);
+		    pa.setNumeroMesi(numMesi);
+		    return PreventivoAbbonamentoDAO.save(pa);
+	    
+	}
+	
+	public boolean verificaPreventivo(DescrizioneAbbonamento descAbb, PoliticaScontoAbbonamento politicaSconto) {
+		if(PreventivoAbbonamentoDAO.listPreventivoAbbonamentoByQuery("PoliticaScontoAbbonamentonomePolitica = '" + politicaSconto + "' AND DescrizioneAbbonamentonomeAbbonamento = '" + descAbb + "'", "ID").length!=0)
+	    {return true;}
+		else
+		{return false;}
+	}
+	
+	public ArrayList<DescrizioneCorso> getDescrizioneCorso(
+			DescrizioneAbbonamento descAbb2) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
+	/**
+	 * Restituisce la Descrizione Abbonamento dato il suo nome
+	 */	
+	public DescrizioneAbbonamento getDescrizioneAbbonamento(String string) 
+	{
+		descAbb = new M_DescrizioneAbbonamento();
+		return descAbb.getDescrizioneAbbonamento(string);
+	}
 
+	
 
-
+	
 	
 }

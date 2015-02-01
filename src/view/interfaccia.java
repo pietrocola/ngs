@@ -29,6 +29,7 @@ import javax.swing.ImageIcon;
 
 import view.content.ConfiguraAbbonamentoView;
 import view.content.ConfiguraCorsoView;
+import view.content.Home;
 import view.content.ImpostaCategoriaClienteView;
 import view.content.ImpostaPoliticaScontoPercentualeView;
 import view.content.ImpostaTipologiaCorsoView;
@@ -74,7 +75,7 @@ public class interfaccia {
 	private JButton btnAbbonamenti;
 	private JButton btnPreventiviAbbonamenti;
 	private JButton btnClienti;
-	private JButton btnPersonale;
+	private JButton btnHome;
 	private JPopupMenu popupMenu_1;
 	private JMenuItem mntmImpostaCategoriaCliente;
 	private JPopupMenu popupMenu_2;
@@ -92,6 +93,10 @@ public class interfaccia {
 	private JMenuItem mntmCreaPreventivo;
 	private JMenuItem mntmModificaPreventivo;
 	private JMenuItem mntmEliminaPreventivo;
+	private JMenuItem mntmModificaCategoriaCliente;
+	private JMenuItem mntmCancellaCategoriaCliente;
+	private JMenuItem mntmModifica_1;
+	private JMenuItem mntmElimina_1;
 	
 
 	/**
@@ -165,11 +170,31 @@ public class interfaccia {
 			{
 				btnCorsi = new JButton("GESTIONE CORSI ");
 				btnCorsi.setIcon(new ImageIcon(interfaccia.class.getResource("/view/img/yoga50.png")));
+				btnCorsi.setBorderPainted(false);
 				btnCorsi.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						popupMenu.show(btnCorsi, 0,	btnCorsi.getY() + btnCorsi.getHeight());
 					}
 				});
+				{
+					btnHome = new JButton("");
+					btnHome.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							clearMainPanel(frame);
+							
+							Home home = new Home();
+							
+							frame.getContentPane().add(home,	BorderLayout.CENTER);
+				
+							// internalFrame.setVisible(true);
+							frame.getContentPane().revalidate();
+							frame.repaint();
+						}
+					});
+					btnHome.setIcon(new ImageIcon(interfaccia.class.getResource("/view/img/home.png")));
+					btnHome.setBorderPainted(false);
+					toolBar.add(btnHome);
+				}
 				toolBar.add(btnCorsi);
 				{
 					popupMenu = new JPopupMenu();
@@ -212,6 +237,7 @@ public class interfaccia {
 			}
 			{
 				btnAbbonamenti = new JButton("GESTIONE ABBONAMENTI");
+				btnAbbonamenti.setBorderPainted(false);
 				btnAbbonamenti.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						popupMenu_2.show(btnAbbonamenti, 0,	btnAbbonamenti.getY() + btnAbbonamenti.getHeight());
@@ -224,7 +250,7 @@ public class interfaccia {
 					addPopup(btnAbbonamenti, popupMenu_2);
 					{
 						mntmConfiguraAbbonamento = new JMenuItem("configura abbonamento");
-						ascoltatoreConfiguraAbbonamento();
+						ascoltatoreConfiguraAbbonamento(frame);
 						popupMenu_2.add(mntmConfiguraAbbonamento);
 					}
 					{
@@ -245,12 +271,13 @@ public class interfaccia {
 			
 			{
 				btnPreventiviAbbonamenti = new JButton("PREVENTIVI ABBONAMENTI ");
+				btnPreventiviAbbonamenti.setBorderPainted(false);
 				btnPreventiviAbbonamenti.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						popupMenu_3.show(btnPreventiviAbbonamenti, 0,	btnPreventiviAbbonamenti.getY() + btnPreventiviAbbonamenti.getHeight());
 					}
 				});
-				btnPreventiviAbbonamenti.setIcon(new ImageIcon(interfaccia.class.getResource("/view/img/struttura.png")));
+				btnPreventiviAbbonamenti.setIcon(new ImageIcon(interfaccia.class.getResource("/view/img/calcolatrice.png")));
 				toolBar.add(btnPreventiviAbbonamenti);
 				{
 					popupMenu_3 = new JPopupMenu();
@@ -287,6 +314,7 @@ public class interfaccia {
 			}
 			{
 				btnClienti = new JButton("CLIENTI ");
+				btnClienti.setBorderPainted(false);
 				btnClienti.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						popupMenu_1.show(btnClienti, 0,	btnClienti.getY() + btnClienti.getHeight());
@@ -303,20 +331,35 @@ public class interfaccia {
 						popupMenu_1.add(mntmImpostaCategoriaCliente);
 					}
 					{
-						mnImpostaPoliticaSconto = new JMenu("imposta politica sconto");
+						mntmModificaCategoriaCliente = new JMenuItem("modifica categoria cliente");
+						mntmModificaCategoriaCliente.setEnabled(false);
+						popupMenu_1.add(mntmModificaCategoriaCliente);
+					}
+					{
+						mntmCancellaCategoriaCliente = new JMenuItem("cancella categoria cliente");
+						mntmCancellaCategoriaCliente.setEnabled(false);
+						popupMenu_1.add(mntmCancellaCategoriaCliente);
+					}
+					{
+						mnImpostaPoliticaSconto = new JMenu("politica sconto percentuale");
 						popupMenu_1.add(mnImpostaPoliticaSconto);
 						{
-							mntmScontoPercentuale = new JMenuItem("sconto percentuale");
+							mntmScontoPercentuale = new JMenuItem("nuovo\r\n");
 							ascoltatoreScontoPercentuale();
 							mnImpostaPoliticaSconto.add(mntmScontoPercentuale);
 						}
+						{
+							mntmModifica_1 = new JMenuItem("modifica");
+							mntmModifica_1.setEnabled(false);
+							mnImpostaPoliticaSconto.add(mntmModifica_1);
+						}
+						{
+							mntmElimina_1 = new JMenuItem("elimina");
+							mntmElimina_1.setEnabled(false);
+							mnImpostaPoliticaSconto.add(mntmElimina_1);
+						}
 					}
 				}
-			}
-			{
-				btnPersonale = new JButton("PERSONALE");
-				btnPersonale.setIcon(new ImageIcon(interfaccia.class.getResource("/view/img/personale.png")));
-				toolBar.add(btnPersonale);
 			}
 			
 		}
@@ -436,14 +479,14 @@ public class interfaccia {
 		}
 	
 	
-	public void ascoltatoreConfiguraAbbonamento()
+	public void ascoltatoreConfiguraAbbonamento(JFrame frame)
 	{
 	  mntmConfiguraAbbonamento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 	
 				clearMainPanel(frame);
 	
-				ConfiguraAbbonamentoView cfv = new ConfiguraAbbonamentoView();
+				ConfiguraAbbonamentoView cfv = new ConfiguraAbbonamentoView(frame);
 				// internalFrame.getContentPane().add(itc,BorderLayout.CENTER);
 				frame.getContentPane().add(cfv,	BorderLayout.CENTER);
 	

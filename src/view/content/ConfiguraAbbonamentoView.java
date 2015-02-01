@@ -11,6 +11,7 @@ import ngs.controller.ConfAbbCorsiHandler;
 import ngs.persistentmodel.DescrizioneCorso;
 import ngs.persistentmodel.SalaPesi;
 
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -32,9 +33,11 @@ import view.utility.Message;
 
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Toolkit;
 
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.BevelBorder;
+import java.awt.BorderLayout;
 
 public class ConfiguraAbbonamentoView extends JPanel{
 	//private JCheckBox chckbxNewCheckBox;
@@ -59,9 +62,7 @@ public class ConfiguraAbbonamentoView extends JPanel{
 	/**
 	 * Create the panel.
 	 */
-	public ConfiguraAbbonamentoView() {
-		
-		setLayout(null);		
+	public ConfiguraAbbonamentoView(JFrame frame) {
 		
 		//panel che andrà nella scrollPane
 		JPanel panel = new JPanel();
@@ -126,17 +127,19 @@ public class ConfiguraAbbonamentoView extends JPanel{
 			lblConfermaAbb.setFont(new Font("Tahoma", Font.BOLD, 15));
 			panel.add(lblConfermaAbb);
 		}
-		panel.setPreferredSize(new Dimension(1366,aux+100));
-		aux=105;
+		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+        int x = (screen.width-WIDTH);
+        int y = (screen.height-HEIGHT);
+		//System.out.println(x+"x"+y);
+		panel.setPreferredSize(new Dimension(x,y));
 		
+		aux=105;
+		setLayout(new BorderLayout(0, 0));
 		
 		//panel.revalidate();
 		//panel.repaint();
-		JScrollPane scroll = new JScrollPane(); 
-		scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		//scroll.setPreferredSize(new Dimension(800,600));
-		scroll.setBounds(0,0, 800, 600);
-		scroll.setMaximumSize(new Dimension(800,600));
+		
+		JScrollPane scroll = new JScrollPane();
 		scroll.setViewportView(panel);
 		add(scroll);		//aggiunge la scrollPane nel pannello principale
 		
