@@ -17,14 +17,6 @@ public class ListNextGenSport2Data {
 		}
 		System.out.println(length + " record(s) retrieved.");
 		
-		System.out.println("Listing FasciaOrariaSalaPesi...");
-		ngs.persistentmodel.FasciaOrariaSalaPesi[] ngspersistentmodelFasciaOrariaSalaPesis = ngs.persistentmodel.FasciaOrariaSalaPesiDAO.listFasciaOrariaSalaPesiByQuery(null, null);
-		length = Math.min(ngspersistentmodelFasciaOrariaSalaPesis.length, ROW_COUNT);
-		for (int i = 0; i < length; i++) {
-			System.out.println(ngspersistentmodelFasciaOrariaSalaPesis[i]);
-		}
-		System.out.println(length + " record(s) retrieved.");
-		
 		System.out.println("Listing CategoriaCliente...");
 		ngs.persistentmodel.CategoriaCliente[] ngspersistentmodelCategoriaClientes = ngs.persistentmodel.CategoriaClienteDAO.listCategoriaClienteByQuery(null, null);
 		length = Math.min(ngspersistentmodelCategoriaClientes.length, ROW_COUNT);
@@ -95,18 +87,6 @@ public class ListNextGenSport2Data {
 			 System.out.println(ngspersistentmodelSalaPesis[i]);
 		}
 		System.out.println(length + " SalaPesi record(s) retrieved."); 
-		
-		System.out.println("Listing FasciaOrariaSalaPesi by Criteria...");
-		ngs.persistentmodel.FasciaOrariaSalaPesiCriteria lngspersistentmodelFasciaOrariaSalaPesiCriteria = new ngs.persistentmodel.FasciaOrariaSalaPesiCriteria();
-		// Please uncomment the follow line and fill in parameter(s) 
-		//lngspersistentmodelFasciaOrariaSalaPesiCriteria.ID.eq();
-		lngspersistentmodelFasciaOrariaSalaPesiCriteria.setMaxResults(ROW_COUNT);
-		ngs.persistentmodel.FasciaOrariaSalaPesi[] ngspersistentmodelFasciaOrariaSalaPesis = lngspersistentmodelFasciaOrariaSalaPesiCriteria.listFasciaOrariaSalaPesi();
-		length =ngspersistentmodelFasciaOrariaSalaPesis== null ? 0 : Math.min(ngspersistentmodelFasciaOrariaSalaPesis.length, ROW_COUNT); 
-		for (int i = 0; i < length; i++) {
-			 System.out.println(ngspersistentmodelFasciaOrariaSalaPesis[i]);
-		}
-		System.out.println(length + " FasciaOrariaSalaPesi record(s) retrieved."); 
 		
 		System.out.println("Listing CategoriaCliente by Criteria...");
 		ngs.persistentmodel.CategoriaClienteCriteria lngspersistentmodelCategoriaClienteCriteria = new ngs.persistentmodel.CategoriaClienteCriteria();

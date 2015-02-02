@@ -38,6 +38,8 @@ import java.awt.Toolkit;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.BevelBorder;
 import java.awt.BorderLayout;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 public class ConfiguraAbbonamentoView extends JPanel{
 	//private JCheckBox chckbxNewCheckBox;
@@ -77,6 +79,12 @@ public class ConfiguraAbbonamentoView extends JPanel{
 		}
 		{
 			textFieldNomeAbb = new JTextField();
+			textFieldNomeAbb.addFocusListener(new FocusAdapter() {
+				@Override
+				public void focusGained(FocusEvent e) {
+					lblConfermaAbb.setText("");
+				}
+			});
 			textFieldNomeAbb.setBounds(193, 52, 155, 20);
 			panel.add(textFieldNomeAbb);
 			textFieldNomeAbb.setColumns(10);
@@ -87,6 +95,7 @@ public class ConfiguraAbbonamentoView extends JPanel{
 			panel.add(lblTitoloCorsi);
 		}
 		{
+			
 			stampaCorsi(panel);
 		}		
 		{
@@ -107,6 +116,12 @@ public class ConfiguraAbbonamentoView extends JPanel{
 		}
 		{
 			textFieldPrezzoAbb = new JTextField();
+			textFieldPrezzoAbb.addFocusListener(new FocusAdapter() {
+				@Override
+				public void focusGained(FocusEvent e) {
+					lblConfermaAbb.setText("");
+				}
+			});
 			textFieldPrezzoAbb.setBounds(193, aux-2, 86, 20);
 			panel.add(textFieldPrezzoAbb);
 			textFieldPrezzoAbb.setColumns(10);
@@ -121,9 +136,9 @@ public class ConfiguraAbbonamentoView extends JPanel{
 			panel.add(btnSalva);
 		}
 		{
-			aux=aux+50;
+			//aux=aux+50;
 			lblConfermaAbb = new JLabel("");
-			lblConfermaAbb.setBounds(193, aux, 400, 14);
+			lblConfermaAbb.setBounds(321, aux+4, 400, 14);
 			lblConfermaAbb.setFont(new Font("Tahoma", Font.BOLD, 15));
 			panel.add(lblConfermaAbb);
 		}
@@ -175,14 +190,22 @@ public class ConfiguraAbbonamentoView extends JPanel{
 					//System.out.println("corso da label:"+acbc.get(j).getLabel());
 					//i=i+50;
 					panel.add(acbc.get(j));
+					
+					acbc.get(j).addFocusListener(new FocusAdapter() {
+						@Override
+						public void focusGained(FocusEvent e) {
+							lblConfermaAbb.setText("");
+						}
+					});
+					
 				}
 			}
 			else
 			{
-				aux=aux+50;
+				//aux=aux+50;
 				lblNoCorsi=new JLabel();
 	            Message.confirmLabel("non sono presenti corsi", false, lblNoCorsi);
-				lblNoCorsi.setBounds(100, aux, 400, 14);
+				lblNoCorsi.setBounds(180, aux, 400, 13);
 				lblNoCorsi.setFont(new Font("Tahoma", Font.BOLD, 15));
 				panel.add(lblNoCorsi);
 			}
@@ -224,10 +247,10 @@ public class ConfiguraAbbonamentoView extends JPanel{
 			}
 			else
 			{
-				aux=aux+50;
+				//aux=aux+50;
 				lblNoSale=new JLabel();
                 Message.confirmLabel("non sono presenti sale pesi", false, lblNoSale);
-                lblNoSale.setBounds(100, aux, 400, 14);
+                lblNoSale.setBounds(200, aux, 400, 13);
     			lblNoSale.setFont(new Font("Tahoma", Font.BOLD, 15));
     			panel.add(lblNoSale);
 			}

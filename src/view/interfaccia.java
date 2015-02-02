@@ -29,7 +29,7 @@ import javax.swing.ImageIcon;
 
 import view.content.ConfiguraAbbonamentoView;
 import view.content.ConfiguraCorsoView;
-import view.content.Home;
+import view.content.HomeView;
 import view.content.ImpostaCategoriaClienteView;
 import view.content.ImpostaPoliticaScontoPercentualeView;
 import view.content.ImpostaTipologiaCorsoView;
@@ -59,7 +59,7 @@ public class interfaccia {
 
 	}
 
-	private JFrame frame;
+	private JFrame frmNextgensportAmministratore;
 	private JMenuBar menuBar;
 	private JMenu mnFile;
 	private JMenu mnModifica;
@@ -75,8 +75,8 @@ public class interfaccia {
 	private JButton btnPreventiviAbbonamenti;
 	private JButton btnClienti;
 	private JButton btnHome;
+	private JButton btnPersonale;
 	private JPopupMenu popupMenu_1;
-	private JMenuItem mntmImpostaCategoriaCliente;
 	private JPopupMenu popupMenu_2;
 	private JMenuItem mntmConfiguraAbbonamento;
 	private JMenu mnImpostaPoliticaSconto;
@@ -92,12 +92,17 @@ public class interfaccia {
 	private JMenuItem mntmCreaPreventivo;
 	private JMenuItem mntmModificaPreventivo;
 	private JMenuItem mntmEliminaPreventivo;
-	private JMenuItem mntmModificaCategoriaCliente;
-	private JMenuItem mntmCancellaCategoriaCliente;
-	private JMenuItem mntmModifica_1;
-	private JMenuItem mntmElimina_1;
 	private JPanel panel_1;
 	private JButton btnCorsi;
+	private JButton btnStruttura;
+	private JMenu mnCategoriaCliente;
+	private JMenuItem mntmAggiungi_1;
+	private JMenuItem mntmModifica_2;
+	private JMenuItem mntmElimina_2;
+	private JPopupMenu popupMenu_4;
+	private JMenuItem mntmConfiguraStruttura;
+	private JPopupMenu popupMenu_5;
+	private JMenuItem mntmGestioneSegretarie;
 	
 	
 
@@ -117,8 +122,8 @@ public class interfaccia {
 					
 
 					interfaccia window = new interfaccia();
-					Thread.sleep(1500);
-					window.frame.setVisible(true);
+					Thread.sleep(2000);
+					window.frmNextgensportAmministratore.setVisible(true);
 					splash.setVisible(false);  		//spalsh screen
 					
 				} catch (Exception e) {
@@ -143,15 +148,17 @@ public class interfaccia {
 	 * @throws PropertyVetoException
 	 */
 	private void initialize() throws PropertyVetoException {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frmNextgensportAmministratore = new JFrame();
+		frmNextgensportAmministratore.setTitle("nextGenSport - AMMINISTRATORE");
+		frmNextgensportAmministratore.setIconImage(Toolkit.getDefaultToolkit().getImage(interfaccia.class.getResource("/view/img/user_icon.png")));
+		frmNextgensportAmministratore.setBounds(100, 100, 450, 300);
 
-		frame.setSize(800, 600);
-		//frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//frmNextgensportAmministratore.setSize(1000, 599);
+		frmNextgensportAmministratore.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		frmNextgensportAmministratore.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		{
 			menuBar = new JMenuBar();
-			frame.setJMenuBar(menuBar);
+			frmNextgensportAmministratore.setJMenuBar(menuBar);
 			{
 				mnFile = new JMenu("File");
 				menuBar.add(mnFile);
@@ -168,24 +175,25 @@ public class interfaccia {
 		{
 			toolBar = new JToolBar();
 			toolBar.setFloatable(false);
-			frame.getContentPane().add(toolBar, BorderLayout.NORTH);
+			frmNextgensportAmministratore.getContentPane().add(toolBar, BorderLayout.NORTH);
 			{
 				{
-					btnHome = new JButton("");
+					btnHome = new JButton("HOME ");
+					btnHome.setFocusable(false);
 					btnHome.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
-							clearMainPanel(frame);
+							clearMainPanel(frmNextgensportAmministratore);
 							
-							Home home = new Home();
+							HomeView home = new HomeView();
 							
-							frame.getContentPane().add(home,	BorderLayout.CENTER);
+							frmNextgensportAmministratore.getContentPane().add(home,	BorderLayout.CENTER);
 				
 							// internalFrame.setVisible(true);
-							frame.getContentPane().revalidate();
-							frame.repaint();
+							frmNextgensportAmministratore.getContentPane().revalidate();
+							frmNextgensportAmministratore.repaint();
 						}
 					});
-					btnHome.setIcon(new ImageIcon(interfaccia.class.getResource("/view/img/home.png")));
+					btnHome.setIcon(new ImageIcon(interfaccia.class.getResource("/view/img/home2.png")));
 					btnHome.setBorderPainted(false);
 					toolBar.add(btnHome);
 				}
@@ -193,6 +201,7 @@ public class interfaccia {
 			}
 			{
 				btnCorsi = new JButton("GESTIONE CORSI");
+				btnCorsi.setFocusable(false);
 				btnCorsi.setIcon(new ImageIcon(interfaccia.class.getResource("/view/img/yoga50.png")));
 				btnCorsi.setBorderPainted(false);
 				btnCorsi.addActionListener(new ActionListener() {
@@ -205,7 +214,7 @@ public class interfaccia {
 					popupMenu = new JPopupMenu();
 					addPopup(btnCorsi, popupMenu);
 					{
-						mnImpostaTipologiaCorso = new JMenu("tipologia corso");
+						mnImpostaTipologiaCorso = new JMenu("imposta tipologia corso");
 						popupMenu.add(mnImpostaTipologiaCorso);
 						{
 							mntmAggiungi = new JMenuItem("aggiungi");
@@ -242,6 +251,7 @@ public class interfaccia {
 			}
 			{
 				btnAbbonamenti = new JButton("GESTIONE ABBONAMENTI");
+				btnAbbonamenti.setFocusable(false);
 				btnAbbonamenti.setBorderPainted(false);
 				btnAbbonamenti.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
@@ -255,7 +265,7 @@ public class interfaccia {
 					addPopup(btnAbbonamenti, popupMenu_2);
 					{
 						mntmConfiguraAbbonamento = new JMenuItem("configura abbonamento");
-						ascoltatoreConfiguraAbbonamento(frame);
+						ascoltatoreConfiguraAbbonamento(frmNextgensportAmministratore);
 						popupMenu_2.add(mntmConfiguraAbbonamento);
 					}
 					{
@@ -276,13 +286,14 @@ public class interfaccia {
 			
 			{
 				btnPreventiviAbbonamenti = new JButton("PREVENTIVI ABBONAMENTI ");
+				btnPreventiviAbbonamenti.setFocusable(false);
 				btnPreventiviAbbonamenti.setBorderPainted(false);
 				btnPreventiviAbbonamenti.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						popupMenu_3.show(btnPreventiviAbbonamenti, 0,	btnPreventiviAbbonamenti.getY() + btnPreventiviAbbonamenti.getHeight());
 					}
 				});
-				btnPreventiviAbbonamenti.setIcon(new ImageIcon(interfaccia.class.getResource("/view/img/calcolatrice.png")));
+				btnPreventiviAbbonamenti.setIcon(new ImageIcon(interfaccia.class.getResource("/view/img/calcolatrice 5.png")));
 				toolBar.add(btnPreventiviAbbonamenti);
 				{
 					popupMenu_3 = new JPopupMenu();
@@ -307,50 +318,91 @@ public class interfaccia {
 			}
 			{
 				btnClienti = new JButton("CLIENTI ");
-				btnClienti.setBorderPainted(false);
+				btnClienti.setFocusable(false);
 				btnClienti.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						popupMenu_1.show(btnClienti, 0,	btnClienti.getY() + btnClienti.getHeight());
 					}
 				});
+				btnClienti.setBorderPainted(false);
 				btnClienti.setIcon(new ImageIcon(interfaccia.class.getResource("/view/img/cliente.png")));
 				toolBar.add(btnClienti);
 				{
 					popupMenu_1 = new JPopupMenu();
 					addPopup(btnClienti, popupMenu_1);
 					{
-						mntmImpostaCategoriaCliente = new JMenuItem("imposta categoria cliente");
-						ascoltatoreImpostaCategoriaCliente();
-						popupMenu_1.add(mntmImpostaCategoriaCliente);
+						
 					}
 					{
-						mntmModificaCategoriaCliente = new JMenuItem("modifica categoria cliente");
-						mntmModificaCategoriaCliente.setEnabled(false);
-						popupMenu_1.add(mntmModificaCategoriaCliente);
+						mnCategoriaCliente = new JMenu("imposta categoria cliente");
+						popupMenu_1.add(mnCategoriaCliente);
+						{
+							mntmAggiungi_1 = new JMenuItem("aggiungi");
+
+							ascoltatoreAggiungiCategoriaCliente();
+							mnCategoriaCliente.add(mntmAggiungi_1);
+						}
+						{
+							mntmModifica_2 = new JMenuItem("modifica");
+							mntmModifica_2.setEnabled(false);
+							mnCategoriaCliente.add(mntmModifica_2);
+						}
+						{
+							mntmElimina_2 = new JMenuItem("elimina");
+							mntmElimina_2.setEnabled(false);
+							mnCategoriaCliente.add(mntmElimina_2);
+						}
 					}
 					{
-						mntmCancellaCategoriaCliente = new JMenuItem("cancella categoria cliente");
-						mntmCancellaCategoriaCliente.setEnabled(false);
-						popupMenu_1.add(mntmCancellaCategoriaCliente);
-					}
-					{
-						mnImpostaPoliticaSconto = new JMenu("politica sconto percentuale");
+						mnImpostaPoliticaSconto = new JMenu("crea politica sconto ");
 						popupMenu_1.add(mnImpostaPoliticaSconto);
 						{
-							mntmScontoPercentuale = new JMenuItem("nuovo\r\n");
+							mntmScontoPercentuale = new JMenuItem("sconto percentuale");
 							ascoltatoreScontoPercentuale();
 							mnImpostaPoliticaSconto.add(mntmScontoPercentuale);
 						}
-						{
-							mntmModifica_1 = new JMenuItem("modifica");
-							mntmModifica_1.setEnabled(false);
-							mnImpostaPoliticaSconto.add(mntmModifica_1);
-						}
-						{
-							mntmElimina_1 = new JMenuItem("elimina");
-							mntmElimina_1.setEnabled(false);
-							mnImpostaPoliticaSconto.add(mntmElimina_1);
-						}
+					}
+				}
+			}
+			{
+				btnStruttura = new JButton("STRUTTURA ");
+				btnStruttura.setFocusable(false);
+				btnStruttura.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						popupMenu_4.show(btnStruttura, 0,	btnStruttura.getY() + btnStruttura.getHeight());
+					}
+				});
+				btnStruttura.setBorderPainted(false);
+				btnStruttura.setIcon(new ImageIcon(interfaccia.class.getResource("/view/img/struttura.png")));
+				toolBar.add(btnStruttura);
+				{
+					popupMenu_4 = new JPopupMenu();
+					addPopup(btnStruttura, popupMenu_4);
+					{
+						mntmConfiguraStruttura = new JMenuItem("configura struttura");
+						mntmConfiguraStruttura.setEnabled(false);
+						popupMenu_4.add(mntmConfiguraStruttura);
+					}
+				}
+			}
+			{
+				btnPersonale = new JButton("PERSONALE ");
+				btnPersonale.setFocusable(false);
+				btnPersonale.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						popupMenu_5.show(btnPersonale, 0,	btnPersonale.getY() + btnPersonale.getHeight());
+					}
+				});
+				btnPersonale.setBorderPainted(false);
+				btnPersonale.setIcon(new ImageIcon(interfaccia.class.getResource("/view/img/personale.png")));
+				toolBar.add(btnPersonale);
+				{
+					popupMenu_5 = new JPopupMenu();
+					addPopup(btnPersonale, popupMenu_5);
+					{
+						mntmGestioneSegretarie = new JMenuItem("gestione segretarie");
+						mntmGestioneSegretarie.setEnabled(false);
+						popupMenu_5.add(mntmGestioneSegretarie);
 					}
 				}
 			}
@@ -361,32 +413,50 @@ public class interfaccia {
 			 * stampa home all'avvio
 			 */
 			panel_1 = new JPanel();
-			frame.getContentPane().add(panel_1, BorderLayout.CENTER);
-			clearMainPanel(frame);
+			frmNextgensportAmministratore.getContentPane().add(panel_1, BorderLayout.CENTER);
+			clearMainPanel(frmNextgensportAmministratore);
 			
-			Home home = new Home();
+			HomeView home = new HomeView();
 			// internalFrame.getContentPane().add(itc,BorderLayout.CENTER);
-			frame.getContentPane().add(home,	BorderLayout.CENTER);
+			frmNextgensportAmministratore.getContentPane().add(home,	BorderLayout.CENTER);
 
 			// internalFrame.setVisible(true);
-			frame.getContentPane().revalidate();
-			frame.repaint();
+			frmNextgensportAmministratore.getContentPane().revalidate();
+			frmNextgensportAmministratore.repaint();
 		}
+	}
+
+	private void ascoltatoreAggiungiCategoriaCliente() {
+		mntmAggiungi_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				clearMainPanel(frmNextgensportAmministratore);
+				
+				ImpostaCategoriaClienteView cfv = new ImpostaCategoriaClienteView();
+				// internalFrame.getContentPane().add(itc,BorderLayout.CENTER);
+				frmNextgensportAmministratore.getContentPane().add(cfv,	BorderLayout.CENTER);
+
+				// internalFrame.setVisible(true);
+				frmNextgensportAmministratore.getContentPane().revalidate();
+				frmNextgensportAmministratore.repaint();
+			}
+		});
+	
+		
 	}
 
 	private void ascoltatoreCreaPreventivo() 
 	{
 		mntmCreaPreventivo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				clearMainPanel(frame);
+				clearMainPanel(frmNextgensportAmministratore);
 				
 				CreaPreventivoView vtv = new CreaPreventivoView();
 				// internalFrame.getContentPane().add(itc,BorderLayout.CENTER);
-				frame.getContentPane().add(vtv,	BorderLayout.CENTER);
+				frmNextgensportAmministratore.getContentPane().add(vtv,	BorderLayout.CENTER);
 	
 				// internalFrame.setVisible(true);
-				frame.getContentPane().revalidate();
-				frame.repaint();
+				frmNextgensportAmministratore.getContentPane().revalidate();
+				frmNextgensportAmministratore.repaint();
 			}
 		});
 		
@@ -419,18 +489,18 @@ public class interfaccia {
 					ActionEvent e) {
 						// JInternalFrame internalFrame =
 						// new JInternalFrame("home->corso->imposta tipologia corso");		
-						clearMainPanel(frame);
+						clearMainPanel(frmNextgensportAmministratore);
 		
 						ImpostaTipologiaCorsoView itc = new ImpostaTipologiaCorsoView();
 						// internalFrame.getContentPane().add(itc,BorderLayout.CENTER);
 		
-						frame.getContentPane().add(itc,
+						frmNextgensportAmministratore.getContentPane().add(itc,
 								BorderLayout.CENTER);
 		
 						// internalFrame.setVisible(true);
-						frame.getContentPane().revalidate();
+						frmNextgensportAmministratore.getContentPane().revalidate();
 		
-						frame.repaint();
+						frmNextgensportAmministratore.repaint();
 
 				}
 			});
@@ -445,18 +515,18 @@ public class interfaccia {
 					ActionEvent e) {
 						// JInternalFrame internalFrame =
 						// new JInternalFrame("home->corso->imposta tipologia corso");		
-						clearMainPanel(frame);
+						clearMainPanel(frmNextgensportAmministratore);
 		
 						ImpostaPoliticaScontoPercentualeView psp = new ImpostaPoliticaScontoPercentualeView();
 						// internalFrame.getContentPane().add(itc,BorderLayout.CENTER);
 		
-						frame.getContentPane().add(psp,
+						frmNextgensportAmministratore.getContentPane().add(psp,
 								BorderLayout.CENTER);
 		
 						// internalFrame.setVisible(true);
-						frame.getContentPane().revalidate();
+						frmNextgensportAmministratore.getContentPane().revalidate();
 		
-						frame.repaint();
+						frmNextgensportAmministratore.repaint();
 
 				}
 			});
@@ -469,15 +539,15 @@ public class interfaccia {
 		mntmConfiguraCorso.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
-				clearMainPanel(frame);
+				clearMainPanel(frmNextgensportAmministratore);
 
 				ConfiguraCorsoView cfv = new ConfiguraCorsoView();
 				// internalFrame.getContentPane().add(itc,BorderLayout.CENTER);
-				frame.getContentPane().add(cfv,	BorderLayout.CENTER);
+				frmNextgensportAmministratore.getContentPane().add(cfv,	BorderLayout.CENTER);
 
 				// internalFrame.setVisible(true);
-				frame.getContentPane().revalidate();
-				frame.repaint();
+				frmNextgensportAmministratore.getContentPane().revalidate();
+				frmNextgensportAmministratore.repaint();
 
 			}
 		});
@@ -486,24 +556,7 @@ public class interfaccia {
 	
 	
 	
-	public void ascoltatoreImpostaCategoriaCliente()
-		{
-		  mntmImpostaCategoriaCliente.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-	
-					clearMainPanel(frame);
-	
-					ImpostaCategoriaClienteView cfv = new ImpostaCategoriaClienteView();
-					// internalFrame.getContentPane().add(itc,BorderLayout.CENTER);
-					frame.getContentPane().add(cfv,	BorderLayout.CENTER);
-	
-					// internalFrame.setVisible(true);
-					frame.getContentPane().revalidate();
-					frame.repaint();
-	
-				}
-			});
-		}
+
 	
 	
 	public void ascoltatoreConfiguraAbbonamento(JFrame frame)

@@ -12,9 +12,6 @@ public class CreateNextGenSport2Data {
 			ngs.persistentmodel.SalaPesi lngspersistentmodelSalaPesi = ngs.persistentmodel.SalaPesiDAO.createSalaPesi();
 			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : nomeSala
 			ngs.persistentmodel.SalaPesiDAO.save(lngspersistentmodelSalaPesi);
-			ngs.persistentmodel.FasciaOrariaSalaPesi lngspersistentmodelFasciaOrariaSalaPesi = ngs.persistentmodel.FasciaOrariaSalaPesiDAO.createFasciaOrariaSalaPesi();
-			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : oraFine, oraInizio
-			ngs.persistentmodel.FasciaOrariaSalaPesiDAO.save(lngspersistentmodelFasciaOrariaSalaPesi);
 			ngs.persistentmodel.CategoriaCliente lngspersistentmodelCategoriaCliente = ngs.persistentmodel.CategoriaClienteDAO.createCategoriaCliente();
 			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : nomeCat
 			ngs.persistentmodel.CategoriaClienteDAO.save(lngspersistentmodelCategoriaCliente);

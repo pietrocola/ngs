@@ -12,9 +12,6 @@ public class RetrieveAndUpdateNextGenSport2Data {
 			ngs.persistentmodel.SalaPesi lngspersistentmodelSalaPesi = ngs.persistentmodel.SalaPesiDAO.loadSalaPesiByQuery(null, null);
 			// Update the properties of the persistent object
 			ngs.persistentmodel.SalaPesiDAO.save(lngspersistentmodelSalaPesi);
-			ngs.persistentmodel.FasciaOrariaSalaPesi lngspersistentmodelFasciaOrariaSalaPesi = ngs.persistentmodel.FasciaOrariaSalaPesiDAO.loadFasciaOrariaSalaPesiByQuery(null, null);
-			// Update the properties of the persistent object
-			ngs.persistentmodel.FasciaOrariaSalaPesiDAO.save(lngspersistentmodelFasciaOrariaSalaPesi);
 			ngs.persistentmodel.CategoriaCliente lngspersistentmodelCategoriaCliente = ngs.persistentmodel.CategoriaClienteDAO.loadCategoriaClienteByQuery(null, null);
 			// Update the properties of the persistent object
 			ngs.persistentmodel.CategoriaClienteDAO.save(lngspersistentmodelCategoriaCliente);
@@ -50,12 +47,6 @@ public class RetrieveAndUpdateNextGenSport2Data {
 		// Please uncomment the follow line and fill in parameter(s)
 		//lngspersistentmodelSalaPesiCriteria.nomeSala.eq();
 		System.out.println(lngspersistentmodelSalaPesiCriteria.uniqueSalaPesi());
-		
-		System.out.println("Retrieving FasciaOrariaSalaPesi by FasciaOrariaSalaPesiCriteria");
-		ngs.persistentmodel.FasciaOrariaSalaPesiCriteria lngspersistentmodelFasciaOrariaSalaPesiCriteria = new ngs.persistentmodel.FasciaOrariaSalaPesiCriteria();
-		// Please uncomment the follow line and fill in parameter(s)
-		//lngspersistentmodelFasciaOrariaSalaPesiCriteria.ID.eq();
-		System.out.println(lngspersistentmodelFasciaOrariaSalaPesiCriteria.uniqueFasciaOrariaSalaPesi());
 		
 		System.out.println("Retrieving CategoriaCliente by CategoriaClienteCriteria");
 		ngs.persistentmodel.CategoriaClienteCriteria lngspersistentmodelCategoriaClienteCriteria = new ngs.persistentmodel.CategoriaClienteCriteria();

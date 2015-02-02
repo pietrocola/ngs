@@ -68,13 +68,20 @@ public class CreaPreventivoView extends JPanel{
 	
 	private static CategoriaCliente cat;
 	private JButton btnCalcolaPrezzo;
-	private JLabel lblPrezzo;
-	private JButton btnSalvaPreventivo;
 	private JLabel riepilogoAbb;
 	private JLabel riepilogoPolitica;
 	JPanel panel;
-	private JLabel lblNewLabel;
+	private JLabel lblNoAbbonamenti;
+	private JLabel lblNoCategorie;
+	private JLabel lblInfoAbbSelezionato;
+	private JLabel lblNoPolitiche;
+	private JLabel lblInfoPoliticaSelezionata;
+	private JButton btnCalcolaPrezzo_1;
+	private JButton btnSalvaPreventivo;
+	private JLabel lblPrezzo;
+	private JLabel lblConfermaPreventivo;
 
+	
 	/**
 	 * Create the panel.
 	 */
@@ -94,13 +101,28 @@ public class CreaPreventivoView extends JPanel{
 		panel.setBorder(null);
 		panel.setLayout(null);
 		{
-			lblAbbonamenti = new JLabel("ABBONAMENTI");
+			lblAbbonamenti = new JLabel("ABBONAMENTI ");
 			lblAbbonamenti.setBounds(21, 33, 114, 14);
 			panel.add(lblAbbonamenti);
 		}
 		{
+			lblNoAbbonamenti = new JLabel("");
+			lblNoAbbonamenti.setBounds(21, 61, 284, 14);
+			panel.add(lblNoAbbonamenti);
+		}
+		{
+			lblNoCategorie = new JLabel("");
+			lblNoCategorie.setBounds(369, 61, 199, 14);
+			panel.add(lblNoCategorie);
+		}
+		{
+			lblNoPolitiche = new JLabel("");
+			lblNoPolitiche.setBounds(611, 61, 513, 14);
+			panel.add(lblNoPolitiche);
+		}
+		{
 			scrollPane = new JScrollPane();
-			scrollPane.setBounds(21, 76, 149, 107);
+			scrollPane.setBounds(21, 101, 284, 107);
 			panel.add(scrollPane);
 			{
 				ArrayList<DescrizioneAbbonamento> elencoAbb=ConfAbbCorsiHandler.getInstance().getDescrizioniAbbonamenti();
@@ -108,20 +130,56 @@ public class CreaPreventivoView extends JPanel{
 				for(DescrizioneAbbonamento dc: elencoAbb){
 					defList.addElement(dc);
 				}
+				
 				list = new JList(defList);
-				ascoltatoreStampaLabelAbbonamento();
-				ascoltatoreListAbb(elencoAbb);
-				scrollPane.setViewportView(list);
+				
+				list.addFocusListener(new FocusAdapter() {
+					@Override
+					public void focusGained(FocusEvent arg0) {
+						JList list_2=new JList();
+						if(!list_2.isFocusable())
+						{
+						lblPrezzo.setText("");
+						lblConfermaPreventivo.setText("");
+						btnSalvaPreventivo.setEnabled(false);
+						btnCalcolaPrezzo_1.setEnabled(false);
+						}
+						else{
+							btnSalvaPreventivo.setEnabled(false);
+							lblPrezzo.setText("");
+							lblConfermaPreventivo.setText("");
+						}
+					}
+				});
+				
+				//list.setVisible(true);
+				//scrollPane.setViewportView(list);
+				list.setEnabled(true);
+				if(elencoAbb.size()==0){
+					Message.confirmLabel("non sono presenti abbonamenti", false, lblNoAbbonamenti);
+					list.setEnabled(false);
+				}else{
+					scrollPane.setViewportView(list);
+					ascoltatoreInfoAbbonamentoSelezionato();
+				}
+				
+				
+				
+				
+					//ascoltatoreStampaLabelAbbonamento();
+					//ascoltatoreListAbb(elencoAbb);
+				
+				
 			}
 		}
 		{
 			lblCategoria = new JLabel("CATEGORIE CLIENTI");
-			lblCategoria.setBounds(196, 33, 114, 14);
+			lblCategoria.setBounds(372, 33, 114, 14);
 			panel.add(lblCategoria);
 		}
 		{
 			scrollPane_1 = new JScrollPane();
-			scrollPane_1.setBounds(196, 76, 149, 107);
+			scrollPane_1.setBounds(372, 101, 114, 107);
 			panel.add(scrollPane_1);
 			{
 				ArrayList<CategoriaCliente> elencoCat=ConfAbbCorsiHandler.getInstance().getCategorieClienti();
@@ -131,15 +189,38 @@ public class CreaPreventivoView extends JPanel{
 					defList.addElement(ec);
 				}
 				
+				
 				list_1 = new JList(defList);				
-				list_1.setEnabled(false);		
-				ascoltatoreStampaPoliticheSconto();
-				scrollPane_1.setViewportView(list_1);
+				//list_1.setEnabled(false);		
+				//ascoltatoreStampaPoliticheSconto();
+				//scrollPane_1.setViewportView(list_1);
+				
+				list_1.addFocusListener(new FocusAdapter() {
+					@Override
+					public void focusGained(FocusEvent arg0) {
+						lblPrezzo.setText("");
+						lblConfermaPreventivo.setText("");
+						btnSalvaPreventivo.setEnabled(false);
+						btnCalcolaPrezzo_1.setEnabled(false);
+						lblInfoPoliticaSelezionata.setText("");
+						lblInfoPoliticaSelezionata.setBorder(null);
+					}
+				});
+				
+				if(elencoCat.size()==0){
+					
+					Message.confirmLabel("non sono presenti categorie", false, lblNoCategorie);
+					list_1.setEnabled(false);
+				}
+				else{
+					scrollPane_1.setViewportView(list_1);
+					ascoltatoreCategoriaClienteSelezionata();
+				}
 			}
 		}
 		{
 			lblPoliticaSconto = new JLabel("POLITICHE SCONTO");
-			lblPoliticaSconto.setBounds(372, 33, 149, 14);
+			lblPoliticaSconto.setBounds(611, 33, 149, 14);
 			panel.add(lblPoliticaSconto);
 		}
 		
@@ -148,26 +229,14 @@ public class CreaPreventivoView extends JPanel{
 			 * Scroll pane dove andrà aggiunta la lista PoliticheSconto
 			 */
 			scrollPane_2 = new JScrollPane();
-			scrollPane_2.setBounds(372, 76, 149, 107);
+			scrollPane_2.setBounds(611, 101, 241, 107);
 			panel.add(scrollPane_2);
 			{
 				/*
-				 * Lista Politiche sconto stampata dall'ascoltatore
+				 * Lista Politiche sconto stampata dall'ascoltatore di categoria cliente
 				 */
 			}
 			
-		}
-		{
-			lblPrezzo = new JLabel("");
-			lblPrezzo.setBounds(559, 76, 149, 23);
-			panel.add(lblPrezzo);
-		}
-		{
-			btnSalvaPreventivo = new JButton("Salva preventivo");
-			ascoltatoreSalvaPreventivo();
-			btnSalvaPreventivo.setEnabled(false);
-			btnSalvaPreventivo.setBounds(559, 160, 149, 23);
-			panel.add(btnSalvaPreventivo);
 		}
 		{
 			riepilogoAbb = new JLabel("");
@@ -179,19 +248,278 @@ public class CreaPreventivoView extends JPanel{
 			riepilogoPolitica.setBounds(372, 194, 46, 14);
 			panel.add(riepilogoPolitica);
 		}
+		
 		JScrollPane mainScroll = new JScrollPane(); 
 		mainScroll.setViewportView(panel);
 		{
-			lblNewLabel = new JLabel("");
-			lblNewLabel.setBounds(559, 194, 338, 33);
-			panel.add(lblNewLabel);
+			lblInfoAbbSelezionato = new JLabel("");
+			lblInfoAbbSelezionato.setBounds(21, 279, 284, 14);
+			panel.add(lblInfoAbbSelezionato);
 		}
+		{
+			lblNoPolitiche = new JLabel("");
+			lblNoPolitiche.setBounds(611, 61, 400, 14);
+			panel.add(lblNoPolitiche);
+		}
+		{
+			lblInfoPoliticaSelezionata = new JLabel("");
+			lblInfoPoliticaSelezionata.setBounds(611, 279, 241, 14);
+			panel.add(lblInfoPoliticaSelezionata);
+		}
+		{
+			btnCalcolaPrezzo_1 = new JButton("calcola prezzo");
+			ascoltatoreCalcolaPrezzo();
+			btnCalcolaPrezzo_1.setBounds(21, 290, 131, 23);
+			panel.add(btnCalcolaPrezzo_1);
+			btnCalcolaPrezzo_1.setEnabled(false);
+		}
+		{
+			btnSalvaPreventivo = new JButton("salva preventivo");
+			ascoltatoreSalvaPreventivo();
+			btnSalvaPreventivo.setBounds(21, 341, 131, 23);
+			panel.add(btnSalvaPreventivo);
+			btnSalvaPreventivo.setEnabled(false);
+		}
+		{
+			lblPrezzo = new JLabel("");
+			lblPrezzo.setBounds(210, 294, 46, 14);
+			panel.add(lblPrezzo);
+		}
+		{
+			lblConfermaPreventivo = new JLabel("");
+			lblConfermaPreventivo.setBounds(198, 345, 46, 14);
+			panel.add(lblConfermaPreventivo);
+		}
+		
+
 		add(mainScroll);
 		
 		
 }	
 		
 	
+	private void ascoltatoreSalvaPreventivo() {
+		btnSalvaPreventivo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DescrizioneAbbonamento descAbb=(DescrizioneAbbonamento) list.getSelectedValue();
+				PoliticaScontoAbbonamento politicaSconto=(PoliticaScontoAbbonamento) list_2.getSelectedValue();
+				int numMesi=ConfAbbCorsiHandler.getInstance().getNumeroMesi(politicaSconto);
+			    //System.out.println(numMesi);
+				float prezzo=ConfAbbCorsiHandler.getInstance().calcolaPrezzoAbbonamento(descAbb, politicaSconto);
+				String p=Float.toString(prezzo);
+				if(!ConfAbbCorsiHandler.getInstance().verificaPreventivo(descAbb, politicaSconto))
+				{
+					String riepilogo="Confermare il salvataggio del preventivo?\n   ABBONAMENTO: "+descAbb+
+									 "\n   CATEGORIA CLIENTE: "+politicaSconto.getCategoriaCliente()+
+									 "\n   POLITICA SCONTO: "+politicaSconto+"\n   NUMERO MESI: "+numMesi+"\n   PREZZO: "+prezzo+" €\n\n";
+					int risposta=Message.questionConfirmMessage("CONFERMA",riepilogo);
+					if(risposta==JOptionPane.YES_OPTION) 
+					{
+						boolean aux=ConfAbbCorsiHandler.getInstance().creaPreventivoAbbonamento(descAbb, politicaSconto, prezzo);
+						if(aux)
+						{
+							Message.confirmLabel("Preventivo salvato", true, lblConfermaPreventivo);
+						}
+						else
+						{
+							//Message.noConnectionDBMessage("ERRORE CONNESSIONE", "Connessione al database non riuscita");
+						}
+					}
+				}
+				else
+				{
+					Message.errorMessage("ERRORE", "Preventivo già presente");
+				}
+				
+			}
+			
+		});
+		
+	}
+
+
+	private void ascoltatoreCalcolaPrezzo() {
+		btnCalcolaPrezzo_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				//lblPrezzo.setText("Totale: Calcolo in corso...");
+				DescrizioneAbbonamento descAbb=(DescrizioneAbbonamento) list.getSelectedValue();
+				PoliticaScontoAbbonamento politicaSconto=(PoliticaScontoAbbonamento) list_2.getSelectedValue();
+				
+				if(descAbb==null || politicaSconto==null){
+					Message.errorMessage("ERRORE", "selezionare tutti i parametri necessari per il calcolo");
+				}
+				else{
+					float prezzo=ConfAbbCorsiHandler.getInstance().calcolaPrezzoAbbonamento(descAbb, politicaSconto);
+					String p=Float.toString(prezzo);
+					lblPrezzo.setText(p+" €");
+					btnSalvaPreventivo.setEnabled(true);
+				}
+			}
+		});
+		
+	}
+
+
+	private void ascoltatoreCategoriaClienteSelezionata() {
+		list_1.addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent e) 
+			{
+				{							
+					//queste due righe dovrebbero far parte di un pattern. per esempio: mediator
+					//btnSalvaPreventivo.setEnabled(false);
+					//lblPrezzo.setText("");
+					
+					cat=(CategoriaCliente) list_1.getSelectedValue();
+					
+					{
+
+						//cat=new CategoriaCliente();
+						//cat.setNomeCat("over 60");						
+						 ArrayList<PoliticaScontoAbbonamento> elencoPolitiche=ConfAbbCorsiHandler.getInstance().getPoliticheSconto(cat);
+						// if(elencoPolitiche.size()!=0)
+						 //{
+							 DefaultListModel defList = new DefaultListModel();
+							 for(PoliticaScontoAbbonamento psa: elencoPolitiche)
+							 {
+								defList.addElement(psa);
+							 }
+											
+							 
+							 list_2 = new JList(defList);
+							 //scrollPane_2.setViewportView(list_2);
+							 
+							 list_2.addFocusListener(new FocusAdapter() {
+									@Override
+									public void focusGained(FocusEvent arg0) {
+										lblPrezzo.setText("");
+										lblConfermaPreventivo.setText("");
+										btnSalvaPreventivo.setEnabled(false);
+										btnCalcolaPrezzo_1.setEnabled(true);
+										
+									}
+								});
+							 
+							 if(elencoPolitiche.size()==0){
+								 list_2=new JList();
+								 list_2.setEnabled(false);
+								 scrollPane_2.setViewportView(list_2);
+								Message.confirmLabel("nessuna politica di sconto per la categoria cliente selezionata", false, lblNoPolitiche);
+							}
+							else{
+								lblNoPolitiche.setText("");
+							 //list_2 = new JList(defList);
+							//ascoltatoreCalcolaPrezzo();
+							//ascoltatoreStampaLabelPolitica()
+							ascoltatoreInfoPoliticaSelezionata();
+							//list_2.setEnabled(false);								
+							scrollPane_2.setViewportView(list_2);
+							}
+						 }
+						 /*
+						 else
+						 {
+							 list_2 = new JList();
+							 list_2.setEnabled(false);	
+							 scrollPane_2.setViewportView(list_2);
+							 Message.errorMessage("ERRORE", "Nessuna politica sconto presente per questa categoria");							 
+						 }
+						 */
+					}					
+				}
+
+     private void ascoltatoreInfoPoliticaSelezionata() {
+    	 		
+		 list_2.addFocusListener(new FocusAdapter() {
+				@Override
+				public void focusGained(FocusEvent arg0) {
+						int y = 160;
+						PoliticaScontoAbbonamento politicaSconto=(PoliticaScontoAbbonamento) list_2.getSelectedValue();
+						
+						String scon="<html> NOME POLITICA SCONTO: "+politicaSconto.getNomePolitica()+"<br /><br />"+
+									" CATEGORIA CLIENTE: "+politicaSconto.getCategoriaCliente()+"<br /><br />"+
+									" NUMERO MESI: "+((ScontoPercentuale) politicaSconto).getNumeroMesi()+"<br /><br />"+
+									" SCONTO : "+((ScontoPercentuale) politicaSconto).getScontoPercentuale()+"%";
+						lblInfoPoliticaSelezionata.setText(scon);
+						lblInfoPoliticaSelezionata.setBounds(611, 279, 241, y);
+						lblInfoPoliticaSelezionata.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
+						btnCalcolaPrezzo_1.setEnabled(true);
+					}			
+				});
+				
+			}									
+			
+		});
+		
+	}
+
+
+	private void ascoltatoreInfoAbbonamentoSelezionato() {
+		list.addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent e) {
+				int y = 120;
+				DescrizioneAbbonamento descAbb=(DescrizioneAbbonamento) list.getSelectedValue();
+				descAbb=ConfAbbCorsiHandler.getInstance().getDescrizioneAbbonamento(descAbb.toString());
+				String abb="<html> NOME ABBONAMENTO: "+descAbb.getNomeAbbonamento()+"<br /><br />"+
+							" PREZZO BASE MENSILE: "+descAbb.getPrezzoBaseMensile()+" €<br /><br />";
+							//"Corsi: "+descAbb.getElencoCorsi()+"\n"+"Sale pesi: "+riepilogoAbb.setText(abb)+"\n";
+													
+				if(descAbb.getElencoCorsi().isEmpty())
+				{
+					abb=abb+"CORSI: Non sono presenti corsi <br /><br />";
+					y=y+40;
+				}
+				else
+				{
+					//System.out.println(descAbb.getElencoCorsi().getClass());
+					abb=abb+" CORSI:<br />";
+					PersistentSet c = (PersistentSet)descAbb.getElencoCorsi();
+					Iterator<DescrizioneCorso> iter =  c.iterator();
+					while(iter.hasNext())
+					 {								
+						DescrizioneCorso dc = iter.next();
+						abb=abb+" -"+dc.getNomeCorso()+"<br />";
+						y=y+30;
+					 }
+				}
+				
+				if(descAbb.getElencoSalePesi().isEmpty())
+				{
+					abb=abb+"<br /> SALE PESI: Non sono presenti sale pesi <br /><br />";
+					y=y+30;
+				}
+				else
+				{
+					//System.out.println(descAbb.getElencoCorsi().getClass());
+					abb=abb+"<br /> SALE PESI:<br />";
+					PersistentSet c = (PersistentSet)descAbb.getElencoSalePesi();
+					Iterator<SalaPesi> iter =  c.iterator();
+					while(iter.hasNext())
+					 {								
+						SalaPesi dc = iter.next();
+						abb=abb+" -"+dc.getNomeSala()+"<br />";
+						y=y+30;
+					 }
+				}			
+				lblInfoAbbSelezionato.setText(abb);
+				lblInfoAbbSelezionato.setBounds(21, 279, 284, y);
+				lblInfoAbbSelezionato.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));	
+				btnCalcolaPrezzo_1.setBounds(21, 290+y+30, 131, 23);
+				lblPrezzo.setBounds(210, 294+y+30, 46, 14);
+				btnSalvaPreventivo.setBounds(21, 341+y+30, 131, 23);
+				lblConfermaPreventivo.setBounds(198, 345+y+30, 400, 14);
+				
+			}
+		});		
+	
+		
+	}
+
+
+	
+	
+	
+	
+	/*
 	public void ascoltatoreCalcolaPrezzo(){
 		list_2.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent e) {
@@ -205,183 +533,5 @@ public class CreaPreventivoView extends JPanel{
 			}
 		});
 	}
-	
-	
-	
-	public void ascoltatoreSalvaPreventivo(){
-		btnSalvaPreventivo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				DescrizioneAbbonamento descAbb=(DescrizioneAbbonamento) list.getSelectedValue();
-				PoliticaScontoAbbonamento politicaSconto=(PoliticaScontoAbbonamento) list_2.getSelectedValue();
-				float prezzo=ConfAbbCorsiHandler.getInstance().calcolaPrezzoAbbonamento(descAbb, politicaSconto);
-				String p=Float.toString(prezzo);
-				if(!ConfAbbCorsiHandler.getInstance().verificaPreventivo(descAbb, politicaSconto))
-				{
-					String riepilogo="Confermare il salvataggio del preventivo?\n   ABBONAMENTO: "+descAbb+
-									 "\n   CLIENTE: "+politicaSconto.getCategoriaCliente()+
-									 "\n   POLITICA: "+politicaSconto+"\n\n";
-					int risposta=Message.questionConfirmMessage("CONFERMA",riepilogo);
-					if(risposta==JOptionPane.YES_OPTION) 
-					{
-						boolean aux=ConfAbbCorsiHandler.getInstance().creaPreventivoAbbonamento(descAbb, politicaSconto, prezzo);
-						if(aux)
-						{
-							Message.confirmLabel("Preventivo salvato", true, lblNewLabel);
-						}
-						else
-						{
-							Message.noConnectionDBMessage("ERRORE CONNESSIONE", "Connessione al database non riuscita");
-						}
-					}
-				}
-				else
-				{
-					Message.errorMessage("ERRORE", "Preventivo già presente");
-				}
-				
-			}
-		});
-	}
-	
-	public void ascoltatoreListAbb(ArrayList<DescrizioneAbbonamento> elencoAbb)
-	{
-		list.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent arg0) {
-				if(elencoAbb.size()!=0)
-				{
-					btnSalvaPreventivo.setEnabled(false);
-					lblPrezzo.setText("");
-					list_1.setEnabled(true);					
-				}
-				else
-				{
-					Message.errorMessage("ERRORE", "Non sono presenti abbonamenti");
-					list.setEnabled(false);
-				}
-				
-			}
-		});
-	}
-	
-	public void ascoltatoreStampaPoliticheSconto()
-	{
-		list_1.addListSelectionListener(new ListSelectionListener() {
-			public void valueChanged(ListSelectionEvent e) 
-			{
-				{							
-					//queste due righe dovrebbero far parte di un pattern. per esempio: mediator
-					btnSalvaPreventivo.setEnabled(false);
-					lblPrezzo.setText("");
-					
-					cat=(CategoriaCliente) list_1.getSelectedValue();
-					
-					{
-
-						//cat=new CategoriaCliente();
-						//cat.setNomeCat("over 60");						
-						 ArrayList<PoliticaScontoAbbonamento> elencoPolitiche=ConfAbbCorsiHandler.getInstance().getPoliticheSconto(cat);
-						 if(elencoPolitiche.size()!=0)
-						 {
-							 DefaultListModel defList = new DefaultListModel();
-							 for(PoliticaScontoAbbonamento psa: elencoPolitiche)
-							 {
-								defList.addElement(psa);
-							 }
-											
-							list_2 = new JList(defList);
-							ascoltatoreCalcolaPrezzo();
-							ascoltatoreStampaLabelPolitica();
-							//list_2.setEnabled(false);								
-							scrollPane_2.setViewportView(list_2);
-						 }
-						 else
-						 {
-							 list_2 = new JList();
-							 list_2.setEnabled(false);	
-							 scrollPane_2.setViewportView(list_2);
-							 Message.errorMessage("ERRORE", "Nessuna politica sconto presente per questa categoria");							 
-						 }
-						 
-					}					
-				}									
-			}
-		});
-	}
-	
-	protected void ascoltatoreStampaLabelPolitica() 
-	{
-		list_2.addListSelectionListener(new ListSelectionListener() {
-			public void valueChanged(ListSelectionEvent e) {
-				int y = 160;
-				PoliticaScontoAbbonamento politicaSconto=(PoliticaScontoAbbonamento) list_2.getSelectedValue();
-				
-				String scon="<html>Politica sconto: "+politicaSconto.getNomePolitica()+"<br /><br />"+
-							"Categoria: "+politicaSconto.getCategoriaCliente()+"<br /><br />"+
-							"# mesi: "+((ScontoPercentuale) politicaSconto).getNumeroMesi()+"<br /><br />"+
-							"Sconto(%): "+((ScontoPercentuale) politicaSconto).getScontoPercentuale();
-				riepilogoPolitica.setText(scon);
-				riepilogoPolitica.setBounds(372, 194, 149, y);
-				riepilogoPolitica.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));	
-			}			
-		});
-		
-	}
-
-
-	public void ascoltatoreStampaLabelAbbonamento()
-	{
-		list.addListSelectionListener(new ListSelectionListener() {
-			public void valueChanged(ListSelectionEvent e) {
-				int y = 120;
-				DescrizioneAbbonamento descAbb=(DescrizioneAbbonamento) list.getSelectedValue();
-				descAbb=ConfAbbCorsiHandler.getInstance().getDescrizioneAbbonamento(descAbb.toString());
-				String abb="<html>Abbonamento: "+descAbb.getNomeAbbonamento()+"<br /><br />"+
-							"Prezzo: "+descAbb.getPrezzoBaseMensile()+" €<br /><br />";
-							//"Corsi: "+descAbb.getElencoCorsi()+"\n"+"Sale pesi: "+riepilogoAbb.setText(abb)+"\n";
-													
-				if(descAbb.getElencoCorsi().isEmpty())
-				{
-					abb=abb+"Corsi:<br />Non sono presenti corsi <br /><br />";
-					y=y+40;
-				}
-				else
-				{
-					//System.out.println(descAbb.getElencoCorsi().getClass());
-					abb=abb+"Corsi:<br />";
-					PersistentSet c = (PersistentSet)descAbb.getElencoCorsi();
-					Iterator<DescrizioneCorso> iter =  c.iterator();
-					while(iter.hasNext())
-					 {								
-						DescrizioneCorso dc = iter.next();
-						abb=abb+"-"+dc.getNomeCorso()+"<br />";
-						y=y+30;
-					 }
-				}
-				
-				if(descAbb.getElencoSalePesi().isEmpty())
-				{
-					abb=abb+"<br />Sale pesi:<br />Non sono presenti sale pesi <br /><br />";
-					y=y+40;
-				}
-				else
-				{
-					//System.out.println(descAbb.getElencoCorsi().getClass());
-					abb=abb+"<br />Sale pesi:<br />";
-					PersistentSet c = (PersistentSet)descAbb.getElencoSalePesi();
-					Iterator<SalaPesi> iter =  c.iterator();
-					while(iter.hasNext())
-					 {								
-						SalaPesi dc = iter.next();
-						abb=abb+"-"+dc.getNomeSala()+"<br />";
-						y=y+30;
-					 }
-				}			
-				riepilogoAbb.setText(abb);
-				riepilogoAbb.setBounds(21, 194, 149, y);
-				riepilogoAbb.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));			
-			}
-		});
-	}
-	
+	*/
 }

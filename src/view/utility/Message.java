@@ -47,7 +47,7 @@ public class Message {
 	public static void confirmLabel(String messaggio, boolean tipoMessaggio, JLabel label)
 	{
 		label.setText(messaggio);
-		label.setFont(new Font("Tahoma", Font.BOLD, 15));
+		label.setFont(new Font("Tahoma", Font.BOLD, 13));
 		if(tipoMessaggio)
 			{
 				label.setForeground(new Color(0, 153, 0));				

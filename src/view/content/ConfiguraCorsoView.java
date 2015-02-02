@@ -69,6 +69,12 @@ public class ConfiguraCorsoView extends JPanel {
 		}
 		{
 			comboBox_1 = new JComboBox();
+			comboBox_1.addFocusListener(new FocusAdapter() {
+				@Override
+				public void focusGained(FocusEvent e) {
+					label.setText("");
+				}
+			});
 			comboBox_1.setBounds(193, 136, 52, 20);
 			comboBox_1.addItem("si");
 			comboBox_1.addItem("no");
@@ -82,6 +88,12 @@ public class ConfiguraCorsoView extends JPanel {
 		}
 		{
 			textField = new JTextField();
+			textField.addFocusListener(new FocusAdapter() {
+				@Override
+				public void focusGained(FocusEvent e) {
+					label.setText("");
+				}
+			});
 			textField.setBounds(193, 52, 86, 20);
 			add(textField);
 			textField.setColumns(10);
@@ -90,7 +102,7 @@ public class ConfiguraCorsoView extends JPanel {
 			label = new JLabel("");
 			label.setFont(new Font("Tahoma", Font.BOLD, 15));
 			label.setForeground(new Color(0, 128, 0));
-			label.setBounds(193, 242, 338, 14);
+			label.setBounds(324, 185, 338, 14);
 			add(label);
 		}
 		
@@ -150,7 +162,7 @@ public class ConfiguraCorsoView extends JPanel {
 		comboBox.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
-				
+				label.setText("");
 				//if(ConfAbbCorsiHandler.getInstance().getNomiTipologie()==null)
 					//System.out.println(ConfAbbCorsiHandler.getInstance().getNomiTipologie());
 			

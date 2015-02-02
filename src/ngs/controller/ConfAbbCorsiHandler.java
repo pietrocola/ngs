@@ -121,18 +121,6 @@ public class ConfAbbCorsiHandler {
 
 
 	/**
-	 * 
-	 * @param oraInizio
-	 * @param oraFine
-	 */
-	public boolean impostaFasciaOrariaSalaPesi(int oraInizio, int oraFine) {
-		throw new UnsupportedOperationException();
-	}
-
-	
-	
-	
-	/**
 	 * restituisce tutti i corsi presenti su db
 	 * @return
 	 */
@@ -160,11 +148,6 @@ public class ConfAbbCorsiHandler {
 	
 	
 	
-	
-	public ArrayList<FasciaOrariaSalaPesi> getFasceOrarieSalaPesi() {
-		throw new UnsupportedOperationException();
-	}
-
 	
 	/**
 	 * salva su db una descrizioneAbbonamento
@@ -288,6 +271,11 @@ public class ConfAbbCorsiHandler {
 		    pa.setNumeroMesi(numMesi);
 		    return PreventivoAbbonamentoDAO.save(pa);
 	    
+	}
+	
+	public int getNumeroMesi(PoliticaScontoAbbonamento politicaSconto){
+		int numMesi=politicaScontoAbbStrategy.getNumeroMesi(politicaSconto);
+		return numMesi;
 	}
 	
 	public boolean verificaPreventivo(DescrizioneAbbonamento descAbb, PoliticaScontoAbbonamento politicaSconto) {

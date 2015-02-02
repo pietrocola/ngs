@@ -93,7 +93,7 @@ public class ImpostaPoliticaScontoPercentualeView extends JPanel {
 		}
 		{
 			label = new JLabel("");
-			label.setBounds(189, 331, 400, 14);
+			label.setBounds(323, 275, 400, 14);
 			label.setFont(new Font("Thaoma",Font.BOLD,15));
 			add(label);
 		}
@@ -161,7 +161,7 @@ public class ImpostaPoliticaScontoPercentualeView extends JPanel {
 					
 					if(aux1==true)
 					{
-						String riepilogo="Confermare la creazione dello sconto percentuale?\n   NOME: "+nomePolitica+"\n   CATEGORIA CLIENTE: "+categoria.getNomeCat()+"\n   DURATA MENSILE: "+numMesi+"\n   SCONTO PERCENTUALE: "+scontoPerc+"%\n\n";
+						String riepilogo="Confermare la creazione dello sconto percentuale?\n   NOME: "+nomePolitica+"\n   CATEGORIA CLIENTE: "+categoria.getNomeCat()+"\n   NUMERO MESI: "+numMesi+"\n   SCONTO PERCENTUALE: "+scontoPerc+"%\n\n";
 						int risposta = Message.questionConfirmMessage("CONFERMA", riepilogo);
 						if(risposta==JOptionPane.YES_OPTION) 
 						{

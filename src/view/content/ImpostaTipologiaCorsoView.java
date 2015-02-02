@@ -27,6 +27,8 @@ import javax.swing.border.LineBorder;
 import java.awt.Font;
 
 import javax.swing.SwingConstants;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 public class ImpostaTipologiaCorsoView extends JPanel {
 	private JLabel lblNomeTipologia;
@@ -48,6 +50,12 @@ public class ImpostaTipologiaCorsoView extends JPanel {
 		}
 		{
 			textField = new JTextField();
+			textField.addFocusListener(new FocusAdapter() {
+				@Override
+				public void focusGained(FocusEvent arg0) {
+					label.setText("");
+				}
+			});
 			textField.setBounds(193, 52, 126, 20);
 			add(textField);
 			textField.setColumns(10);
@@ -61,7 +69,7 @@ public class ImpostaTipologiaCorsoView extends JPanel {
 		{
 			label = new JLabel("");
 			label.setFont(new Font("Tahoma", Font.BOLD, 15));
-			label.setBounds(193, 153, 421, 14);
+			label.setBounds(325, 104, 421, 14);
 			add(label);
 		}
 		

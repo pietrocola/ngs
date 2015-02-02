@@ -12,9 +12,6 @@ public class DeleteNextGenSport2Data {
 			ngs.persistentmodel.SalaPesi lngspersistentmodelSalaPesi = ngs.persistentmodel.SalaPesiDAO.loadSalaPesiByQuery(null, null);
 			// Delete the persistent object
 			ngs.persistentmodel.SalaPesiDAO.delete(lngspersistentmodelSalaPesi);
-			ngs.persistentmodel.FasciaOrariaSalaPesi lngspersistentmodelFasciaOrariaSalaPesi = ngs.persistentmodel.FasciaOrariaSalaPesiDAO.loadFasciaOrariaSalaPesiByQuery(null, null);
-			// Delete the persistent object
-			ngs.persistentmodel.FasciaOrariaSalaPesiDAO.delete(lngspersistentmodelFasciaOrariaSalaPesi);
 			ngs.persistentmodel.CategoriaCliente lngspersistentmodelCategoriaCliente = ngs.persistentmodel.CategoriaClienteDAO.loadCategoriaClienteByQuery(null, null);
 			// Delete the persistent object
 			ngs.persistentmodel.CategoriaClienteDAO.delete(lngspersistentmodelCategoriaCliente);

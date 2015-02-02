@@ -15,6 +15,8 @@ import view.utility.Message;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 public class ImpostaCategoriaClienteView extends JPanel {
 	private JLabel labelCategoria;
@@ -34,6 +36,12 @@ public class ImpostaCategoriaClienteView extends JPanel {
 		}
 		{
 			textField = new JTextField();
+			textField.addFocusListener(new FocusAdapter() {
+				@Override
+				public void focusGained(FocusEvent e) {
+					label.setText("");
+				}
+			});
 			textField.setBounds(193, 52, 121, 20);
 			add(textField);
 			textField.setColumns(10);
@@ -47,7 +55,7 @@ public class ImpostaCategoriaClienteView extends JPanel {
 		{
 			label = new JLabel("");
 			label.setFont(new Font("Tahoma", Font.BOLD, 15));
-			label.setBounds(193, 153, 383, 14);
+			label.setBounds(329, 104, 383, 14);
 			add(label);
 		}
 
