@@ -53,6 +53,7 @@ import view.utility.Message;
 
 import java.awt.Color;
 import java.awt.Font;
+import javax.swing.ImageIcon;
 
 
 public class CreaPreventivoView extends JPanel{
@@ -80,6 +81,8 @@ public class CreaPreventivoView extends JPanel{
 	private JButton btnSalvaPreventivo;
 	private JLabel lblPrezzo;
 	private JLabel lblConfermaPreventivo;
+	private JLabel lblFrecciaAbb;
+	private JLabel lblFrecciaPolitica;
 
 	
 	/**
@@ -112,7 +115,7 @@ public class CreaPreventivoView extends JPanel{
 		}
 		{
 			lblNoCategorie = new JLabel("");
-			lblNoCategorie.setBounds(369, 61, 199, 14);
+			lblNoCategorie.setBounds(372, 61, 199, 14);
 			panel.add(lblNoCategorie);
 		}
 		{
@@ -142,7 +145,7 @@ public class CreaPreventivoView extends JPanel{
 						lblPrezzo.setText("");
 						lblConfermaPreventivo.setText("");
 						btnSalvaPreventivo.setEnabled(false);
-						btnCalcolaPrezzo_1.setEnabled(false);
+						btnCalcolaPrezzo_1.setEnabled(true);
 						}
 						else{
 							btnSalvaPreventivo.setEnabled(false);
@@ -203,7 +206,19 @@ public class CreaPreventivoView extends JPanel{
 						btnSalvaPreventivo.setEnabled(false);
 						btnCalcolaPrezzo_1.setEnabled(false);
 						lblInfoPoliticaSelezionata.setText("");
+						lblFrecciaPolitica.setVisible(false);
 						lblInfoPoliticaSelezionata.setBorder(null);
+						//System.out.println("focus");
+						
+						list_2.setSelectionBackground(new Color(250,250,250));
+						
+						
+						  //list_2.clearSelection();
+						  
+						
+						//list_2.setEnabled(false);
+						
+						
 					}
 				});
 				
@@ -250,9 +265,11 @@ public class CreaPreventivoView extends JPanel{
 		}
 		
 		JScrollPane mainScroll = new JScrollPane(); 
-		mainScroll.setViewportView(panel);
+		mainScroll.setRowHeaderView(panel);
 		{
 			lblInfoAbbSelezionato = new JLabel("");
+			lblInfoAbbSelezionato.setIcon(null);
+			lblInfoAbbSelezionato.setFont(new Font("Tahoma", Font.ITALIC, 14));
 			lblInfoAbbSelezionato.setBounds(21, 279, 284, 14);
 			panel.add(lblInfoAbbSelezionato);
 		}
@@ -263,32 +280,47 @@ public class CreaPreventivoView extends JPanel{
 		}
 		{
 			lblInfoPoliticaSelezionata = new JLabel("");
+			lblInfoPoliticaSelezionata.setFont(new Font("Tahoma", Font.ITALIC, 14));
 			lblInfoPoliticaSelezionata.setBounds(611, 279, 241, 14);
 			panel.add(lblInfoPoliticaSelezionata);
 		}
 		{
 			btnCalcolaPrezzo_1 = new JButton("calcola prezzo");
 			ascoltatoreCalcolaPrezzo();
-			btnCalcolaPrezzo_1.setBounds(21, 290, 131, 23);
+			btnCalcolaPrezzo_1.setBounds(911, 101, 131, 23);
 			panel.add(btnCalcolaPrezzo_1);
 			btnCalcolaPrezzo_1.setEnabled(false);
 		}
 		{
 			btnSalvaPreventivo = new JButton("salva preventivo");
 			ascoltatoreSalvaPreventivo();
-			btnSalvaPreventivo.setBounds(21, 341, 131, 23);
+			btnSalvaPreventivo.setBounds(911, 157, 131, 23);
 			panel.add(btnSalvaPreventivo);
 			btnSalvaPreventivo.setEnabled(false);
 		}
 		{
 			lblPrezzo = new JLabel("");
-			lblPrezzo.setBounds(210, 294, 46, 14);
+			lblPrezzo.setBounds(1088, 106, 46, 14);
 			panel.add(lblPrezzo);
 		}
 		{
 			lblConfermaPreventivo = new JLabel("");
-			lblConfermaPreventivo.setBounds(198, 345, 46, 14);
+			lblConfermaPreventivo.setBounds(1088, 161, 250, 14);
 			panel.add(lblConfermaPreventivo);
+		}
+		{
+			lblFrecciaAbb = new JLabel("");
+			lblFrecciaAbb.setIcon(new ImageIcon(CreaPreventivoView.class.getResource("/view/img/freccia.png")));
+			lblFrecciaAbb.setBounds(139, 238, 46, 14);
+			lblFrecciaAbb.setVisible(false);
+			panel.add(lblFrecciaAbb);
+		}
+		{
+			lblFrecciaPolitica = new JLabel("");
+			lblFrecciaPolitica.setIcon(new ImageIcon(CreaPreventivoView.class.getResource("/view/img/freccia.png")));
+			lblFrecciaPolitica.setBounds(707, 238, 46, 14);
+			lblFrecciaPolitica.setVisible(false);
+			panel.add(lblFrecciaPolitica);
 		}
 		
 
@@ -307,7 +339,7 @@ public class CreaPreventivoView extends JPanel{
 			    //System.out.println(numMesi);
 				float prezzo=ConfAbbCorsiHandler.getInstance().calcolaPrezzoAbbonamento(descAbb, politicaSconto);
 				String p=Float.toString(prezzo);
-				if(!ConfAbbCorsiHandler.getInstance().verificaPreventivo(descAbb, politicaSconto))
+				if(ConfAbbCorsiHandler.getInstance().verificaPreventivo(descAbb, politicaSconto)==true)
 				{
 					String riepilogo="Confermare il salvataggio del preventivo?\n   ABBONAMENTO: "+descAbb+
 									 "\n   CATEGORIA CLIENTE: "+politicaSconto.getCategoriaCliente()+
@@ -388,6 +420,7 @@ public class CreaPreventivoView extends JPanel{
 							 list_2 = new JList(defList);
 							 //scrollPane_2.setViewportView(list_2);
 							 
+							 
 							 list_2.addFocusListener(new FocusAdapter() {
 									@Override
 									public void focusGained(FocusEvent arg0) {
@@ -395,22 +428,33 @@ public class CreaPreventivoView extends JPanel{
 										lblConfermaPreventivo.setText("");
 										btnSalvaPreventivo.setEnabled(false);
 										btnCalcolaPrezzo_1.setEnabled(true);
+										list_2.setSelectionBackground(new Color(184,207,229));
 										
 									}
 								});
+							
 							 
 							 if(elencoPolitiche.size()==0){
 								 list_2=new JList();
+								
 								 list_2.setEnabled(false);
+								
 								 scrollPane_2.setViewportView(list_2);
 								Message.confirmLabel("nessuna politica di sconto per la categoria cliente selezionata", false, lblNoPolitiche);
 							}
 							else{
 								lblNoPolitiche.setText("");
+								// list_2.setSelectionBackground(new Color(250,250,250));
 							 //list_2 = new JList(defList);
 							//ascoltatoreCalcolaPrezzo();
 							//ascoltatoreStampaLabelPolitica()
-							ascoltatoreInfoPoliticaSelezionata();
+								
+							
+								
+							      ascoltatoreInfoPoliticaSelezionataFocusGained(); 
+						
+							      ascoltatoreInfoPoliticaSelezionataValueChanged();
+							
 							//list_2.setEnabled(false);								
 							scrollPane_2.setViewportView(list_2);
 							}
@@ -427,14 +471,39 @@ public class CreaPreventivoView extends JPanel{
 					}					
 				}
 
-     private void ascoltatoreInfoPoliticaSelezionata() {
+		  private void ascoltatoreInfoPoliticaSelezionataFocusGained() {
+					
+				 list_2.addFocusListener(new FocusAdapter() {
+						@Override
+						public void focusGained(FocusEvent arg0) {
+								int y = 160;
+								PoliticaScontoAbbonamento politicaSconto=(PoliticaScontoAbbonamento) list_2.getSelectedValue();
+								
+								String scon="<html> NOME POLITICA SCONTO: "+politicaSconto.getNomePolitica()+"<br /><br />"+
+											" CATEGORIA CLIENTE: "+politicaSconto.getCategoriaCliente()+"<br /><br />"+
+											" NUMERO MESI: "+((ScontoPercentuale) politicaSconto).getNumeroMesi()+"<br /><br />"+
+											" SCONTO : "+((ScontoPercentuale) politicaSconto).getScontoPercentuale()+"%";
+								lblInfoPoliticaSelezionata.setText(scon);
+								lblInfoPoliticaSelezionata.setBounds(611, 279, 241, y);
+								lblInfoPoliticaSelezionata.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
+								btnCalcolaPrezzo_1.setEnabled(true);
+								lblFrecciaPolitica.setVisible(true);
+							}	
+					
+						});
+						
+					}
+			
+			
+			
+	private void ascoltatoreInfoPoliticaSelezionataValueChanged() {
     	 		
-		 list_2.addFocusListener(new FocusAdapter() {
+		 list_2.addListSelectionListener(new ListSelectionListener() {
 				@Override
-				public void focusGained(FocusEvent arg0) {
+				public void valueChanged(ListSelectionEvent e) {
 						int y = 160;
 						PoliticaScontoAbbonamento politicaSconto=(PoliticaScontoAbbonamento) list_2.getSelectedValue();
-						
+						//System.out.println("ciao");
 						String scon="<html> NOME POLITICA SCONTO: "+politicaSconto.getNomePolitica()+"<br /><br />"+
 									" CATEGORIA CLIENTE: "+politicaSconto.getCategoriaCliente()+"<br /><br />"+
 									" NUMERO MESI: "+((ScontoPercentuale) politicaSconto).getNumeroMesi()+"<br /><br />"+
@@ -443,6 +512,7 @@ public class CreaPreventivoView extends JPanel{
 						lblInfoPoliticaSelezionata.setBounds(611, 279, 241, y);
 						lblInfoPoliticaSelezionata.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
 						btnCalcolaPrezzo_1.setEnabled(true);
+						lblFrecciaPolitica.setVisible(true);
 					}			
 				});
 				
@@ -503,35 +573,15 @@ public class CreaPreventivoView extends JPanel{
 				lblInfoAbbSelezionato.setText(abb);
 				lblInfoAbbSelezionato.setBounds(21, 279, 284, y);
 				lblInfoAbbSelezionato.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));	
-				btnCalcolaPrezzo_1.setBounds(21, 290+y+30, 131, 23);
-				lblPrezzo.setBounds(210, 294+y+30, 46, 14);
-				btnSalvaPreventivo.setBounds(21, 341+y+30, 131, 23);
-				lblConfermaPreventivo.setBounds(198, 345+y+30, 400, 14);
+				lblFrecciaAbb.setVisible(true);
+				//btnCalcolaPrezzo_1.setBounds(21, 290+y+30, 131, 23);
+				//lblPrezzo.setBounds(210, 294+y+30, 46, 14);
+				//btnSalvaPreventivo.setBounds(21, 341+y+30, 131, 23);
+				//lblConfermaPreventivo.setBounds(198, 345+y+30, 400, 14);
 				
 			}
 		});		
 	
 		
 	}
-
-
-	
-	
-	
-	
-	/*
-	public void ascoltatoreCalcolaPrezzo(){
-		list_2.addListSelectionListener(new ListSelectionListener() {
-			public void valueChanged(ListSelectionEvent e) {
-				lblPrezzo.setText("Totale: Calcolo in corso...");
-				DescrizioneAbbonamento descAbb=(DescrizioneAbbonamento) list.getSelectedValue();
-				PoliticaScontoAbbonamento politicaSconto=(PoliticaScontoAbbonamento) list_2.getSelectedValue();
-				float prezzo=ConfAbbCorsiHandler.getInstance().calcolaPrezzoAbbonamento(descAbb, politicaSconto);
-				String p=Float.toString(prezzo);
-				lblPrezzo.setText("Totale: "+p+" €");
-				btnSalvaPreventivo.setEnabled(true);
-			}
-		});
-	}
-	*/
 }

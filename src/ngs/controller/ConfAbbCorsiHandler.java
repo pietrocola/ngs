@@ -279,10 +279,15 @@ public class ConfAbbCorsiHandler {
 	}
 	
 	public boolean verificaPreventivo(DescrizioneAbbonamento descAbb, PoliticaScontoAbbonamento politicaSconto) {
-		if(PreventivoAbbonamentoDAO.listPreventivoAbbonamentoByQuery("PoliticaScontoAbbonamentonomePolitica = '" + politicaSconto + "' AND DescrizioneAbbonamentonomeAbbonamento = '" + descAbb + "'", "ID").length!=0)
+		M_PreventivoAbbonamento prevAbb = new M_PreventivoAbbonamento();
+		return prevAbb.verificaPreventivo(descAbb,politicaSconto);
+		
+		/*
+		if(PreventivoAbbonamentoDAO.listPreventivoAbbonamentoByQuery("PoliticaScontoAbbonamentoID = '" + politicaSconto + "' AND DescrizioneAbbonamentoID = '" + descAbb + "'", "ID").length!=0)
 	    {return true;}
 		else
 		{return false;}
+		*/
 	}
 	
 	public ArrayList<DescrizioneCorso> getDescrizioneCorso(

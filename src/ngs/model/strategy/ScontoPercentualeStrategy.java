@@ -67,7 +67,7 @@ public class ScontoPercentualeStrategy extends AModel implements IPoliticaSconto
 
 	@Override
 	public int getNumeroMesi(PoliticaScontoAbbonamento politicaSconto) {
-		System.out.println("percent");
+		
 		int aux=-1;
 		for(int i=0;i<ScontoPercentualeDAO.listScontoPercentualeByQuery(null,null).length;i++){
 			if(ScontoPercentualeDAO.listScontoPercentualeByQuery(null, null)[i].getNomePolitica()==politicaSconto.getNomePolitica())  

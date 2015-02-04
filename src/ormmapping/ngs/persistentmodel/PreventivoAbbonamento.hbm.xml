@@ -10,9 +10,9 @@ License Type: Academic
 			<generator class="native">
 			</generator>
 		</id>
-		<many-to-one name="politicaSconto" cascade="lock" column="PoliticaScontoAbbonamentoNomePolitica" class="ngs.persistentmodel.PoliticaScontoAbbonamento" not-null="false" lazy="no-proxy">
+		<many-to-one name="politicaSconto" cascade="lock" column="PoliticaScontoAbbonamentoID" class="ngs.persistentmodel.PoliticaScontoAbbonamento" not-null="false" lazy="no-proxy">
 		</many-to-one>
-		<many-to-one name="descAbb" cascade="lock" column="DescrizioneAbbonamentoNomeAbbonamento" class="ngs.persistentmodel.DescrizioneAbbonamento" not-null="false" lazy="no-proxy">
+		<many-to-one name="descAbb" cascade="lock" column="DescrizioneAbbonamentoID" class="ngs.persistentmodel.DescrizioneAbbonamento" not-null="false" lazy="no-proxy">
 		</many-to-one>
 		<property name="prezzo" column="Prezzo" type="float" not-null="true" lazy="false"/>
 		<property name="numeroMesi" column="NumeroMesi" type="integer" length="11" not-null="true" lazy="false"/>
