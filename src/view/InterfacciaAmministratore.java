@@ -397,8 +397,8 @@ public class InterfacciaAmministratore {
 			/*
 			 * stampa home all'avvio
 			 */
-			panel_1 = new JPanel();
-			frmNextgensportAmministratore.getContentPane().add(panel_1, BorderLayout.CENTER);
+			//panel_1 = new JPanel();
+			//frmNextgensportAmministratore.getContentPane().add(panel_1, BorderLayout.CENTER);
 			clearMainPanel(frmNextgensportAmministratore);
 			
 			HomeView home = new HomeView();

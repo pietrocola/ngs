@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import ngs.persistentmodel.APersistentModel;
 import ngs.persistentmodel.DescrizioneCorso;
 import ngs.persistentmodel.DescrizioneCorsoDAO;
-import ngs.persistentmodel.FasciaOrariaSalaPesi;
 import ngs.persistentmodel.SalaPesi;
 import ngs.persistentmodel.SalaPesiDAO;
 
@@ -38,9 +37,7 @@ public class M_SalaPesi extends AModel {
 	
 	
 	
-	public ArrayList<FasciaOrariaSalaPesi> getFasceOrarieSalaPesi() {
-		throw new UnsupportedOperationException();
-	}
+
 
 	
 	
