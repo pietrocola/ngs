@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JWindow;
 import javax.swing.border.LineBorder;
 
-import view.interfaccia;
+import view.InterfacciaAmministratore;
 import java.awt.Font;
 
 public class SplashScreen extends JWindow{
@@ -43,7 +43,7 @@ public class SplashScreen extends JWindow{
 	        
 	       // ImageIcon img=new ImageIcon(SplashScreen.this.getClass().getResource("/view/img/rotella.gif"));
 	        
-	        JLabel label = new JLabel(new ImageIcon(interfaccia.class.getResource("/view/img/splash.jpg")));	        
+	        JLabel label = new JLabel(new ImageIcon(InterfacciaAmministratore.class.getResource("/view/img/splash.jpg")));	        
 	        label.setBackground(Color.WHITE);
 	        label.setOpaque(true);	           
 	        panel.add(label, BorderLayout.CENTER);

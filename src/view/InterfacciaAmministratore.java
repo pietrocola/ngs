@@ -53,13 +53,9 @@ import javax.swing.JLabel;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 
-public class interfaccia {
+public class InterfacciaAmministratore {
 
-	public class ProvaMap {
-
-	}
-
-	private JFrame frmNextgensportAmministratore;
+	public JFrame frmNextgensportAmministratore;
 	private JMenuBar menuBar;
 	private JMenu mnFile;
 	private JMenu mnModifica;
@@ -103,54 +99,32 @@ public class interfaccia {
 	private JMenuItem mntmConfiguraStruttura;
 	private JPopupMenu popupMenu_5;
 	private JMenuItem mntmGestioneSegretarie;
+	private JMenuItem mntmEsci;
 	
 	
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		
-		final SplashScreen  splash = new SplashScreen(); //spalsh screen
-		splash.setVisible(true);						//spalsh screen
-		//SwingUtilities.invokeLater(new Runnable() {			//spalsh screen
-		EventQueue.invokeLater(new Runnable() {
-
-			public void run() {
-
-				try {
-					
-
-					interfaccia window = new interfaccia();
-					Thread.sleep(2000);
-					window.frmNextgensportAmministratore.setVisible(true);
-					splash.setVisible(false);  		//spalsh screen
-					
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	
 
 	/**
 	 * Create the application.
+	 * @param logFrame 
 	 * 
 	 * @throws PropertyVetoException
 	 */
-	public interfaccia() throws PropertyVetoException {
-		initialize();
+	public InterfacciaAmministratore(JFrame logFrame) throws PropertyVetoException {
+		initialize(logFrame);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
+	 * @param logFrame 
 	 * 
 	 * @throws PropertyVetoException
 	 */
-	private void initialize() throws PropertyVetoException {
+	private void initialize(JFrame logFrame) throws PropertyVetoException {
 		frmNextgensportAmministratore = new JFrame();
 		frmNextgensportAmministratore.setTitle("nextGenSport - AMMINISTRATORE");
-		frmNextgensportAmministratore.setIconImage(Toolkit.getDefaultToolkit().getImage(interfaccia.class.getResource("/view/img/user_icon.png")));
+		frmNextgensportAmministratore.setIconImage(Toolkit.getDefaultToolkit().getImage(InterfacciaAmministratore.class.getResource("/view/img/user_icon.png")));
 		frmNextgensportAmministratore.setBounds(100, 100, 450, 300);
 
 		//frmNextgensportAmministratore.setSize(1000, 599);
@@ -162,6 +136,17 @@ public class interfaccia {
 			{
 				mnFile = new JMenu("File");
 				menuBar.add(mnFile);
+				{
+					mntmEsci = new JMenuItem("Esci");
+					mntmEsci.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							frmNextgensportAmministratore.setVisible(false);
+							frmNextgensportAmministratore.dispose();
+							logFrame.setVisible(true);		//libero le risorse dopo la chiusura della finestra
+						}
+					});
+					mnFile.add(mntmEsci);
+				}
 			}
 			{
 				mnModifica = new JMenu("Modifica");
@@ -193,7 +178,7 @@ public class interfaccia {
 							frmNextgensportAmministratore.repaint();
 						}
 					});
-					btnHome.setIcon(new ImageIcon(interfaccia.class.getResource("/view/img/home2.png")));
+					btnHome.setIcon(new ImageIcon(InterfacciaAmministratore.class.getResource("/view/img/home2.png")));
 					btnHome.setBorderPainted(false);
 					toolBar.add(btnHome);
 				}
@@ -202,7 +187,7 @@ public class interfaccia {
 			{
 				btnCorsi = new JButton("GESTIONE CORSI");
 				btnCorsi.setFocusable(false);
-				btnCorsi.setIcon(new ImageIcon(interfaccia.class.getResource("/view/img/yoga50.png")));
+				btnCorsi.setIcon(new ImageIcon(InterfacciaAmministratore.class.getResource("/view/img/yoga50.png")));
 				btnCorsi.setBorderPainted(false);
 				btnCorsi.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
@@ -258,7 +243,7 @@ public class interfaccia {
 						popupMenu_2.show(btnAbbonamenti, 0,	btnAbbonamenti.getY() + btnAbbonamenti.getHeight());
 					}
 				});				
-				btnAbbonamenti.setIcon(new ImageIcon(interfaccia.class.getResource("/view/img/abbonamento1.png")));
+				btnAbbonamenti.setIcon(new ImageIcon(InterfacciaAmministratore.class.getResource("/view/img/abbonamento1.png")));
 				toolBar.add(btnAbbonamenti);
 				{
 					popupMenu_2 = new JPopupMenu();
@@ -293,7 +278,7 @@ public class interfaccia {
 						popupMenu_3.show(btnPreventiviAbbonamenti, 0,	btnPreventiviAbbonamenti.getY() + btnPreventiviAbbonamenti.getHeight());
 					}
 				});
-				btnPreventiviAbbonamenti.setIcon(new ImageIcon(interfaccia.class.getResource("/view/img/calcolatrice 5.png")));
+				btnPreventiviAbbonamenti.setIcon(new ImageIcon(InterfacciaAmministratore.class.getResource("/view/img/calcolatrice 5.png")));
 				toolBar.add(btnPreventiviAbbonamenti);
 				{
 					popupMenu_3 = new JPopupMenu();
@@ -325,7 +310,7 @@ public class interfaccia {
 					}
 				});
 				btnClienti.setBorderPainted(false);
-				btnClienti.setIcon(new ImageIcon(interfaccia.class.getResource("/view/img/cliente.png")));
+				btnClienti.setIcon(new ImageIcon(InterfacciaAmministratore.class.getResource("/view/img/cliente.png")));
 				toolBar.add(btnClienti);
 				{
 					popupMenu_1 = new JPopupMenu();
@@ -373,7 +358,7 @@ public class interfaccia {
 					}
 				});
 				btnStruttura.setBorderPainted(false);
-				btnStruttura.setIcon(new ImageIcon(interfaccia.class.getResource("/view/img/struttura.png")));
+				btnStruttura.setIcon(new ImageIcon(InterfacciaAmministratore.class.getResource("/view/img/struttura.png")));
 				toolBar.add(btnStruttura);
 				{
 					popupMenu_4 = new JPopupMenu();
@@ -394,7 +379,7 @@ public class interfaccia {
 					}
 				});
 				btnPersonale.setBorderPainted(false);
-				btnPersonale.setIcon(new ImageIcon(interfaccia.class.getResource("/view/img/personale.png")));
+				btnPersonale.setIcon(new ImageIcon(InterfacciaAmministratore.class.getResource("/view/img/personale.png")));
 				toolBar.add(btnPersonale);
 				{
 					popupMenu_5 = new JPopupMenu();
