@@ -6,17 +6,18 @@ import ngs.persistentmodel.AnagraficaUniversitarioDAO;
 
 public class ClientePensionatoAdapter  implements IVerificaCategoriaClienteAdapter{
 	
-public AnagraficaPensionato verificaCategoriaCliente(String codice) {
+public String verificaCategoriaCliente(String codice) {
 		
-		
+		String a = "Pensionato: NO <br />";
 		for(int i=0; i<AnagraficaPensionatoDAO.listAnagraficaPensionatoByQuery(null, null).length;i++){
 			if(AnagraficaPensionatoDAO.listAnagraficaPensionatoByQuery(null, null)[i].getCodiceFiscale().equals(codice))
 				{
-				return AnagraficaPensionatoDAO.listAnagraficaPensionatoByQuery(null, null)[i];
+					a = "Pensionato: SI <br />";
+					//return AnagraficaPensionatoDAO.listAnagraficaPensionatoByQuery(null, null)[i];
 				}
 				
 		}
-		return null;
+		return a;
 	}
 
 }

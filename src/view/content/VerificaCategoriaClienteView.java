@@ -52,7 +52,7 @@ public class VerificaCategoriaClienteView extends JPanel {
 		}
 		{
 			lblRisultatoVerifica = new JLabel("");
-			lblRisultatoVerifica.setBounds(333, 113, 400, 33);
+			lblRisultatoVerifica.setBounds(333, 113, 400, 82);
 			add(lblRisultatoVerifica);
 		}
 		{
@@ -76,12 +76,14 @@ public class VerificaCategoriaClienteView extends JPanel {
 		btnVerifica.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String codice=textField.getText().toString();
-				Object aux=ErogaAbbonamentoHandler.getInstance().verificaCategoriaCliente(codice);
-				
-				if(aux!=null)
-					Message.confirmLabel(Object.class.toGenericString(), true, lblRisultatoVerifica);
+				String conferma="";
+				conferma=ErogaAbbonamentoHandler.getInstance().verificaCategoriaCliente(codice);
+				lblRisultatoVerifica.setText(conferma);
+				/*if(conferma==null)
+					Message.confirmLabel(Object.class.getClass().getName(), true, lblRisultatoVerifica);
 				else
 					Message.confirmLabel("il tizio mente", false, lblRisultatoVerifica);
+					*/
 			}
 		});
 		

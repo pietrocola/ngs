@@ -9,18 +9,20 @@ public class ClienteUniversitarioAdapter implements IVerificaCategoriaClienteAda
 	 * 
 	 * @param codice
 	 */
-	public AnagraficaUniversitario verificaCategoriaCliente(String codice) {
+	public String verificaCategoriaCliente(String codice) {
 		
-		
+		String a="Studente: NO <br />";
 		for(int i=0; i<AnagraficaUniversitarioDAO.listAnagraficaUniversitarioByQuery(null, null).length;i++){
 			if(AnagraficaUniversitarioDAO.listAnagraficaUniversitarioByQuery(null, null)[i].getCodiceFiscale().equals(codice))
 			{
-				return AnagraficaUniversitarioDAO.listAnagraficaUniversitarioByQuery(null, null)[i];
+				a="Studente: SI <br />";
+				//return AnagraficaUniversitarioDAO.listAnagraficaUniversitarioByQuery(null, null)[i];
 			}
+			
 				
 		}
 		
-		return null;
+		return a;
 	}
 
 }

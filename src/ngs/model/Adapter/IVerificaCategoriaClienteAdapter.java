@@ -8,6 +8,6 @@ public interface IVerificaCategoriaClienteAdapter {
 	 * 
 	 * @param codice
 	 */
-	Object verificaCategoriaCliente(String codice);
+	String verificaCategoriaCliente(String codice);
 
 }
