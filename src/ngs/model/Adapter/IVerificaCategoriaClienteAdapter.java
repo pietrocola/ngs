@@ -1,11 +1,13 @@
 package ngs.model.Adapter;
 
+import ngs.persistentmodel.AnagraficaUniversitario;
+
 public interface IVerificaCategoriaClienteAdapter {
 
 	/**
 	 * 
 	 * @param codice
 	 */
-	Boolean verificaCategoriaCliente(String codice);
+	Object verificaCategoriaCliente(String codice);
 
 }

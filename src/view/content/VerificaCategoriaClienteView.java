@@ -1,15 +1,26 @@
 package view.content;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
 import view.utility.Message;
+import ngs.controller.ConfAbbCorsiHandler;
 import ngs.controller.ErogaAbbonamentoHandler;
+import ngs.model.Adapter.ClientePensionatoAdapter;
+import ngs.model.Adapter.ClienteUniversitarioAdapter;
+import ngs.model.strategy.IPoliticaScontoAbbonamentoStrategy;
+import ngs.persistentmodel.CategoriaCliente;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.util.ArrayList;
+
+import javax.swing.JComboBox;
 
 public class VerificaCategoriaClienteView extends JPanel {
 	private JLabel lblMatricola;
@@ -41,8 +52,11 @@ public class VerificaCategoriaClienteView extends JPanel {
 		}
 		{
 			lblRisultatoVerifica = new JLabel("");
-			lblRisultatoVerifica.setBounds(333, 113, 400, 14);
+			lblRisultatoVerifica.setBounds(333, 113, 400, 33);
 			add(lblRisultatoVerifica);
+		}
+		{
+			ascoltatoreListaCategorieClienti();
 		}
 
 	}
@@ -50,13 +64,22 @@ public class VerificaCategoriaClienteView extends JPanel {
 	
 	
 	
+	private void ascoltatoreListaCategorieClienti() 
+	{
+		
+	}
+
+
+
+
 	private void ascoltatoreBottoneVerifica() {
 		btnVerifica.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String codice=textField.getText();
-				Boolean aux=ErogaAbbonamentoHandler.getInstance().verificaCategoriaCliente(codice);
-				if(aux==true)
-					Message.confirmLabel("Verifica ok", true, lblRisultatoVerifica);
+				String codice=textField.getText().toString();
+				Object aux=ErogaAbbonamentoHandler.getInstance().verificaCategoriaCliente(codice);
+				
+				if(aux!=null)
+					Message.confirmLabel(Object.class.toGenericString(), true, lblRisultatoVerifica);
 				else
 					Message.confirmLabel("il tizio mente", false, lblRisultatoVerifica);
 			}

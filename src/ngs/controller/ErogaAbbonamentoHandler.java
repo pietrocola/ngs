@@ -37,11 +37,25 @@ public class ErogaAbbonamentoHandler {
 	 * 
 	 * @param codice
 	 */
-	public Boolean verificaCategoriaCliente(String codice) {
+	public Object verificaCategoriaCliente(String codice) 
+	{		
+			
+		ArrayList<IVerificaCategoriaClienteAdapter> cat = new ArrayList<IVerificaCategoriaClienteAdapter>();
+		cat.add(new ClienteUniversitarioAdapter());
+		cat.add(new ClientePensionatoAdapter());
 		
-		catClienteAdapter= new ClienteUniversitarioAdapter();
-		return catClienteAdapter.verificaCategoriaCliente(codice);
+		Object verifica=null;
 		
+		for(IVerificaCategoriaClienteAdapter Icat: cat)
+		{
+			verifica=Icat.verificaCategoriaCliente(codice);
+			System.out.println(Icat.verificaCategoriaCliente(codice));
+			if(verifica!=null)
+					{return verifica;}
+			
+		}
+		
+		return verifica;		
 	}
 
 	/**
