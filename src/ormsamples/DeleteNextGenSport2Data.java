@@ -33,6 +33,27 @@ public class DeleteNextGenSport2Data {
 			ngs.persistentmodel.PreventivoAbbonamento lngspersistentmodelPreventivoAbbonamento = ngs.persistentmodel.PreventivoAbbonamentoDAO.loadPreventivoAbbonamentoByQuery(null, null);
 			// Delete the persistent object
 			ngs.persistentmodel.PreventivoAbbonamentoDAO.delete(lngspersistentmodelPreventivoAbbonamento);
+			ngs.persistentmodel.Cliente lngspersistentmodelCliente = ngs.persistentmodel.ClienteDAO.loadClienteByQuery(null, null);
+			// Delete the persistent object
+			ngs.persistentmodel.ClienteDAO.delete(lngspersistentmodelCliente);
+			ngs.persistentmodel.CertificatoMedico lngspersistentmodelCertificatoMedico = ngs.persistentmodel.CertificatoMedicoDAO.loadCertificatoMedicoByQuery(null, null);
+			// Delete the persistent object
+			ngs.persistentmodel.CertificatoMedicoDAO.delete(lngspersistentmodelCertificatoMedico);
+			ngs.persistentmodel.Pagamento lngspersistentmodelPagamento = ngs.persistentmodel.PagamentoDAO.loadPagamentoByQuery(null, null);
+			// Delete the persistent object
+			ngs.persistentmodel.PagamentoDAO.delete(lngspersistentmodelPagamento);
+			ngs.persistentmodel.Abbonamento lngspersistentmodelAbbonamento = ngs.persistentmodel.AbbonamentoDAO.loadAbbonamentoByQuery(null, null);
+			// Delete the persistent object
+			ngs.persistentmodel.AbbonamentoDAO.delete(lngspersistentmodelAbbonamento);
+			ngs.persistentmodel.ElencoAbbonamenti lngspersistentmodelElencoAbbonamenti = ngs.persistentmodel.ElencoAbbonamentiDAO.loadElencoAbbonamentiByQuery(null, null);
+			// Delete the persistent object
+			ngs.persistentmodel.ElencoAbbonamentiDAO.delete(lngspersistentmodelElencoAbbonamenti);
+			ngs.persistentmodel.AnagraficaUniversitario lngspersistentmodelAnagraficaUniversitario = ngs.persistentmodel.AnagraficaUniversitarioDAO.loadAnagraficaUniversitarioByQuery(null, null);
+			// Delete the persistent object
+			ngs.persistentmodel.AnagraficaUniversitarioDAO.delete(lngspersistentmodelAnagraficaUniversitario);
+			ngs.persistentmodel.AnagraficaPensionato lngspersistentmodelAnagraficaPensionato = ngs.persistentmodel.AnagraficaPensionatoDAO.loadAnagraficaPensionatoByQuery(null, null);
+			// Delete the persistent object
+			ngs.persistentmodel.AnagraficaPensionatoDAO.delete(lngspersistentmodelAnagraficaPensionato);
 			t.commit();
 		}
 		catch (Exception e) {

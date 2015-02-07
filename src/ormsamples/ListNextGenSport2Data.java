@@ -73,6 +73,62 @@ public class ListNextGenSport2Data {
 		}
 		System.out.println(length + " record(s) retrieved.");
 		
+		System.out.println("Listing Cliente...");
+		ngs.persistentmodel.Cliente[] ngspersistentmodelClientes = ngs.persistentmodel.ClienteDAO.listClienteByQuery(null, null);
+		length = Math.min(ngspersistentmodelClientes.length, ROW_COUNT);
+		for (int i = 0; i < length; i++) {
+			System.out.println(ngspersistentmodelClientes[i]);
+		}
+		System.out.println(length + " record(s) retrieved.");
+		
+		System.out.println("Listing CertificatoMedico...");
+		ngs.persistentmodel.CertificatoMedico[] ngspersistentmodelCertificatoMedicos = ngs.persistentmodel.CertificatoMedicoDAO.listCertificatoMedicoByQuery(null, null);
+		length = Math.min(ngspersistentmodelCertificatoMedicos.length, ROW_COUNT);
+		for (int i = 0; i < length; i++) {
+			System.out.println(ngspersistentmodelCertificatoMedicos[i]);
+		}
+		System.out.println(length + " record(s) retrieved.");
+		
+		System.out.println("Listing Pagamento...");
+		ngs.persistentmodel.Pagamento[] ngspersistentmodelPagamentos = ngs.persistentmodel.PagamentoDAO.listPagamentoByQuery(null, null);
+		length = Math.min(ngspersistentmodelPagamentos.length, ROW_COUNT);
+		for (int i = 0; i < length; i++) {
+			System.out.println(ngspersistentmodelPagamentos[i]);
+		}
+		System.out.println(length + " record(s) retrieved.");
+		
+		System.out.println("Listing Abbonamento...");
+		ngs.persistentmodel.Abbonamento[] ngspersistentmodelAbbonamentos = ngs.persistentmodel.AbbonamentoDAO.listAbbonamentoByQuery(null, null);
+		length = Math.min(ngspersistentmodelAbbonamentos.length, ROW_COUNT);
+		for (int i = 0; i < length; i++) {
+			System.out.println(ngspersistentmodelAbbonamentos[i]);
+		}
+		System.out.println(length + " record(s) retrieved.");
+		
+		System.out.println("Listing ElencoAbbonamenti...");
+		ngs.persistentmodel.ElencoAbbonamenti[] ngspersistentmodelElencoAbbonamentis = ngs.persistentmodel.ElencoAbbonamentiDAO.listElencoAbbonamentiByQuery(null, null);
+		length = Math.min(ngspersistentmodelElencoAbbonamentis.length, ROW_COUNT);
+		for (int i = 0; i < length; i++) {
+			System.out.println(ngspersistentmodelElencoAbbonamentis[i]);
+		}
+		System.out.println(length + " record(s) retrieved.");
+		
+		System.out.println("Listing AnagraficaUniversitario...");
+		ngs.persistentmodel.AnagraficaUniversitario[] ngspersistentmodelAnagraficaUniversitarios = ngs.persistentmodel.AnagraficaUniversitarioDAO.listAnagraficaUniversitarioByQuery(null, null);
+		length = Math.min(ngspersistentmodelAnagraficaUniversitarios.length, ROW_COUNT);
+		for (int i = 0; i < length; i++) {
+			System.out.println(ngspersistentmodelAnagraficaUniversitarios[i]);
+		}
+		System.out.println(length + " record(s) retrieved.");
+		
+		System.out.println("Listing AnagraficaPensionato...");
+		ngs.persistentmodel.AnagraficaPensionato[] ngspersistentmodelAnagraficaPensionatos = ngs.persistentmodel.AnagraficaPensionatoDAO.listAnagraficaPensionatoByQuery(null, null);
+		length = Math.min(ngspersistentmodelAnagraficaPensionatos.length, ROW_COUNT);
+		for (int i = 0; i < length; i++) {
+			System.out.println(ngspersistentmodelAnagraficaPensionatos[i]);
+		}
+		System.out.println(length + " record(s) retrieved.");
+		
 	}
 	
 	public void listByCriteria() throws PersistentException {
@@ -171,6 +227,90 @@ public class ListNextGenSport2Data {
 			 System.out.println(ngspersistentmodelPreventivoAbbonamentos[i]);
 		}
 		System.out.println(length + " PreventivoAbbonamento record(s) retrieved."); 
+		
+		System.out.println("Listing Cliente by Criteria...");
+		ngs.persistentmodel.ClienteCriteria lngspersistentmodelClienteCriteria = new ngs.persistentmodel.ClienteCriteria();
+		// Please uncomment the follow line and fill in parameter(s) 
+		//lngspersistentmodelClienteCriteria.codiceFiscale.eq();
+		lngspersistentmodelClienteCriteria.setMaxResults(ROW_COUNT);
+		ngs.persistentmodel.Cliente[] ngspersistentmodelClientes = lngspersistentmodelClienteCriteria.listCliente();
+		length =ngspersistentmodelClientes== null ? 0 : Math.min(ngspersistentmodelClientes.length, ROW_COUNT); 
+		for (int i = 0; i < length; i++) {
+			 System.out.println(ngspersistentmodelClientes[i]);
+		}
+		System.out.println(length + " Cliente record(s) retrieved."); 
+		
+		System.out.println("Listing CertificatoMedico by Criteria...");
+		ngs.persistentmodel.CertificatoMedicoCriteria lngspersistentmodelCertificatoMedicoCriteria = new ngs.persistentmodel.CertificatoMedicoCriteria();
+		// Please uncomment the follow line and fill in parameter(s) 
+		//lngspersistentmodelCertificatoMedicoCriteria.ID.eq();
+		lngspersistentmodelCertificatoMedicoCriteria.setMaxResults(ROW_COUNT);
+		ngs.persistentmodel.CertificatoMedico[] ngspersistentmodelCertificatoMedicos = lngspersistentmodelCertificatoMedicoCriteria.listCertificatoMedico();
+		length =ngspersistentmodelCertificatoMedicos== null ? 0 : Math.min(ngspersistentmodelCertificatoMedicos.length, ROW_COUNT); 
+		for (int i = 0; i < length; i++) {
+			 System.out.println(ngspersistentmodelCertificatoMedicos[i]);
+		}
+		System.out.println(length + " CertificatoMedico record(s) retrieved."); 
+		
+		System.out.println("Listing Pagamento by Criteria...");
+		ngs.persistentmodel.PagamentoCriteria lngspersistentmodelPagamentoCriteria = new ngs.persistentmodel.PagamentoCriteria();
+		// Please uncomment the follow line and fill in parameter(s) 
+		//lngspersistentmodelPagamentoCriteria.ID.eq();
+		lngspersistentmodelPagamentoCriteria.setMaxResults(ROW_COUNT);
+		ngs.persistentmodel.Pagamento[] ngspersistentmodelPagamentos = lngspersistentmodelPagamentoCriteria.listPagamento();
+		length =ngspersistentmodelPagamentos== null ? 0 : Math.min(ngspersistentmodelPagamentos.length, ROW_COUNT); 
+		for (int i = 0; i < length; i++) {
+			 System.out.println(ngspersistentmodelPagamentos[i]);
+		}
+		System.out.println(length + " Pagamento record(s) retrieved."); 
+		
+		System.out.println("Listing Abbonamento by Criteria...");
+		ngs.persistentmodel.AbbonamentoCriteria lngspersistentmodelAbbonamentoCriteria = new ngs.persistentmodel.AbbonamentoCriteria();
+		// Please uncomment the follow line and fill in parameter(s) 
+		//lngspersistentmodelAbbonamentoCriteria.ID.eq();
+		lngspersistentmodelAbbonamentoCriteria.setMaxResults(ROW_COUNT);
+		ngs.persistentmodel.Abbonamento[] ngspersistentmodelAbbonamentos = lngspersistentmodelAbbonamentoCriteria.listAbbonamento();
+		length =ngspersistentmodelAbbonamentos== null ? 0 : Math.min(ngspersistentmodelAbbonamentos.length, ROW_COUNT); 
+		for (int i = 0; i < length; i++) {
+			 System.out.println(ngspersistentmodelAbbonamentos[i]);
+		}
+		System.out.println(length + " Abbonamento record(s) retrieved."); 
+		
+		System.out.println("Listing ElencoAbbonamenti by Criteria...");
+		ngs.persistentmodel.ElencoAbbonamentiCriteria lngspersistentmodelElencoAbbonamentiCriteria = new ngs.persistentmodel.ElencoAbbonamentiCriteria();
+		// Please uncomment the follow line and fill in parameter(s) 
+		//lngspersistentmodelElencoAbbonamentiCriteria.ID.eq();
+		lngspersistentmodelElencoAbbonamentiCriteria.setMaxResults(ROW_COUNT);
+		ngs.persistentmodel.ElencoAbbonamenti[] ngspersistentmodelElencoAbbonamentis = lngspersistentmodelElencoAbbonamentiCriteria.listElencoAbbonamenti();
+		length =ngspersistentmodelElencoAbbonamentis== null ? 0 : Math.min(ngspersistentmodelElencoAbbonamentis.length, ROW_COUNT); 
+		for (int i = 0; i < length; i++) {
+			 System.out.println(ngspersistentmodelElencoAbbonamentis[i]);
+		}
+		System.out.println(length + " ElencoAbbonamenti record(s) retrieved."); 
+		
+		System.out.println("Listing AnagraficaUniversitario by Criteria...");
+		ngs.persistentmodel.AnagraficaUniversitarioCriteria lngspersistentmodelAnagraficaUniversitarioCriteria = new ngs.persistentmodel.AnagraficaUniversitarioCriteria();
+		// Please uncomment the follow line and fill in parameter(s) 
+		//lngspersistentmodelAnagraficaUniversitarioCriteria.codiceFiscale.eq();
+		lngspersistentmodelAnagraficaUniversitarioCriteria.setMaxResults(ROW_COUNT);
+		ngs.persistentmodel.AnagraficaUniversitario[] ngspersistentmodelAnagraficaUniversitarios = lngspersistentmodelAnagraficaUniversitarioCriteria.listAnagraficaUniversitario();
+		length =ngspersistentmodelAnagraficaUniversitarios== null ? 0 : Math.min(ngspersistentmodelAnagraficaUniversitarios.length, ROW_COUNT); 
+		for (int i = 0; i < length; i++) {
+			 System.out.println(ngspersistentmodelAnagraficaUniversitarios[i]);
+		}
+		System.out.println(length + " AnagraficaUniversitario record(s) retrieved."); 
+		
+		System.out.println("Listing AnagraficaPensionato by Criteria...");
+		ngs.persistentmodel.AnagraficaPensionatoCriteria lngspersistentmodelAnagraficaPensionatoCriteria = new ngs.persistentmodel.AnagraficaPensionatoCriteria();
+		// Please uncomment the follow line and fill in parameter(s) 
+		//lngspersistentmodelAnagraficaPensionatoCriteria.codiceFiscale.eq();
+		lngspersistentmodelAnagraficaPensionatoCriteria.setMaxResults(ROW_COUNT);
+		ngs.persistentmodel.AnagraficaPensionato[] ngspersistentmodelAnagraficaPensionatos = lngspersistentmodelAnagraficaPensionatoCriteria.listAnagraficaPensionato();
+		length =ngspersistentmodelAnagraficaPensionatos== null ? 0 : Math.min(ngspersistentmodelAnagraficaPensionatos.length, ROW_COUNT); 
+		for (int i = 0; i < length; i++) {
+			 System.out.println(ngspersistentmodelAnagraficaPensionatos[i]);
+		}
+		System.out.println(length + " AnagraficaPensionato record(s) retrieved."); 
 		
 	}
 	

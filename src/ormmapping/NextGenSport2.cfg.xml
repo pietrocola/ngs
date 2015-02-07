@@ -23,9 +23,16 @@ License Type: Academic
 		<property name="show_sql">false</property>
 		<property name="query.substitutions">true 1, false 0, yes 'Y', no 'N'</property>
 		<!-- mapping files -->
+		<mapping resource="ormmapping/ngs/persistentmodel/Abbonamento.hbm.xml" />
+		<mapping resource="ormmapping/ngs/persistentmodel/AnagraficaPensionato.hbm.xml" />
+		<mapping resource="ormmapping/ngs/persistentmodel/AnagraficaUniversitario.hbm.xml" />
 		<mapping resource="ormmapping/ngs/persistentmodel/CategoriaCliente.hbm.xml" />
+		<mapping resource="ormmapping/ngs/persistentmodel/CertificatoMedico.hbm.xml" />
+		<mapping resource="ormmapping/ngs/persistentmodel/Cliente.hbm.xml" />
 		<mapping resource="ormmapping/ngs/persistentmodel/DescrizioneAbbonamento.hbm.xml" />
 		<mapping resource="ormmapping/ngs/persistentmodel/DescrizioneCorso.hbm.xml" />
+		<mapping resource="ormmapping/ngs/persistentmodel/ElencoAbbonamenti.hbm.xml" />
+		<mapping resource="ormmapping/ngs/persistentmodel/Pagamento.hbm.xml" />
 		<mapping resource="ormmapping/ngs/persistentmodel/PoliticaScontoAbbonamento.hbm.xml" />
 		<mapping resource="ormmapping/ngs/persistentmodel/PreventivoAbbonamento.hbm.xml" />
 		<mapping resource="ormmapping/ngs/persistentmodel/SalaPesi.hbm.xml" />

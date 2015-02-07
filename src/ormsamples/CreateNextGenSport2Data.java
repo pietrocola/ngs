@@ -33,6 +33,27 @@ public class CreateNextGenSport2Data {
 			ngs.persistentmodel.PreventivoAbbonamento lngspersistentmodelPreventivoAbbonamento = ngs.persistentmodel.PreventivoAbbonamentoDAO.createPreventivoAbbonamento();
 			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : numeroMesi, prezzo
 			ngs.persistentmodel.PreventivoAbbonamentoDAO.save(lngspersistentmodelPreventivoAbbonamento);
+			ngs.persistentmodel.Cliente lngspersistentmodelCliente = ngs.persistentmodel.ClienteDAO.createCliente();
+			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : telefono, codiceFiscale
+			ngs.persistentmodel.ClienteDAO.save(lngspersistentmodelCliente);
+			ngs.persistentmodel.CertificatoMedico lngspersistentmodelCertificatoMedico = ngs.persistentmodel.CertificatoMedicoDAO.createCertificatoMedico();
+			// Initialize the properties of the persistent object here
+			ngs.persistentmodel.CertificatoMedicoDAO.save(lngspersistentmodelCertificatoMedico);
+			ngs.persistentmodel.Pagamento lngspersistentmodelPagamento = ngs.persistentmodel.PagamentoDAO.createPagamento();
+			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : stato, importo
+			ngs.persistentmodel.PagamentoDAO.save(lngspersistentmodelPagamento);
+			ngs.persistentmodel.Abbonamento lngspersistentmodelAbbonamento = ngs.persistentmodel.AbbonamentoDAO.createAbbonamento();
+			// Initialize the properties of the persistent object here
+			ngs.persistentmodel.AbbonamentoDAO.save(lngspersistentmodelAbbonamento);
+			ngs.persistentmodel.ElencoAbbonamenti lngspersistentmodelElencoAbbonamenti = ngs.persistentmodel.ElencoAbbonamentiDAO.createElencoAbbonamenti();
+			// Initialize the properties of the persistent object here
+			ngs.persistentmodel.ElencoAbbonamentiDAO.save(lngspersistentmodelElencoAbbonamenti);
+			ngs.persistentmodel.AnagraficaUniversitario lngspersistentmodelAnagraficaUniversitario = ngs.persistentmodel.AnagraficaUniversitarioDAO.createAnagraficaUniversitario();
+			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : matricola, codiceFiscale
+			ngs.persistentmodel.AnagraficaUniversitarioDAO.save(lngspersistentmodelAnagraficaUniversitario);
+			ngs.persistentmodel.AnagraficaPensionato lngspersistentmodelAnagraficaPensionato = ngs.persistentmodel.AnagraficaPensionatoDAO.createAnagraficaPensionato();
+			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : pensione, codiceFiscale
+			ngs.persistentmodel.AnagraficaPensionatoDAO.save(lngspersistentmodelAnagraficaPensionato);
 			t.commit();
 		}
 		catch (Exception e) {

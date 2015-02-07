@@ -33,6 +33,27 @@ public class RetrieveAndUpdateNextGenSport2Data {
 			ngs.persistentmodel.PreventivoAbbonamento lngspersistentmodelPreventivoAbbonamento = ngs.persistentmodel.PreventivoAbbonamentoDAO.loadPreventivoAbbonamentoByQuery(null, null);
 			// Update the properties of the persistent object
 			ngs.persistentmodel.PreventivoAbbonamentoDAO.save(lngspersistentmodelPreventivoAbbonamento);
+			ngs.persistentmodel.Cliente lngspersistentmodelCliente = ngs.persistentmodel.ClienteDAO.loadClienteByQuery(null, null);
+			// Update the properties of the persistent object
+			ngs.persistentmodel.ClienteDAO.save(lngspersistentmodelCliente);
+			ngs.persistentmodel.CertificatoMedico lngspersistentmodelCertificatoMedico = ngs.persistentmodel.CertificatoMedicoDAO.loadCertificatoMedicoByQuery(null, null);
+			// Update the properties of the persistent object
+			ngs.persistentmodel.CertificatoMedicoDAO.save(lngspersistentmodelCertificatoMedico);
+			ngs.persistentmodel.Pagamento lngspersistentmodelPagamento = ngs.persistentmodel.PagamentoDAO.loadPagamentoByQuery(null, null);
+			// Update the properties of the persistent object
+			ngs.persistentmodel.PagamentoDAO.save(lngspersistentmodelPagamento);
+			ngs.persistentmodel.Abbonamento lngspersistentmodelAbbonamento = ngs.persistentmodel.AbbonamentoDAO.loadAbbonamentoByQuery(null, null);
+			// Update the properties of the persistent object
+			ngs.persistentmodel.AbbonamentoDAO.save(lngspersistentmodelAbbonamento);
+			ngs.persistentmodel.ElencoAbbonamenti lngspersistentmodelElencoAbbonamenti = ngs.persistentmodel.ElencoAbbonamentiDAO.loadElencoAbbonamentiByQuery(null, null);
+			// Update the properties of the persistent object
+			ngs.persistentmodel.ElencoAbbonamentiDAO.save(lngspersistentmodelElencoAbbonamenti);
+			ngs.persistentmodel.AnagraficaUniversitario lngspersistentmodelAnagraficaUniversitario = ngs.persistentmodel.AnagraficaUniversitarioDAO.loadAnagraficaUniversitarioByQuery(null, null);
+			// Update the properties of the persistent object
+			ngs.persistentmodel.AnagraficaUniversitarioDAO.save(lngspersistentmodelAnagraficaUniversitario);
+			ngs.persistentmodel.AnagraficaPensionato lngspersistentmodelAnagraficaPensionato = ngs.persistentmodel.AnagraficaPensionatoDAO.loadAnagraficaPensionatoByQuery(null, null);
+			// Update the properties of the persistent object
+			ngs.persistentmodel.AnagraficaPensionatoDAO.save(lngspersistentmodelAnagraficaPensionato);
 			t.commit();
 		}
 		catch (Exception e) {
@@ -89,6 +110,48 @@ public class RetrieveAndUpdateNextGenSport2Data {
 		// Please uncomment the follow line and fill in parameter(s)
 		//lngspersistentmodelPreventivoAbbonamentoCriteria.ID.eq();
 		System.out.println(lngspersistentmodelPreventivoAbbonamentoCriteria.uniquePreventivoAbbonamento());
+		
+		System.out.println("Retrieving Cliente by ClienteCriteria");
+		ngs.persistentmodel.ClienteCriteria lngspersistentmodelClienteCriteria = new ngs.persistentmodel.ClienteCriteria();
+		// Please uncomment the follow line and fill in parameter(s)
+		//lngspersistentmodelClienteCriteria.codiceFiscale.eq();
+		System.out.println(lngspersistentmodelClienteCriteria.uniqueCliente());
+		
+		System.out.println("Retrieving CertificatoMedico by CertificatoMedicoCriteria");
+		ngs.persistentmodel.CertificatoMedicoCriteria lngspersistentmodelCertificatoMedicoCriteria = new ngs.persistentmodel.CertificatoMedicoCriteria();
+		// Please uncomment the follow line and fill in parameter(s)
+		//lngspersistentmodelCertificatoMedicoCriteria.ID.eq();
+		System.out.println(lngspersistentmodelCertificatoMedicoCriteria.uniqueCertificatoMedico());
+		
+		System.out.println("Retrieving Pagamento by PagamentoCriteria");
+		ngs.persistentmodel.PagamentoCriteria lngspersistentmodelPagamentoCriteria = new ngs.persistentmodel.PagamentoCriteria();
+		// Please uncomment the follow line and fill in parameter(s)
+		//lngspersistentmodelPagamentoCriteria.ID.eq();
+		System.out.println(lngspersistentmodelPagamentoCriteria.uniquePagamento());
+		
+		System.out.println("Retrieving Abbonamento by AbbonamentoCriteria");
+		ngs.persistentmodel.AbbonamentoCriteria lngspersistentmodelAbbonamentoCriteria = new ngs.persistentmodel.AbbonamentoCriteria();
+		// Please uncomment the follow line and fill in parameter(s)
+		//lngspersistentmodelAbbonamentoCriteria.ID.eq();
+		System.out.println(lngspersistentmodelAbbonamentoCriteria.uniqueAbbonamento());
+		
+		System.out.println("Retrieving ElencoAbbonamenti by ElencoAbbonamentiCriteria");
+		ngs.persistentmodel.ElencoAbbonamentiCriteria lngspersistentmodelElencoAbbonamentiCriteria = new ngs.persistentmodel.ElencoAbbonamentiCriteria();
+		// Please uncomment the follow line and fill in parameter(s)
+		//lngspersistentmodelElencoAbbonamentiCriteria.ID.eq();
+		System.out.println(lngspersistentmodelElencoAbbonamentiCriteria.uniqueElencoAbbonamenti());
+		
+		System.out.println("Retrieving AnagraficaUniversitario by AnagraficaUniversitarioCriteria");
+		ngs.persistentmodel.AnagraficaUniversitarioCriteria lngspersistentmodelAnagraficaUniversitarioCriteria = new ngs.persistentmodel.AnagraficaUniversitarioCriteria();
+		// Please uncomment the follow line and fill in parameter(s)
+		//lngspersistentmodelAnagraficaUniversitarioCriteria.codiceFiscale.eq();
+		System.out.println(lngspersistentmodelAnagraficaUniversitarioCriteria.uniqueAnagraficaUniversitario());
+		
+		System.out.println("Retrieving AnagraficaPensionato by AnagraficaPensionatoCriteria");
+		ngs.persistentmodel.AnagraficaPensionatoCriteria lngspersistentmodelAnagraficaPensionatoCriteria = new ngs.persistentmodel.AnagraficaPensionatoCriteria();
+		// Please uncomment the follow line and fill in parameter(s)
+		//lngspersistentmodelAnagraficaPensionatoCriteria.codiceFiscale.eq();
+		System.out.println(lngspersistentmodelAnagraficaPensionatoCriteria.uniqueAnagraficaPensionato());
 		
 	}
 	

@@ -18,7 +18,7 @@
   </Setting>
   <Setting type="2">
     <Driver>MySQL5 (Connector/J Driver)</Driver>
-    <DriverFiles>C:\Users\Daniele\Desktop\ing software\mysql-connector-java-5.1.33\mysql-connector-java-5.1.33\mysql-connector-java-5.1.33-bin.jar</DriverFiles>
+    <DriverFiles>C:\Users\Pietro\Desktop\mysql-connector-java-5.1.33\mysql-connector-java-5.1.33\mysql-connector-java-5.1.33-bin.jar</DriverFiles>
     <Dialect>org.hibernate.dialect.MySQL5InnoDBDialect</Dialect>
     <DriverClass>com.mysql.jdbc.Driver</DriverClass>
     <URL>jdbc:mysql://localhost/ngs</URL>
