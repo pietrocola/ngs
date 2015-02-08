@@ -1,8 +1,6 @@
 package ngs.model;
 
 import java.util.ArrayList;
-import ngs.persistentmodel.*;
-
 
 import ngs.persistentmodel.APersistentModel;
 import ngs.persistentmodel.DescrizioneAbbonamento;
@@ -30,14 +28,6 @@ public class M_PreventivoAbbonamento extends AModel {
 		
 		return true;
 		
-	}
-
-	/**
-	 * 
-	 * @param categoriaCliente
-	 */
-	public ArrayList<PreventivoAbbonamento> getPreventiviAbbonamenti(CategoriaCliente categoriaCliente) {
-		throw new UnsupportedOperationException();
 	}
 	
 	
