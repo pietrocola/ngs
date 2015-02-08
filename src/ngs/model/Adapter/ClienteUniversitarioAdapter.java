@@ -17,9 +17,7 @@ public class ClienteUniversitarioAdapter implements IVerificaCategoriaClienteAda
 			{
 				a="Studente: SI <br />";
 				//return AnagraficaUniversitarioDAO.listAnagraficaUniversitarioByQuery(null, null)[i];
-			}
-			
-				
+			}							
 		}
 		
 		return a;

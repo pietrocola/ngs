@@ -61,16 +61,12 @@ public class VerificaCategoriaClienteView extends JPanel {
 
 	}
 
-	
-	
+
 	
 	private void ascoltatoreListaCategorieClienti() 
 	{
 		
 	}
-
-
-
 
 	private void ascoltatoreBottoneVerifica() {
 		btnVerifica.addActionListener(new ActionListener() {
