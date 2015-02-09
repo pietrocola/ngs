@@ -15,7 +15,7 @@ public interface IPoliticaScontoAbbonamentoStrategy {
 	 * @param durataMesi
 	 * @param numMesi
 	 */
-	float calcolaPrezzoAbbonamento(float pbm, int numMesi);
+	float calcolaPrezzoAbbonamento(float pbm, PoliticaScontoAbbonamento politicaSconto);
 
 	ArrayList<PoliticaScontoAbbonamento> getPoliticheSconto(CategoriaCliente cat);
 

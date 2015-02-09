@@ -10,6 +10,7 @@ import ngs.persistentmodel.DescrizioneCorso;
 import ngs.persistentmodel.DescrizioneCorsoDAO;
 import ngs.persistentmodel.PoliticaScontoAbbonamento;
 import ngs.persistentmodel.PoliticaScontoAbbonamentoDAO;
+import ngs.persistentmodel.ScontoPercentuale;
 import ngs.persistentmodel.ScontoPercentualeDAO;
 
 public class ScontoPercentualeStrategy extends AModel implements IPoliticaScontoAbbonamentoStrategy {
@@ -19,10 +20,18 @@ public class ScontoPercentualeStrategy extends AModel implements IPoliticaSconto
 	 * @param pbm
 	 * @param numMesi
 	 */
-	public float calcolaPrezzoAbbonamento(float pbm, int numMesi) {
-		throw new UnsupportedOperationException();
+	
+	
+	public float calcolaPrezzoAbbonamento(float pbm, PoliticaScontoAbbonamento politicaSconto) {
+		
+		int numMesi=((ScontoPercentuale) politicaSconto).getNumeroMesi();
+		float percentuale=((ScontoPercentuale) politicaSconto).getScontoPercentuale();
+		return ((pbm*numMesi)-(((pbm*numMesi)*percentuale)/100));
+		
 	}
 
+	
+	
 	@Override
 	public APersistentModel getPersistentModel() {
 		// TODO Auto-generated method stub
@@ -90,6 +99,18 @@ public class ScontoPercentualeStrategy extends AModel implements IPoliticaSconto
 				
 		}
 		return aux;
+	}
+
+	public boolean verificaCatClienteNumMesiScontoPercentuale(CategoriaCliente categoria,int numMesi) {
+		// TODO Auto-generated method stub
+		
+		for(int i=0; i<ScontoPercentualeDAO.listScontoPercentualeByQuery(null, null).length;i++){
+			if(ScontoPercentualeDAO.listScontoPercentualeByQuery(null, null)[i].getCategoriaCliente().equals(categoria) && ScontoPercentualeDAO.listScontoPercentualeByQuery(null, null)[i].getNumeroMesi()==numMesi)
+				return false;
+		}
+		
+		
+		return true;
 	}
 
 }

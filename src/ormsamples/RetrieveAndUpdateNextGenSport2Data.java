@@ -51,6 +51,12 @@ public class RetrieveAndUpdateNextGenSport2Data {
 			ngs.persistentmodel.AnagraficaUniversitario lngspersistentmodelAnagraficaUniversitario = ngs.persistentmodel.AnagraficaUniversitarioDAO.loadAnagraficaUniversitarioByQuery(null, null);
 			// Update the properties of the persistent object
 			ngs.persistentmodel.AnagraficaUniversitarioDAO.save(lngspersistentmodelAnagraficaUniversitario);
+			ngs.persistentmodel.DipendenteAleniaSpazio lngspersistentmodelDipendenteAleniaSpazio = ngs.persistentmodel.DipendenteAleniaSpazioDAO.loadDipendenteAleniaSpazioByQuery(null, null);
+			// Update the properties of the persistent object
+			ngs.persistentmodel.DipendenteAleniaSpazioDAO.save(lngspersistentmodelDipendenteAleniaSpazio);
+			ngs.persistentmodel.ScontoFisso lngspersistentmodelScontoFisso = ngs.persistentmodel.ScontoFissoDAO.loadScontoFissoByQuery(null, null);
+			// Update the properties of the persistent object
+			ngs.persistentmodel.ScontoFissoDAO.save(lngspersistentmodelScontoFisso);
 			t.commit();
 		}
 		catch (Exception e) {
@@ -143,6 +149,18 @@ public class RetrieveAndUpdateNextGenSport2Data {
 		// Please uncomment the follow line and fill in parameter(s)
 		//lngspersistentmodelAnagraficaUniversitarioCriteria.matricola.eq();
 		System.out.println(lngspersistentmodelAnagraficaUniversitarioCriteria.uniqueAnagraficaUniversitario());
+		
+		System.out.println("Retrieving DipendenteAleniaSpazio by DipendenteAleniaSpazioCriteria");
+		ngs.persistentmodel.DipendenteAleniaSpazioCriteria lngspersistentmodelDipendenteAleniaSpazioCriteria = new ngs.persistentmodel.DipendenteAleniaSpazioCriteria();
+		// Please uncomment the follow line and fill in parameter(s)
+		//lngspersistentmodelDipendenteAleniaSpazioCriteria.codiceDipendente.eq();
+		System.out.println(lngspersistentmodelDipendenteAleniaSpazioCriteria.uniqueDipendenteAleniaSpazio());
+		
+		System.out.println("Retrieving ScontoFisso by ScontoFissoCriteria");
+		ngs.persistentmodel.ScontoFissoCriteria lngspersistentmodelScontoFissoCriteria = new ngs.persistentmodel.ScontoFissoCriteria();
+		// Please uncomment the follow line and fill in parameter(s)
+		//lngspersistentmodelScontoFissoCriteria.nomePolitica.eq();
+		System.out.println(lngspersistentmodelScontoFissoCriteria.uniqueScontoFisso());
 		
 	}
 	

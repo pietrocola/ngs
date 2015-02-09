@@ -46,7 +46,7 @@ public class ImpostaPoliticaScontoPercentualeView extends JPanel {
 		{
 			comboBox = new JComboBox();
 			ascoltatoreListaCategorieClienti();			
-			comboBox.setBounds(189, 52, 108, 20);
+			comboBox.setBounds(189, 52, 146, 20);
 			add(comboBox);
 		}
 		{
@@ -155,11 +155,14 @@ public class ImpostaPoliticaScontoPercentualeView extends JPanel {
 					int numMesi=Integer.parseInt(numeroMesi);
 					float scontoPerc=Float.parseFloat(scontoPercentuale);
 		
-			    	
-			    	boolean aux1;
+					
+					boolean aux1;
 					aux1=ConfAbbCorsiHandler.getInstance().verificaNomePoliticaScontoPercentuale(nomePolitica);
 					
-					if(aux1==true)
+					boolean aux2;
+					aux2=ConfAbbCorsiHandler.getInstance().verificaCatClienteNumMesiScontoPercentuale(categoria,numMesi);
+					
+					if(aux1==true && aux2==true)
 					{
 						String riepilogo="Confermare la creazione dello sconto percentuale?\n   NOME: "+nomePolitica+"\n   CATEGORIA CLIENTE: "+categoria.getNomeCat()+"\n   NUMERO MESI: "+numMesi+"\n   SCONTO PERCENTUALE: "+scontoPerc+"%\n\n";
 						int risposta = Message.questionConfirmMessage("CONFERMA", riepilogo);
@@ -178,7 +181,12 @@ public class ImpostaPoliticaScontoPercentualeView extends JPanel {
 					}
 					else
 					{
-						Message.errorMessage("ERRORE", "Il nome della politica scelto è già stato inserito");
+						if(aux1==false && aux2==true || (aux1==false && aux2==false))
+						    Message.errorMessage("ERRORE", "Il nome della politica scelto è già stato inserito");
+						else
+							if(aux1==true && aux2==false)
+								Message.errorMessage("ERRORE", "E' già stato inserito uno sconto per la categoria cliente e il numero mesi scelti");
+							
 					}
 				
 			    }	

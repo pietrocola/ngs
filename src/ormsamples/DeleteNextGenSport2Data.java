@@ -51,6 +51,12 @@ public class DeleteNextGenSport2Data {
 			ngs.persistentmodel.AnagraficaUniversitario lngspersistentmodelAnagraficaUniversitario = ngs.persistentmodel.AnagraficaUniversitarioDAO.loadAnagraficaUniversitarioByQuery(null, null);
 			// Delete the persistent object
 			ngs.persistentmodel.AnagraficaUniversitarioDAO.delete(lngspersistentmodelAnagraficaUniversitario);
+			ngs.persistentmodel.DipendenteAleniaSpazio lngspersistentmodelDipendenteAleniaSpazio = ngs.persistentmodel.DipendenteAleniaSpazioDAO.loadDipendenteAleniaSpazioByQuery(null, null);
+			// Delete the persistent object
+			ngs.persistentmodel.DipendenteAleniaSpazioDAO.delete(lngspersistentmodelDipendenteAleniaSpazio);
+			ngs.persistentmodel.ScontoFisso lngspersistentmodelScontoFisso = ngs.persistentmodel.ScontoFissoDAO.loadScontoFissoByQuery(null, null);
+			// Delete the persistent object
+			ngs.persistentmodel.ScontoFissoDAO.delete(lngspersistentmodelScontoFisso);
 			t.commit();
 		}
 		catch (Exception e) {

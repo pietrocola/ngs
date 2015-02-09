@@ -1,1 +1,2 @@
-CREATE TABLE AnagraficaUniversitario (Matricola int(11) NOT NULL AUTO_INCREMENT, Nome varchar(255), Cognome varchar(255), PRIMARY KEY (Matricola)) ENGINE=InnoDB;
+ALTER TABLE PoliticaScontoAbbonamento ADD COLUMN NumeroMesi2 int(11);
+ALTER TABLE PoliticaScontoAbbonamento ADD COLUMN ScontoFisso float;

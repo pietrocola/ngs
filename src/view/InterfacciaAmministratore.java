@@ -31,6 +31,7 @@ import view.content.ConfiguraAbbonamentoView;
 import view.content.ConfiguraCorsoView;
 import view.content.HomeView;
 import view.content.ImpostaCategoriaClienteView;
+import view.content.ImpostaPoliticaScontoFissoView;
 import view.content.ImpostaPoliticaScontoPercentualeView;
 import view.content.ImpostaTipologiaCorsoView;
 import view.content.CreaPreventivoView;
@@ -77,6 +78,7 @@ public class InterfacciaAmministratore {
 	private JMenuItem mntmConfiguraAbbonamento;
 	private JMenu mnImpostaPoliticaSconto;
 	private JMenuItem mntmScontoPercentuale;
+	private JMenuItem mntmScontoFisso;
 	
 	private JMenuItem mntmModifica;
 	private JMenuItem mntmElimina;
@@ -346,6 +348,11 @@ public class InterfacciaAmministratore {
 							ascoltatoreScontoPercentuale();
 							mnImpostaPoliticaSconto.add(mntmScontoPercentuale);
 						}
+						{
+							mntmScontoFisso = new JMenuItem("sconto fisso");
+							ascoltatoreScontoFisso();
+							mnImpostaPoliticaSconto.add(mntmScontoFisso);
+						}
 					}
 				}
 			}
@@ -409,6 +416,31 @@ public class InterfacciaAmministratore {
 			frmNextgensportAmministratore.getContentPane().revalidate();
 			frmNextgensportAmministratore.repaint();
 		}
+	}
+
+	private void ascoltatoreScontoFisso() {
+		mntmScontoFisso.addActionListener(new ActionListener() {
+			public void actionPerformed(
+					ActionEvent e) {
+						// JInternalFrame internalFrame =
+						// new JInternalFrame("home->corso->imposta tipologia corso");		
+						clearMainPanel(frmNextgensportAmministratore);
+		
+						ImpostaPoliticaScontoFissoView psf = new ImpostaPoliticaScontoFissoView();
+						// internalFrame.getContentPane().add(itc,BorderLayout.CENTER);
+		
+						frmNextgensportAmministratore.getContentPane().add(psf,
+								BorderLayout.CENTER);
+		
+						// internalFrame.setVisible(true);
+						frmNextgensportAmministratore.getContentPane().revalidate();
+		
+						frmNextgensportAmministratore.repaint();
+
+				}
+			});
+		// TODO Auto-generated method stub
+		
 	}
 
 	private void ascoltatoreAggiungiCategoriaCliente() {

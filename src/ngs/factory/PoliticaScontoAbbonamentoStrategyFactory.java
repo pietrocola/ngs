@@ -3,6 +3,8 @@ package ngs.factory;
 import ngs.controller.ConfAbbCorsiHandler;
 import ngs.model.strategy.*;
 import ngs.persistentmodel.CategoriaCliente;
+import ngs.persistentmodel.ScontoFisso;
+import ngs.persistentmodel.ScontoFissoDAO;
 import ngs.persistentmodel.ScontoPercentuale;
 import ngs.persistentmodel.ScontoPercentualeDAO;
 
@@ -46,6 +48,19 @@ public class PoliticaScontoAbbonamentoStrategyFactory {
 	    return ScontoPercentualeDAO.save(sps);
 	
 		
+	}
+
+
+
+
+	public boolean impostaPoliticaScontoFisso(CategoriaCliente categoria, String nomePolitica, int numMesi, float scontoFis) {
+		ScontoFisso sf=ScontoFissoDAO.createScontoFisso();
+	    sf.setCategoriaCliente(categoria);
+	    sf.setNomePolitica(nomePolitica);
+	    sf.setNumeroMesi(numMesi);
+	    sf.setScontoFisso(scontoFis);
+
+	    return ScontoFissoDAO.save(sf);
 	}
 	
 	

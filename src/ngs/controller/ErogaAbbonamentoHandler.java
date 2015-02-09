@@ -37,9 +37,18 @@ public class ErogaAbbonamentoHandler {
 	 * 
 	 * @param codice
 	 */
-	public Boolean verificaCategoriaCliente(String codice) {
+	public Boolean verificaCategoriaCliente(CategoriaCliente cat,String codice) {
 		
-		catClienteAdapter= new ClienteUniversitarioAdapter();
+		
+		if(cat.getNomeCat().equals("univ")){
+			catClienteAdapter= new ClienteUniversitarioAdapter();
+		}else
+			if(cat.getNomeCat().equals("dipendente alenia")){
+				catClienteAdapter= new ClienteDipendenteAleniaSpazioAdapter();
+		    }else{
+		    	//catClienteAdapter=null;
+		    }
+		
 		return catClienteAdapter.verificaCategoriaCliente(codice);
 		
 	}

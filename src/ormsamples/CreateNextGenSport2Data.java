@@ -51,6 +51,12 @@ public class CreateNextGenSport2Data {
 			ngs.persistentmodel.AnagraficaUniversitario lngspersistentmodelAnagraficaUniversitario = ngs.persistentmodel.AnagraficaUniversitarioDAO.createAnagraficaUniversitario();
 			// Initialize the properties of the persistent object here
 			ngs.persistentmodel.AnagraficaUniversitarioDAO.save(lngspersistentmodelAnagraficaUniversitario);
+			ngs.persistentmodel.DipendenteAleniaSpazio lngspersistentmodelDipendenteAleniaSpazio = ngs.persistentmodel.DipendenteAleniaSpazioDAO.createDipendenteAleniaSpazio();
+			// Initialize the properties of the persistent object here
+			ngs.persistentmodel.DipendenteAleniaSpazioDAO.save(lngspersistentmodelDipendenteAleniaSpazio);
+			ngs.persistentmodel.ScontoFisso lngspersistentmodelScontoFisso = ngs.persistentmodel.ScontoFissoDAO.createScontoFisso();
+			// Initialize the properties of the persistent object here
+			ngs.persistentmodel.ScontoFissoDAO.save(lngspersistentmodelScontoFisso);
 			t.commit();
 		}
 		catch (Exception e) {

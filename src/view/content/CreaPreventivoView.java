@@ -32,6 +32,7 @@ import ngs.persistentmodel.DescrizioneCorso;
 import ngs.persistentmodel.PoliticaScontoAbbonamento;
 import ngs.persistentmodel.SalaPesi;
 import ngs.persistentmodel.ScontoPercentuale;
+import ngs.persistentmodel.ScontoFisso;
 
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
@@ -479,10 +480,20 @@ public class CreaPreventivoView extends JPanel{
 								int y = 160;
 								PoliticaScontoAbbonamento politicaSconto=(PoliticaScontoAbbonamento) list_2.getSelectedValue();
 								
-								String scon="<html> NOME POLITICA SCONTO: "+politicaSconto.getNomePolitica()+"<br /><br />"+
+								String scon="";
+								
+								if(politicaSconto instanceof ScontoPercentuale)
+								    scon="<html> NOME POLITICA SCONTO: "+politicaSconto.getNomePolitica()+"<br /><br />"+
 											" CATEGORIA CLIENTE: "+politicaSconto.getCategoriaCliente()+"<br /><br />"+
 											" NUMERO MESI: "+((ScontoPercentuale) politicaSconto).getNumeroMesi()+"<br /><br />"+
 											" SCONTO : "+((ScontoPercentuale) politicaSconto).getScontoPercentuale()+"%";
+								
+								if(politicaSconto instanceof ScontoFisso)
+									scon="<html> NOME POLITICA SCONTO: "+politicaSconto.getNomePolitica()+"<br /><br />"+
+											" CATEGORIA CLIENTE: "+politicaSconto.getCategoriaCliente()+"<br /><br />"+
+											" NUMERO MESI: "+((ScontoFisso) politicaSconto).getNumeroMesi()+"<br /><br />"+
+											" SCONTO : "+((ScontoFisso) politicaSconto).getScontoFisso()+" €";
+								
 								lblInfoPoliticaSelezionata.setText(scon);
 								lblInfoPoliticaSelezionata.setBounds(611, 279, 241, y);
 								lblInfoPoliticaSelezionata.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
@@ -504,10 +515,22 @@ public class CreaPreventivoView extends JPanel{
 						int y = 160;
 						PoliticaScontoAbbonamento politicaSconto=(PoliticaScontoAbbonamento) list_2.getSelectedValue();
 						//System.out.println("ciao");
-						String scon="<html> NOME POLITICA SCONTO: "+politicaSconto.getNomePolitica()+"<br /><br />"+
+						
+						String scon="";
+						
+						if(politicaSconto instanceof ScontoPercentuale)
+						    scon="<html> NOME POLITICA SCONTO: "+politicaSconto.getNomePolitica()+"<br /><br />"+
 									" CATEGORIA CLIENTE: "+politicaSconto.getCategoriaCliente()+"<br /><br />"+
 									" NUMERO MESI: "+((ScontoPercentuale) politicaSconto).getNumeroMesi()+"<br /><br />"+
 									" SCONTO : "+((ScontoPercentuale) politicaSconto).getScontoPercentuale()+"%";
+						
+						if(politicaSconto instanceof ScontoFisso)
+							scon="<html> NOME POLITICA SCONTO: "+politicaSconto.getNomePolitica()+"<br /><br />"+
+									" CATEGORIA CLIENTE: "+politicaSconto.getCategoriaCliente()+"<br /><br />"+
+									" NUMERO MESI: "+((ScontoFisso) politicaSconto).getNumeroMesi()+"<br /><br />"+
+									" SCONTO : "+((ScontoFisso) politicaSconto).getScontoFisso()+" €";
+						
+						
 						lblInfoPoliticaSelezionata.setText(scon);
 						lblInfoPoliticaSelezionata.setBounds(611, 279, 241, y);
 						lblInfoPoliticaSelezionata.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));

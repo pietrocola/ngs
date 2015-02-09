@@ -30,6 +30,7 @@ License Type: Academic
 		<mapping resource="ormmapping/ngs/persistentmodel/Cliente.hbm.xml" />
 		<mapping resource="ormmapping/ngs/persistentmodel/DescrizioneAbbonamento.hbm.xml" />
 		<mapping resource="ormmapping/ngs/persistentmodel/DescrizioneCorso.hbm.xml" />
+		<mapping resource="ormmapping/ngs/persistentmodel/DipendenteAleniaSpazio.hbm.xml" />
 		<mapping resource="ormmapping/ngs/persistentmodel/ElencoAbbonamenti.hbm.xml" />
 		<mapping resource="ormmapping/ngs/persistentmodel/Pagamento.hbm.xml" />
 		<mapping resource="ormmapping/ngs/persistentmodel/PoliticaScontoAbbonamento.hbm.xml" />

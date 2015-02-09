@@ -121,6 +121,22 @@ public class ListNextGenSport2Data {
 		}
 		System.out.println(length + " record(s) retrieved.");
 		
+		System.out.println("Listing DipendenteAleniaSpazio...");
+		ngs.persistentmodel.DipendenteAleniaSpazio[] ngspersistentmodelDipendenteAleniaSpazios = ngs.persistentmodel.DipendenteAleniaSpazioDAO.listDipendenteAleniaSpazioByQuery(null, null);
+		length = Math.min(ngspersistentmodelDipendenteAleniaSpazios.length, ROW_COUNT);
+		for (int i = 0; i < length; i++) {
+			System.out.println(ngspersistentmodelDipendenteAleniaSpazios[i]);
+		}
+		System.out.println(length + " record(s) retrieved.");
+		
+		System.out.println("Listing ScontoFisso...");
+		ngs.persistentmodel.ScontoFisso[] ngspersistentmodelScontoFissos = ngs.persistentmodel.ScontoFissoDAO.listScontoFissoByQuery(null, null);
+		length = Math.min(ngspersistentmodelScontoFissos.length, ROW_COUNT);
+		for (int i = 0; i < length; i++) {
+			System.out.println(ngspersistentmodelScontoFissos[i]);
+		}
+		System.out.println(length + " record(s) retrieved.");
+		
 	}
 	
 	public void listByCriteria() throws PersistentException {
@@ -291,6 +307,30 @@ public class ListNextGenSport2Data {
 			 System.out.println(ngspersistentmodelAnagraficaUniversitarios[i]);
 		}
 		System.out.println(length + " AnagraficaUniversitario record(s) retrieved."); 
+		
+		System.out.println("Listing DipendenteAleniaSpazio by Criteria...");
+		ngs.persistentmodel.DipendenteAleniaSpazioCriteria lngspersistentmodelDipendenteAleniaSpazioCriteria = new ngs.persistentmodel.DipendenteAleniaSpazioCriteria();
+		// Please uncomment the follow line and fill in parameter(s) 
+		//lngspersistentmodelDipendenteAleniaSpazioCriteria.codiceDipendente.eq();
+		lngspersistentmodelDipendenteAleniaSpazioCriteria.setMaxResults(ROW_COUNT);
+		ngs.persistentmodel.DipendenteAleniaSpazio[] ngspersistentmodelDipendenteAleniaSpazios = lngspersistentmodelDipendenteAleniaSpazioCriteria.listDipendenteAleniaSpazio();
+		length =ngspersistentmodelDipendenteAleniaSpazios== null ? 0 : Math.min(ngspersistentmodelDipendenteAleniaSpazios.length, ROW_COUNT); 
+		for (int i = 0; i < length; i++) {
+			 System.out.println(ngspersistentmodelDipendenteAleniaSpazios[i]);
+		}
+		System.out.println(length + " DipendenteAleniaSpazio record(s) retrieved."); 
+		
+		System.out.println("Listing ScontoFisso by Criteria...");
+		ngs.persistentmodel.ScontoFissoCriteria lngspersistentmodelScontoFissoCriteria = new ngs.persistentmodel.ScontoFissoCriteria();
+		// Please uncomment the follow line and fill in parameter(s) 
+		//lngspersistentmodelScontoFissoCriteria.nomePolitica.eq();
+		lngspersistentmodelScontoFissoCriteria.setMaxResults(ROW_COUNT);
+		ngs.persistentmodel.ScontoFisso[] ngspersistentmodelScontoFissos = lngspersistentmodelScontoFissoCriteria.listScontoFisso();
+		length =ngspersistentmodelScontoFissos== null ? 0 : Math.min(ngspersistentmodelScontoFissos.length, ROW_COUNT); 
+		for (int i = 0; i < length; i++) {
+			 System.out.println(ngspersistentmodelScontoFissos[i]);
+		}
+		System.out.println(length + " ScontoFisso record(s) retrieved."); 
 		
 	}
 	

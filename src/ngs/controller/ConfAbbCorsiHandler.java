@@ -25,6 +25,7 @@ public class ConfAbbCorsiHandler {
 	M_CategoriaCliente catCliente;
 	M_SalaPesi salaPesi;
 	ScontoPercentualeStrategy scontoPercentuale;
+	ScontoFissoStrategy scontoFisso;
 	IPoliticaScontoAbbonamentoStrategy politicaScontoAbbStrategy;
 
 	
@@ -239,8 +240,15 @@ public class ConfAbbCorsiHandler {
 	
 	public ArrayList<PoliticaScontoAbbonamento> getPoliticheSconto(CategoriaCliente cat) {
 		
+		ArrayList<PoliticaScontoAbbonamento> politiche= new ArrayList<PoliticaScontoAbbonamento>();
+		
 		politicaScontoAbbStrategy= new ScontoPercentualeStrategy();
-		return politicaScontoAbbStrategy.getPoliticheSconto(cat);
+		politiche=politicaScontoAbbStrategy.getPoliticheSconto(cat);
+		
+		politicaScontoAbbStrategy= new ScontoFissoStrategy();
+		politiche.addAll(politicaScontoAbbStrategy.getPoliticheSconto(cat));
+		
+		return politiche;
 	}
 
 	/**
@@ -250,9 +258,20 @@ public class ConfAbbCorsiHandler {
 	 */
 	public float calcolaPrezzoAbbonamento(DescrizioneAbbonamento descAbb, PoliticaScontoAbbonamento politicaSconto) {
 		float pbm=descAbb.getPrezzoBaseMensile();
-		int numMesi=politicaScontoAbbStrategy.getNumeroMesi(politicaSconto);
-		float percentuale=politicaScontoAbbStrategy.getPercentuale(politicaSconto);
-		return ((pbm*numMesi)-(((pbm*numMesi)*percentuale)/100));
+		
+		//int numMesi=politicaScontoAbbStrategy.getNumeroMesi(politicaSconto);
+		//float percentuale=politicaScontoAbbStrategy.getPercentuale(politicaSconto);
+		//return ((pbm*numMesi)-(((pbm*numMesi)*percentuale)/100));
+		//System.out.println(politicaSconto.getClass());
+		
+		if(politicaSconto instanceof ScontoPercentuale)
+		   politicaScontoAbbStrategy= new ScontoPercentualeStrategy();
+		
+		if(politicaSconto instanceof ScontoFisso)
+			politicaScontoAbbStrategy= new ScontoFissoStrategy();
+		
+		
+		return politicaScontoAbbStrategy.calcolaPrezzoAbbonamento(pbm, politicaSconto);
 	}
 
 	/**
@@ -303,6 +322,49 @@ public class ConfAbbCorsiHandler {
 	{
 		descAbb = new M_DescrizioneAbbonamento();
 		return descAbb.getDescrizioneAbbonamento(string);
+	}
+
+	
+	
+	
+	
+	public boolean verificaCatClienteNumMesiScontoPercentuale(CategoriaCliente categoria,int numMesi) {
+		
+		scontoPercentuale= new ScontoPercentualeStrategy();
+		return scontoPercentuale.verificaCatClienteNumMesiScontoPercentuale(categoria,numMesi);
+		
+		
+		
+	}
+
+	
+	
+
+	
+	
+	
+	public boolean verificaNomePoliticaScontoFisso(String nomePolitica) {
+		scontoFisso= new ScontoFissoStrategy();
+		return scontoFisso.verificaNomePoliticaScontoFisso(nomePolitica);
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	public boolean verificaCatClienteNumMesiScontoFisso(CategoriaCliente categoria, int numMesi) {
+		scontoFisso= new ScontoFissoStrategy();
+		return scontoFisso.verificaCatClienteNumMesiScontoFisso(categoria,numMesi);
+	}
+
+	
+	
+	
+	public boolean impostaPoliticaScontoFisso(CategoriaCliente categoria,String nomePolitica, int numMesi, float scontoFis) {
+		return PoliticaScontoAbbonamentoStrategyFactory.getInstance().impostaPoliticaScontoFisso(categoria,nomePolitica,numMesi,scontoFis);
 	}
 
 	

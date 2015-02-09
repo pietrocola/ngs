@@ -17,5 +17,9 @@ License Type: Academic
 			<property name="numeroMesi" column="NumeroMesi" type="integer" length="11" not-null="false" lazy="false"/>
 			<property name="scontoPercentuale" column="ScontoPercentuale" type="float" not-null="false" lazy="false"/>
 		</subclass>
+		<subclass name="ngs.persistentmodel.ScontoFisso" discriminator-value="ScontoFisso" lazy="false">
+			<property name="numeroMesi" column="NumeroMesi2" type="integer" length="11" not-null="false" lazy="false"/>
+			<property name="scontoFisso" column="ScontoFisso" type="float" not-null="false" lazy="false"/>
+		</subclass>
 	</class>
 </hibernate-mapping>
