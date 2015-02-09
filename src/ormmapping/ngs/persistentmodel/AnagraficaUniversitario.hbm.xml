@@ -6,12 +6,11 @@ License Type: Academic
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 	<class name="ngs.persistentmodel.AnagraficaUniversitario" table="AnagraficaUniversitario" lazy="false">
-		<id name="codiceFiscale" column="ID" type="string">
-			<generator class="assigned">
+		<id name="matricola" column="Matricola" type="integer" unsaved-value="0">
+			<generator class="native">
 			</generator>
 		</id>
 		<property name="nome" column="Nome" type="string" length="255" not-null="false" lazy="false"/>
 		<property name="cognome" column="Cognome" type="string" length="255" not-null="false" lazy="false"/>
-		<property name="matricola" column="Matricola" type="integer" length="11" not-null="true" lazy="false"/>
 	</class>
 </hibernate-mapping>

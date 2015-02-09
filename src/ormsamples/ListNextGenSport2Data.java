@@ -121,14 +121,6 @@ public class ListNextGenSport2Data {
 		}
 		System.out.println(length + " record(s) retrieved.");
 		
-		System.out.println("Listing AnagraficaPensionato...");
-		ngs.persistentmodel.AnagraficaPensionato[] ngspersistentmodelAnagraficaPensionatos = ngs.persistentmodel.AnagraficaPensionatoDAO.listAnagraficaPensionatoByQuery(null, null);
-		length = Math.min(ngspersistentmodelAnagraficaPensionatos.length, ROW_COUNT);
-		for (int i = 0; i < length; i++) {
-			System.out.println(ngspersistentmodelAnagraficaPensionatos[i]);
-		}
-		System.out.println(length + " record(s) retrieved.");
-		
 	}
 	
 	public void listByCriteria() throws PersistentException {
@@ -291,7 +283,7 @@ public class ListNextGenSport2Data {
 		System.out.println("Listing AnagraficaUniversitario by Criteria...");
 		ngs.persistentmodel.AnagraficaUniversitarioCriteria lngspersistentmodelAnagraficaUniversitarioCriteria = new ngs.persistentmodel.AnagraficaUniversitarioCriteria();
 		// Please uncomment the follow line and fill in parameter(s) 
-		//lngspersistentmodelAnagraficaUniversitarioCriteria.codiceFiscale.eq();
+		//lngspersistentmodelAnagraficaUniversitarioCriteria.matricola.eq();
 		lngspersistentmodelAnagraficaUniversitarioCriteria.setMaxResults(ROW_COUNT);
 		ngs.persistentmodel.AnagraficaUniversitario[] ngspersistentmodelAnagraficaUniversitarios = lngspersistentmodelAnagraficaUniversitarioCriteria.listAnagraficaUniversitario();
 		length =ngspersistentmodelAnagraficaUniversitarios== null ? 0 : Math.min(ngspersistentmodelAnagraficaUniversitarios.length, ROW_COUNT); 
@@ -299,18 +291,6 @@ public class ListNextGenSport2Data {
 			 System.out.println(ngspersistentmodelAnagraficaUniversitarios[i]);
 		}
 		System.out.println(length + " AnagraficaUniversitario record(s) retrieved."); 
-		
-		System.out.println("Listing AnagraficaPensionato by Criteria...");
-		ngs.persistentmodel.AnagraficaPensionatoCriteria lngspersistentmodelAnagraficaPensionatoCriteria = new ngs.persistentmodel.AnagraficaPensionatoCriteria();
-		// Please uncomment the follow line and fill in parameter(s) 
-		//lngspersistentmodelAnagraficaPensionatoCriteria.codiceFiscale.eq();
-		lngspersistentmodelAnagraficaPensionatoCriteria.setMaxResults(ROW_COUNT);
-		ngs.persistentmodel.AnagraficaPensionato[] ngspersistentmodelAnagraficaPensionatos = lngspersistentmodelAnagraficaPensionatoCriteria.listAnagraficaPensionato();
-		length =ngspersistentmodelAnagraficaPensionatos== null ? 0 : Math.min(ngspersistentmodelAnagraficaPensionatos.length, ROW_COUNT); 
-		for (int i = 0; i < length; i++) {
-			 System.out.println(ngspersistentmodelAnagraficaPensionatos[i]);
-		}
-		System.out.println(length + " AnagraficaPensionato record(s) retrieved."); 
 		
 	}
 	

@@ -37,24 +37,11 @@ public class ErogaAbbonamentoHandler {
 	 * 
 	 * @param codice
 	 */
-	public String verificaCategoriaCliente(String codice) 
-	{		
-			
-		ArrayList<IVerificaCategoriaClienteAdapter> cat = new ArrayList<IVerificaCategoriaClienteAdapter>();
-		cat.add(new ClienteUniversitarioAdapter());
-		cat.add(new ClientePensionatoAdapter());
+	public Boolean verificaCategoriaCliente(String codice) {
 		
-		String verifica="<html>Categorie: <br />";
+		catClienteAdapter= new ClienteUniversitarioAdapter();
+		return catClienteAdapter.verificaCategoriaCliente(codice);
 		
-		for(IVerificaCategoriaClienteAdapter Icat: cat)
-		{
-			verifica=verifica + Icat.verificaCategoriaCliente(codice);
-			/*if(verifica!=null)
-					{return verifica;}
-			*/
-		}
-		
-		return verifica;		
 	}
 
 	/**
@@ -107,7 +94,4 @@ public class ErogaAbbonamentoHandler {
 		throw new UnsupportedOperationException();
 	}
 
-	
-
-	
 }

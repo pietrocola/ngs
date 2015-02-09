@@ -19,25 +19,22 @@ import org.orm.PersistentSession;
 import org.orm.criteria.*;
 
 public class AnagraficaUniversitarioDetachedCriteria extends AbstractORMDetachedCriteria {
-	public final StringExpression codiceFiscale;
+	public final IntegerExpression matricola;
 	public final StringExpression nome;
 	public final StringExpression cognome;
-	public final IntegerExpression matricola;
 	
 	public AnagraficaUniversitarioDetachedCriteria() {
 		super(ngs.persistentmodel.AnagraficaUniversitario.class, ngs.persistentmodel.AnagraficaUniversitarioCriteria.class);
-		codiceFiscale = new StringExpression("codiceFiscale", this.getDetachedCriteria());
+		matricola = new IntegerExpression("matricola", this.getDetachedCriteria());
 		nome = new StringExpression("nome", this.getDetachedCriteria());
 		cognome = new StringExpression("cognome", this.getDetachedCriteria());
-		matricola = new IntegerExpression("matricola", this.getDetachedCriteria());
 	}
 	
 	public AnagraficaUniversitarioDetachedCriteria(DetachedCriteria aDetachedCriteria) {
 		super(aDetachedCriteria, ngs.persistentmodel.AnagraficaUniversitarioCriteria.class);
-		codiceFiscale = new StringExpression("codiceFiscale", this.getDetachedCriteria());
+		matricola = new IntegerExpression("matricola", this.getDetachedCriteria());
 		nome = new StringExpression("nome", this.getDetachedCriteria());
 		cognome = new StringExpression("cognome", this.getDetachedCriteria());
-		matricola = new IntegerExpression("matricola", this.getDetachedCriteria());
 	}
 	
 	public AnagraficaUniversitario uniqueAnagraficaUniversitario(PersistentSession session) {

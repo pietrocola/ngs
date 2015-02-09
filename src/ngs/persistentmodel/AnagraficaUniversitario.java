@@ -17,30 +17,23 @@ public class AnagraficaUniversitario {
 	public AnagraficaUniversitario() {
 	}
 	
-	public boolean equals(Object aObj) {
-		if (aObj == this)
-			return true;
-		if (!(aObj instanceof AnagraficaUniversitario))
-			return false;
-		AnagraficaUniversitario anagraficauniversitario = (AnagraficaUniversitario)aObj;
-		if ((getCodiceFiscale() != null && !getCodiceFiscale().equals(anagraficauniversitario.getCodiceFiscale())) || (getCodiceFiscale() == null && anagraficauniversitario.getCodiceFiscale() != null))
-			return false;
-		return true;
-	}
-	
-	public int hashCode() {
-		int hashcode = 0;
-		hashcode = hashcode + (getCodiceFiscale() == null ? 0 : getCodiceFiscale().hashCode());
-		return hashcode;
-	}
-	
-	private String codiceFiscale;
+	private int matricola;
 	
 	private String nome;
 	
 	private String cognome;
 	
-	private int matricola;
+	private void setMatricola(int value) {
+		this.matricola = value;
+	}
+	
+	public int getMatricola() {
+		return matricola;
+	}
+	
+	public int getORMID() {
+		return getMatricola();
+	}
 	
 	public void setNome(String value) {
 		this.nome = value;
@@ -58,45 +51,8 @@ public class AnagraficaUniversitario {
 		return cognome;
 	}
 	
-	public void setCodiceFiscale(String value) {
-		this.codiceFiscale = value;
-	}
-	
-	public String getCodiceFiscale() {
-		return codiceFiscale;
-	}
-	
-	public String getORMID() {
-		return getCodiceFiscale();
-	}
-	
-	public void setMatricola(int value) {
-		this.matricola = value;
-	}
-	
-	public int getMatricola() {
-		return matricola;
-	}
-	
 	public String toString() {
-		return String.valueOf(getCodiceFiscale());
+		return String.valueOf(getMatricola());
 	}
-	
-	private boolean _saved = false;
-	
-	public void onSave() {
-		_saved=true;
-	}
-	
-	
-	public void onLoad() {
-		_saved=true;
-	}
-	
-	
-	public boolean isSaved() {
-		return _saved;
-	}
-	
 	
 }

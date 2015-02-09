@@ -1,6 +1,6 @@
 package ngs.model;
 
-import ngs.persistentmodel.*;
+import ngs.persistentmodel.APersistentModel;
 
 public class M_Cliente extends AModel {
 
@@ -15,7 +15,8 @@ public class M_Cliente extends AModel {
 
 	@Override
 	public APersistentModel getPersistentModel() {
-		throw new UnsupportedOperationException();
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

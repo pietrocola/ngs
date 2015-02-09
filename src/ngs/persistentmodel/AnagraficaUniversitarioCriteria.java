@@ -19,17 +19,15 @@ import org.orm.PersistentSession;
 import org.orm.criteria.*;
 
 public class AnagraficaUniversitarioCriteria extends AbstractORMCriteria {
-	public final StringExpression codiceFiscale;
+	public final IntegerExpression matricola;
 	public final StringExpression nome;
 	public final StringExpression cognome;
-	public final IntegerExpression matricola;
 	
 	public AnagraficaUniversitarioCriteria(Criteria criteria) {
 		super(criteria);
-		codiceFiscale = new StringExpression("codiceFiscale", this);
+		matricola = new IntegerExpression("matricola", this);
 		nome = new StringExpression("nome", this);
 		cognome = new StringExpression("cognome", this);
-		matricola = new IntegerExpression("matricola", this);
 	}
 	
 	public AnagraficaUniversitarioCriteria(PersistentSession session) {

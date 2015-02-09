@@ -1,6 +1,9 @@
 package ngs.model;
 
-import ngs.persistentmodel.*;
+import java.util.Date;
+
+import ngs.persistentmodel.APersistentModel;
+import ngs.persistentmodel.Pagamento;
 
 public class M_Abbonamento extends AModel {
 
@@ -22,13 +25,14 @@ public class M_Abbonamento extends AModel {
 	 * @param importo
 	 * @param stato
 	 */
-	public Pagamento creaPagamento(java.util.Date dataPagamento, float importo, Boolean stato) {
+	public Pagamento creaPagamento(Date dataPagamento, float importo, Boolean stato) {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
 	public APersistentModel getPersistentModel() {
-		throw new UnsupportedOperationException();
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

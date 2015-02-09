@@ -51,9 +51,6 @@ public class RetrieveAndUpdateNextGenSport2Data {
 			ngs.persistentmodel.AnagraficaUniversitario lngspersistentmodelAnagraficaUniversitario = ngs.persistentmodel.AnagraficaUniversitarioDAO.loadAnagraficaUniversitarioByQuery(null, null);
 			// Update the properties of the persistent object
 			ngs.persistentmodel.AnagraficaUniversitarioDAO.save(lngspersistentmodelAnagraficaUniversitario);
-			ngs.persistentmodel.AnagraficaPensionato lngspersistentmodelAnagraficaPensionato = ngs.persistentmodel.AnagraficaPensionatoDAO.loadAnagraficaPensionatoByQuery(null, null);
-			// Update the properties of the persistent object
-			ngs.persistentmodel.AnagraficaPensionatoDAO.save(lngspersistentmodelAnagraficaPensionato);
 			t.commit();
 		}
 		catch (Exception e) {
@@ -144,14 +141,8 @@ public class RetrieveAndUpdateNextGenSport2Data {
 		System.out.println("Retrieving AnagraficaUniversitario by AnagraficaUniversitarioCriteria");
 		ngs.persistentmodel.AnagraficaUniversitarioCriteria lngspersistentmodelAnagraficaUniversitarioCriteria = new ngs.persistentmodel.AnagraficaUniversitarioCriteria();
 		// Please uncomment the follow line and fill in parameter(s)
-		//lngspersistentmodelAnagraficaUniversitarioCriteria.codiceFiscale.eq();
+		//lngspersistentmodelAnagraficaUniversitarioCriteria.matricola.eq();
 		System.out.println(lngspersistentmodelAnagraficaUniversitarioCriteria.uniqueAnagraficaUniversitario());
-		
-		System.out.println("Retrieving AnagraficaPensionato by AnagraficaPensionatoCriteria");
-		ngs.persistentmodel.AnagraficaPensionatoCriteria lngspersistentmodelAnagraficaPensionatoCriteria = new ngs.persistentmodel.AnagraficaPensionatoCriteria();
-		// Please uncomment the follow line and fill in parameter(s)
-		//lngspersistentmodelAnagraficaPensionatoCriteria.codiceFiscale.eq();
-		System.out.println(lngspersistentmodelAnagraficaPensionatoCriteria.uniqueAnagraficaPensionato());
 		
 	}
 	

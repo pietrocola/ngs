@@ -1,15 +1,33 @@
 package ngs.factory;
 
+
+
+import java.util.Date;
+
 import ngs.model.Adapter.*;
-import ngs.persistentmodel.*;
+import ngs.persistentmodel.Cliente;
+import ngs.persistentmodel.ElencoAbbonamentiDAO;
 
 public class ServicesCreatorFactory {
 
 	IVerificaCategoriaClienteAdapter IccAdapter;
+	
 	public static ServicesCreatorFactory instance;
+	
+	public static ServicesCreatorFactory getInstance(){
+		if(instance==null)
+			instance=new ServicesCreatorFactory();
+		return instance;
+	}
+	
 
-	public ServicesCreatorFactory getInstance() {
-		return this.instance;
+	/**
+	 * 
+	 * @param dataScadenza
+	 * @param cliente
+	 */
+	public void associaCertificatoMedicoCliente(Date dataScadenza, Cliente cliente) {
+		throw new UnsupportedOperationException();
 	}
 
 	public IVerificaCategoriaClienteAdapter getCategoriaClienteAdapter() {
@@ -17,16 +35,13 @@ public class ServicesCreatorFactory {
 	}
 
 	public void creaElencoAbbonamenti() {
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * 
-	 * @param dataScadenza
-	 * @param cliente
-	 */
-	public void associaCertificatoMedicoCliente(java.util.Date dataScadenza, Cliente cliente) {
-		throw new UnsupportedOperationException();
+		
+		if(ElencoAbbonamentiDAO.listElencoAbbonamentiByQuery(null,null).length==0){
+			
+			ElencoAbbonamentiDAO.save(ElencoAbbonamentiDAO.createElencoAbbonamenti());
+		}
+		
+		
 	}
 
 }

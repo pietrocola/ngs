@@ -24,7 +24,8 @@ public class M_ElencoAbbonamenti extends AModel {
 
 	@Override
 	public APersistentModel getPersistentModel() {
-		throw new UnsupportedOperationException();
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

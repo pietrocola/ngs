@@ -19,76 +19,76 @@ import org.hibernate.LockMode;
 import java.util.List;
 
 public class AnagraficaUniversitarioDAO {
-	public static AnagraficaUniversitario loadAnagraficaUniversitarioByORMID(String codiceFiscale) {
+	public static AnagraficaUniversitario loadAnagraficaUniversitarioByORMID(int matricola) {
 		try {
 			PersistentSession session = ngs.persistentmodel.NextGenSport2PersistentManager.instance().getSession();
-			return loadAnagraficaUniversitarioByORMID(session, codiceFiscale);
+			return loadAnagraficaUniversitarioByORMID(session, matricola);
 		}
 		catch (Exception e) {
 			return null;
 		}
 	}
 	
-	public static AnagraficaUniversitario getAnagraficaUniversitarioByORMID(String codiceFiscale) {
+	public static AnagraficaUniversitario getAnagraficaUniversitarioByORMID(int matricola) {
 		try {
 			PersistentSession session = ngs.persistentmodel.NextGenSport2PersistentManager.instance().getSession();
-			return getAnagraficaUniversitarioByORMID(session, codiceFiscale);
+			return getAnagraficaUniversitarioByORMID(session, matricola);
 		}
 		catch (Exception e) {
 			return null;
 		}
 	}
 	
-	public static AnagraficaUniversitario loadAnagraficaUniversitarioByORMID(String codiceFiscale, org.hibernate.LockMode lockMode) {
+	public static AnagraficaUniversitario loadAnagraficaUniversitarioByORMID(int matricola, org.hibernate.LockMode lockMode) {
 		try {
 			PersistentSession session = ngs.persistentmodel.NextGenSport2PersistentManager.instance().getSession();
-			return loadAnagraficaUniversitarioByORMID(session, codiceFiscale, lockMode);
+			return loadAnagraficaUniversitarioByORMID(session, matricola, lockMode);
 		}
 		catch (Exception e) {
 			return null;
 		}
 	}
 	
-	public static AnagraficaUniversitario getAnagraficaUniversitarioByORMID(String codiceFiscale, org.hibernate.LockMode lockMode) {
+	public static AnagraficaUniversitario getAnagraficaUniversitarioByORMID(int matricola, org.hibernate.LockMode lockMode) {
 		try {
 			PersistentSession session = ngs.persistentmodel.NextGenSport2PersistentManager.instance().getSession();
-			return getAnagraficaUniversitarioByORMID(session, codiceFiscale, lockMode);
+			return getAnagraficaUniversitarioByORMID(session, matricola, lockMode);
 		}
 		catch (Exception e) {
 			return null;
 		}
 	}
 	
-	public static AnagraficaUniversitario loadAnagraficaUniversitarioByORMID(PersistentSession session, String codiceFiscale) {
+	public static AnagraficaUniversitario loadAnagraficaUniversitarioByORMID(PersistentSession session, int matricola) {
 		try {
-			return (AnagraficaUniversitario) session.load(ngs.persistentmodel.AnagraficaUniversitario.class, codiceFiscale);
+			return (AnagraficaUniversitario) session.load(ngs.persistentmodel.AnagraficaUniversitario.class, new Integer(matricola));
 		}
 		catch (Exception e) {
 			return null;
 		}
 	}
 	
-	public static AnagraficaUniversitario getAnagraficaUniversitarioByORMID(PersistentSession session, String codiceFiscale) {
+	public static AnagraficaUniversitario getAnagraficaUniversitarioByORMID(PersistentSession session, int matricola) {
 		try {
-			return (AnagraficaUniversitario) session.get(ngs.persistentmodel.AnagraficaUniversitario.class, codiceFiscale);
+			return (AnagraficaUniversitario) session.get(ngs.persistentmodel.AnagraficaUniversitario.class, new Integer(matricola));
 		}
 		catch (Exception e) {
 			return null;
 		}
 	}
 	
-	public static AnagraficaUniversitario loadAnagraficaUniversitarioByORMID(PersistentSession session, String codiceFiscale, org.hibernate.LockMode lockMode) {
+	public static AnagraficaUniversitario loadAnagraficaUniversitarioByORMID(PersistentSession session, int matricola, org.hibernate.LockMode lockMode) {
 		try {
-			return (AnagraficaUniversitario) session.load(ngs.persistentmodel.AnagraficaUniversitario.class, codiceFiscale, lockMode);
+			return (AnagraficaUniversitario) session.load(ngs.persistentmodel.AnagraficaUniversitario.class, new Integer(matricola), lockMode);
 		}
 		catch (Exception e) {
 			return null;
 		}
 	}
 	
-	public static AnagraficaUniversitario getAnagraficaUniversitarioByORMID(PersistentSession session, String codiceFiscale, org.hibernate.LockMode lockMode) {
+	public static AnagraficaUniversitario getAnagraficaUniversitarioByORMID(PersistentSession session, int matricola, org.hibernate.LockMode lockMode) {
 		try {
-			return (AnagraficaUniversitario) session.get(ngs.persistentmodel.AnagraficaUniversitario.class, codiceFiscale, lockMode);
+			return (AnagraficaUniversitario) session.get(ngs.persistentmodel.AnagraficaUniversitario.class, new Integer(matricola), lockMode);
 		}
 		catch (Exception e) {
 			return null;

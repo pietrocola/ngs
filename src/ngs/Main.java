@@ -21,6 +21,10 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+
+import ngs.factory.ServicesCreatorFactory;
 
 public class Main {
 	private static JButton btnAmministratore;
@@ -36,12 +40,15 @@ public class Main {
 	 */
 	public static void main(String[] args) throws InterruptedException {
 		
+		ServicesCreatorFactory.getInstance().creaElencoAbbonamenti();
+		
+		
 		/*
 		 * Splash screen di due secondi seguita dal pannello di Log 
 		 */
 		final SplashScreen  splash = new SplashScreen(); //spalsh screen
 		splash.setVisible(true);	//spalsh screen
-		Thread.sleep(2000);
+		Thread.sleep(0);
 		splash.setVisible(false);  		//spalsh screen
 		
 		logFrame = new JFrame();
@@ -66,23 +73,40 @@ public class Main {
 	        
 		{
 			btnAmministratore = new JButton("Amministratore");
-			ascoltatoreLoginAdmin();			
-			panel.setLayout(null);
-			btnAmministratore.setBounds(21, 122, 140, 23);
-			panel.add(btnAmministratore);
+			ascoltatoreLoginAdmin();
 		}
 		{
 			btnSegretaria = new JButton("Segretaria");
 			ascoltatoreLoginSegretaria();
-			btnSegretaria.setBounds(171, 122, 103, 23);
-			panel.add(btnSegretaria);
 		}
 		{
 			label = new JLabel("");
 			label.setIcon(new ImageIcon(Main.class.getResource("/view/img/login1.png")));
-			label.setBounds(104, 11, 100, 100);
-			panel.add(label);
 		}
+		GroupLayout gl_panel = new GroupLayout(panel);
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(104)
+					.addComponent(label))
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(21)
+					.addComponent(btnAmministratore, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
+					.addGap(10)
+					.addComponent(btnSegretaria, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE))
+		);
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(11)
+					.addComponent(label)
+					.addGap(11)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(btnAmministratore, 0, 0, Short.MAX_VALUE)
+						.addComponent(btnSegretaria, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+					.addGap(43))
+		);
+		panel.setLayout(gl_panel);
 		
 		logFrame.setVisible(true);
 	}
