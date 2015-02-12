@@ -20,8 +20,8 @@ import org.orm.criteria.*;
 
 public class PreventivoAbbonamentoDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final IntegerExpression ID;
-	public final StringExpression politicaScontoId;
-	public final AssociationExpression politicaSconto;
+	public final StringExpression categoriaClienteId;
+	public final AssociationExpression categoriaCliente;
 	public final StringExpression descAbbId;
 	public final AssociationExpression descAbb;
 	public final FloatExpression prezzo;
@@ -30,8 +30,8 @@ public class PreventivoAbbonamentoDetachedCriteria extends AbstractORMDetachedCr
 	public PreventivoAbbonamentoDetachedCriteria() {
 		super(ngs.persistentmodel.PreventivoAbbonamento.class, ngs.persistentmodel.PreventivoAbbonamentoCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
-		politicaScontoId = new StringExpression("politicaSconto.nomePolitica", this.getDetachedCriteria());
-		politicaSconto = new AssociationExpression("politicaSconto", this.getDetachedCriteria());
+		categoriaClienteId = new StringExpression("categoriaCliente.nomeCat", this.getDetachedCriteria());
+		categoriaCliente = new AssociationExpression("categoriaCliente", this.getDetachedCriteria());
 		descAbbId = new StringExpression("descAbb.nomeAbbonamento", this.getDetachedCriteria());
 		descAbb = new AssociationExpression("descAbb", this.getDetachedCriteria());
 		prezzo = new FloatExpression("prezzo", this.getDetachedCriteria());
@@ -41,16 +41,16 @@ public class PreventivoAbbonamentoDetachedCriteria extends AbstractORMDetachedCr
 	public PreventivoAbbonamentoDetachedCriteria(DetachedCriteria aDetachedCriteria) {
 		super(aDetachedCriteria, ngs.persistentmodel.PreventivoAbbonamentoCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
-		politicaScontoId = new StringExpression("politicaSconto.nomePolitica", this.getDetachedCriteria());
-		politicaSconto = new AssociationExpression("politicaSconto", this.getDetachedCriteria());
+		categoriaClienteId = new StringExpression("categoriaCliente.nomeCat", this.getDetachedCriteria());
+		categoriaCliente = new AssociationExpression("categoriaCliente", this.getDetachedCriteria());
 		descAbbId = new StringExpression("descAbb.nomeAbbonamento", this.getDetachedCriteria());
 		descAbb = new AssociationExpression("descAbb", this.getDetachedCriteria());
 		prezzo = new FloatExpression("prezzo", this.getDetachedCriteria());
 		numeroMesi = new IntegerExpression("numeroMesi", this.getDetachedCriteria());
 	}
 	
-	public PoliticaScontoAbbonamentoDetachedCriteria createPoliticaScontoCriteria() {
-		return new PoliticaScontoAbbonamentoDetachedCriteria(createCriteria("politicaSconto"));
+	public CategoriaClienteDetachedCriteria createCategoriaClienteCriteria() {
+		return new CategoriaClienteDetachedCriteria(createCriteria("categoriaCliente"));
 	}
 	
 	public DescrizioneAbbonamentoDetachedCriteria createDescAbbCriteria() {

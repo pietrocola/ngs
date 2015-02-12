@@ -11,6 +11,9 @@ import ngs.model.*;
 import ngs.model.strategy.ScontoPercentualeStrategy;
 import ngs.persistentmodel.*;
 import ngs.model.strategy.*;
+import ngs.model.strategy.composite.CompositePrezzoProCentroStrategy;
+import ngs.model.strategy.composite.CompositePrezzoProClienteStrategy;
+import ngs.model.strategy.composite.CompositePrezzoStrategy;
 
 
 
@@ -238,41 +241,48 @@ public class ConfAbbCorsiHandler {
 
 	
 	
-	public ArrayList<PoliticaScontoAbbonamento> getPoliticheSconto(CategoriaCliente cat) {
+	public ArrayList<PoliticaScontoAbbonamento> getPoliticheSconto(CategoriaCliente cat,int numMesi) {
 		
-		ArrayList<PoliticaScontoAbbonamento> politiche= new ArrayList<PoliticaScontoAbbonamento>();
+		ArrayList<PoliticaScontoAbbonamento> elencoPoliticheSconto= new ArrayList<PoliticaScontoAbbonamento>();
+		//System.out.println("ciao");
 		
+
 		politicaScontoAbbStrategy= new ScontoPercentualeStrategy();
-		politiche=politicaScontoAbbStrategy.getPoliticheSconto(cat);
+		elencoPoliticheSconto=politicaScontoAbbStrategy.getPoliticheSconto(cat,numMesi);
 		
 		politicaScontoAbbStrategy= new ScontoFissoStrategy();
-		politiche.addAll(politicaScontoAbbStrategy.getPoliticheSconto(cat));
+		elencoPoliticheSconto.addAll(politicaScontoAbbStrategy.getPoliticheSconto(cat,numMesi));
 		
-		return politiche;
+		
+		for(PoliticaScontoAbbonamento p: elencoPoliticheSconto){
+			System.out.println(p.getNomePolitica()); 
+			System.out.println(p.getClass());
+		}
+		
+		
+		return elencoPoliticheSconto;
 	}
 
+	
+	
+	
 	/**
 	 * 
 	 * @param descAbb
 	 * @param politicaSconto
 	 */
-	public float calcolaPrezzoAbbonamento(DescrizioneAbbonamento descAbb, PoliticaScontoAbbonamento politicaSconto) {
+	public float calcolaPrezzoAbbonamento(DescrizioneAbbonamento descAbb, ArrayList<PoliticaScontoAbbonamento> elencoPoliticheSconto,boolean proContro) {
 		float pbm=descAbb.getPrezzoBaseMensile();
-		
-		//int numMesi=politicaScontoAbbStrategy.getNumeroMesi(politicaSconto);
-		//float percentuale=politicaScontoAbbStrategy.getPercentuale(politicaSconto);
-		//return ((pbm*numMesi)-(((pbm*numMesi)*percentuale)/100));
-		//System.out.println(politicaSconto.getClass());
-		
-		if(politicaSconto instanceof ScontoPercentuale)
-		   politicaScontoAbbStrategy= new ScontoPercentualeStrategy();
-		
-		if(politicaSconto instanceof ScontoFisso)
-			politicaScontoAbbStrategy= new ScontoFissoStrategy();
-		
-		
-		return politicaScontoAbbStrategy.calcolaPrezzoAbbonamento(pbm, politicaSconto);
+		return PoliticaScontoAbbonamentoStrategyFactory.getInstance().calcolaPrezzoAbbonamento(pbm, elencoPoliticheSconto, proContro);
 	}
+	
+	
+	
+	
+	
+	
+	
+	
 
 	/**
 	 * 
@@ -280,23 +290,53 @@ public class ConfAbbCorsiHandler {
 	 * @param politicaSconto
 	 * @param prezzo
 	 */
-	public boolean creaPreventivoAbbonamento(DescrizioneAbbonamento descAbb, PoliticaScontoAbbonamento politicaSconto, float prezzo) {
-		int numMesi=politicaScontoAbbStrategy.getNumeroMesi(politicaSconto);
-	    PreventivoAbbonamento pa=PreventivoAbbonamentoDAO.createPreventivoAbbonamento();
+	public boolean creaPreventivoAbbonamento(DescrizioneAbbonamento descAbb,CategoriaCliente catCliente, int numMesi, float prezzo) {
+			//int numMesi=politicaScontoAbbStrategy.getNumeroMesi(politicaSconto);
+			PreventivoAbbonamento pa=PreventivoAbbonamentoDAO.createPreventivoAbbonamento();
 	    
 		    pa.setDescAbb(descAbb);
-		    pa.setPoliticaSconto(politicaSconto);
+		    pa.setCategoriaCliente(catCliente);
+		    //pa.setPoliticaSconto(politicaSconto);
 		    pa.setPrezzo(prezzo);
 		    pa.setNumeroMesi(numMesi);
 		    return PreventivoAbbonamentoDAO.save(pa);
 	    
 	}
 	
+	
+	
+	public HashSet<Integer> getNumeroMesi(CategoriaCliente catCliente){
+		
+		HashSet<Integer> elencoNumeroMesi = new HashSet<Integer>();
+		
+		politicaScontoAbbStrategy= new ScontoPercentualeStrategy();
+		elencoNumeroMesi=politicaScontoAbbStrategy.getNumeroMesi(catCliente);
+		
+		politicaScontoAbbStrategy= new ScontoFissoStrategy();
+		
+		
+		elencoNumeroMesi.addAll(politicaScontoAbbStrategy.getNumeroMesi(catCliente));
+		
+		/*
+		for(PoliticaScontoAbbonamento p: politiche){
+			System.out.println(p.getNomePolitica()); 
+			System.out.println(p.getClass());
+		}
+		*/
+		
+		return elencoNumeroMesi;
+	}
+	
+	
+	
+	
 	public int getNumeroMesi(PoliticaScontoAbbonamento politicaSconto){
 		int numMesi=politicaScontoAbbStrategy.getNumeroMesi(politicaSconto);
 		return numMesi;
 	}
 	
+	
+	/* RIVEDERE !!!
 	public boolean verificaPreventivo(DescrizioneAbbonamento descAbb, PoliticaScontoAbbonamento politicaSconto) {
 		M_PreventivoAbbonamento prevAbb = new M_PreventivoAbbonamento();
 		return prevAbb.verificaPreventivo(descAbb,politicaSconto);
@@ -307,7 +347,9 @@ public class ConfAbbCorsiHandler {
 		else
 		{return false;}
 		*/
-	}
+	//}
+	
+	
 	
 	public ArrayList<DescrizioneCorso> getDescrizioneCorso(
 			DescrizioneAbbonamento descAbb2) {

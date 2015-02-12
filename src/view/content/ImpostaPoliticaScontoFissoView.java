@@ -44,7 +44,7 @@ public class ImpostaPoliticaScontoFissoView extends JPanel {
 		{
 			comboBox = new JComboBox();
 			ascoltatoreListaCategorieClienti();
-			comboBox.setBounds(200, 52, 145, 20);
+			comboBox.setBounds(200, 52, 146, 20);
 			add(comboBox);
 		}
 		{

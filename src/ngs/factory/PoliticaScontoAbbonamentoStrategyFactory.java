@@ -1,19 +1,21 @@
 package ngs.factory;
 
+import java.util.ArrayList;
+
 import ngs.controller.ConfAbbCorsiHandler;
 import ngs.model.strategy.*;
-import ngs.persistentmodel.CategoriaCliente;
-import ngs.persistentmodel.ScontoFisso;
-import ngs.persistentmodel.ScontoFissoDAO;
-import ngs.persistentmodel.ScontoPercentuale;
-import ngs.persistentmodel.ScontoPercentualeDAO;
+import ngs.model.strategy.composite.CompositePrezzoProCentroStrategy;
+import ngs.model.strategy.composite.CompositePrezzoProClienteStrategy;
+import ngs.model.strategy.composite.CompositePrezzoStrategy;
+import ngs.persistentmodel.*;
 
 public class PoliticaScontoAbbonamentoStrategyFactory {
 
 	//PATTERN SINGLETON
 	public static PoliticaScontoAbbonamentoStrategyFactory instance;
 	IPoliticaScontoAbbonamentoStrategy politicaScontoAbbStrategy;
-	
+
+	CompositePrezzoStrategy cps;
 	
 	
 	public static PoliticaScontoAbbonamentoStrategyFactory getInstance(){
@@ -39,8 +41,12 @@ public class PoliticaScontoAbbonamentoStrategyFactory {
 
 	public boolean impostaPoliticaScontoPercentuale(CategoriaCliente categoriaCliente, String nomePolitica, int numeroMesi, float scontoPercentuale) {
 		
-		ScontoPercentuale sps=ScontoPercentualeDAO.createScontoPercentuale();
-	    sps.setCategoriaCliente(categoriaCliente);
+		ScontoPercentualeStrategy s= new ScontoPercentualeStrategy();
+		ScontoPercentuale sps=(ScontoPercentuale) s.getPersistentModel();
+		
+		//ScontoPercentuale sps=ScontoPercentualeDAO.createScontoPercentuale();
+		sps=ScontoPercentualeDAO.createScontoPercentuale();
+		sps.setCategoriaCliente(categoriaCliente);
 	    sps.setNomePolitica(nomePolitica);
 	    sps.setNumeroMesi(numeroMesi);
 	    sps.setScontoPercentuale(scontoPercentuale);
@@ -65,7 +71,51 @@ public class PoliticaScontoAbbonamentoStrategyFactory {
 	
 	
 	
-	
+	public float calcolaPrezzoAbbonamento(float pbm,ArrayList<PoliticaScontoAbbonamento> elencoPoliticheSconto, boolean proContro){
+		
+		if(proContro==true) // pro cliente
+			cps=new CompositePrezzoProClienteStrategy();
+		
+		if(proContro==false) // pro cliente
+			cps=new CompositePrezzoProCentroStrategy();
+		
+		
+		
+		for(PoliticaScontoAbbonamento psa: elencoPoliticheSconto){
+			if(psa instanceof ScontoPercentuale){
+				ScontoPercentualeStrategy sps=new ScontoPercentualeStrategy();
+				sps.setPercentuale(((ScontoPercentuale) psa).getScontoPercentuale());
+				sps.setNumeroMesi(((ScontoPercentuale) psa).getNumeroMesi());
+				cps.addStrategiaPrezzo(sps);
+			}
+			if(psa instanceof ScontoFisso){
+				ScontoFissoStrategy sfs=new ScontoFissoStrategy();
+				sfs.setScontoFisso(((ScontoFisso) psa).getScontoFisso());
+				sfs.setNumeroMesi(((ScontoFisso) psa).getNumeroMesi());
+				cps.addStrategiaPrezzo(sfs);
+			}
+		}
+		
+		
+		
+		//int numMesi=politicaScontoAbbStrategy.getNumeroMesi(politicaSconto);
+		//float percentuale=politicaScontoAbbStrategy.getPercentuale(politicaSconto);
+		//return ((pbm*numMesi)-(((pbm*numMesi)*percentuale)/100));
+		//System.out.println(politicaSconto.getClass());
+		
+		/*
+		if(politicaSconto instanceof ScontoPercentuale)
+		   politicaScontoAbbStrategy= new ScontoPercentualeStrategy();
+		
+		if(politicaSconto instanceof ScontoFisso)
+			politicaScontoAbbStrategy= new ScontoFissoStrategy();
+		*/
+		
+		//return politicaScontoAbbStrategy.calcolaPrezzoAbbonamento(pbm, politicaSconto);
+		
+		PoliticaScontoAbbonamento politicaSconto=null;
+		return cps.calcolaPrezzoAbbonamento(pbm, politicaSconto);
+	}
 
 
 }

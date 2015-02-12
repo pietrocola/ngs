@@ -19,6 +19,7 @@ public class ErogaAbbonamentoHandler {
 	M_Abbonamento abbonamento;
 	ServicesCreatorFactory scFactory;
 	M_ElencoAbbonamenti elencoAbb;
+	M_CategoriaCliente catCliente;
 	
 	public static ErogaAbbonamentoHandler instance;
 	
@@ -66,8 +67,9 @@ public class ErogaAbbonamentoHandler {
 	 * @param nome
 	 * @param cognome
 	 */
-	public Boolean verificaSeDatiClientePresenti(String nome, String cognome) {
-		throw new UnsupportedOperationException();
+	public Boolean verificaSeDatiClientePresenti(String codiceFiscale) {
+		cliente=new M_Cliente();
+		return cliente.verificaSeDatiClientePresenti(codiceFiscale);
 	}
 
 	/**
@@ -79,7 +81,8 @@ public class ErogaAbbonamentoHandler {
 	 * @param email
 	 */
 	public Boolean registraCliente(String nome, String cognome, String codiceFiscale, int telefono, String email) {
-		throw new UnsupportedOperationException();
+		abbonamento= new M_Abbonamento();
+		return abbonamento.registraCliente(nome, cognome, codiceFiscale, telefono, email);
 	}
 
 	/**
@@ -101,6 +104,13 @@ public class ErogaAbbonamentoHandler {
 	 */
 	public Boolean creaAbbonamento(Cliente cliente, PreventivoAbbonamento preventivoAbb, Date dataPagamento, float importo, boolean stato) {
 		throw new UnsupportedOperationException();
+	}
+
+
+
+	public ArrayList<CategoriaCliente> getCategorieClienti() {
+		catCliente=new M_CategoriaCliente();
+		return catCliente.getCategorieClienti();
 	}
 
 }

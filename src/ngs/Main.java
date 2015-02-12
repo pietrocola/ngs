@@ -25,6 +25,16 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 
 import ngs.factory.ServicesCreatorFactory;
+import ngs.model.strategy.IPoliticaScontoAbbonamentoStrategy;
+import ngs.model.strategy.ScontoPercentualeStrategy;
+import ngs.model.strategy.composite.CompositePrezzoProClienteStrategy;
+import ngs.model.strategy.composite.CompositePrezzoStrategy;
+
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.SwingConstants;
+import javax.swing.border.LineBorder;
+
+import java.awt.Color;
 
 public class Main {
 	private static JButton btnAmministratore;
@@ -42,6 +52,9 @@ public class Main {
 		
 		ServicesCreatorFactory.getInstance().creaElencoAbbonamenti();
 		
+		//IPoliticaScontoAbbonamentoStrategy s= new ScontoPercentualeStrategy();
+		//CompositePrezzoProClienteStrategy c = new CompositePrezzoProClienteStrategy();
+		//c.addStrategiaPrezzo(s);
 		
 		/*
 		 * Splash screen di due secondi seguita dal pannello di Log 
@@ -52,6 +65,8 @@ public class Main {
 		splash.setVisible(false);  		//spalsh screen
 		
 		logFrame = new JFrame();
+		logFrame.setIconImage(Toolkit.getDefaultToolkit().getImage(Main.class.getResource("/view/img/lucchetto 4.png")));
+		logFrame.setTitle("nextGenSport - LOGIN");
 		//logFrame.setUndecorated(true);
 		
 		
@@ -60,7 +75,7 @@ public class Main {
 		logFrame.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 300, 347);
+		panel.setBounds(450, 205, 434, 262);
 		logFrame.getContentPane().add(panel);
 		
 		
@@ -68,45 +83,34 @@ public class Main {
 	        int x = (screen.width-WIDTH)/2;
 	        int y = (screen.height-HEIGHT)/2;
 	        
-	        logFrame.setBounds(x,y,316,193);
+	        //logFrame.setBounds(x,y,316,292);
+	        logFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 	        
 	        
 		{
-			btnAmministratore = new JButton("Amministratore");
+			btnAmministratore = new JButton("AMMINISTRATORE ");
+			btnAmministratore.setFocusable(false);
+			btnAmministratore.setBounds(32, 156, 191, 54);
+			btnAmministratore.setIcon(new ImageIcon(Main.class.getResource("/view/img/user_icon.png")));
 			ascoltatoreLoginAdmin();
 		}
 		{
-			btnSegretaria = new JButton("Segretaria");
+			btnSegretaria = new JButton("SEGRETARIA ");
+			btnSegretaria.setFocusable(false);
+			btnSegretaria.setBounds(244, 156, 180, 54);
+			btnSegretaria.setIcon(new ImageIcon(Main.class.getResource("/view/img/segretaria.png")));
 			ascoltatoreLoginSegretaria();
 		}
 		{
 			label = new JLabel("");
+			label.setBounds(192, 25, 100, 100);
+			label.setHorizontalAlignment(SwingConstants.CENTER);
 			label.setIcon(new ImageIcon(Main.class.getResource("/view/img/login1.png")));
 		}
-		GroupLayout gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(104)
-					.addComponent(label))
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(21)
-					.addComponent(btnAmministratore, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
-					.addGap(10)
-					.addComponent(btnSegretaria, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE))
-		);
-		gl_panel.setVerticalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(11)
-					.addComponent(label)
-					.addGap(11)
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(btnAmministratore, 0, 0, Short.MAX_VALUE)
-						.addComponent(btnSegretaria, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-					.addGap(43))
-		);
-		panel.setLayout(gl_panel);
+		panel.setLayout(null);
+		panel.add(label);
+		panel.add(btnAmministratore);
+		panel.add(btnSegretaria);
 		
 		logFrame.setVisible(true);
 	}

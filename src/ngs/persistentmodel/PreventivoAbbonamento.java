@@ -19,7 +19,7 @@ public class PreventivoAbbonamento extends ngs.persistentmodel.APersistentModel 
 	
 	private int ID;
 	
-	private ngs.persistentmodel.PoliticaScontoAbbonamento politicaSconto;
+	private ngs.persistentmodel.CategoriaCliente categoriaCliente;
 	
 	private ngs.persistentmodel.DescrizioneAbbonamento descAbb;
 	
@@ -63,12 +63,12 @@ public class PreventivoAbbonamento extends ngs.persistentmodel.APersistentModel 
 		return descAbb;
 	}
 	
-	public void setPoliticaSconto(ngs.persistentmodel.PoliticaScontoAbbonamento value) {
-		this.politicaSconto = value;
+	public void setCategoriaCliente(ngs.persistentmodel.CategoriaCliente value) {
+		this.categoriaCliente = value;
 	}
 	
-	public ngs.persistentmodel.PoliticaScontoAbbonamento getPoliticaSconto() {
-		return politicaSconto;
+	public ngs.persistentmodel.CategoriaCliente getCategoriaCliente() {
+		return categoriaCliente;
 	}
 	
 	public String toString() {

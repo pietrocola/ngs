@@ -19,7 +19,7 @@ public class M_PreventivoAbbonamento extends AModel {
 	}
 
 	
-	
+	/* RIVEDERE !!!!
 	public boolean verificaPreventivo(DescrizioneAbbonamento descAbb,PoliticaScontoAbbonamento politicaSconto) {
 		
 		PreventivoAbbonamento[] pa=PreventivoAbbonamentoDAO.listPreventivoAbbonamentoByQuery(null, null);
@@ -28,9 +28,9 @@ public class M_PreventivoAbbonamento extends AModel {
 				return false;
 		}
 		
-		return true;
-		
+		return true;	
 	}
+	*/
 
 	/**
 	 * 

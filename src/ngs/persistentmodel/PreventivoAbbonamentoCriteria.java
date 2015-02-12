@@ -20,8 +20,8 @@ import org.orm.criteria.*;
 
 public class PreventivoAbbonamentoCriteria extends AbstractORMCriteria {
 	public final IntegerExpression ID;
-	public final StringExpression politicaScontoId;
-	public final AssociationExpression politicaSconto;
+	public final StringExpression categoriaClienteId;
+	public final AssociationExpression categoriaCliente;
 	public final StringExpression descAbbId;
 	public final AssociationExpression descAbb;
 	public final FloatExpression prezzo;
@@ -30,8 +30,8 @@ public class PreventivoAbbonamentoCriteria extends AbstractORMCriteria {
 	public PreventivoAbbonamentoCriteria(Criteria criteria) {
 		super(criteria);
 		ID = new IntegerExpression("ID", this);
-		politicaScontoId = new StringExpression("politicaSconto.nomePolitica", this);
-		politicaSconto = new AssociationExpression("politicaSconto", this);
+		categoriaClienteId = new StringExpression("categoriaCliente.nomeCat", this);
+		categoriaCliente = new AssociationExpression("categoriaCliente", this);
 		descAbbId = new StringExpression("descAbb.nomeAbbonamento", this);
 		descAbb = new AssociationExpression("descAbb", this);
 		prezzo = new FloatExpression("prezzo", this);
@@ -46,8 +46,8 @@ public class PreventivoAbbonamentoCriteria extends AbstractORMCriteria {
 		this(ngs.persistentmodel.NextGenSport2PersistentManager.instance().getSession());
 	}
 	
-	public PoliticaScontoAbbonamentoCriteria createPoliticaScontoCriteria() {
-		return new PoliticaScontoAbbonamentoCriteria(createCriteria("politicaSconto"));
+	public CategoriaClienteCriteria createCategoriaClienteCriteria() {
+		return new CategoriaClienteCriteria(createCriteria("categoriaCliente"));
 	}
 	
 	public DescrizioneAbbonamentoCriteria createDescAbbCriteria() {

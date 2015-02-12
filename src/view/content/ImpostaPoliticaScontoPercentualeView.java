@@ -46,54 +46,54 @@ public class ImpostaPoliticaScontoPercentualeView extends JPanel {
 		{
 			comboBox = new JComboBox();
 			ascoltatoreListaCategorieClienti();			
-			comboBox.setBounds(189, 52, 146, 20);
+			comboBox.setBounds(200, 52, 146, 20);
 			add(comboBox);
 		}
 		{
 			lblNomePolitcaSconto = new JLabel("nome politca sconto");
-			lblNomePolitcaSconto.setBounds(40, 117, 139, 14);
+			lblNomePolitcaSconto.setBounds(40, 107, 139, 14);
 			add(lblNomePolitcaSconto);
 		}
 		{
 			textField = new JTextField();
 			resetLabelConfermaInserimento( textField);
-			textField.setBounds(189, 114, 108, 20);
+			textField.setBounds(200, 104, 114, 20);
 			add(textField);
 			textField.setColumns(10);
 		}
 		{
 			lblScontoMese = new JLabel("durata mensile");
-			lblScontoMese.setBounds(40, 170, 108, 14);
+			lblScontoMese.setBounds(40, 162, 108, 14);
 			add(lblScontoMese);
 		}
 		{
 			textField_1 = new JTextField("");
 			resetLabelConfermaInserimento( textField_1);
-			textField_1.setBounds(189, 167, 58, 20);
+			textField_1.setBounds(200, 159, 65, 20);
 			add(textField_1);
 			textField_1.setColumns(10);
 		}
 		{
 			lblScontoMesi = new JLabel("sconto (%)");
-			lblScontoMesi.setBounds(40, 220, 101, 14);
+			lblScontoMesi.setBounds(40, 217, 101, 14);
 			add(lblScontoMesi);
 		}
 		{
 			textField_2 = new JTextField("0");
 			resetLabelConfermaInserimento( textField_2);
-			textField_2.setBounds(189, 217, 58, 20);
+			textField_2.setBounds(200, 214, 65, 20);
 			add(textField_2);
 			textField_2.setColumns(10);
 		}
 		{
 			btnSalva = new JButton("salva");
 			ascoltatoreSalvaScontoPercentuale();
-			btnSalva.setBounds(189, 271, 89, 23);
+			btnSalva.setBounds(200, 266, 89, 23);
 			add(btnSalva);
 		}
 		{
 			label = new JLabel("");
-			label.setBounds(323, 275, 400, 14);
+			label.setBounds(325, 270, 400, 14);
 			label.setFont(new Font("Thaoma",Font.BOLD,15));
 			add(label);
 		}

@@ -1,8 +1,11 @@
 package ngs.model.strategy;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 import ngs.model.*;
+import ngs.model.strategy.composite.CompositePrezzoProClienteStrategy;
+import ngs.model.strategy.composite.CompositePrezzoStrategy;
 import ngs.persistentmodel.APersistentModel;
 import ngs.persistentmodel.CategoriaCliente;
 import ngs.persistentmodel.PoliticaScontoAbbonamento;
@@ -18,8 +21,13 @@ public class ScontoFissoStrategy extends AModel implements IPoliticaScontoAbbona
 	
 	@Override
 	public float calcolaPrezzoAbbonamento(float pbm, PoliticaScontoAbbonamento politicaSconto) {
+		
+		//int numMesi=((ScontoFisso) politicaSconto).getNumeroMesi();
+		//float scontoFisso=((ScontoFisso) politicaSconto).getScontoFisso();
+		
 		int numMesi=((ScontoFisso) politicaSconto).getNumeroMesi();
-		float scontoFisso=((ScontoFisso) politicaSconto).getScontoFisso();
+		float percentuale=((ScontoFisso) politicaSconto).getScontoFisso();
+		
 		return ((pbm*numMesi)- scontoFisso);
 	}
 
@@ -27,27 +35,64 @@ public class ScontoFissoStrategy extends AModel implements IPoliticaScontoAbbona
 	
 	
 	
+	//CompositePrezzoProClienteStrategy cppcs=new CompositePrezzoProClienteStrategy();  // in FACTORY !!!!
 	
-	
+	/**
+	 * 
+	 * @param cat
+	 */
 	@Override
-	public ArrayList<PoliticaScontoAbbonamento> getPoliticheSconto(CategoriaCliente cat) {
+	public ArrayList<PoliticaScontoAbbonamento> getPoliticheSconto(CategoriaCliente cat, int numMesi) {
 		
-		ArrayList<PoliticaScontoAbbonamento> arrayPolitiche = new ArrayList<PoliticaScontoAbbonamento>();
+		//System.out.println("sto prendendo sconto fisso dentro ScontoPercentualeFisso");
+		
+		ArrayList<PoliticaScontoAbbonamento> elencoPoliticheSconto = new ArrayList<PoliticaScontoAbbonamento>();
 		
 		//PoliticaScontoAbbonamento psa=(PoliticaScontoAbbonamento)this.getPersistentModel();
 
-		
 		for(int i=0;i<ScontoFissoDAO.listScontoFissoByQuery(null,null).length;i++){
-			if(ScontoFissoDAO.listScontoFissoByQuery(null, null)[i].getCategoriaCliente().equals(cat))  
-			   arrayPolitiche.add(ScontoFissoDAO.listScontoFissoByQuery(null, null)[i]);
-	
-		}
+			if(ScontoFissoDAO.listScontoFissoByQuery(null, null)[i].getCategoriaCliente().equals(cat) && ScontoFissoDAO.listScontoFissoByQuery(null, null)[i].getNumeroMesi()==numMesi)  
+				elencoPoliticheSconto.add(ScontoFissoDAO.listScontoFissoByQuery(null, null)[i]);
+			  
+				//ScontoFissoStrategy sfs=new ScontoFissoStrategy();
+			  
+			   //((ScontoFissoStrategy) sfs).setScontoFisso(ScontoFissoDAO.listScontoFissoByQuery(null, null)[i].getScontoFisso());
+			   //((ScontoFissoStrategy) sfs).setNumeroMesi(ScontoFissoDAO.listScontoFissoByQuery(null, null)[i].getNumeroMesi());
+			   
+			   
+			   //System.out.println(ScontoPercentualeDAO.listScontoPercentualeByQuery(null, null)[i].getScontoPercentuale());
+			   //sps.calcolaPrezzoAbbonamento(pbm, politicaSconto);	
+			   //cppcs.addStrategiaPrezzo(sfs);// farlo fare alla FACTORY !!!!
+			   //System.out.println(cppcs.getElencoStrategie().size());
+			}
 		
-		return arrayPolitiche;
+		return elencoPoliticheSconto;
 	}
 
 
 
+	public int numeroMesi;
+	
+	public void setNumeroMesi(int numMesi){
+		this.numeroMesi=numMesi;
+	}
+	
+	
+	public int getNumeroMesi(){
+		return numeroMesi;
+	}
+	
+	
+	
+	
+	public void setScontoFisso(float scontoFisso){
+		this.scontoFisso=scontoFisso;
+	}
+	
+	public float getScontoFisso(){
+		return scontoFisso;
+	}
+	
 	
 	
 	
@@ -114,5 +159,21 @@ public class ScontoFissoStrategy extends AModel implements IPoliticaScontoAbbona
 		
 		
 		return true;
+	}
+
+	private float scontoFisso;
+
+	
+	
+	@Override
+	public HashSet<Integer> getNumeroMesi(CategoriaCliente catCliente) {
+		HashSet<Integer> elencoNumeroMesi = new HashSet<Integer>();
+
+		for(int i=0;i<ScontoFissoDAO.listScontoFissoByQuery(null,null).length;i++){
+			if(ScontoFissoDAO.listScontoFissoByQuery(null, null)[i].getCategoriaCliente().equals(catCliente)){  
+				elencoNumeroMesi.add(ScontoFissoDAO.listScontoFissoByQuery(null, null)[i].getNumeroMesi());
+			}
+		}
+		return elencoNumeroMesi;
 	}
 }

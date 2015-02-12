@@ -1,6 +1,7 @@
 package ngs.model.strategy;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 import ngs.persistentmodel.CategoriaCliente;
 import ngs.persistentmodel.DescrizioneAbbonamento;
@@ -15,9 +16,13 @@ public interface IPoliticaScontoAbbonamentoStrategy {
 	 * @param durataMesi
 	 * @param numMesi
 	 */
+	
+	
+	//float calcolaPrezzoAbbonamento(float pbm, PoliticaScontoAbbonamento politicaSconto);
 	float calcolaPrezzoAbbonamento(float pbm, PoliticaScontoAbbonamento politicaSconto);
-
-	ArrayList<PoliticaScontoAbbonamento> getPoliticheSconto(CategoriaCliente cat);
+	
+	
+	ArrayList<PoliticaScontoAbbonamento> getPoliticheSconto(CategoriaCliente cat,int numMesi);
 
 	/**
 	 * 
@@ -26,5 +31,8 @@ public interface IPoliticaScontoAbbonamentoStrategy {
 	int getNumeroMesi(PoliticaScontoAbbonamento politicaSconto);
 	
 	float getPercentuale(PoliticaScontoAbbonamento politicaSconto);
+
+
+	HashSet<Integer> getNumeroMesi(CategoriaCliente catCliente);
 
 }

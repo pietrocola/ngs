@@ -34,6 +34,7 @@ import view.content.ImpostaCategoriaClienteView;
 import view.content.ImpostaPoliticaScontoFissoView;
 import view.content.ImpostaPoliticaScontoPercentualeView;
 import view.content.ImpostaTipologiaCorsoView;
+import view.content.VECCHIACreaPreventivoView;
 import view.content.CreaPreventivoView;
 import view.utility.ProvaMap;
 
@@ -139,7 +140,7 @@ public class InterfacciaAmministratore {
 				mnFile = new JMenu("File");
 				menuBar.add(mnFile);
 				{
-					mntmEsci = new JMenuItem("Esci");
+					mntmEsci = new JMenuItem("Logout");
 					mntmEsci.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							frmNextgensportAmministratore.setVisible(false);

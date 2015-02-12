@@ -29,11 +29,13 @@ import javax.swing.ImageIcon;
 
 import view.content.ConfiguraAbbonamentoView;
 import view.content.ConfiguraCorsoView;
+import view.content.ElencoPreventiviDisponibiliView;
 import view.content.HomeView;
 import view.content.ImpostaCategoriaClienteView;
 import view.content.ImpostaPoliticaScontoPercentualeView;
 import view.content.ImpostaTipologiaCorsoView;
-import view.content.CreaPreventivoView;
+import view.content.RegistraClienteView;
+import view.content.VECCHIACreaPreventivoView;
 import view.content.VerificaCategoriaClienteView;
 import view.utility.ProvaMap;
 
@@ -66,10 +68,17 @@ public class InterfacciaSegretaria {
 	private JButton btnAbbonamento;
 	private JButton btnClienti;
 	private JButton btnHome;
+	private JButton btnCertificatiMedici;
 	private JButton btnPagamenti;
 	private JPanel panel;
 	private JPopupMenu popupMenu;
 	private JMenuItem mntmVerificaCategoriaCliente;
+	private JPopupMenu popupMenu_1;
+	private JMenuItem mntmPreventiviDisponibili;
+	private JMenuItem mntmRegistraCliente;
+	private JPopupMenu popupMenu_2;
+	private JMenuItem mntmAggiungiCertificatoCliente;
+	private JMenuItem mntmCreaAbbonamento;
 	
 
 	/**
@@ -103,7 +112,7 @@ public class InterfacciaSegretaria {
 				mnFile = new JMenu("File");
 				menuBar.add(mnFile);
 				{
-					mntmEsci = new JMenuItem("Esci");
+					mntmEsci = new JMenuItem("Logout");
 					mntmEsci.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							segFrame.setVisible(false);
@@ -140,12 +149,26 @@ public class InterfacciaSegretaria {
 				btnAbbonamento.setFocusable(false);
 				btnAbbonamento.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
+						popupMenu_1.show(btnAbbonamento, 0,	btnAbbonamento.getY() + btnAbbonamento.getHeight());
 					}
 				});
 
 				btnAbbonamento.setIcon(new ImageIcon(InterfacciaSegretaria.class.getResource("/view/img/abbonamento1.png")));
 				btnAbbonamento.setBorderPainted(false);
 				toolBar.add(btnAbbonamento);
+				{
+					popupMenu_1 = new JPopupMenu();
+					addPopup(btnAbbonamento, popupMenu_1);
+					{
+						mntmPreventiviDisponibili = new JMenuItem("preventivi disponibili");
+						ascoltatorePreventiviDisponibili();
+						popupMenu_1.add(mntmPreventiviDisponibili);
+					}
+					{
+						mntmCreaAbbonamento = new JMenuItem("crea abbonamento");
+						popupMenu_1.add(mntmCreaAbbonamento);
+					}
+				}
 			}
 			{
 				btnClienti = new JButton("CLIENTI ");
@@ -167,13 +190,39 @@ public class InterfacciaSegretaria {
 						ascoltatoreVerificaCategoriaCliente();
 						popupMenu.add(mntmVerificaCategoriaCliente);
 					}
+					{
+						mntmRegistraCliente = new JMenuItem("registra cliente");
+						ascoltatoreRegistraCliente();
+						popupMenu.add(mntmRegistraCliente);
+					}
+				}
+			}
+			{
+				btnCertificatiMedici = new JButton("CERTIFICATI MEDICI ");
+				btnCertificatiMedici.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						popupMenu_2.show(btnCertificatiMedici, 0,	btnCertificatiMedici.getY() + btnCertificatiMedici.getHeight());
+					}
+				});
+				//ascoltatoreBottoneHome();
+				btnCertificatiMedici.setFocusable(false);
+				btnCertificatiMedici.setBorderPainted(false);
+				btnCertificatiMedici.setIcon(new ImageIcon(InterfacciaSegretaria.class.getResource("/view/img/cuore 1.png")));
+				toolBar.add(btnCertificatiMedici);
+				{
+					popupMenu_2 = new JPopupMenu();
+					addPopup(btnCertificatiMedici, popupMenu_2);
+					{
+						mntmAggiungiCertificatoCliente = new JMenuItem("aggiungi certificato cliente");
+						popupMenu_2.add(mntmAggiungiCertificatoCliente);
+					}
 				}
 			}
 			{
 				btnPagamenti = new JButton("PAGAMENTI ");
 				btnPagamenti.setFocusable(false);
 				btnPagamenti.setBorderPainted(false);
-				btnPagamenti.setIcon(new ImageIcon(InterfacciaSegretaria.class.getResource("/view/img/Euro.png")));
+				btnPagamenti.setIcon(new ImageIcon(InterfacciaSegretaria.class.getResource("/view/img/euro 1.png")));
 				toolBar.add(btnPagamenti);
 			}
 		}
@@ -182,6 +231,51 @@ public class InterfacciaSegretaria {
 			// internalFrame.getContentPane().add(itc,BorderLayout.CENTER);
 			segFrame.getContentPane().add(home,	BorderLayout.CENTER);
 		}
+		
+	}
+
+	
+	
+	
+	
+	private void ascoltatoreRegistraCliente() {
+		mntmRegistraCliente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				clearMainPanel(segFrame);
+				
+				RegistraClienteView rcv = new RegistraClienteView();
+				// internalFrame.getContentPane().add(itc,BorderLayout.CENTER);
+				segFrame.getContentPane().add(rcv,	BorderLayout.CENTER);
+
+				// internalFrame.setVisible(true);
+				segFrame.getContentPane().revalidate();
+				segFrame.repaint();
+				
+			}
+		});
+		
+	}
+
+	
+	
+	
+	
+	
+	private void ascoltatorePreventiviDisponibili() {
+		mntmPreventiviDisponibili.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				clearMainPanel(segFrame);
+				
+				ElencoPreventiviDisponibiliView epdv = new ElencoPreventiviDisponibiliView();
+				// internalFrame.getContentPane().add(itc,BorderLayout.CENTER);
+				segFrame.getContentPane().add(epdv,	BorderLayout.CENTER);
+
+				// internalFrame.setVisible(true);
+				segFrame.getContentPane().revalidate();
+				segFrame.repaint();
+				
+			}
+		});
 		
 	}
 
