@@ -5,6 +5,8 @@ package ngs.factory;
 import java.util.Date;
 
 import ngs.model.Adapter.*;
+import ngs.persistentmodel.CertificatoMedico;
+import ngs.persistentmodel.CertificatoMedicoDAO;
 import ngs.persistentmodel.Cliente;
 import ngs.persistentmodel.ElencoAbbonamentiDAO;
 
@@ -26,10 +28,20 @@ public class ServicesCreatorFactory {
 	 * @param dataScadenza
 	 * @param cliente
 	 */
-	public void associaCertificatoMedicoCliente(Date dataScadenza, Cliente cliente) {
-		throw new UnsupportedOperationException();
+	public boolean associaCertificatoMedicoCliente(Date dataScadenza, Cliente cliente) {
+		CertificatoMedico cm=CertificatoMedicoDAO.createCertificatoMedico();
+		cm.setCliente(cliente);
+		cm.setScadenza(dataScadenza);
+		return CertificatoMedicoDAO.save(cm);
 	}
 
+	
+	
+	
+	
+	
+	
+	
 	public IVerificaCategoriaClienteAdapter getCategoriaClienteAdapter() {
 		throw new UnsupportedOperationException();
 	}
@@ -39,9 +51,14 @@ public class ServicesCreatorFactory {
 		if(ElencoAbbonamentiDAO.listElencoAbbonamentiByQuery(null,null).length==0){
 			
 			ElencoAbbonamentiDAO.save(ElencoAbbonamentiDAO.createElencoAbbonamenti());
-		}
-		
-		
+		}	
 	}
+	
+	
+	
+	
+
+	
+	
 
 }

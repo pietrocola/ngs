@@ -22,7 +22,7 @@ public class ClienteCriteria extends AbstractORMCriteria {
 	public final StringExpression codiceFiscale;
 	public final StringExpression nome;
 	public final StringExpression cognome;
-	public final IntegerExpression telefono;
+	public final StringExpression telefono;
 	public final StringExpression email;
 	
 	public ClienteCriteria(Criteria criteria) {
@@ -30,7 +30,7 @@ public class ClienteCriteria extends AbstractORMCriteria {
 		codiceFiscale = new StringExpression("codiceFiscale", this);
 		nome = new StringExpression("nome", this);
 		cognome = new StringExpression("cognome", this);
-		telefono = new IntegerExpression("telefono", this);
+		telefono = new StringExpression("telefono", this);
 		email = new StringExpression("email", this);
 	}
 	

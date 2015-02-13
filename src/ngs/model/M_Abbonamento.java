@@ -19,7 +19,7 @@ public class M_Abbonamento extends AModel {
 	 * @param telefono
 	 * @param email
 	 */
-	public Boolean registraCliente(String nome, String cognome, String codiceFiscale, int telefono, String email) {
+	public Boolean registraCliente(String nome, String cognome, String codiceFiscale, String telefono, String email) {
 	    Cliente c = (Cliente)this.getPersistentModel();
 	    c=ClienteDAO.createCliente();
 	    c.setCodiceFiscale(codiceFiscale);

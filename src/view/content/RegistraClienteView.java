@@ -10,6 +10,7 @@ import ngs.controller.ErogaAbbonamentoHandler;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JSeparator;
 
 public class RegistraClienteView extends JPanel {
 	private JLabel lblCodiceFiscale;
@@ -118,8 +119,7 @@ public class RegistraClienteView extends JPanel {
 				String codiceFiscale=textField.getText();
 				String nome=textField_1.getText();
 				String cognome=textField_2.getText();
-				String tel=textField_3.getText();
-				int telefono=Integer.parseInt(tel);
+				String telefono=textField_3.getText();
 				String email=textField_4.getText();
 				Boolean aux= ErogaAbbonamentoHandler.getInstance().registraCliente(nome, cognome, codiceFiscale, telefono, email);
 				if(aux==true)

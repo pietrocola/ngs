@@ -27,6 +27,7 @@ import java.beans.PropertyVetoException;
 
 import javax.swing.ImageIcon;
 
+import view.content.AggiungiCertificatoMedicoView;
 import view.content.ConfiguraAbbonamentoView;
 import view.content.ConfiguraCorsoView;
 import view.content.ElencoPreventiviDisponibiliView;
@@ -64,7 +65,7 @@ public class InterfacciaSegretaria {
 	private JMenuItem mntmEsci;
 	private JMenu mnModifica;
 	private JMenu menu;
-	private JToolBar toolBar;
+	public static JToolBar toolBar;
 	private JButton btnAbbonamento;
 	private JButton btnClienti;
 	private JButton btnHome;
@@ -214,6 +215,7 @@ public class InterfacciaSegretaria {
 					addPopup(btnCertificatiMedici, popupMenu_2);
 					{
 						mntmAggiungiCertificatoCliente = new JMenuItem("aggiungi certificato cliente");
+						ascoltatoreAggiungiCertificatoMedico();
 						popupMenu_2.add(mntmAggiungiCertificatoCliente);
 					}
 				}
@@ -238,6 +240,23 @@ public class InterfacciaSegretaria {
 	
 	
 	
+	private void ascoltatoreAggiungiCertificatoMedico() {
+		mntmAggiungiCertificatoCliente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				clearMainPanel(segFrame);
+				
+				AggiungiCertificatoMedicoView acmv = new AggiungiCertificatoMedicoView();
+				// internalFrame.getContentPane().add(itc,BorderLayout.CENTER);
+				segFrame.getContentPane().add(acmv,	BorderLayout.CENTER);
+
+				// internalFrame.setVisible(true);
+				segFrame.getContentPane().revalidate();
+				segFrame.repaint();
+			}
+		});
+		
+	}
+
 	private void ascoltatoreRegistraCliente() {
 		mntmRegistraCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

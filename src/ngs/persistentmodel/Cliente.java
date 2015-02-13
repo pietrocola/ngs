@@ -40,7 +40,7 @@ public class Cliente extends ngs.persistentmodel.APersistentModel {
 	
 	private String cognome;
 	
-	private int telefono;
+	private String telefono;
 	
 	private String email;
 	
@@ -72,11 +72,11 @@ public class Cliente extends ngs.persistentmodel.APersistentModel {
 		return getCodiceFiscale();
 	}
 	
-	public void setTelefono(int value) {
+	public void setTelefono(String value) {
 		this.telefono = value;
 	}
 	
-	public int getTelefono() {
+	public String getTelefono() {
 		return telefono;
 	}
 	

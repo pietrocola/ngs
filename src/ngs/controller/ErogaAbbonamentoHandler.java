@@ -80,7 +80,7 @@ public class ErogaAbbonamentoHandler {
 	 * @param telefono
 	 * @param email
 	 */
-	public Boolean registraCliente(String nome, String cognome, String codiceFiscale, int telefono, String email) {
+	public Boolean registraCliente(String nome, String cognome, String codiceFiscale, String telefono, String email) {
 		abbonamento= new M_Abbonamento();
 		return abbonamento.registraCliente(nome, cognome, codiceFiscale, telefono, email);
 	}
@@ -89,10 +89,21 @@ public class ErogaAbbonamentoHandler {
 	 * 
 	 * @param dataScadenza
 	 * @param cliente
+	 * @return 
 	 */
-	public void associaCertificatoMedicoCliente(Date dataScadenza, Cliente cliente) {
-		throw new UnsupportedOperationException();
+	public Boolean associaCertificatoMedicoCliente(Date dataScadenza, String codiceFiscaleCliente) {
+		cliente=new M_Cliente();
+		return ServicesCreatorFactory.getInstance().associaCertificatoMedicoCliente(dataScadenza, cliente.getCliente(codiceFiscaleCliente));
 	}
+	
+	
+	
+	public Cliente[] getElencoClienti(){
+		cliente=new M_Cliente();
+		return cliente.getElencoClienti();
+	}
+	
+	
 
 	/**
 	 * 
@@ -111,6 +122,13 @@ public class ErogaAbbonamentoHandler {
 	public ArrayList<CategoriaCliente> getCategorieClienti() {
 		catCliente=new M_CategoriaCliente();
 		return catCliente.getCategorieClienti();
+	}
+	
+	
+	public ArrayList<Cliente> filtraClienti(String cognome){
+		cliente= new M_Cliente();
+		
+		return cliente.filtraCliente(cognome);
 	}
 
 }

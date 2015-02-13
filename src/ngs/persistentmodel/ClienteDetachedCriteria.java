@@ -22,7 +22,7 @@ public class ClienteDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final StringExpression codiceFiscale;
 	public final StringExpression nome;
 	public final StringExpression cognome;
-	public final IntegerExpression telefono;
+	public final StringExpression telefono;
 	public final StringExpression email;
 	
 	public ClienteDetachedCriteria() {
@@ -30,7 +30,7 @@ public class ClienteDetachedCriteria extends AbstractORMDetachedCriteria {
 		codiceFiscale = new StringExpression("codiceFiscale", this.getDetachedCriteria());
 		nome = new StringExpression("nome", this.getDetachedCriteria());
 		cognome = new StringExpression("cognome", this.getDetachedCriteria());
-		telefono = new IntegerExpression("telefono", this.getDetachedCriteria());
+		telefono = new StringExpression("telefono", this.getDetachedCriteria());
 		email = new StringExpression("email", this.getDetachedCriteria());
 	}
 	
@@ -39,7 +39,7 @@ public class ClienteDetachedCriteria extends AbstractORMDetachedCriteria {
 		codiceFiscale = new StringExpression("codiceFiscale", this.getDetachedCriteria());
 		nome = new StringExpression("nome", this.getDetachedCriteria());
 		cognome = new StringExpression("cognome", this.getDetachedCriteria());
-		telefono = new IntegerExpression("telefono", this.getDetachedCriteria());
+		telefono = new StringExpression("telefono", this.getDetachedCriteria());
 		email = new StringExpression("email", this.getDetachedCriteria());
 	}
 	
