@@ -23,8 +23,6 @@ public class Abbonamento extends ngs.persistentmodel.APersistentModel {
 	
 	private ngs.persistentmodel.Cliente cliente;
 	
-	private ngs.persistentmodel.Pagamento pagamento;
-	
 	private java.util.Date dataInizio;
 	
 	private java.util.Date dataFine;
@@ -55,14 +53,6 @@ public class Abbonamento extends ngs.persistentmodel.APersistentModel {
 	
 	public java.util.Date getDataFine() {
 		return dataFine;
-	}
-	
-	public void setPagamento(ngs.persistentmodel.Pagamento value) {
-		this.pagamento = value;
-	}
-	
-	public ngs.persistentmodel.Pagamento getPagamento() {
-		return pagamento;
 	}
 	
 	public void setCliente(ngs.persistentmodel.Cliente value) {

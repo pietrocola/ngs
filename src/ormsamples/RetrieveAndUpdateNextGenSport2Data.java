@@ -45,9 +45,6 @@ public class RetrieveAndUpdateNextGenSport2Data {
 			ngs.persistentmodel.Abbonamento lngspersistentmodelAbbonamento = ngs.persistentmodel.AbbonamentoDAO.loadAbbonamentoByQuery(null, null);
 			// Update the properties of the persistent object
 			ngs.persistentmodel.AbbonamentoDAO.save(lngspersistentmodelAbbonamento);
-			ngs.persistentmodel.ElencoAbbonamenti lngspersistentmodelElencoAbbonamenti = ngs.persistentmodel.ElencoAbbonamentiDAO.loadElencoAbbonamentiByQuery(null, null);
-			// Update the properties of the persistent object
-			ngs.persistentmodel.ElencoAbbonamentiDAO.save(lngspersistentmodelElencoAbbonamenti);
 			ngs.persistentmodel.AnagraficaUniversitario lngspersistentmodelAnagraficaUniversitario = ngs.persistentmodel.AnagraficaUniversitarioDAO.loadAnagraficaUniversitarioByQuery(null, null);
 			// Update the properties of the persistent object
 			ngs.persistentmodel.AnagraficaUniversitarioDAO.save(lngspersistentmodelAnagraficaUniversitario);
@@ -137,12 +134,6 @@ public class RetrieveAndUpdateNextGenSport2Data {
 		// Please uncomment the follow line and fill in parameter(s)
 		//lngspersistentmodelAbbonamentoCriteria.ID.eq();
 		System.out.println(lngspersistentmodelAbbonamentoCriteria.uniqueAbbonamento());
-		
-		System.out.println("Retrieving ElencoAbbonamenti by ElencoAbbonamentiCriteria");
-		ngs.persistentmodel.ElencoAbbonamentiCriteria lngspersistentmodelElencoAbbonamentiCriteria = new ngs.persistentmodel.ElencoAbbonamentiCriteria();
-		// Please uncomment the follow line and fill in parameter(s)
-		//lngspersistentmodelElencoAbbonamentiCriteria.ID.eq();
-		System.out.println(lngspersistentmodelElencoAbbonamentiCriteria.uniqueElencoAbbonamenti());
 		
 		System.out.println("Retrieving AnagraficaUniversitario by AnagraficaUniversitarioCriteria");
 		ngs.persistentmodel.AnagraficaUniversitarioCriteria lngspersistentmodelAnagraficaUniversitarioCriteria = new ngs.persistentmodel.AnagraficaUniversitarioCriteria();

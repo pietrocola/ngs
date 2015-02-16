@@ -3,12 +3,16 @@ package ngs.controller;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 
 import ngs.model.Adapter.*;
 import ngs.model.*;
 import ngs.persistentmodel.CategoriaCliente;
+import ngs.persistentmodel.CertificatoMedico;
 import ngs.persistentmodel.Cliente;
+import ngs.persistentmodel.DescrizioneCorso;
 import ngs.persistentmodel.PreventivoAbbonamento;
+import ngs.persistentmodel.SalaPesi;
 import ngs.factory.*;
 
 public class ErogaAbbonamentoHandler {
@@ -17,9 +21,12 @@ public class ErogaAbbonamentoHandler {
 	M_PreventivoAbbonamento preventivoAbb;
 	M_Cliente cliente;
 	M_Abbonamento abbonamento;
+	M_DescrizioneAbbonamento descAbb;
 	ServicesCreatorFactory scFactory;
 	M_ElencoAbbonamenti elencoAbb;
 	M_CategoriaCliente catCliente;
+	M_CertificatoMedico certificatoMedico;
+	
 	
 	public static ErogaAbbonamentoHandler instance;
 	
@@ -59,7 +66,9 @@ public class ErogaAbbonamentoHandler {
 	 * @param categoriaCliente
 	 */
 	public ArrayList<PreventivoAbbonamento> getPreventiviAbbonamenti(CategoriaCliente categoriaCliente) {
-		throw new UnsupportedOperationException();
+		preventivoAbb= new M_PreventivoAbbonamento();
+		return preventivoAbb.getPreventiviAbbonamenti(categoriaCliente);
+		
 	}
 
 	/**
@@ -113,8 +122,10 @@ public class ErogaAbbonamentoHandler {
 	 * @param importo
 	 * @param stato
 	 */
-	public Boolean creaAbbonamento(Cliente cliente, PreventivoAbbonamento preventivoAbb, Date dataPagamento, float importo, boolean stato) {
-		throw new UnsupportedOperationException();
+	public Boolean creaAbbonamento(Cliente cliente, PreventivoAbbonamento preventivoAbb, Date dataInizio, Date dataFine) {
+		M_ElencoAbbonamenti ea=M_ElencoAbbonamenti.getInstance();
+		System.out.println(ea.getElencoAbbonamenti().size()+" nel contr");
+		return ea.creaAbbonamento(cliente, preventivoAbb, dataInizio,dataFine);
 	}
 
 
@@ -130,5 +141,70 @@ public class ErogaAbbonamentoHandler {
 		
 		return cliente.filtraCliente(cognome);
 	}
+
+
+
+	public boolean verificaSeCertificatoPresente(String codFisc) {
+		Cliente c=cliente.getCliente(codFisc);
+		certificatoMedico=new M_CertificatoMedico();
+		return certificatoMedico.verificaSeCertificatoPresente(c);
+	}
+	
+	
+	public CategoriaCliente getCategoriaCliente(String nomeCat){
+		catCliente=new M_CategoriaCliente();
+		return catCliente.getCategoriaCliente(nomeCat);
+	}
+
+
+
+	public ArrayList<DescrizioneCorso> getCorsiAbbonamento(String nomeAbb) {
+		// TODO Auto-generated method stub
+		descAbb=new M_DescrizioneAbbonamento();
+		return descAbb.getCorsiAbbonamento(nomeAbb);
+		
+	}
+
+
+
+	public ArrayList<SalaPesi> getSalePesiAbbonamento(String nomeAbb) {
+		descAbb=new M_DescrizioneAbbonamento();
+		return descAbb.getSalePesiAbbonamento(nomeAbb);
+	}
+
+
+
+	public CertificatoMedico[] getElencoCertificati() {
+		certificatoMedico=new M_CertificatoMedico();
+		return certificatoMedico.getElencoCertificati();
+	}
+
+
+
+	public ArrayList<CertificatoMedico> filtraCertificatiCognome(String cognome) {
+		certificatoMedico=new M_CertificatoMedico();
+		return certificatoMedico.filtraCertificatiCognome(cognome);
+	}
+
+
+
+	public Boolean verificaPresenzaCertificato(Cliente cliente) {
+		certificatoMedico=new M_CertificatoMedico();
+		return certificatoMedico.verificaPresenzaCertificato(cliente);
+	}
+
+
+	public Boolean verificaValiditaCertificato(Cliente cliente) {
+		certificatoMedico=new M_CertificatoMedico();
+		return certificatoMedico.verificaValiditaCertificato(cliente);
+	}
+
+
+
+	public Boolean verificaAbbonamentoEsistente(Cliente cliente) {
+		M_ElencoAbbonamenti ea=M_ElencoAbbonamenti.getInstance();
+		return ea.verificaAbbonamentoEsistente(cliente);
+	}
+
 
 }

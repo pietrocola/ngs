@@ -25,6 +25,7 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 
 import ngs.factory.ServicesCreatorFactory;
+import ngs.model.M_ElencoAbbonamenti;
 import ngs.model.strategy.IPoliticaScontoAbbonamentoStrategy;
 import ngs.model.strategy.ScontoPercentualeStrategy;
 import ngs.model.strategy.composite.CompositePrezzoProClienteStrategy;
@@ -50,8 +51,8 @@ public class Main {
 	 */
 	public static void main(String[] args) throws InterruptedException {
 		
-		ServicesCreatorFactory.getInstance().creaElencoAbbonamenti();
-		
+		ServicesCreatorFactory.getInstance().inizializzaElencoAbbonamenti();
+		System.out.println(M_ElencoAbbonamenti.getInstance().getElencoAbbonamenti().size());
 		//IPoliticaScontoAbbonamentoStrategy s= new ScontoPercentualeStrategy();
 		//CompositePrezzoProClienteStrategy c = new CompositePrezzoProClienteStrategy();
 		//c.addStrategiaPrezzo(s);

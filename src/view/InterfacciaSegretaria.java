@@ -31,6 +31,7 @@ import view.content.AggiungiCertificatoMedicoView;
 import view.content.ConfiguraAbbonamentoView;
 import view.content.ConfiguraCorsoView;
 import view.content.ElencoPreventiviDisponibiliView;
+import view.content.GestioneCertificatiMediciView;
 import view.content.HomeView;
 import view.content.ImpostaCategoriaClienteView;
 import view.content.ImpostaPoliticaScontoPercentualeView;
@@ -51,6 +52,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JDesktopPane;
 
 import ngs.factory.PoliticaScontoAbbonamentoStrategyFactory;
+import ngs.factory.ServicesCreatorFactory;
+import ngs.model.M_ElencoAbbonamenti;
 import ngs.model.M_TipologiaCorso;
 
 import javax.swing.JLabel;
@@ -80,6 +83,8 @@ public class InterfacciaSegretaria {
 	private JPopupMenu popupMenu_2;
 	private JMenuItem mntmAggiungiCertificatoCliente;
 	private JMenuItem mntmCreaAbbonamento;
+	private JMenuItem mntmGes;
+	private JButton btnListeAttesa;
 	
 
 	/**
@@ -99,7 +104,7 @@ public class InterfacciaSegretaria {
 	 * @throws PropertyVetoException
 	 */
 	private void initialize(JFrame logFrame) throws PropertyVetoException {
-		
+
 		segFrame = new JFrame();
 		segFrame.setIconImage(Toolkit.getDefaultToolkit().getImage(InterfacciaSegretaria.class.getResource("/view/img/segretaria.png")));
 		segFrame.setTitle("nextGenSport - SEGRETARIA");
@@ -161,12 +166,13 @@ public class InterfacciaSegretaria {
 					popupMenu_1 = new JPopupMenu();
 					addPopup(btnAbbonamento, popupMenu_1);
 					{
-						mntmPreventiviDisponibili = new JMenuItem("preventivi disponibili");
+						mntmPreventiviDisponibili = new JMenuItem("preventivi disponibili / associa cliente");
 						ascoltatorePreventiviDisponibili();
 						popupMenu_1.add(mntmPreventiviDisponibili);
 					}
 					{
-						mntmCreaAbbonamento = new JMenuItem("crea abbonamento");
+						mntmCreaAbbonamento = new JMenuItem("gestione abbonamenti");
+						mntmCreaAbbonamento.setEnabled(false);
 						popupMenu_1.add(mntmCreaAbbonamento);
 					}
 				}
@@ -218,6 +224,11 @@ public class InterfacciaSegretaria {
 						ascoltatoreAggiungiCertificatoMedico();
 						popupMenu_2.add(mntmAggiungiCertificatoCliente);
 					}
+					{
+						mntmGes = new JMenuItem("gestione certificati");
+						ascoltatoreGestioneCertificati();
+						popupMenu_2.add(mntmGes);
+					}
 				}
 			}
 			{
@@ -226,6 +237,13 @@ public class InterfacciaSegretaria {
 				btnPagamenti.setBorderPainted(false);
 				btnPagamenti.setIcon(new ImageIcon(InterfacciaSegretaria.class.getResource("/view/img/euro 1.png")));
 				toolBar.add(btnPagamenti);
+			}
+			{
+				btnListeAttesa = new JButton("LISTE D'ATTESA ");
+				btnListeAttesa.setFocusable(false);
+				btnListeAttesa.setBorderPainted(false);
+				btnListeAttesa.setIcon(new ImageIcon(InterfacciaSegretaria.class.getResource("/view/img/listaattesa1.png")));
+				toolBar.add(btnListeAttesa);
 			}
 		}
 		{
@@ -240,6 +258,23 @@ public class InterfacciaSegretaria {
 	
 	
 	
+	private void ascoltatoreGestioneCertificati() {
+		mntmGes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				clearMainPanel(segFrame);
+				
+				GestioneCertificatiMediciView acmv = new GestioneCertificatiMediciView();
+				// internalFrame.getContentPane().add(itc,BorderLayout.CENTER);
+				segFrame.getContentPane().add(acmv,	BorderLayout.CENTER);
+
+				// internalFrame.setVisible(true);
+				segFrame.getContentPane().revalidate();
+				segFrame.repaint();
+			}
+		});
+		
+	}
+
 	private void ascoltatoreAggiungiCertificatoMedico() {
 		mntmAggiungiCertificatoCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

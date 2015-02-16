@@ -24,8 +24,6 @@ public class AbbonamentoDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final AssociationExpression preventivoAbb;
 	public final StringExpression clienteId;
 	public final AssociationExpression cliente;
-	public final IntegerExpression pagamentoId;
-	public final AssociationExpression pagamento;
 	public final DateExpression dataInizio;
 	public final DateExpression dataFine;
 	
@@ -36,8 +34,6 @@ public class AbbonamentoDetachedCriteria extends AbstractORMDetachedCriteria {
 		preventivoAbb = new AssociationExpression("preventivoAbb", this.getDetachedCriteria());
 		clienteId = new StringExpression("cliente.codiceFiscale", this.getDetachedCriteria());
 		cliente = new AssociationExpression("cliente", this.getDetachedCriteria());
-		pagamentoId = new IntegerExpression("pagamento.ID", this.getDetachedCriteria());
-		pagamento = new AssociationExpression("pagamento", this.getDetachedCriteria());
 		dataInizio = new DateExpression("dataInizio", this.getDetachedCriteria());
 		dataFine = new DateExpression("dataFine", this.getDetachedCriteria());
 	}
@@ -49,8 +45,6 @@ public class AbbonamentoDetachedCriteria extends AbstractORMDetachedCriteria {
 		preventivoAbb = new AssociationExpression("preventivoAbb", this.getDetachedCriteria());
 		clienteId = new StringExpression("cliente.codiceFiscale", this.getDetachedCriteria());
 		cliente = new AssociationExpression("cliente", this.getDetachedCriteria());
-		pagamentoId = new IntegerExpression("pagamento.ID", this.getDetachedCriteria());
-		pagamento = new AssociationExpression("pagamento", this.getDetachedCriteria());
 		dataInizio = new DateExpression("dataInizio", this.getDetachedCriteria());
 		dataFine = new DateExpression("dataFine", this.getDetachedCriteria());
 	}
@@ -61,10 +55,6 @@ public class AbbonamentoDetachedCriteria extends AbstractORMDetachedCriteria {
 	
 	public ClienteDetachedCriteria createClienteCriteria() {
 		return new ClienteDetachedCriteria(createCriteria("cliente"));
-	}
-	
-	public PagamentoDetachedCriteria createPagamentoCriteria() {
-		return new PagamentoDetachedCriteria(createCriteria("pagamento"));
 	}
 	
 	public Abbonamento uniqueAbbonamento(PersistentSession session) {

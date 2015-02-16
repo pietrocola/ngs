@@ -69,7 +69,7 @@ public class ImpostaCategoriaClienteView extends JPanel {
 		btnSalva.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String nomeCat = textField.getText();
-				if(nomeCat.length()==0) Message.errorMessage("ERRORE", "Inserire una categoria");
+				if(nomeCat.trim().length()==0) Message.errorMessage("ERRORE", "Inserire una categoria");
 				else{
 					label.setText("");
 					boolean aux;

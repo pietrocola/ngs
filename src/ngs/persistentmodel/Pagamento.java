@@ -19,6 +19,8 @@ public class Pagamento extends ngs.persistentmodel.APersistentModel {
 	
 	private int ID;
 	
+	private ngs.persistentmodel.Abbonamento abbonamento;
+	
 	private java.util.Date data;
 	
 	private float importo;
@@ -59,6 +61,14 @@ public class Pagamento extends ngs.persistentmodel.APersistentModel {
 	
 	public boolean getStato() {
 		return stato;
+	}
+	
+	public void setAbbonamento(ngs.persistentmodel.Abbonamento value) {
+		this.abbonamento = value;
+	}
+	
+	public ngs.persistentmodel.Abbonamento getAbbonamento() {
+		return abbonamento;
 	}
 	
 	public String toString() {

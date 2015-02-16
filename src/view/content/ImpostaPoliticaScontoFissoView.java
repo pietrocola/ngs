@@ -148,7 +148,7 @@ public class ImpostaPoliticaScontoFissoView extends JPanel {
 				
 
 				
-			    if(nomePolitica.length()==0 || comboBox.getItemCount()==0 || numeroMesi.length()==0 || scontoFisso.length()==0)
+			    if(nomePolitica.trim().length()==0 || comboBox.getItemCount()==0 || numeroMesi.trim().length()==0 || scontoFisso.trim().length()==0)
 			    	Message.errorMessage("ERRORE", "Compilare tutti i campi");
 			    else
 			    {

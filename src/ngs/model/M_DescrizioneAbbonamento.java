@@ -1,6 +1,10 @@
 package ngs.model;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+
+import org.hibernate.mapping.Set;
 
 import ngs.model.strategy.*;
 import ngs.persistentmodel.APersistentModel;
@@ -10,6 +14,7 @@ import ngs.persistentmodel.DescrizioneAbbonamento;
 import ngs.persistentmodel.DescrizioneAbbonamentoDAO;
 import ngs.persistentmodel.DescrizioneCorso;
 import ngs.persistentmodel.DescrizioneCorsoDAO;
+import ngs.persistentmodel.SalaPesi;
 import ngs.persistentmodel.TipologiaCorso;
 import ngs.persistentmodel.TipologiaCorsoDAO;
 
@@ -62,6 +67,47 @@ public class M_DescrizioneAbbonamento extends AModel {
 	{		
 		DescrizioneAbbonamentoDAO desc= new DescrizioneAbbonamentoDAO();		
 		return desc.loadDescrizioneAbbonamentoByORMID(nomeAbbonamento);		
+	}
+
+	
+	
+	public ArrayList<DescrizioneCorso> getCorsiAbbonamento(String nomeAbb) {
+		ArrayList<DescrizioneCorso> elencoCorsiAbb=new ArrayList<DescrizioneCorso>();
+		DescrizioneAbbonamento da=null;
+		for(int i=0;i<DescrizioneAbbonamentoDAO.listDescrizioneAbbonamentoByQuery(null, null).length;i++)
+			if(DescrizioneAbbonamentoDAO.listDescrizioneAbbonamentoByQuery(null, null)[i].getNomeAbbonamento().equals(nomeAbb))
+				da=DescrizioneAbbonamentoDAO.listDescrizioneAbbonamentoByQuery(null, null)[i];
+		
+		java.util.Set s=da.getElencoCorsi();
+		Iterator<DescrizioneCorso> iter =  s.iterator();
+		while(iter.hasNext())
+		 {								
+			DescrizioneCorso dc = iter.next();
+			elencoCorsiAbb.add(dc);
+			
+		 }
+		
+		 return elencoCorsiAbb;
+		 
+	}
+
+	public ArrayList<SalaPesi> getSalePesiAbbonamento(String nomeAbb) {
+		ArrayList<SalaPesi> elencoSalePesi=new ArrayList<SalaPesi>();
+		DescrizioneAbbonamento da=null;
+		for(int i=0;i<DescrizioneAbbonamentoDAO.listDescrizioneAbbonamentoByQuery(null, null).length;i++)
+			if(DescrizioneAbbonamentoDAO.listDescrizioneAbbonamentoByQuery(null, null)[i].getNomeAbbonamento().equals(nomeAbb))
+				da=DescrizioneAbbonamentoDAO.listDescrizioneAbbonamentoByQuery(null, null)[i];
+		
+		java.util.Set s=da.getElencoSalePesi();
+		Iterator<SalaPesi> iter =  s.iterator();
+		while(iter.hasNext())
+		 {								
+			SalaPesi sp = iter.next();
+			elencoSalePesi.add(sp);
+			
+		 }
+		
+		 return elencoSalePesi;
 	}
 
 }

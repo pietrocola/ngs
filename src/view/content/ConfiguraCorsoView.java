@@ -121,7 +121,7 @@ public class ConfiguraCorsoView extends JPanel {
 				String prenotazione=(String) comboBox_1.getSelectedItem();
 			    if(prenotazione=="si") aux=true; else aux=false;
 			     
-			    if(nomeCorso.length()==0 || comboBox.getItemCount()==0)
+			    if(nomeCorso.trim().length()==0 || comboBox.getItemCount()==0)
 			    	Message.errorMessage("ERRORE", "Compilare tutti i campi");
 			    else
 			    {

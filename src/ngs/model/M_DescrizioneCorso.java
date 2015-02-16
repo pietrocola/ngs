@@ -2,9 +2,15 @@ package ngs.model;
 
 import java.util.ArrayList;
 
+import ngs.persistentmodel.APersistentModel;
+import ngs.persistentmodel.DescrizioneCorso;
+import ngs.persistentmodel.DescrizioneCorsoDAO;
+import ngs.persistentmodel.TipologiaCorso;
+import ngs.persistentmodel.TipologiaCorsoDAO;
+
 import org.orm.PersistentException;
 
-import ngs.persistentmodel.*;
+//import ngs.persistentmodel.*;
 
 
 public class M_DescrizioneCorso extends AModel {

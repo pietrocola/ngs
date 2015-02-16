@@ -20,6 +20,8 @@ import org.orm.criteria.*;
 
 public class PagamentoCriteria extends AbstractORMCriteria {
 	public final IntegerExpression ID;
+	public final IntegerExpression abbonamentoId;
+	public final AssociationExpression abbonamento;
 	public final DateExpression data;
 	public final FloatExpression importo;
 	public final BooleanExpression stato;
@@ -27,6 +29,8 @@ public class PagamentoCriteria extends AbstractORMCriteria {
 	public PagamentoCriteria(Criteria criteria) {
 		super(criteria);
 		ID = new IntegerExpression("ID", this);
+		abbonamentoId = new IntegerExpression("abbonamento.ID", this);
+		abbonamento = new AssociationExpression("abbonamento", this);
 		data = new DateExpression("data", this);
 		importo = new FloatExpression("importo", this);
 		stato = new BooleanExpression("stato", this);
@@ -38,6 +42,10 @@ public class PagamentoCriteria extends AbstractORMCriteria {
 	
 	public PagamentoCriteria() throws PersistentException {
 		this(ngs.persistentmodel.NextGenSport2PersistentManager.instance().getSession());
+	}
+	
+	public AbbonamentoCriteria createAbbonamentoCriteria() {
+		return new AbbonamentoCriteria(createCriteria("abbonamento"));
 	}
 	
 	public Pagamento uniquePagamento() {

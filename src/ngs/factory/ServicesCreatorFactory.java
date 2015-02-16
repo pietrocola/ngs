@@ -4,11 +4,13 @@ package ngs.factory;
 
 import java.util.Date;
 
+import ngs.model.M_ElencoAbbonamenti;
 import ngs.model.Adapter.*;
+import ngs.persistentmodel.AbbonamentoDAO;
 import ngs.persistentmodel.CertificatoMedico;
 import ngs.persistentmodel.CertificatoMedicoDAO;
 import ngs.persistentmodel.Cliente;
-import ngs.persistentmodel.ElencoAbbonamentiDAO;
+
 
 public class ServicesCreatorFactory {
 
@@ -46,12 +48,17 @@ public class ServicesCreatorFactory {
 		throw new UnsupportedOperationException();
 	}
 
-	public void creaElencoAbbonamenti() {
+	
+	
+	
+	public void inizializzaElencoAbbonamenti() {
 		
-		if(ElencoAbbonamentiDAO.listElencoAbbonamentiByQuery(null,null).length==0){
-			
-			ElencoAbbonamentiDAO.save(ElencoAbbonamentiDAO.createElencoAbbonamenti());
-		}	
+		M_ElencoAbbonamenti ea=M_ElencoAbbonamenti.getInstance();
+		
+		
+		for(int i=0; i<AbbonamentoDAO.listAbbonamentoByQuery(null, null).length;i++)
+			ea.addAbbonamento(AbbonamentoDAO.listAbbonamentoByQuery(null, null)[i]);
+		
 	}
 	
 	

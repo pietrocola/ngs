@@ -24,8 +24,6 @@ public class AbbonamentoCriteria extends AbstractORMCriteria {
 	public final AssociationExpression preventivoAbb;
 	public final StringExpression clienteId;
 	public final AssociationExpression cliente;
-	public final IntegerExpression pagamentoId;
-	public final AssociationExpression pagamento;
 	public final DateExpression dataInizio;
 	public final DateExpression dataFine;
 	
@@ -36,8 +34,6 @@ public class AbbonamentoCriteria extends AbstractORMCriteria {
 		preventivoAbb = new AssociationExpression("preventivoAbb", this);
 		clienteId = new StringExpression("cliente.codiceFiscale", this);
 		cliente = new AssociationExpression("cliente", this);
-		pagamentoId = new IntegerExpression("pagamento.ID", this);
-		pagamento = new AssociationExpression("pagamento", this);
 		dataInizio = new DateExpression("dataInizio", this);
 		dataFine = new DateExpression("dataFine", this);
 	}
@@ -56,10 +52,6 @@ public class AbbonamentoCriteria extends AbstractORMCriteria {
 	
 	public ClienteCriteria createClienteCriteria() {
 		return new ClienteCriteria(createCriteria("cliente"));
-	}
-	
-	public PagamentoCriteria createPagamentoCriteria() {
-		return new PagamentoCriteria(createCriteria("pagamento"));
 	}
 	
 	public Abbonamento uniqueAbbonamento() {

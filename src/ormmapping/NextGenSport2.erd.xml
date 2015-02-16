@@ -344,6 +344,18 @@
       <Index>false</Index>
       <UserTypes/>
     </Column>
+    <Column name="AbbonamentoID">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>true</ForeignKey>
+      <ReferencedColumn>ngs.persistentmodel.Abbonamento.ID</ReferencedColumn>
+      <Type>9</Type>
+      <Length>11</Length>
+      <Nullable>true</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
     <Column name="Data">
       <PrimaryKey>false</PrimaryKey>
       <ForeignKey>false</ForeignKey>
@@ -390,18 +402,6 @@
       <Index>false</Index>
       <UserTypes/>
     </Column>
-    <Column name="ElencoAbbonamentiID">
-      <PrimaryKey>false</PrimaryKey>
-      <ForeignKey>true</ForeignKey>
-      <ReferencedColumn>ngs.persistentmodel.ElencoAbbonamenti.ID</ReferencedColumn>
-      <Type>9</Type>
-      <Length>11</Length>
-      <Nullable>true</Nullable>
-      <IDGenerator>native</IDGenerator>
-      <Unique>false</Unique>
-      <Index>false</Index>
-      <UserTypes/>
-    </Column>
     <Column name="PreventivoAbbonamentoID">
       <PrimaryKey>false</PrimaryKey>
       <ForeignKey>true</ForeignKey>
@@ -426,18 +426,6 @@
       <Index>false</Index>
       <UserTypes/>
     </Column>
-    <Column name="PagamentoID">
-      <PrimaryKey>false</PrimaryKey>
-      <ForeignKey>true</ForeignKey>
-      <ReferencedColumn>ngs.persistentmodel.Pagamento.ID</ReferencedColumn>
-      <Type>9</Type>
-      <Length>11</Length>
-      <Nullable>true</Nullable>
-      <IDGenerator>native</IDGenerator>
-      <Unique>false</Unique>
-      <Index>false</Index>
-      <UserTypes/>
-    </Column>
     <Column name="DataInizio">
       <PrimaryKey>false</PrimaryKey>
       <ForeignKey>false</ForeignKey>
@@ -455,19 +443,6 @@
       <Type>17</Type>
       <Length>0</Length>
       <Nullable>true</Nullable>
-      <IDGenerator>native</IDGenerator>
-      <Unique>false</Unique>
-      <Index>false</Index>
-      <UserTypes/>
-    </Column>
-  </Entity>
-  <Entity name="ElencoAbbonamenti">
-    <Column name="ID">
-      <PrimaryKey>true</PrimaryKey>
-      <ForeignKey>false</ForeignKey>
-      <Type>9</Type>
-      <Length>11</Length>
-      <Nullable>false</Nullable>
       <IDGenerator>native</IDGenerator>
       <Unique>false</Unique>
       <Index>false</Index>
@@ -676,16 +651,6 @@
       <Column>ID</Column>
     </RefColumns>
   </ForeignKey>
-  <ForeignKey name="FKAbbonament3917">
-    <ReferenceTable>Abbonamento</ReferenceTable>
-    <ReferencedTable>Pagamento</ReferencedTable>
-    <Columns>
-      <Column>PagamentoID</Column>
-    </Columns>
-    <RefColumns>
-      <Column>ID</Column>
-    </RefColumns>
-  </ForeignKey>
   <ForeignKey name="FKAbbonament458646">
     <ReferenceTable>Abbonamento</ReferenceTable>
     <ReferencedTable>Cliente</ReferencedTable>
@@ -706,21 +671,21 @@
       <Column>ID</Column>
     </RefColumns>
   </ForeignKey>
-  <ForeignKey name="FKAbbonament504852">
-    <ReferenceTable>Abbonamento</ReferenceTable>
-    <ReferencedTable>ElencoAbbonamenti</ReferencedTable>
-    <Columns>
-      <Column>ElencoAbbonamentiID</Column>
-    </Columns>
-    <RefColumns>
-      <Column>ID</Column>
-    </RefColumns>
-  </ForeignKey>
   <ForeignKey name="FKPreventivo62180">
     <ReferenceTable>PreventivoAbbonamento</ReferenceTable>
     <ReferencedTable>CategoriaCliente</ReferencedTable>
     <Columns>
       <Column>CategoriaClienteID</Column>
+    </Columns>
+    <RefColumns>
+      <Column>ID</Column>
+    </RefColumns>
+  </ForeignKey>
+  <ForeignKey name="FKPagamento974926">
+    <ReferenceTable>Pagamento</ReferenceTable>
+    <ReferencedTable>Abbonamento</ReferencedTable>
+    <Columns>
+      <Column>AbbonamentoID</Column>
     </Columns>
     <RefColumns>
       <Column>ID</Column>

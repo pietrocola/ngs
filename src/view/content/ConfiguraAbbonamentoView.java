@@ -282,7 +282,7 @@ public class ConfiguraAbbonamentoView extends JPanel{
 					}
 				}
 				
-				if(nomeAbb.length()==0 || prezzo.length()==0 || (elencoSalePesiSelezionate.size()==0 && elencoCorsiSelezionati.size()==0))
+				if(nomeAbb.trim().length()==0 || prezzo.trim().length()==0 || (elencoSalePesiSelezionate.size()==0 && elencoCorsiSelezionati.size()==0))
 					Message.errorMessage("ERRORE", "Compilare tutti i campi");
 				else{
 					boolean aux=ConfAbbCorsiHandler.getInstance().verificaNomeDescrizioneAbbonamento(nomeAbb);

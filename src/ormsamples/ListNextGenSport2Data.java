@@ -105,14 +105,6 @@ public class ListNextGenSport2Data {
 		}
 		System.out.println(length + " record(s) retrieved.");
 		
-		System.out.println("Listing ElencoAbbonamenti...");
-		ngs.persistentmodel.ElencoAbbonamenti[] ngspersistentmodelElencoAbbonamentis = ngs.persistentmodel.ElencoAbbonamentiDAO.listElencoAbbonamentiByQuery(null, null);
-		length = Math.min(ngspersistentmodelElencoAbbonamentis.length, ROW_COUNT);
-		for (int i = 0; i < length; i++) {
-			System.out.println(ngspersistentmodelElencoAbbonamentis[i]);
-		}
-		System.out.println(length + " record(s) retrieved.");
-		
 		System.out.println("Listing AnagraficaUniversitario...");
 		ngs.persistentmodel.AnagraficaUniversitario[] ngspersistentmodelAnagraficaUniversitarios = ngs.persistentmodel.AnagraficaUniversitarioDAO.listAnagraficaUniversitarioByQuery(null, null);
 		length = Math.min(ngspersistentmodelAnagraficaUniversitarios.length, ROW_COUNT);
@@ -283,18 +275,6 @@ public class ListNextGenSport2Data {
 			 System.out.println(ngspersistentmodelAbbonamentos[i]);
 		}
 		System.out.println(length + " Abbonamento record(s) retrieved."); 
-		
-		System.out.println("Listing ElencoAbbonamenti by Criteria...");
-		ngs.persistentmodel.ElencoAbbonamentiCriteria lngspersistentmodelElencoAbbonamentiCriteria = new ngs.persistentmodel.ElencoAbbonamentiCriteria();
-		// Please uncomment the follow line and fill in parameter(s) 
-		//lngspersistentmodelElencoAbbonamentiCriteria.ID.eq();
-		lngspersistentmodelElencoAbbonamentiCriteria.setMaxResults(ROW_COUNT);
-		ngs.persistentmodel.ElencoAbbonamenti[] ngspersistentmodelElencoAbbonamentis = lngspersistentmodelElencoAbbonamentiCriteria.listElencoAbbonamenti();
-		length =ngspersistentmodelElencoAbbonamentis== null ? 0 : Math.min(ngspersistentmodelElencoAbbonamentis.length, ROW_COUNT); 
-		for (int i = 0; i < length; i++) {
-			 System.out.println(ngspersistentmodelElencoAbbonamentis[i]);
-		}
-		System.out.println(length + " ElencoAbbonamenti record(s) retrieved."); 
 		
 		System.out.println("Listing AnagraficaUniversitario by Criteria...");
 		ngs.persistentmodel.AnagraficaUniversitarioCriteria lngspersistentmodelAnagraficaUniversitarioCriteria = new ngs.persistentmodel.AnagraficaUniversitarioCriteria();

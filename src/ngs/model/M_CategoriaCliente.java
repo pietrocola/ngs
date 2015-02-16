@@ -20,6 +20,7 @@ public class M_CategoriaCliente extends AModel {
 		
 		CategoriaCliente cat=(CategoriaCliente)this.getPersistentModel();
 		
+		
 		for(int i=0;i<CategoriaClienteDAO.listCategoriaClienteByQuery(null, null).length;i++){
 			arrayCat.add(CategoriaClienteDAO.listCategoriaClienteByQuery(null, null)[i]);
 

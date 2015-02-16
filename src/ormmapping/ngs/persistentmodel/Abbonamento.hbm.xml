@@ -14,8 +14,6 @@ License Type: Academic
 		</many-to-one>
 		<many-to-one name="cliente" column="ClienteID" class="ngs.persistentmodel.Cliente" cascade="save-update,lock,delete" unique="true" not-null="false" lazy="no-proxy">
 		</many-to-one>
-		<many-to-one name="pagamento" column="PagamentoID" class="ngs.persistentmodel.Pagamento" cascade="save-update,lock,delete" unique="true" not-null="false" lazy="no-proxy">
-		</many-to-one>
 		<property name="dataInizio" column="DataInizio" type="date" not-null="false" lazy="false"/>
 		<property name="dataFine" column="DataFine" type="date" not-null="false" lazy="false"/>
 	</class>

@@ -81,7 +81,7 @@ public class VerificaCategoriaClienteView extends JPanel {
 		comboBox.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent arg0) {
-				
+				textField.setText("");
 				lblRisultatoVerifica.setText("");
 				ArrayList<CategoriaCliente> cc=ConfAbbCorsiHandler.getInstance().getCategorieClienti();
 				if(cc.size()==0){
@@ -114,7 +114,7 @@ public class VerificaCategoriaClienteView extends JPanel {
 				CategoriaCliente cat=(CategoriaCliente) comboBox.getSelectedItem();
 				String codice=textField.getText();
 				
-				if(codice.length()==0 || comboBox.getItemCount()==0)
+				if(codice.trim().length()==0 || comboBox.getItemCount()==0)
 					Message.errorMessage("ERRORE", "Inserire tutti i campi");
 				else{
 					Boolean aux=ErogaAbbonamentoHandler.getInstance().verificaCategoriaCliente(cat,codice);

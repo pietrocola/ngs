@@ -45,9 +45,6 @@ public class CreateNextGenSport2Data {
 			ngs.persistentmodel.Abbonamento lngspersistentmodelAbbonamento = ngs.persistentmodel.AbbonamentoDAO.createAbbonamento();
 			// Initialize the properties of the persistent object here
 			ngs.persistentmodel.AbbonamentoDAO.save(lngspersistentmodelAbbonamento);
-			ngs.persistentmodel.ElencoAbbonamenti lngspersistentmodelElencoAbbonamenti = ngs.persistentmodel.ElencoAbbonamentiDAO.createElencoAbbonamenti();
-			// Initialize the properties of the persistent object here
-			ngs.persistentmodel.ElencoAbbonamentiDAO.save(lngspersistentmodelElencoAbbonamenti);
 			ngs.persistentmodel.AnagraficaUniversitario lngspersistentmodelAnagraficaUniversitario = ngs.persistentmodel.AnagraficaUniversitarioDAO.createAnagraficaUniversitario();
 			// Initialize the properties of the persistent object here
 			ngs.persistentmodel.AnagraficaUniversitarioDAO.save(lngspersistentmodelAnagraficaUniversitario);

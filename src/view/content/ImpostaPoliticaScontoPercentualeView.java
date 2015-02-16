@@ -147,7 +147,7 @@ public class ImpostaPoliticaScontoPercentualeView extends JPanel {
 				
 
 				
-			    if(nomePolitica.length()==0 || comboBox.getItemCount()==0 || numeroMesi.length()==0 || scontoPercentuale.length()==0)
+			    if(nomePolitica.trim().length()==0 || comboBox.getItemCount()==0 || numeroMesi.trim().length()==0 || scontoPercentuale.trim().length()==0)
 			    	Message.errorMessage("ERRORE", "Compilare tutti i campi");
 			    else
 			    {

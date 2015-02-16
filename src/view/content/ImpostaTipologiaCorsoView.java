@@ -80,7 +80,7 @@ public class ImpostaTipologiaCorsoView extends JPanel {
 		btnSalva.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String nomeTip = textField.getText();
-				if(nomeTip.length()==0) Message.errorMessage("ERRORE", "Inserire una tipologia");
+				if(nomeTip.trim().length()==0) Message.errorMessage("ERRORE", "Inserire una tipologia");
 				else{
 					try {
 							label.setText("");

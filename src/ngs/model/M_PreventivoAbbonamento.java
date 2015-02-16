@@ -1,14 +1,8 @@
 package ngs.model;
 
 import java.util.ArrayList;
+
 import ngs.persistentmodel.*;
-
-
-import ngs.persistentmodel.APersistentModel;
-import ngs.persistentmodel.DescrizioneAbbonamento;
-import ngs.persistentmodel.PoliticaScontoAbbonamento;
-import ngs.persistentmodel.PreventivoAbbonamento;
-import ngs.persistentmodel.PreventivoAbbonamentoDAO;
 
 public class M_PreventivoAbbonamento extends AModel {
 
@@ -37,8 +31,15 @@ public class M_PreventivoAbbonamento extends AModel {
 	 * @param categoriaCliente
 	 */
 	public ArrayList<PreventivoAbbonamento> getPreventiviAbbonamenti(CategoriaCliente categoriaCliente) {
-		throw new UnsupportedOperationException();
+		ArrayList<PreventivoAbbonamento> elencoPreventivi = new ArrayList<PreventivoAbbonamento>();
+		for(int i=0;i<PreventivoAbbonamentoDAO.listPreventivoAbbonamentoByQuery(null, null).length;i++)
+			if(PreventivoAbbonamentoDAO.listPreventivoAbbonamentoByQuery(null, null)[i].getCategoriaCliente().equals(categoriaCliente))
+				elencoPreventivi.add(PreventivoAbbonamentoDAO.listPreventivoAbbonamentoByQuery(null, null)[i]);
+		return elencoPreventivi;
 	}
+
+
+
 	
 	
 }

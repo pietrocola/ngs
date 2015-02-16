@@ -20,6 +20,8 @@ import org.orm.criteria.*;
 
 public class PagamentoDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final IntegerExpression ID;
+	public final IntegerExpression abbonamentoId;
+	public final AssociationExpression abbonamento;
 	public final DateExpression data;
 	public final FloatExpression importo;
 	public final BooleanExpression stato;
@@ -27,6 +29,8 @@ public class PagamentoDetachedCriteria extends AbstractORMDetachedCriteria {
 	public PagamentoDetachedCriteria() {
 		super(ngs.persistentmodel.Pagamento.class, ngs.persistentmodel.PagamentoCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
+		abbonamentoId = new IntegerExpression("abbonamento.ID", this.getDetachedCriteria());
+		abbonamento = new AssociationExpression("abbonamento", this.getDetachedCriteria());
 		data = new DateExpression("data", this.getDetachedCriteria());
 		importo = new FloatExpression("importo", this.getDetachedCriteria());
 		stato = new BooleanExpression("stato", this.getDetachedCriteria());
@@ -35,9 +39,15 @@ public class PagamentoDetachedCriteria extends AbstractORMDetachedCriteria {
 	public PagamentoDetachedCriteria(DetachedCriteria aDetachedCriteria) {
 		super(aDetachedCriteria, ngs.persistentmodel.PagamentoCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
+		abbonamentoId = new IntegerExpression("abbonamento.ID", this.getDetachedCriteria());
+		abbonamento = new AssociationExpression("abbonamento", this.getDetachedCriteria());
 		data = new DateExpression("data", this.getDetachedCriteria());
 		importo = new FloatExpression("importo", this.getDetachedCriteria());
 		stato = new BooleanExpression("stato", this.getDetachedCriteria());
+	}
+	
+	public AbbonamentoDetachedCriteria createAbbonamentoCriteria() {
+		return new AbbonamentoDetachedCriteria(createCriteria("abbonamento"));
 	}
 	
 	public Pagamento uniquePagamento(PersistentSession session) {
