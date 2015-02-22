@@ -7,17 +7,9 @@ public interface Component {
 	 * @param messaggio
 	 * @param destinatario
 	 */
-	void invia(String messaggio, String destinatario);
+	void invia(String messaggio);
 
-	/**
-	 * 
-	 * @param messaggio
-	 * @param mittente
-	 */
-	void ricevi(String messaggio, String mittente);
-
-	String getNome();
-
-	void setNome(String nome);
+	
+	
 
 }

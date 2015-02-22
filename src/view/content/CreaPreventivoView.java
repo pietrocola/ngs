@@ -28,12 +28,7 @@ import javax.swing.event.ListSelectionEvent;
 
 import view.utility.Message;
 import view.utility.decorator.Pannello;
-import view.utility.mediator.Bottone;
-import view.utility.mediator.ConcreteMediator;
-import view.utility.mediator.CostantMediator;
-import view.utility.mediator.Label;
-import view.utility.mediator.Lista;
-import view.utility.mediator.Mediator;
+import view.utility.mediator.*;
 
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
@@ -49,6 +44,7 @@ import java.awt.Font;
 import javax.swing.ImageIcon;
 
 import org.hibernate.collection.internal.PersistentSet;
+
 import javax.swing.SwingConstants;
 
 public class CreaPreventivoView extends Pannello{
@@ -57,22 +53,25 @@ public class CreaPreventivoView extends Pannello{
 	private JScrollPane scrollPane_2;
 	private JRadioButton rdbtnProCliente;
 	private JRadioButton rdbtnProCentro;
-		
-	private Bottone btnPrezzo;
-	private Bottone btnSalva;
-	private Label labelPrezzo;
-	private Label labelConferma;
-	private Lista listAbbonamenti;
-	private Lista listCatCliente;
-	private Lista listNumMesi;
-	
-	Mediator mediatore;
+
+	Mediator med;
 	private JLabel lblAbbonamenti;
 	private JLabel lblCategoriaCliente;
 	private JLabel lblNumeroMesi;
-	private Label lblFrecciaAbb;
-	private Label lblInfoAbbSelezionato;
-	private Label lblNoAbbonamenti;
+	
+	
+	private JLabel lblInfoAbbSelezionato;
+	private JLabel lblNoAbbonamenti;
+	
+	BtnPrezzo btnprezzo;
+	BtnSalva btnsalva; 
+	ListAbbonamenti listAbbonamenti;
+	ListCatCliente listCatCliente;
+	ListNumMesi listNumMesi;
+	LabelConferma labelConferma;
+	LabelPrezzo labelPrezzo;
+	LabelFrecciaAbb labelFrecciaAbb;
+	
 	/**
 	 * Create the panel.
 	 */
@@ -83,7 +82,7 @@ public class CreaPreventivoView extends Pannello{
 	    int y=(screen.height);
 	    setPreferredSize(new Dimension(x,y));
 		
-		mediatore = new ConcreteMediator();
+		med = new ConcreteMediator();
 		
 		setLayout(null);
 		{
@@ -99,16 +98,13 @@ public class CreaPreventivoView extends Pannello{
 				
 
 				
-				listAbbonamenti = new Lista(mediatore, defList,"listAbbonamenti");
+				listAbbonamenti = new ListAbbonamenti(med, defList);
 				listAbbonamenti.addFocusListener(new FocusAdapter() {
 					@Override
 					public void focusGained(FocusEvent arg0) {						
 							//APPLICO MEDIATOR
-							listAbbonamenti.invia(CostantMediator.FOCUS_LISTA_ABBONAMENTI, labelPrezzo.getNome());
-							listAbbonamenti.invia(CostantMediator.FOCUS_LISTA_ABBONAMENTI, labelConferma.getNome());
-							listAbbonamenti.invia(CostantMediator.FOCUS_LISTA_ABBONAMENTI, btnSalva.getNome());
-							listAbbonamenti.invia(CostantMediator.FOCUS_LISTA_ABBONAMENTI, btnPrezzo.getNome());
-							
+						listAbbonamenti.invia(CostantMediator.FOCUS_LISTA_ABBONAMENTI);
+						
 					}
 				});
 				scrollPane.setViewportView(listAbbonamenti);
@@ -126,16 +122,12 @@ public class CreaPreventivoView extends Pannello{
 				{
 					defList.addElement(ec);
 				}
-				listCatCliente = new Lista(mediatore, defList,"listCatCliente");
+				listCatCliente = new ListCatCliente(med, defList);
 				listCatCliente.addFocusListener(new FocusAdapter() {
 					@Override
 					public void focusGained(FocusEvent arg0) {
-						listCatCliente.invia(CostantMediator.FOCUS_LISTA_CATEGORIA, labelPrezzo.getNome());
-						listCatCliente.invia(CostantMediator.FOCUS_LISTA_CATEGORIA, labelConferma.getNome());
-						listCatCliente.invia(CostantMediator.FOCUS_LISTA_CATEGORIA, btnSalva.getNome());
-						listCatCliente.invia(CostantMediator.FOCUS_LISTA_CATEGORIA, btnPrezzo.getNome());
-						listCatCliente.invia(CostantMediator.FOCUS_LISTA_CATEGORIA, listNumMesi.getNome());
-						/*		
+						listCatCliente.invia(CostantMediator.FOCUS_LISTA_CATEGORIA);
+						/*
 						lblInfoPoliticaSelezionata.setText("");
 						lblFrecciaPolitica.setVisible(false);
 						lblInfoPoliticaSelezionata.setBorder(null);
@@ -164,32 +156,31 @@ public class CreaPreventivoView extends Pannello{
 				group.add(rdbtnProCliente);
 				group.add(rdbtnProCentro);
 			}
-			{
-				btnPrezzo = new Bottone(mediatore,"calcola prezzo","btnPrezzo");
-				btnPrezzo.setEnabled(false);
+			{				
+				btnprezzo = new BtnPrezzo(med, "calcola prezzo");
+				btnprezzo.setEnabled(false);
 				ascoltatoreCalcolaPrezzo();
-				btnPrezzo.setBounds(736, 139, 134, 23);
-				add(btnPrezzo);
+				btnprezzo.setBounds(736, 139, 134, 23);
+				add(btnprezzo);				
 			}
 			{
-				labelPrezzo = new Label(mediatore,"","labelPrezzo");
+				labelPrezzo = new LabelPrezzo(med,"");
 				labelPrezzo.setBounds(908, 139, 67, 14);
 				add(labelPrezzo);
 			}
 			{
-				btnSalva = new Bottone(mediatore,"salva preventivo","btnSalva");
-				btnSalva.setEnabled(false);
+				btnsalva = new BtnSalva(med,"salva preventivo");
+				btnsalva.setEnabled(false);
 				ascoltatoreSalvaPreventivo();
-				btnSalva.setBounds(736, 184, 134, 23);
-				add(btnSalva);
+				btnsalva.setBounds(736, 184, 134, 23);
+				add(btnsalva);				
 			}
-			{
-				
-				labelConferma = new Label(mediatore, "","labelConferma");
+			{				
+				labelConferma = new LabelConferma(med, "");
 				labelConferma.setBounds(908, 193, 204, 14);
 				add(labelConferma);
 			}
-			//mediatore.stampaArray();
+			
 		}
 		{
 			lblAbbonamenti = new JLabel("ABBONAMENTI");
@@ -209,22 +200,22 @@ public class CreaPreventivoView extends Pannello{
 			lblNumeroMesi.setBounds(531, 45, 109, 14);
 			add(lblNumeroMesi);
 		}
-		{
-			lblFrecciaAbb = new Label(mediatore, "", "lblFrecciaAbb");
-			lblFrecciaAbb.setVisible(false);
-			lblFrecciaAbb.setIcon(new ImageIcon(CreaPreventivoView.class.getResource("/view/img/freccia.png")));
-			lblFrecciaAbb.setBounds(136, 264, 46, 14);
-			add(lblFrecciaAbb);
+		{			
+			labelFrecciaAbb = new LabelFrecciaAbb(med, "");
+			labelFrecciaAbb.setVisible(false);
+			labelFrecciaAbb.setIcon(new ImageIcon(CreaPreventivoView.class.getResource("/view/img/freccia.png")));
+			labelFrecciaAbb.setBounds(136, 264, 46, 14);
+			add(labelFrecciaAbb);
 		}
 		{
-			lblInfoAbbSelezionato = new Label(mediatore, "", "lblInfoAbbSelezionato");
+			lblInfoAbbSelezionato = new JLabel("");
 			lblInfoAbbSelezionato.setVerticalAlignment(SwingConstants.TOP);
 			//lblInfoAbbSelezionato.setFont(new Font("Tahoma", Font.PLAIN, 11));
 			lblInfoAbbSelezionato.setBounds(29, 312, 249, 14);
 			add(lblInfoAbbSelezionato);
 		}
 		{
-			lblNoAbbonamenti = new Label(mediatore, "", "lblInfoAbbSelezionato");
+			lblNoAbbonamenti = new JLabel("");
 			lblNoAbbonamenti.setBounds(29, 70, 249, 14);
 			add(lblNoAbbonamenti);
 		}
@@ -236,7 +227,7 @@ public class CreaPreventivoView extends Pannello{
 	
 	
 	private void ascoltatoreSalvaPreventivo() {
-		btnSalva.addActionListener(new ActionListener() {
+		btnsalva.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				DescrizioneAbbonamento descAbb= (DescrizioneAbbonamento) listAbbonamenti.getSelectedValue();
 				CategoriaCliente catCliente= (CategoriaCliente) listCatCliente.getSelectedValue();
@@ -247,9 +238,8 @@ public class CreaPreventivoView extends Pannello{
 				Boolean aux=ConfAbbCorsiHandler.getInstance().creaPreventivoAbbonamento(descAbb, catCliente, numMesi, prezzo);
 				
 				if(aux==true)
-					btnSalva.invia(CostantMediator.SALVA, labelConferma.getNome());
-					//Message.confirmLabel("Preventivo salvato", true, labelConferma);
-					
+					btnsalva.invia(CostantMediator.SALVA);
+					//Message.confirmLabel("Preventivo salvato", true, labelConferma);					
 			}
 		});
 		
@@ -260,7 +250,7 @@ public class CreaPreventivoView extends Pannello{
 
 
 	private void ascoltatoreCalcolaPrezzo() {
-		btnPrezzo.addActionListener(new ActionListener() {
+		btnprezzo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				DescrizioneAbbonamento descAbb= (DescrizioneAbbonamento) listAbbonamenti.getSelectedValue();
@@ -281,7 +271,7 @@ public class CreaPreventivoView extends Pannello{
 				String p=Float.toString(prezzo);
 				
 				
-				btnPrezzo.invia(CostantMediator.CALCOLA, btnSalva.getNome());  //abilita salva preventivo con il pulsanet calcola prezzo
+				btnprezzo.invia(CostantMediator.CALCOLA);  //abilita salva preventivo con il pulsanet calcola prezzo
 				labelPrezzo.setText(p);
 				
 				}
@@ -305,15 +295,12 @@ public class CreaPreventivoView extends Pannello{
 					defList.addElement(num);
 				}
 				
-				listNumMesi = new Lista(mediatore,defList,"listNumMesi");
+				listNumMesi = new ListNumMesi(med,defList);
 				listNumMesi.addFocusListener(new FocusAdapter() {
 						@Override
-						public void focusGained(FocusEvent arg0) {							
-							listNumMesi.invia(CostantMediator.FOCUS_LISTA_MESI, labelPrezzo.getNome());
-							listNumMesi.invia(CostantMediator.FOCUS_LISTA_MESI, labelConferma.getNome());
-							listNumMesi.invia(CostantMediator.FOCUS_LISTA_MESI, btnSalva.getNome());
-							listNumMesi.invia(CostantMediator.FOCUS_LISTA_MESI, btnPrezzo.getNome());
-							listNumMesi.invia(CostantMediator.FOCUS_LISTA_MESI, listNumMesi.getNome());
+						public void focusGained(FocusEvent arg0) {	
+							listNumMesi.invia(CostantMediator.FOCUS_LISTA_MESI);
+							
 							}
 					});
 				ascoltatoreNumeroMesiSelezionato();
@@ -413,7 +400,9 @@ public class CreaPreventivoView extends Pannello{
 				lblInfoAbbSelezionato.setText(abb);
 				lblInfoAbbSelezionato.setBounds(29, 312, 249, y);
 				lblInfoAbbSelezionato.setBorder(new LineBorder(new Color(0, 0, 0), 0, true));	
-				listAbbonamenti.invia(CostantMediator.FOCUS_LISTA_ABBONAMENTI, lblFrecciaAbb.getNome());
+				listAbbonamenti.invia(CostantMediator.FOCUS_LISTA_ABBONAMENTI);
+				
+				//listAbbonamenti.invia(CostantMediator.FOCUS_LISTA_ABBONAMENTI, lblFrecciaAbb.getNome());
 				//lblFrecciaAbb.setVisible(true);
 				//btnCalcolaPrezzo_1.setBounds(21, 290+y+30, 131, 23);
 				//lblPrezzo.setBounds(210, 294+y+30, 46, 14);
@@ -425,9 +414,6 @@ public class CreaPreventivoView extends Pannello{
 		
 		
 	}
-
-
-
 
 
 	@Override
