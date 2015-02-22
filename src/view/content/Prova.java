@@ -3,52 +3,29 @@ package view.content;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+
+import java.awt.BorderLayout;
+
 import javax.swing.ScrollPaneConstants;
+import javax.swing.JInternalFrame;
+import javax.swing.ImageIcon;
 
-public class Prova extends JScrollPane {
-	private JPanel panel;
-	private JLabel lblNewLabel;
-	private JLabel lblNewLabel_1;
-	private JLabel lblNewLabel_2;
+public class Prova extends JPanel {
+	private JPanel panel_1;
+	private JInternalFrame internalFrame;
 
-	
-
-	
-	
 	/**
 	 * Create the panel.
 	 */
 	public Prova() {
-		System.out.println("ciao");
-		setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		setLayout(new BorderLayout(0, 0));
 		{
-			panel = new JPanel();
-			setViewportView(panel);
-			panel.setLayout(null);
-			{
-				lblNewLabel = new JLabel("New label");
-				lblNewLabel.setBounds(20, 45, 46, 14);
-				panel.add(lblNewLabel);
-			}
-			{
-				lblNewLabel_1 = new JLabel("New label");
-				lblNewLabel_1.setBounds(20, 70, 46, 14);
-				panel.add(lblNewLabel_1);
-			}
-			{
-				lblNewLabel_2 = new JLabel("New label");
-				lblNewLabel_2.setBounds(20, 114, 46, 14);
-				panel.add(lblNewLabel_2);
-			}
+			internalFrame = new JInternalFrame("PROVA");
+			internalFrame.setFrameIcon(new ImageIcon(Prova.class.getResource("/view/img/IconaErrore.jpg")));
+			add(internalFrame, BorderLayout.CENTER);
+			internalFrame.setVisible(true);
 		}
-        
 
-		
+
 	}
-	
-	/*
-	public static void main(String[] args){
-		Prova p=new Prova();
-	}
-	*/
 }

@@ -410,6 +410,13 @@ public class ConfAbbCorsiHandler {
 	}
 
 	
+	
+	public Boolean verificaConfigurazioneAbbonamento(Set<DescrizioneCorso> elencoCorsiSelezionati,Set<SalaPesi> elencoSalePesiSelezionate) {
+		descAbb=new M_DescrizioneAbbonamento();
+		return descAbb.verificaConfigurazioneAbbonamento(elencoCorsiSelezionati,elencoSalePesiSelezionate);
+	}
+
+	
 
 	
 	

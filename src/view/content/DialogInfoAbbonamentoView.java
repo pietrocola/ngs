@@ -2,6 +2,7 @@ package view.content;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 
@@ -50,7 +51,7 @@ private JPanel panel;
 			getContentPane().add(scrollPane, BorderLayout.CENTER);
 			{
 				panel = new JPanel();
-				scrollPane.setViewportView(panel);
+				
 				panel.setLayout(null);
 				{
 					stampaCorsiESalePesi(panel,nomeAbb);
@@ -69,7 +70,11 @@ private JPanel panel;
 
 			
 			}
-
+		    Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+		    int x=(screen.width);
+		    int y=(screen.height);
+		    panel.setPreferredSize(new Dimension(x,y));
+			scrollPane.setViewportView(panel);
 		}
 	}
 	

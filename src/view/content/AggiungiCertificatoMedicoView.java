@@ -20,6 +20,8 @@ import javax.swing.JSeparator;
 
 import view.InterfacciaSegretaria;
 import view.utility.Message;
+import view.utility.decorator.Pannello;
+import view.utility.decorator.ScrollDecorator;
 import ngs.controller.ErogaAbbonamentoHandler;
 import ngs.persistentmodel.Cliente;
 
@@ -31,7 +33,7 @@ import java.awt.SystemColor;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 
-public class AggiungiCertificatoMedicoView extends JPanel {
+public class AggiungiCertificatoMedicoView extends Pannello {
 	private JLabel lblCognome;
 	private JTextField textField;
 	private JButton button;
@@ -43,94 +45,27 @@ public class AggiungiCertificatoMedicoView extends JPanel {
 	JLabel labelNoClientiFiltro;
 	JButton buttonRicarica;
 
-	/**
-	 * Create the panel.
-	 */
-	public AggiungiCertificatoMedicoView() {
+	
+	public AggiungiCertificatoMedicoView(){
 		
-		setLayout(null);
-		{
-			lblCognome = new JLabel("cognome");
-			lblCognome.setBounds(55, 54, 72, 14);
-			add(lblCognome);
-		}
-		{
-			textField = new JTextField();
-			textField.addFocusListener(new FocusAdapter() {
-				@Override
-				public void focusGained(FocusEvent arg0) {
-					labelNoClienti.setText("");
-				}
-			});
-			textField.setBounds(137, 51, 102, 20);
-			add(textField);
-			textField.setColumns(10);
-		}
-		{
-			button = new JButton("");
-			button.setBackground(SystemColor.control);
-			button.setBorderPainted(false);
-			ascoltatoreFiltraClientiCognome();
-			button.setIcon(new ImageIcon(AggiungiCertificatoMedicoView.class.getResource("/view/img/lente.png")));
-			button.setBounds(243, 51, 20, 20);
-			add(button);
-		}
-		{
-			lblCodiceFiscale = new JLabel("CODICE FISCALE");
-			lblCodiceFiscale.setFont(new Font("Tahoma", Font.BOLD, 13));
-			lblCodiceFiscale.setBounds(55, 150, 123, 20);
-			add(lblCodiceFiscale);
-		}
-		{
-			lblNome = new JLabel("NOME");
-			lblNome.setFont(new Font("Tahoma", Font.BOLD, 13));
-			lblNome.setBounds(255, 150, 46, 20);
-			add(lblNome);
-		}
-		{
-			lblCognome_1 = new JLabel("COGNOME");
-			lblCognome_1.setFont(new Font("Tahoma", Font.BOLD, 13));
-			lblCognome_1.setBounds(455, 150, 86, 20);
-			add(lblCognome_1);
-		}
-		{
-			separator = new JSeparator();
-			separator.setBounds(55, 180, 745, 3);
-			add(separator);
-		}
-		{
-			labelNoClienti = new JLabel("");
-			labelNoClienti.setBounds(55, 125, 307, 14);
-			add(labelNoClienti);
-		}
-		
-		{
-			stampaElencoClienti();
-		}
-		{
-			{
-				Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-		        int x = (screen.width-WIDTH);
-		        int y = (screen.height-HEIGHT);
-				//System.out.println(x+"x"+y);
-			}
-		}
-
 	}
+	
+	
 
-	private void ascoltatoreFiltraClientiCognome() {
+
+	private void ascoltatoreFiltraClientiCognome(JPanel p) {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String cognome=textField.getText();
 				if(cognome.trim().length()==0)
 					Message.errorMessage("ERRORE", "Inserire un cognome");
 				else{
-				removeAll();
-				repaint();
+				p.removeAll();
+				p.repaint();
 				{
 					lblCognome = new JLabel("cognome");
 					lblCognome.setBounds(55, 54, 72, 14);
-					add(lblCognome);
+					p.add(lblCognome);
 				}
 				{
 					textField = new JTextField();
@@ -142,17 +77,17 @@ public class AggiungiCertificatoMedicoView extends JPanel {
 						}
 					});
 					textField.setBounds(137, 51, 102, 20);
-					add(textField);
+					p.add(textField);
 					textField.setColumns(10);
 				}
 				{
 					button = new JButton("");
 					button.setBackground(SystemColor.control);
 					button.setBorderPainted(false);
-					ascoltatoreFiltraClientiCognome();
+					ascoltatoreFiltraClientiCognome(p);
 					button.setIcon(new ImageIcon(AggiungiCertificatoMedicoView.class.getResource("/view/img/lente.png")));
 					button.setBounds(243, 51, 20, 20);
-					add(button);
+					p.add(button);
 				}
 				{
 					buttonRicarica = new JButton("mostra tutti");
@@ -162,9 +97,11 @@ public class AggiungiCertificatoMedicoView extends JPanel {
 							InterfacciaSegretaria.segFrame.getContentPane().repaint();
 							InterfacciaSegretaria.segFrame.getContentPane().add(InterfacciaSegretaria.toolBar, BorderLayout.NORTH);
 							
-							AggiungiCertificatoMedicoView acmv = new AggiungiCertificatoMedicoView();
+							Pannello aggiungi=new AggiungiCertificatoMedicoView();
+							Pannello aux=new ScrollDecorator( aggiungi);
+							JPanel panelAux= aux.draw();
 							// internalFrame.getContentPane().add(itc,BorderLayout.CENTER);
-							InterfacciaSegretaria.segFrame.getContentPane().add(acmv,	BorderLayout.CENTER);
+							InterfacciaSegretaria.segFrame.getContentPane().add(panelAux,	BorderLayout.CENTER);
 
 							// internalFrame.setVisible(true);
 							InterfacciaSegretaria.segFrame.getContentPane().revalidate();
@@ -173,35 +110,35 @@ public class AggiungiCertificatoMedicoView extends JPanel {
 					});
 					//buttonRicarica.setIcon(new ImageIcon(AggiungiCertificatoMedicoView.class.getResource("/view/img/lente.png")));
 					buttonRicarica.setBounds(300, 51, 100, 20);
-					add(buttonRicarica);
+					p.add(buttonRicarica);
 				}
 				{
 					labelNoClientiFiltro = new JLabel("");
 					labelNoClientiFiltro.setBounds(55, 125, 307, 14);
-					add(labelNoClientiFiltro);
+					p.add(labelNoClientiFiltro);
 				}
 				{
 					lblCodiceFiscale = new JLabel("CODICE FISCALE");
 					lblCodiceFiscale.setFont(new Font("Tahoma", Font.BOLD, 13));
 					lblCodiceFiscale.setBounds(55, 150, 123, 20);
-					add(lblCodiceFiscale);
+					p.add(lblCodiceFiscale);
 				}
 				{
 					lblNome = new JLabel("NOME");
 					lblNome.setFont(new Font("Tahoma", Font.BOLD, 13));
 					lblNome.setBounds(255, 150, 46, 20);
-					add(lblNome);
+					p.add(lblNome);
 				}
 				{
 					lblCognome_1 = new JLabel("COGNOME");
 					lblCognome_1.setFont(new Font("Tahoma", Font.BOLD, 13));
 					lblCognome_1.setBounds(455, 150, 86, 20);
-					add(lblCognome_1);
+					p.add(lblCognome_1);
 				}
 				{
 					separator = new JSeparator();
 					separator.setBounds(55, 180, 745, 3);
-					add(separator);
+					p.add(separator);
 				}
 				HashMap<Integer,JLabel> map = new HashMap<Integer,JLabel>();
 				
@@ -230,17 +167,17 @@ public class AggiungiCertificatoMedicoView extends JPanel {
 						JLabel label1=new JLabel();
 						label1.setText(c.getCodiceFiscale());
 						label1.setBounds(x, y, 200, 50);
-						add(label1);
+						p.add(label1);
 						x=x+200;
 						JLabel label2=new JLabel();
 						label2.setText(c.getNome());
 						label2.setBounds(x, y, 200, 50);
-						add(label2);
+						p.add(label2);
 						x=x+200;
 						JLabel label3=new JLabel();
 						label3.setText(c.getCognome());
 						label3.setBounds(x, y, 200, 50);
-						add(label3);
+						p.add(label3);
 						x=x+200;
 						b=y+15;
 						JButton bottone=new JButton("aggiungi certificato");
@@ -271,7 +208,7 @@ public class AggiungiCertificatoMedicoView extends JPanel {
 							}
 						});
 						bottone.setBounds(x, b, 145, 20);
-						add(bottone);
+						p.add(bottone);
 						
 						map.put(b,label1);
 						
@@ -287,7 +224,7 @@ public class AggiungiCertificatoMedicoView extends JPanel {
 		
 	}
 
-	private void stampaElencoClienti() {
+	private void stampaElencoClienti(JPanel p) {
 		
 		HashMap<Integer,JLabel> map = new HashMap<Integer,JLabel>();
 		
@@ -312,17 +249,17 @@ public class AggiungiCertificatoMedicoView extends JPanel {
 				JLabel label1=new JLabel();
 				label1.setText(elencoClienti[j].getCodiceFiscale());
 				label1.setBounds(x, y, 200, 50);
-				add(label1);
+				p.add(label1);
 				x=x+200;
 				JLabel label2=new JLabel();
 				label2.setText(elencoClienti[j].getNome());
 				label2.setBounds(x, y, 200, 50);
-				add(label2);
+				p.add(label2);
 				x=x+200;
 				JLabel label3=new JLabel();
 				label3.setText(elencoClienti[j].getCognome());
 				label3.setBounds(x, y, 200, 50);
-				add(label3);
+				p.add(label3);
 				x=x+200;
 				b=y+15;
 				JButton bottone=new JButton("aggiungi certificato");
@@ -351,7 +288,7 @@ public class AggiungiCertificatoMedicoView extends JPanel {
 					}
 				});
 				bottone.setBounds(x, b, 145, 20);
-				add(bottone);
+				p.add(bottone);
 				
 				map.put(b,label1);
 				
@@ -364,5 +301,86 @@ public class AggiungiCertificatoMedicoView extends JPanel {
 		
 		
 		
+	}
+
+	@Override
+	public JPanel draw() {
+	    
+		JPanel p=new JPanel();
+		
+		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+	    int x=(screen.width);
+	    int y=(screen.height);
+	    p.setPreferredSize(new Dimension(x,y));
+		
+		
+		p.setLayout(null);
+		{
+			lblCognome = new JLabel("cognome");
+			lblCognome.setBounds(55, 54, 72, 14);
+			p.add(lblCognome);
+		}
+		{
+			textField = new JTextField();
+			textField.addFocusListener(new FocusAdapter() {
+				@Override
+				public void focusGained(FocusEvent arg0) {
+					labelNoClienti.setText("");
+				}
+			});
+			textField.setBounds(137, 51, 102, 20);
+			p.add(textField);
+			textField.setColumns(10);
+		}
+		{
+			button = new JButton("");
+			button.setBackground(SystemColor.control);
+			button.setBorderPainted(false);
+			ascoltatoreFiltraClientiCognome(p);
+			button.setIcon(new ImageIcon(AggiungiCertificatoMedicoView.class.getResource("/view/img/lente.png")));
+			button.setBounds(243, 51, 20, 20);
+			p.add(button);
+		}
+		{
+			lblCodiceFiscale = new JLabel("CODICE FISCALE");
+			lblCodiceFiscale.setFont(new Font("Tahoma", Font.BOLD, 13));
+			lblCodiceFiscale.setBounds(55, 150, 123, 20);
+			p.add(lblCodiceFiscale);
+		}
+		{
+			lblNome = new JLabel("NOME");
+			lblNome.setFont(new Font("Tahoma", Font.BOLD, 13));
+			lblNome.setBounds(255, 150, 46, 20);
+			p.add(lblNome);
+		}
+		{
+			lblCognome_1 = new JLabel("COGNOME");
+			lblCognome_1.setFont(new Font("Tahoma", Font.BOLD, 13));
+			lblCognome_1.setBounds(455, 150, 86, 20);
+			p.add(lblCognome_1);
+		}
+		{
+			separator = new JSeparator();
+			separator.setBounds(55, 180, 745, 3);
+			p.add(separator);
+		}
+		{
+			labelNoClienti = new JLabel("");
+			labelNoClienti.setBounds(55, 125, 307, 14);
+			p.add(labelNoClienti);
+		}
+		
+		{
+			stampaElencoClienti(p);
+		}
+		{
+			{
+				//Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+		        //int x = (screen.width-WIDTH);
+		        //int y = (screen.height-HEIGHT);
+				//System.out.println(x+"x"+y);
+			}
+		}
+		return p;
 	}
 }

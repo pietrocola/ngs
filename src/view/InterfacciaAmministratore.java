@@ -37,6 +37,8 @@ import view.content.ImpostaTipologiaCorsoView;
 import view.content.VECCHIACreaPreventivoView;
 import view.content.CreaPreventivoView;
 import view.utility.ProvaMap;
+import view.utility.decorator.Pannello;
+import view.utility.decorator.ScrollDecorator;
 
 import javax.swing.border.LineBorder;
 
@@ -468,9 +470,14 @@ public class InterfacciaAmministratore {
 			public void actionPerformed(ActionEvent e) {
 				clearMainPanel(frmNextgensportAmministratore);
 				
-				CreaPreventivoView vtv = new CreaPreventivoView();
+				
+				CreaPreventivoView panelAux= new CreaPreventivoView();
+				
+				//Pannello vtv = new CreaPreventivoView();
+				//Pannello aux=new ScrollDecorator(vtv);
+				//JPanel panelAux=aux.draw();
 				// internalFrame.getContentPane().add(itc,BorderLayout.CENTER);
-				frmNextgensportAmministratore.getContentPane().add(vtv,	BorderLayout.CENTER);
+				frmNextgensportAmministratore.getContentPane().add(panelAux,	BorderLayout.CENTER);
 	
 				// internalFrame.setVisible(true);
 				frmNextgensportAmministratore.getContentPane().revalidate();

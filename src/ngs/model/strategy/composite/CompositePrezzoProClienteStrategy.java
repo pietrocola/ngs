@@ -22,7 +22,7 @@ public class CompositePrezzoProClienteStrategy extends CompositePrezzoStrategy {
 	public float calcolaPrezzoAbbonamento(float pbm, PoliticaScontoAbbonamento politicaSconto) {
 		
 		
-		float min=1000;
+		float min=10000;
 		
 		
 		for(IPoliticaScontoAbbonamentoStrategy ipsas: elencoStrategie){
@@ -42,6 +42,7 @@ public class CompositePrezzoProClienteStrategy extends CompositePrezzoStrategy {
 			}
 		}
 		
+		return min;
 		
 		
 		/*
@@ -70,7 +71,7 @@ public class CompositePrezzoProClienteStrategy extends CompositePrezzoStrategy {
 		}
 		*/
 		
-		return min;
+	
 		//throw new UnsupportedOperationException();
 	}
 

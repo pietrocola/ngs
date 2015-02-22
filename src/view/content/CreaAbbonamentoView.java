@@ -13,7 +13,9 @@ import javax.swing.JToolBar;
 import javax.swing.JSplitPane;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.GridBagLayout;
+import java.awt.Toolkit;
 
 import javax.swing.JLabel;
 
@@ -23,6 +25,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.Box;
+import javax.swing.JScrollPane;
 import javax.swing.JTree;
 import javax.swing.JSlider;
 import javax.swing.JSeparator;
@@ -98,18 +101,18 @@ public class CreaAbbonamentoView extends JPanel {
 			panel.setLayout(null);
 			{
 				lblNomeAbb = new JLabel("- NOME: "+prevAbb.getDescAbb().getNomeAbbonamento());
-				lblNomeAbb.setBounds(46, 21, 236, 14);
+				lblNomeAbb.setBounds(30, 21, 236, 14);
 				panel.add(lblNomeAbb);
 			}
 			{
 				
 				lblDurataAbb = new JLabel("- NUMERO MESI: "+prevAbb.getNumeroMesi());
-				lblDurataAbb.setBounds(46, 46, 236, 14);
+				lblDurataAbb.setBounds(30, 46, 236, 14);
 				panel.add(lblDurataAbb);
 			}
 			{
 				lblPrezzoAbb = new JLabel("- PREZZO: "+prevAbb.getPrezzo()+" €");
-				lblPrezzoAbb.setBounds(46, 71, 236, 14);
+				lblPrezzoAbb.setBounds(30, 71, 236, 14);
 				panel.add(lblPrezzoAbb);
 			}
 		}
@@ -118,13 +121,21 @@ public class CreaAbbonamentoView extends JPanel {
 			panel_1.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
 			panel_1.setBackground(Color.WHITE);
 			panel_1.setBounds(36, 290, 537, 142);
-			add(panel_1);
+			//add(panel_1);
 			panel_1.setLayout(null);
 			{
 				labelNoClienti = new JLabel("");
 				labelNoClienti.setBounds(46, 28, 308, 14);
 				panel_1.add(labelNoClienti);
 			}
+			JScrollPane scroll=new JScrollPane();
+			scroll.setBounds(36, 290, 537, 142);
+			add(scroll);
+		    Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+		    int x=(screen.width)/2;
+		    int y=(screen.height)/2;
+		    panel_1.setPreferredSize(new Dimension(x,y));
+		    scroll.setViewportView(panel_1);
 	
 		}
 		{

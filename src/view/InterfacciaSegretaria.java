@@ -39,7 +39,12 @@ import view.content.ImpostaTipologiaCorsoView;
 import view.content.RegistraClienteView;
 import view.content.VECCHIACreaPreventivoView;
 import view.content.VerificaCategoriaClienteView;
+import view.utility.decorator.ButtonDecorator;
 import view.utility.ProvaMap;
+import view.utility.decorator.FrameDecorator;
+import view.utility.decorator.LabelDecorator;
+import view.utility.decorator.ScrollDecorator;
+import view.utility.decorator.Pannello;
 
 import javax.swing.border.LineBorder;
 
@@ -59,6 +64,8 @@ import ngs.model.M_TipologiaCorso;
 import javax.swing.JLabel;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
+
+import org.orm.ertodb.decorator.Decorator;
 
 public class InterfacciaSegretaria {
 
@@ -263,10 +270,12 @@ public class InterfacciaSegretaria {
 			public void actionPerformed(ActionEvent arg0) {
 				clearMainPanel(segFrame);
 				
-				GestioneCertificatiMediciView acmv = new GestioneCertificatiMediciView();
-				// internalFrame.getContentPane().add(itc,BorderLayout.CENTER);
-				segFrame.getContentPane().add(acmv,	BorderLayout.CENTER);
-
+				
+				Pannello gestione=new GestioneCertificatiMediciView();
+				Pannello aux=new ScrollDecorator( gestione);
+				JPanel panelAux= aux.draw();
+				
+				segFrame.getContentPane().add(panelAux,	BorderLayout.CENTER);
 				// internalFrame.setVisible(true);
 				segFrame.getContentPane().revalidate();
 				segFrame.repaint();
@@ -280,10 +289,13 @@ public class InterfacciaSegretaria {
 			public void actionPerformed(ActionEvent arg0) {
 				clearMainPanel(segFrame);
 				
-				AggiungiCertificatoMedicoView acmv = new AggiungiCertificatoMedicoView();
-				// internalFrame.getContentPane().add(itc,BorderLayout.CENTER);
-				segFrame.getContentPane().add(acmv,	BorderLayout.CENTER);
+				
+				Pannello aggiungi=new AggiungiCertificatoMedicoView();
+				Pannello aux=new ScrollDecorator( aggiungi);
+				JPanel panelAux= aux.draw();
+				
 
+				segFrame.getContentPane().add(panelAux,	BorderLayout.CENTER);
 				// internalFrame.setVisible(true);
 				segFrame.getContentPane().revalidate();
 				segFrame.repaint();
@@ -318,15 +330,30 @@ public class InterfacciaSegretaria {
 	private void ascoltatorePreventiviDisponibili() {
 		mntmPreventiviDisponibili.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				clearMainPanel(segFrame);
 				
-				ElencoPreventiviDisponibiliView epdv = new ElencoPreventiviDisponibiliView();
-				// internalFrame.getContentPane().add(itc,BorderLayout.CENTER);
-				segFrame.getContentPane().add(epdv,	BorderLayout.CENTER);
+				
+				
+				// PER DISEGRARE IL PANNELLO SENZA DECORAZIONI
+				//Pannello elenco=new ElencoPreventiviDisponibiliView();
+				//JPanel pa= elenco.draw();
+				
+				//Pannello aux=new ButtonDecorator(elenco);
+				//JPanel panelAux=aux.draw();
+				
+				//Pannello aux=new FrameDecorator((Pannello) panelAux1);
+				//JPanel panelAux=aux.draw();
+				
+				Pannello elenco=new ElencoPreventiviDisponibiliView();
+				Pannello aux=new ScrollDecorator( elenco);
+				JPanel panelAux=aux.draw();
+				
 
-				// internalFrame.setVisible(true);
-				segFrame.getContentPane().revalidate();
-				segFrame.repaint();
+				
+				InterfacciaSegretaria.segFrame.getContentPane().add(panelAux,	BorderLayout.CENTER);
+				InterfacciaSegretaria.segFrame.getContentPane().revalidate();
+				InterfacciaSegretaria.segFrame.repaint();
 				
 			}
 		});

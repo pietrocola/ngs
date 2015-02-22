@@ -288,6 +288,14 @@ public class ConfiguraAbbonamentoView extends JPanel{
 					boolean aux=ConfAbbCorsiHandler.getInstance().verificaNomeDescrizioneAbbonamento(nomeAbb);
 					if(aux==true)
 					{
+						Boolean a=true;
+						Boolean b=ConfAbbCorsiHandler.getInstance().verificaConfigurazioneAbbonamento(elencoCorsiSelezionati,elencoSalePesiSelezionate);;
+						if(b==true){
+							Message.errorMessage("ERRORE", "Questo abbonamento è già stato configurato");
+						}
+						else{
+							
+						
 						String nomiCorsi="";
 						for(DescrizioneCorso dc:elencoCorsiSelezionati){
 							nomiCorsi=nomiCorsi+dc.getNomeCorso()+"  ";
@@ -313,6 +321,7 @@ public class ConfiguraAbbonamentoView extends JPanel{
 								
 						}
 						else if(risposta==JOptionPane.NO_OPTION){}							
+						}
 					}
 					else
 					{

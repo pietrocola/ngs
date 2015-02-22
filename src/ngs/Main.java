@@ -52,7 +52,7 @@ public class Main {
 	public static void main(String[] args) throws InterruptedException {
 		
 		ServicesCreatorFactory.getInstance().inizializzaElencoAbbonamenti();
-		System.out.println(M_ElencoAbbonamenti.getInstance().getElencoAbbonamenti().size());
+	
 		//IPoliticaScontoAbbonamentoStrategy s= new ScontoPercentualeStrategy();
 		//CompositePrezzoProClienteStrategy c = new CompositePrezzoProClienteStrategy();
 		//c.addStrategiaPrezzo(s);
@@ -62,7 +62,7 @@ public class Main {
 		 */
 		final SplashScreen  splash = new SplashScreen(); //spalsh screen
 		splash.setVisible(true);	//spalsh screen
-		Thread.sleep(0);
+		Thread.sleep(2000);
 		splash.setVisible(false);  		//spalsh screen
 		
 		logFrame = new JFrame();

@@ -110,4 +110,33 @@ public class M_DescrizioneAbbonamento extends AModel {
 		 return elencoSalePesi;
 	}
 
+	
+	
+	
+	
+	public Boolean verificaConfigurazioneAbbonamento(java.util.Set<DescrizioneCorso> elencoCorsiSelezionati,java.util.Set<SalaPesi> elencoSalePesiSelezionate) {
+		
+		Boolean aux=false;
+		
+		for(int i=0; i<DescrizioneAbbonamentoDAO.listDescrizioneAbbonamentoByQuery(null, null).length;i++){
+			java.util.Set<DescrizioneCorso> elencoCorsi=DescrizioneAbbonamentoDAO.listDescrizioneAbbonamentoByQuery(null, null)[i].getElencoCorsi();
+			if(elencoCorsi.equals(elencoCorsiSelezionati))
+				aux=true;
+		}
+		
+		
+		
+		if(aux==true){
+			for(int i=0; i<DescrizioneAbbonamentoDAO.listDescrizioneAbbonamentoByQuery(null, null).length;i++){
+				java.util.Set<SalaPesi> elencoSale= DescrizioneAbbonamentoDAO.listDescrizioneAbbonamentoByQuery(null, null)[i].getElencoSalePesi();
+				if(elencoSale.equals(elencoSalePesiSelezionate))
+					return true;
+			}
+		}
+
+		return false;
+		
+
+	}
+
 }
