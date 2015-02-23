@@ -183,4 +183,20 @@ public class ScontoPercentualeStrategy extends AModel implements IPoliticaSconto
 
 
 
+	@Override
+	public ArrayList<PoliticaScontoAbbonamento> getPoliticheSconto(CategoriaCliente cat) {
+		
+		ArrayList<PoliticaScontoAbbonamento> elencoPoliticheSconto = new ArrayList<PoliticaScontoAbbonamento>();
+		
+		for(int i=0;i<ScontoPercentualeDAO.listScontoPercentualeByQuery(null,null).length;i++){
+			if(ScontoPercentualeDAO.listScontoPercentualeByQuery(null, null)[i].getCategoriaCliente().equals(cat)){  
+				elencoPoliticheSconto.add(ScontoPercentualeDAO.listScontoPercentualeByQuery(null, null)[i]);
+			   
+			}
+		}
+		return elencoPoliticheSconto;
+	}
+
+
+
 }

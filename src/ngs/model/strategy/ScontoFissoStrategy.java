@@ -176,4 +176,23 @@ public class ScontoFissoStrategy extends AModel implements IPoliticaScontoAbbona
 		}
 		return elencoNumeroMesi;
 	}
+
+
+
+
+
+	@Override
+	public ArrayList<PoliticaScontoAbbonamento> getPoliticheSconto(CategoriaCliente cat) {
+		
+		ArrayList<PoliticaScontoAbbonamento> elencoPoliticheSconto = new ArrayList<PoliticaScontoAbbonamento>();
+		
+		for(int i=0;i<ScontoFissoDAO.listScontoFissoByQuery(null,null).length;i++){
+			if(ScontoFissoDAO.listScontoFissoByQuery(null, null)[i].getCategoriaCliente().equals(cat))  
+				elencoPoliticheSconto.add(ScontoFissoDAO.listScontoFissoByQuery(null, null)[i]);
+		}	  
+	
+		return elencoPoliticheSconto;
+	
+		
+	}
 }

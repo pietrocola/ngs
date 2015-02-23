@@ -19,4 +19,20 @@ public abstract class Mediator {
 	public abstract void registraLabelConferma(LabelConferma labelConferma);
 
 	public abstract void registraLabelFrecciaAbb(LabelFrecciaAbb labelFrecciaAbb);
+
+	public abstract void registraLabelNoAbbonamento(LabelNoAbbonamento labelNoAbbonamento);
+
+	public abstract void registraLabelNoCategorieClienti(LabelNoCategorieClienti labelNoCategorieClienti);
+
+	public abstract void registraLabelNoPoliticheSconto(LabelNoPoliticheSconto labelNoPoliticheSconto);
+
+	public abstract  void registraRadioButtonProCliente(RadioButtonProCliente radioButtonProCliente);
+
+	public abstract void registraRadioButtonProCentro(RadioButtonProCentro radioButtonProCentro);
+		
+	
+		
+	
+		
+	
 }

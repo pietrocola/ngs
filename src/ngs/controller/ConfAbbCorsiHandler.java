@@ -254,10 +254,10 @@ public class ConfAbbCorsiHandler {
 		elencoPoliticheSconto.addAll(politicaScontoAbbStrategy.getPoliticheSconto(cat,numMesi));
 		
 		
-		for(PoliticaScontoAbbonamento p: elencoPoliticheSconto){
-			System.out.println(p.getNomePolitica()); 
-			System.out.println(p.getClass());
-		}
+		//for(PoliticaScontoAbbonamento p: elencoPoliticheSconto){
+			//System.out.println(p.getNomePolitica()); 
+			//System.out.println(p.getClass());
+		//}
 		
 		
 		return elencoPoliticheSconto;
@@ -414,6 +414,23 @@ public class ConfAbbCorsiHandler {
 	public Boolean verificaConfigurazioneAbbonamento(Set<DescrizioneCorso> elencoCorsiSelezionati,Set<SalaPesi> elencoSalePesiSelezionate) {
 		descAbb=new M_DescrizioneAbbonamento();
 		return descAbb.verificaConfigurazioneAbbonamento(elencoCorsiSelezionati,elencoSalePesiSelezionate);
+	}
+
+	
+	
+	
+	public ArrayList<PoliticaScontoAbbonamento> getPoliticheSconto(CategoriaCliente cat) {
+		ArrayList<PoliticaScontoAbbonamento> elencoPoliticheSconto= new ArrayList<PoliticaScontoAbbonamento>();
+		//System.out.println("ciao");
+		
+
+		politicaScontoAbbStrategy= new ScontoPercentualeStrategy();
+		elencoPoliticheSconto=politicaScontoAbbStrategy.getPoliticheSconto(cat);
+		
+		politicaScontoAbbStrategy= new ScontoFissoStrategy();
+		elencoPoliticheSconto.addAll(politicaScontoAbbStrategy.getPoliticheSconto(cat));
+		
+		return elencoPoliticheSconto;
 	}
 
 	

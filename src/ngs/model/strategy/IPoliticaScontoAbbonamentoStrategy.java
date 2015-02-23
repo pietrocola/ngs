@@ -35,4 +35,7 @@ public interface IPoliticaScontoAbbonamentoStrategy {
 
 	HashSet<Integer> getNumeroMesi(CategoriaCliente catCliente);
 
+
+	ArrayList<PoliticaScontoAbbonamento> getPoliticheSconto(CategoriaCliente cat);
+
 }

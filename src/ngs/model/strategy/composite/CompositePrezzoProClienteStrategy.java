@@ -122,4 +122,19 @@ public class CompositePrezzoProClienteStrategy extends CompositePrezzoStrategy {
 		return null;
 	}
 
+
+
+
+
+
+
+
+
+	@Override
+	public ArrayList<PoliticaScontoAbbonamento> getPoliticheSconto(
+			CategoriaCliente cat) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

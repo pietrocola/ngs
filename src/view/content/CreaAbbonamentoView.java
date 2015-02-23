@@ -347,8 +347,18 @@ public class CreaAbbonamentoView extends JPanel {
 						
 						ButtonGroup gruppo=new ButtonGroup();
 						
+						JLabel n = new JLabel("NOME");
+						n.setBounds(60, 15, 150, 23);
+						panel_1.add(n);
+						JLabel co = new JLabel("COGNOME");
+						co.setBounds(160, 15, 150, 23);
+						panel_1.add(co);
+						JLabel cf = new JLabel("CODICE FISCALE");
+						cf.setBounds(310, 15, 150, 23);
+						panel_1.add(cf);
+						
 						int x=10;
-						int y=30;
+						int y=50;
 						
 						for(Cliente c: elencoClienti){
 							
@@ -360,9 +370,9 @@ public class CreaAbbonamentoView extends JPanel {
 							panel_1.add(radioButton);
 							x=x+50;
 							JLabel nome = new JLabel(c.getNome());
-							nome.setBounds(x, y, 200, 23);
+							nome.setBounds(x, y, 150, 23);
 							panel_1.add(nome);
-							x=x+150;
+							x=x+100;
 							JLabel cogn = new JLabel(c.getCognome());
 							cogn.setBounds(x, y, 200, 23);
 							panel_1.add(cogn);
