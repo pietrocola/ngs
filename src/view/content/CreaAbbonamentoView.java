@@ -51,6 +51,7 @@ import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 
 import view.utility.Message;
+import view.utility.decorator.Pannello;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -65,8 +66,10 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 
 import javax.swing.JRadioButton;
+import javax.swing.border.LineBorder;
+import javax.swing.SwingConstants;
 
-public class CreaAbbonamentoView extends JPanel {
+public class CreaAbbonamentoView extends Pannello {
 	private JPanel panel;
 	private JLabel lblAbbonamentoScelto;
 	private JLabel lblNomeAbb;
@@ -87,16 +90,33 @@ public class CreaAbbonamentoView extends JPanel {
 	private ArrayList<JRadioButton> arrayRB=new ArrayList<JRadioButton>();
 	private JLabel lblConferma;
 
+	
+	
+	public CreaAbbonamentoView(Boolean aux) {
+		
+	}
+
+	
+	
 	/**
 	 * Create the panel.
+	 * @wbp.parser.constructor
 	 */
 	public CreaAbbonamentoView(PreventivoAbbonamento prevAbb) {
+		setForeground(Color.WHITE);
+		
+		Dimension screen1 = Toolkit.getDefaultToolkit().getScreenSize();
+        int x1 = (screen1.width-WIDTH);
+        int y1 = (screen1.height-HEIGHT);
+		//System.out.println(x+"x"+y);
+		setPreferredSize(new Dimension(x1,y1));
+		
 		setLayout(null);
 		{
 			panel = new JPanel();
 			panel.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
 			panel.setBackground(Color.WHITE);
-			panel.setBounds(36, 57, 284, 104);
+			panel.setBounds(36, 148, 284, 104);
 			add(panel);
 			panel.setLayout(null);
 			{
@@ -129,7 +149,7 @@ public class CreaAbbonamentoView extends JPanel {
 				panel_1.add(labelNoClienti);
 			}
 			JScrollPane scroll=new JScrollPane();
-			scroll.setBounds(36, 290, 537, 142);
+			scroll.setBounds(537, 148, 592, 149);
 			add(scroll);
 		    Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 		    int x=(screen.width)/2;
@@ -140,15 +160,15 @@ public class CreaAbbonamentoView extends JPanel {
 		}
 		{
 			lblSelezionaUnCliente = new JLabel("SELEZIONA UN CLIENTE");
-			lblSelezionaUnCliente.setBounds(36, 206, 233, 14);
+			lblSelezionaUnCliente.setBounds(537, 71, 233, 14);
 			add(lblSelezionaUnCliente);
-			lblSelezionaUnCliente.setFont(new Font("Tahoma", Font.BOLD, 12));
+			lblSelezionaUnCliente.setFont(new Font("Tahoma", Font.BOLD, 14));
 		}
 		{
 			lblAbbonamentoScelto = new JLabel("ABBONAMENTO SCELTO");
-			lblAbbonamentoScelto.setBounds(36, 31, 147, 14);
+			lblAbbonamentoScelto.setBounds(36, 71, 207, 14);
 			add(lblAbbonamentoScelto);
-			lblAbbonamentoScelto.setFont(new Font("Tahoma", Font.BOLD, 12));
+			lblAbbonamentoScelto.setFont(new Font("Tahoma", Font.BOLD, 14));
 		}
 		{
 			button = new JButton("");
@@ -156,7 +176,7 @@ public class CreaAbbonamentoView extends JPanel {
 			button.setIcon(new ImageIcon(CreaAbbonamentoView.class.getResource("/view/img/lente.png")));
 			button.setBorderPainted(false);
 			button.setBackground(SystemColor.menu);
-			button.setBounds(223, 243, 20, 20);
+			button.setBounds(725, 106, 20, 20);
 			add(button);
 		}
 		{
@@ -169,18 +189,18 @@ public class CreaAbbonamentoView extends JPanel {
 				}
 			});
 			textField.setColumns(10);
-			textField.setBounds(117, 243, 102, 20);
+			textField.setBounds(619, 106, 102, 20);
 			add(textField);
 		}
 		{
 			label = new JLabel("cognome");
-			label.setBounds(35, 245, 72, 14);
+			label.setBounds(537, 108, 72, 14);
 			add(label);
 		}
 		{
 			lblImpostaDataInizio = new JLabel("IMPOSTA DATA INIZIO ABBONAMENTO");
-			lblImpostaDataInizio.setFont(new Font("Tahoma", Font.BOLD, 12));
-			lblImpostaDataInizio.setBounds(36, 470, 250, 14);
+			lblImpostaDataInizio.setFont(new Font("Tahoma", Font.BOLD, 14));
+			lblImpostaDataInizio.setBounds(537, 342, 291, 14);
 			add(lblImpostaDataInizio);
 		}
 		{
@@ -191,19 +211,19 @@ public class CreaAbbonamentoView extends JPanel {
 					lblConferma.setText("");
 				}
 			});
-			textField_1.setBounds(307, 468, 115, 20);
+			textField_1.setBounds(537, 390, 115, 20);
 			add(textField_1);
 			textField_1.setColumns(10);
 		}
 		{
 			btnSalva = new JButton("salva");
 			ascoltatoreSalvaAbbonamentoCliente(prevAbb);
-			btnSalva.setBounds(307, 516, 89, 23);
+			btnSalva.setBounds(537, 437, 89, 23);
 			add(btnSalva);
 		}
 		{
 			lblConferma = new JLabel("");
-			lblConferma.setBounds(436, 520, 250, 14);
+			lblConferma.setBounds(661, 441, 291, 14);
 			add(lblConferma);
 		}
 		
@@ -408,5 +428,15 @@ public class CreaAbbonamentoView extends JPanel {
 			}
 		});
 		
+	}
+
+	@Override
+	public Pannello draw() {
+		return new CreaAbbonamentoView(ElencoPreventiviDisponibiliView.prevAbb);
+	}
+
+	@Override
+	public Pannello drawEmpty() {
+		return new CreaAbbonamentoView(true);
 	}
 }

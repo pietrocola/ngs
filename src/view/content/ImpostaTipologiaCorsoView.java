@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import org.orm.PersistentException;
 
 import view.utility.Message;
+import view.utility.decorator.Pannello;
 import ngs.controller.ConfAbbCorsiHandler;
 
 import java.awt.event.ActionListener;
@@ -27,16 +28,24 @@ import javax.swing.border.LineBorder;
 import java.awt.Font;
 
 import javax.swing.SwingConstants;
+
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 
-public class ImpostaTipologiaCorsoView extends JPanel {
+public class ImpostaTipologiaCorsoView extends Pannello {
 	private JLabel lblNomeTipologia;
 	private JTextField textField;
 	private JButton btnSalva;
 	private JLabel label;
 	private JOptionPane optionPane;
 
+	
+	
+	public ImpostaTipologiaCorsoView(Boolean aux){
+		
+	}
+	
+	
 	/**
 	 * Create the panel.
 	 */
@@ -114,6 +123,16 @@ public class ImpostaTipologiaCorsoView extends JPanel {
 				}
 			}
 		});
+	}
+
+	@Override
+	public Pannello draw() {
+		return new ImpostaTipologiaCorsoView();
+	}
+
+	@Override
+	public Pannello drawEmpty() {
+		return new ImpostaTipologiaCorsoView(true);
 	}
 }
 

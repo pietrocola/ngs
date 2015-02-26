@@ -11,23 +11,42 @@ import ngs.controller.ConfAbbCorsiHandler;
 import org.orm.PersistentException;
 
 import view.utility.Message;
+import view.utility.decorator.Pannello;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 
-public class ImpostaCategoriaClienteView extends JPanel {
+public class ImpostaCategoriaClienteView extends Pannello {
 	private JLabel labelCategoria;
 	private JTextField textField;
 	private JButton btnSalva;
 	private JLabel label;
 
+	
+	
+	public ImpostaCategoriaClienteView(Boolean aux){
+		
+	}
+	
+	
+	
 	/**
 	 * Create the panel.
 	 */
 	public ImpostaCategoriaClienteView() {
+		
+		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+        int x = (screen.width-WIDTH);
+        int y = (screen.height-HEIGHT);
+		//System.out.println(x+"x"+y);
+		setPreferredSize(new Dimension(x,y));
+		
+		
 		setLayout(null);
 		{
 			labelCategoria = new JLabel("nome categoria");
@@ -96,5 +115,21 @@ public class ImpostaCategoriaClienteView extends JPanel {
 			}
 			
 		});
+	}
+
+
+
+
+	@Override
+	public Pannello draw() {
+		return new ImpostaCategoriaClienteView();
+	}
+
+
+
+
+	@Override
+	public Pannello drawEmpty() {
+		return new ImpostaCategoriaClienteView(true);
 	}
 }

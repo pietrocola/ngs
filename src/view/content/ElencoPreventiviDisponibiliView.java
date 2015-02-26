@@ -13,6 +13,7 @@ import ngs.persistentmodel.Cliente;
 import ngs.persistentmodel.PreventivoAbbonamento;
 import view.InterfacciaSegretaria;
 import view.utility.Message;
+import view.utility.decorator.FrameDecorator;
 import view.utility.decorator.ScrollDecorator;
 import view.utility.decorator.Pannello;
 
@@ -43,8 +44,10 @@ public class ElencoPreventiviDisponibiliView extends Pannello{
 	private JSeparator separator;
 	private JLabel lblNoPrev;
 	
+	static PreventivoAbbonamento prevAbb=null;
 	
-	public ElencoPreventiviDisponibiliView(){
+	
+	public ElencoPreventiviDisponibiliView(Boolean aux){
 		
 	}
 	
@@ -52,7 +55,7 @@ public class ElencoPreventiviDisponibiliView extends Pannello{
 	/**
 	 * Create the panel.
 	 */
-	/*
+	
 	public ElencoPreventiviDisponibiliView() {
 		
 	    Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
@@ -100,43 +103,43 @@ public class ElencoPreventiviDisponibiliView extends Pannello{
 
 	}
 
-	*/
 	
 	
 	
-	private void stampaPreventivi(String catCliente, JPanel p) {
+	
+	private void stampaPreventivi(String catCliente) {
 		
-		p.removeAll();
-		p.repaint();
-		p.revalidate();
+		removeAll();
+		repaint();
+		revalidate();
 		
 		{
 			comboBox = new JComboBox();
 			
 			ascoltatoreElencoCategorieClienti();
 			comboBox.setBounds(163, 49, 140, 20);
-			p.add(comboBox);
+			add(comboBox);
 		}
 		{
 			lblCategoriaCliente = new JLabel("categoria cliente");
 			lblCategoriaCliente.setBounds(55, 52, 117, 14);
-			p.add(lblCategoriaCliente);
+			add(lblCategoriaCliente);
 		}
 		{
 			lblNoPrev = new JLabel("");
 			lblNoPrev.setBounds(55, 122, 309, 14);
-			p.add(lblNoPrev);
+			add(lblNoPrev);
 		}
 		{
 			btnMostraPreventivi = new JButton("mostra preventivi");
 			btnMostraPreventivi.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					stampaPreventivi((String) comboBox.getSelectedItem(),p);
+					stampaPreventivi((String) comboBox.getSelectedItem());
 					btnMostraPreventivi.setEnabled(false);
 				}
 			});
 			btnMostraPreventivi.setBounds(313, 48, 136, 23);
-			p.add(btnMostraPreventivi);
+			add(btnMostraPreventivi);
 		}
 		
 		CategoriaCliente categoriaCliente=ErogaAbbonamentoHandler.getInstance().getCategoriaCliente(catCliente);
@@ -149,24 +152,24 @@ public class ElencoPreventiviDisponibiliView extends Pannello{
 			lblAbbonamento = new JLabel("ABBONAMENTO");
 			lblAbbonamento.setFont(new Font("Tahoma", Font.BOLD, 13));
 			lblAbbonamento.setBounds(55, 150, 123, 20);
-			p.add(lblAbbonamento);
+			add(lblAbbonamento);
 		}
 		{
 			lblNumeroMesi = new JLabel("NUMERO MESI");
 			lblNumeroMesi.setFont(new Font("Tahoma", Font.BOLD, 13));
 			lblNumeroMesi.setBounds(255, 150, 123, 20);
-			p.add(lblNumeroMesi);
+			add(lblNumeroMesi);
 		}
 		{
 			lblPrezzo = new JLabel("PREZZO");
 			lblPrezzo.setFont(new Font("Tahoma", Font.BOLD, 13));
 			lblPrezzo.setBounds(455, 150, 86, 20);
-			p.add(lblPrezzo);
+			add(lblPrezzo);
 		}
 		{
 			separator = new JSeparator();
 			separator.setBounds(55, 180, 810, 3);
-			p.add(separator);
+			add(separator);
 		}
 		
 		
@@ -200,19 +203,19 @@ public class ElencoPreventiviDisponibiliView extends Pannello{
 				JLabel label1=new JLabel();
 				label1.setText(pa.getDescAbb().getNomeAbbonamento());
 				label1.setBounds(x, y, 200, 50);
-				p.add(label1);
+				add(label1);
 				x=x+200;
 				JLabel label2=new JLabel();
 				String s=String.valueOf(pa.getNumeroMesi());
 				label2.setText(s);
 				label2.setBounds(x, y, 200, 50);
-				p.add(label2);
+				add(label2);
 				x=x+200;
 				JLabel label3=new JLabel();
 				String pre=String.valueOf(pa.getPrezzo());
 				label3.setText(pre+" €");
 				label3.setBounds(x, y, 100, 50);
-				p.add(label3);
+				add(label3);
 				x=x+200;
 				b=y+15;
 				JButton bottone=new JButton("info");
@@ -240,7 +243,7 @@ public class ElencoPreventiviDisponibiliView extends Pannello{
 					}
 				});
 				bottone.setBounds(x-80, b, 70, 20);
-				p.add(bottone);
+				add(bottone);
 				
 				x=x+200;
 				
@@ -250,7 +253,7 @@ public class ElencoPreventiviDisponibiliView extends Pannello{
 						
 						int cordY=bottoneCrea.getY();
 						//System.out.println(label1.getY());
-						PreventivoAbbonamento prevAbb=null;
+						//PreventivoAbbonamento prevAbb=null;
 						Set<Integer> s=map1.keySet();
 						
 						for(Integer aux:s){
@@ -264,11 +267,12 @@ public class ElencoPreventiviDisponibiliView extends Pannello{
 						InterfacciaSegretaria.segFrame.getContentPane().repaint();
 						InterfacciaSegretaria.segFrame.getContentPane().add(InterfacciaSegretaria.toolBar, BorderLayout.NORTH);
 						
-						CreaAbbonamentoView cav = new CreaAbbonamentoView(prevAbb);
-						// internalFrame.getContentPane().add(itc,BorderLayout.CENTER);
-						InterfacciaSegretaria.segFrame.getContentPane().add(cav,	BorderLayout.CENTER);
-
-						// internalFrame.setVisible(true);
+						Pannello panelAux = new CreaAbbonamentoView(true);
+						
+						Pannello aux=new FrameDecorator(panelAux,"ASSOCIA CLIENTE","/view/img/abbonamento1 frame.png");
+						Pannello aux1=aux.draw();
+	
+						InterfacciaSegretaria.segFrame.getContentPane().add(aux1,	BorderLayout.CENTER);
 						InterfacciaSegretaria.segFrame.getContentPane().revalidate();
 						InterfacciaSegretaria.segFrame.repaint();
 						
@@ -276,7 +280,7 @@ public class ElencoPreventiviDisponibiliView extends Pannello{
 					}
 				});
 				bottoneCrea.setBounds(x-140, b, 150, 20);
-				p.add(bottoneCrea);
+				add(bottoneCrea);
 				
 				map.put(b,label1);
 				map1.put(b, pa);
@@ -290,8 +294,8 @@ public class ElencoPreventiviDisponibiliView extends Pannello{
 		
 		
 		
-		p.revalidate();
-		p.repaint();
+		revalidate();
+		repaint();
 			}
 		}
 	}
@@ -332,56 +336,14 @@ public class ElencoPreventiviDisponibiliView extends Pannello{
 
 	
 	
-	public JPanel draw() {
-		
-		
-		JPanel p=new JPanel();
-		
-		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-	    int x=(screen.width);
-	    int y=(screen.height);
-	    p.setPreferredSize(new Dimension(x,y));
-		
-		p.setLayout(null);
-		{
-			comboBox = new JComboBox();
-			//comboBox.setSelectedIndex(-1);
-			ascoltatoreElencoCategorieClienti();
-			comboBox.setBounds(163, 49, 140, 20);
-			p.add(comboBox);
-		}
-		{
-			lblCategoriaCliente = new JLabel("categoria cliente");
-			lblCategoriaCliente.setBounds(55, 52, 117, 14);
-			p.add(lblCategoriaCliente);
-		}
-		{
-			btnMostraPreventivi = new JButton("mostra preventivi");
-			btnMostraPreventivi.setEnabled(false);
-			btnMostraPreventivi.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-					if(comboBox.getSelectedItem()==null)
-						Message.errorMessage("ERRORE", "Selezionare una categoria cliente");
-					else
-						stampaPreventivi((String) comboBox.getSelectedItem(),p);
-					
-					btnMostraPreventivi.setEnabled(false);
-				}
-				
-			});
-			btnMostraPreventivi.setBounds(313, 48, 136, 23);
-			p.add(btnMostraPreventivi);
-		}
-		{
-			lblNoPrev = new JLabel("");
-			lblNoPrev.setBounds(55, 122, 309, 14);
-			p.add(lblNoPrev);
-		}
-
-		
-		
-		
-		return p;
+	public Pannello draw() {
+		return new ElencoPreventiviDisponibiliView();
 			
+	}
+
+
+	@Override
+	public Pannello drawEmpty() {
+		return new ElencoPreventiviDisponibiliView(true);
 	}	
 }

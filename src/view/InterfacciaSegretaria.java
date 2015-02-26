@@ -37,18 +37,16 @@ import view.content.ImpostaCategoriaClienteView;
 import view.content.ImpostaPoliticaScontoPercentualeView;
 import view.content.ImpostaTipologiaCorsoView;
 import view.content.RegistraClienteView;
-import view.content.VECCHIACreaPreventivoView;
 import view.content.VerificaCategoriaClienteView;
-import view.utility.decorator.ButtonDecorator;
 import view.utility.ProvaMap;
 import view.utility.decorator.FrameDecorator;
-import view.utility.decorator.LabelDecorator;
 import view.utility.decorator.ScrollDecorator;
 import view.utility.decorator.Pannello;
 
 import javax.swing.border.LineBorder;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Toolkit;
 
 import javax.swing.JSplitPane;
@@ -69,6 +67,10 @@ import org.orm.ertodb.decorator.Decorator;
 
 public class InterfacciaSegretaria {
 
+	
+	private Pannello pannello;
+	
+	
 	public static JFrame segFrame;
 	private JMenuBar menuBar;
 	private JMenu mnFile;
@@ -151,6 +153,7 @@ public class InterfacciaSegretaria {
 			segFrame.getContentPane().add(toolBar, BorderLayout.NORTH);
 			{
 				btnHome = new JButton("HOME ");
+				btnHome.setFont(new Font("Tahoma", Font.BOLD, 12));
 				ascoltatoreBottoneHome();
 				btnHome.setFocusable(false);
 				btnHome.setBorderPainted(false);
@@ -159,6 +162,7 @@ public class InterfacciaSegretaria {
 			}
 			{
 				btnAbbonamento = new JButton("ABBONAMENTI ");
+				btnAbbonamento.setFont(new Font("Tahoma", Font.BOLD, 12));
 				btnAbbonamento.setFocusable(false);
 				btnAbbonamento.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
@@ -186,6 +190,7 @@ public class InterfacciaSegretaria {
 			}
 			{
 				btnClienti = new JButton("CLIENTI ");
+				btnClienti.setFont(new Font("Tahoma", Font.BOLD, 12));
 				btnClienti.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						popupMenu.show(btnClienti, 0,	btnClienti.getY() + btnClienti.getHeight());
@@ -213,6 +218,7 @@ public class InterfacciaSegretaria {
 			}
 			{
 				btnCertificatiMedici = new JButton("CERTIFICATI MEDICI ");
+				btnCertificatiMedici.setFont(new Font("Tahoma", Font.BOLD, 12));
 				btnCertificatiMedici.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						popupMenu_2.show(btnCertificatiMedici, 0,	btnCertificatiMedici.getY() + btnCertificatiMedici.getHeight());
@@ -240,6 +246,7 @@ public class InterfacciaSegretaria {
 			}
 			{
 				btnPagamenti = new JButton("PAGAMENTI ");
+				btnPagamenti.setFont(new Font("Tahoma", Font.BOLD, 12));
 				btnPagamenti.setFocusable(false);
 				btnPagamenti.setBorderPainted(false);
 				btnPagamenti.setIcon(new ImageIcon(InterfacciaSegretaria.class.getResource("/view/img/euro 1.png")));
@@ -247,6 +254,7 @@ public class InterfacciaSegretaria {
 			}
 			{
 				btnListeAttesa = new JButton("LISTE D'ATTESA ");
+				btnListeAttesa.setFont(new Font("Tahoma", Font.BOLD, 12));
 				btnListeAttesa.setFocusable(false);
 				btnListeAttesa.setBorderPainted(false);
 				btnListeAttesa.setIcon(new ImageIcon(InterfacciaSegretaria.class.getResource("/view/img/listaattesa1.png")));
@@ -270,13 +278,15 @@ public class InterfacciaSegretaria {
 			public void actionPerformed(ActionEvent arg0) {
 				clearMainPanel(segFrame);
 				
+				pannello=new GestioneCertificatiMediciView(true);
 				
-				Pannello gestione=new GestioneCertificatiMediciView();
-				Pannello aux=new ScrollDecorator( gestione);
-				JPanel panelAux= aux.draw();
+				pannello=new ScrollDecorator(pannello);
+				pannello=pannello.draw();
 				
-				segFrame.getContentPane().add(panelAux,	BorderLayout.CENTER);
-				// internalFrame.setVisible(true);
+				pannello=new FrameDecorator(pannello,"GESTIONE CERTIFICATI MEDICI CLIENTI","/view/img/cuore 1 frame.png");
+				pannello=pannello.draw();
+				
+				segFrame.getContentPane().add(pannello,	BorderLayout.CENTER);
 				segFrame.getContentPane().revalidate();
 				segFrame.repaint();
 			}
@@ -289,14 +299,15 @@ public class InterfacciaSegretaria {
 			public void actionPerformed(ActionEvent arg0) {
 				clearMainPanel(segFrame);
 				
+				pannello=new AggiungiCertificatoMedicoView(true);
 				
-				Pannello aggiungi=new AggiungiCertificatoMedicoView();
-				Pannello aux=new ScrollDecorator( aggiungi);
-				JPanel panelAux= aux.draw();
+				pannello=new ScrollDecorator(pannello);
+				pannello=pannello.draw();
 				
-
-				segFrame.getContentPane().add(panelAux,	BorderLayout.CENTER);
-				// internalFrame.setVisible(true);
+				pannello=new FrameDecorator(pannello,"AGGIUNGI CERTIFICATO MEDICO CLIENTE","/view/img/cuore 1 frame.png");
+				pannello=pannello.draw();
+				
+				segFrame.getContentPane().add(pannello,	BorderLayout.CENTER);
 				segFrame.getContentPane().revalidate();
 				segFrame.repaint();
 			}
@@ -309,11 +320,12 @@ public class InterfacciaSegretaria {
 			public void actionPerformed(ActionEvent arg0) {
 				clearMainPanel(segFrame);
 				
-				RegistraClienteView rcv = new RegistraClienteView();
-				// internalFrame.getContentPane().add(itc,BorderLayout.CENTER);
-				segFrame.getContentPane().add(rcv,	BorderLayout.CENTER);
-
-				// internalFrame.setVisible(true);
+				pannello = new RegistraClienteView(true);
+			
+				pannello=new FrameDecorator(pannello,"REGISTRA CLIENTE","/view/img/cliente frame.png");
+				pannello=pannello.draw();
+				
+				segFrame.getContentPane().add(pannello,	BorderLayout.CENTER);
 				segFrame.getContentPane().revalidate();
 				segFrame.repaint();
 				
@@ -333,25 +345,17 @@ public class InterfacciaSegretaria {
 				
 				clearMainPanel(segFrame);
 				
-				
-				
-				// PER DISEGRARE IL PANNELLO SENZA DECORAZIONI
-				//Pannello elenco=new ElencoPreventiviDisponibiliView();
-				//JPanel pa= elenco.draw();
-				
-				//Pannello aux=new ButtonDecorator(elenco);
-				//JPanel panelAux=aux.draw();
-				
-				//Pannello aux=new FrameDecorator((Pannello) panelAux1);
-				//JPanel panelAux=aux.draw();
-				
-				Pannello elenco=new ElencoPreventiviDisponibiliView();
-				Pannello aux=new ScrollDecorator( elenco);
-				JPanel panelAux=aux.draw();
-				
 
 				
-				InterfacciaSegretaria.segFrame.getContentPane().add(panelAux,	BorderLayout.CENTER);
+				pannello=new ElencoPreventiviDisponibiliView(true);
+				
+				pannello=new ScrollDecorator(pannello);
+				pannello=pannello.draw();
+				
+				pannello=new FrameDecorator(pannello,"PREVENTIVI DISPONIBILI","/view/img/abbonamento1 frame.png");
+				pannello=pannello.draw();
+				
+				InterfacciaSegretaria.segFrame.getContentPane().add(pannello,	BorderLayout.CENTER);
 				InterfacciaSegretaria.segFrame.getContentPane().revalidate();
 				InterfacciaSegretaria.segFrame.repaint();
 				
@@ -388,11 +392,13 @@ public class InterfacciaSegretaria {
 
 				clearMainPanel(segFrame);
 				
-				VerificaCategoriaClienteView vccv = new VerificaCategoriaClienteView();
-				// internalFrame.getContentPane().add(itc,BorderLayout.CENTER);
-				segFrame.getContentPane().add(vccv,	BorderLayout.CENTER);
+				pannello = new VerificaCategoriaClienteView(true);
+				
+				pannello=new FrameDecorator(pannello,"VERIFICA CATEGORIA CLIENTE","/view/img/cliente frame.png");
+				pannello=pannello.draw();
 
-				// internalFrame.setVisible(true);
+				
+				segFrame.getContentPane().add(pannello,	BorderLayout.CENTER);
 				segFrame.getContentPane().revalidate();
 				segFrame.repaint();
 				

@@ -6,7 +6,7 @@ import java.util.*;
 import view.utility.Message;
 import view.utility.mediator.CostantMediator;
 
-public class ConcreteMediator extends Mediator {
+public class CreaPreventivoMediator extends Mediator {
 
     BtnSalva btnsalva;
     BtnPrezzo btnprezzo;
@@ -80,7 +80,8 @@ public class ConcreteMediator extends Mediator {
     	else if(messaggio.equals(CostantMediator.FOCUS_LISTA_ABBONAMENTI))
 		{
 			btnsalva.setEnabled(false); 
-			btnprezzo.setEnabled(true);
+			//btnprezzo.setEnabled(true);
+			//btnprezzo.setEnabled(false);
 			labelPrezzo.setText("");
 			labelConferma.setText("");
 			labelFrecciaAbb.setVisible(true);
@@ -89,6 +90,8 @@ public class ConcreteMediator extends Mediator {
 		{
 			btnsalva.setEnabled(false);
 			btnprezzo.setEnabled(false);
+			radioButtonProCliente.setEnabled(false);
+			radioButtonProCentro.setEnabled(false);
 			labelPrezzo.setText("");
 			labelConferma.setText("");
 			listNumMesi.setSelectionBackground(Color.WHITE);
@@ -99,18 +102,23 @@ public class ConcreteMediator extends Mediator {
 			labelConferma.setText("");
 			labelPrezzo.setText("");
 			btnsalva.setEnabled(false);
+			radioButtonProCliente.setEnabled(true);
+			radioButtonProCentro.setEnabled(true);
 			btnprezzo.setEnabled(true);
 			listNumMesi.setSelectionBackground(new Color(184,207,229));
 		}
 		else if(messaggio.equals(CostantMediator.SALVA))
 		{
-			Message.confirmLabel("Preventivo salvato", true, labelConferma);
+			Message.confirmLabel("PREVENTIVO SALVATO", true, labelConferma);
 		}else if(messaggio.equals(CostantMediator.LISTA_ABBONAMENTI_VUOTA)){
 			Message.confirmLabel("Nessun abbonamento presente", false, labelNoAbbonamento);
 		}else if(messaggio.equals(CostantMediator.LISTA_CATEGORIE_VUOTA)){
 			Message.confirmLabel("Nessuna categoria presente", false, labelNoCategorieClienti);
 		}else if(messaggio.equals(CostantMediator.NO_POLITICHE_SCONTO)){
-			Message.confirmLabel("<html>Nessuna politica sconto presente <br />per la categoria cliente selezionata</html>", false, labelNoPoliticheSconto);
+			Message.confirmLabel("Creare una politica sconto per la categoria cliente selezionata", false, labelNoPoliticheSconto);
+			btnprezzo.setEnabled(false);
+			radioButtonProCliente.setEnabled(false);
+			radioButtonProCentro.setEnabled(false);
 		}else if(messaggio.equals(CostantMediator.AZZERA_LABEL_POLITICHE)){
 			labelNoPoliticheSconto.setText("");
 		}else if(messaggio.equals(CostantMediator.FOCUS_RADIO)){
@@ -119,6 +127,8 @@ public class ConcreteMediator extends Mediator {
 			btnsalva.setEnabled(false);
 		}else if(messaggio.equals(CostantMediator.CALCOLO_NON_POSSIBILE)){
 			Message.errorMessage("ERRORE", "Inserire tutte le scelte");
+		}else if(messaggio.equals(CostantMediator.PREVENTIVO_PRESENTE)){
+			Message.errorMessage("ERRORE", "Preventivo già presente");
 		}
     }
 

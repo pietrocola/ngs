@@ -30,6 +30,7 @@ public class DialogInserimentoCertificatoView extends JDialog {
 	private JTextField textField;
 	private JLabel labelConferma;
 	JButton btnInserisci;
+	private JLabel labelErrore;
 
 	/**
 	 * Launch the application.
@@ -58,7 +59,7 @@ public class DialogInserimentoCertificatoView extends JDialog {
 		
 		//setVisible(true);
 		//setModal(true);
-		setBounds(100, 100, 400, 250);
+		setBounds(100, 100, 400, 205);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -70,11 +71,22 @@ public class DialogInserimentoCertificatoView extends JDialog {
 		}
 		{
 			labelConferma = new JLabel("");
-			labelConferma.setBounds(174, 153, 204, 14);
+			labelConferma.setBounds(174, 129, 204, 14);
 			contentPanel.add(labelConferma);
 		}
 		{
+			labelErrore = new JLabel("");
+			labelErrore.setBounds(174, 129, 191, 14);
+			contentPanel.add(labelErrore);
+		}
+		{
 			textField = new JTextField();
+			textField.addFocusListener(new FocusAdapter() {
+				@Override
+				public void focusGained(FocusEvent arg0) {
+					labelErrore.setText("");
+				}
+			});
 			/*
 			textField.addFocusListener(new FocusAdapter() {
 				@Override
@@ -93,7 +105,7 @@ public class DialogInserimentoCertificatoView extends JDialog {
 				public void actionPerformed(ActionEvent e) {
 					String d=textField.getText();
 					if(d.length()==0)
-						Message.confirmLabel("Inserire la data", false, labelConferma);
+						Message.confirmLabel("Inserire la data", false, labelErrore);
 					else{
 						SimpleDateFormat sdf=new SimpleDateFormat("dd-M-yyyy");
 						Date dataScadenza = null;
@@ -108,19 +120,16 @@ public class DialogInserimentoCertificatoView extends JDialog {
 							
 							Message.confirmLabel("Certificato inserito", true, labelConferma); // non funzionaaa
 							btnInserisci.setEnabled(false);
+							textField.setEnabled(false);
 						}
 						
 						}
 					}
 			});
-			btnInserisci.setBounds(174, 92, 89, 23);
+			btnInserisci.setBounds(174, 85, 89, 23);
 			contentPanel.add(btnInserisci);
 		}
 
+
 	}
-
-
-
-
-
 }

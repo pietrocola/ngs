@@ -15,7 +15,6 @@ public class ScrollDecorator extends Decorator {
 
 	
 	public ScrollDecorator(Pannello c){
-		
 		super(c);
 	}
 	
@@ -23,38 +22,37 @@ public class ScrollDecorator extends Decorator {
 	
 	
 	
-	public JPanel draw() {
+	public Pannello draw() {
 		
-		JPanel p=super.draw();
+		Pannello p=super.draw();
+
+		JScrollPane scroll = new JScrollPane(p);
+		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+		scroll.setVisible(true);
 		
-		
-		
-		/* decorazione aggiuntiva di prova
-		JLabel label=new JLabel("prova");
-		label.setBounds(500, 50, 400, 20);
-		component.add(label);
-	    */
-		
-		JPanel mainPanel = new JPanel();
+		Pannello pan=component.drawEmpty();
+	
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 	    int x=(screen.width)/2;
 	    int y=(screen.height)/2;
-	    mainPanel.setPreferredSize(new Dimension(x,y));
-		mainPanel.setLayout(new BorderLayout(0, 0));
-		JScrollPane scroll= new JScrollPane();
-		//scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		//scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-		scroll.setViewportView(p);
-		mainPanel.add(scroll);
+	    pan.setPreferredSize(new Dimension(x,y));
+		pan.setLayout(new BorderLayout(0, 0));
 		
+		pan.add(scroll);
 		
-		//component.removeAll();
-		//component.repaint();
-		//component.revalidate();
-		//component.add(mainPanel);
-		
-		return mainPanel;
+		return pan;
 				
+	}
+
+
+
+
+
+	@Override
+	public Pannello drawEmpty() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

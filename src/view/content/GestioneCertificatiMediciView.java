@@ -28,6 +28,7 @@ import ngs.persistentmodel.CertificatoMedico;
 import ngs.persistentmodel.Cliente;
 import view.InterfacciaSegretaria;
 import view.utility.Message;
+import view.utility.decorator.FrameDecorator;
 import view.utility.decorator.Pannello;
 import view.utility.decorator.ScrollDecorator;
 
@@ -49,32 +50,116 @@ public class GestioneCertificatiMediciView extends Pannello {
 	
 	
 	
-	public GestioneCertificatiMediciView() {
+	public GestioneCertificatiMediciView(Boolean aux) {
 	
 	}
 	
 	
 
 	
+	public GestioneCertificatiMediciView() {
+		
+		
+		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+	    int x=(screen.width);
+	    int y=(screen.height);
+	    setPreferredSize(new Dimension(x,y));
+		
+		setLayout(null);
+		{
+			lblCognome = new JLabel("cognome");
+			lblCognome.setBounds(55, 54, 72, 14);
+			add(lblCognome);
+		}
+		{
+			textField = new JTextField();
+			textField.addFocusListener(new FocusAdapter() {
+				@Override
+				public void focusGained(FocusEvent arg0) {
+					labelNoCertificati.setText("");
+				}
+			});
+			textField.setBounds(137, 51, 102, 20);
+			add(textField);
+			textField.setColumns(10);
+		}
+		{
+			button = new JButton("");
+			button.setBackground(SystemColor.control);
+			button.setBorderPainted(false);
+			ascoltatoreFiltraCertificatiCognome();
+			button.setIcon(new ImageIcon(AggiungiCertificatoMedicoView.class.getResource("/view/img/lente.png")));
+			button.setBounds(243, 51, 20, 20);
+			add(button);
+		}
+		{
+			lblCodiceFiscale = new JLabel("CODICE FISCALE");
+			lblCodiceFiscale.setFont(new Font("Tahoma", Font.BOLD, 13));
+			lblCodiceFiscale.setBounds(55, 150, 123, 20);
+			add(lblCodiceFiscale);
+		}
+		{
+			lblNome = new JLabel("NOME");
+			lblNome.setFont(new Font("Tahoma", Font.BOLD, 13));
+			lblNome.setBounds(255, 150, 46, 20);
+			add(lblNome);
+		}
+		{
+			lblCognome_1 = new JLabel("COGNOME");
+			lblCognome_1.setFont(new Font("Tahoma", Font.BOLD, 13));
+			lblCognome_1.setBounds(455, 150, 86, 20);
+			add(lblCognome_1);
+		}
+		{
+			lblDataScadenza = new JLabel("DATA SCADENZA");
+			lblDataScadenza.setFont(new Font("Tahoma", Font.BOLD, 13));
+			lblDataScadenza.setBounds(655, 150, 150, 20);
+			add(lblDataScadenza);
+		}
+		{
+			lblStato = new JLabel("STATO");
+			lblStato.setFont(new Font("Tahoma", Font.BOLD, 13));
+			lblStato.setBounds(855, 150, 86, 20);
+			add(lblStato);
+		}
+		{
+			separator = new JSeparator();
+			separator.setBounds(55, 180, 1000, 3);
+			add(separator);
+		}
+		{
+			labelNoCertificati = new JLabel("");
+			labelNoCertificati.setBounds(55, 125, 307, 14);
+			add(labelNoCertificati);
+		}
+		
+		{
+			stampaElencoClientiCertificati();
+		}
+		{
+			{
+	
+			}
+		}
+	}
 	
 	
 	
 	
 	
-	
-	private void ascoltatoreFiltraCertificatiCognome(JPanel p) {
+	private void ascoltatoreFiltraCertificatiCognome() {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String cognome=textField.getText();
 				if(cognome.trim().length()==0)
 					Message.errorMessage("ERRORE", "Inserire un cognome");
 				else{
-				p.removeAll();
-				p.repaint();
+				removeAll();
+				repaint();
 				{
 					lblCognome = new JLabel("cognome");
 					lblCognome.setBounds(55, 54, 72, 14);
-					p.add(lblCognome);
+					add(lblCognome);
 				}
 				{
 					textField = new JTextField();
@@ -86,17 +171,17 @@ public class GestioneCertificatiMediciView extends Pannello {
 						}
 					});
 					textField.setBounds(137, 51, 102, 20);
-					p.add(textField);
+					add(textField);
 					textField.setColumns(10);
 				}
 				{
 					button = new JButton("");
 					button.setBackground(SystemColor.control);
 					button.setBorderPainted(false);
-					ascoltatoreFiltraCertificatiCognome(p);
+					ascoltatoreFiltraCertificatiCognome();
 					button.setIcon(new ImageIcon(AggiungiCertificatoMedicoView.class.getResource("/view/img/lente.png")));
 					button.setBounds(243, 51, 20, 20);
-					p.add(button);
+					add(button);
 				}
 			
 				{
@@ -107,11 +192,15 @@ public class GestioneCertificatiMediciView extends Pannello {
 							InterfacciaSegretaria.segFrame.getContentPane().repaint();
 							InterfacciaSegretaria.segFrame.getContentPane().add(InterfacciaSegretaria.toolBar, BorderLayout.NORTH);
 							
-							Pannello gestione=new GestioneCertificatiMediciView();
-							Pannello aux=new ScrollDecorator( gestione);
-							JPanel panelAux= aux.draw();
-							// internalFrame.getContentPane().add(itc,BorderLayout.CENTER);
-							InterfacciaSegretaria.segFrame.getContentPane().add(panelAux,	BorderLayout.CENTER);
+							Pannello panelAux=new GestioneCertificatiMediciView(true);
+							
+							Pannello aux=new ScrollDecorator(panelAux);
+							Pannello aux1=aux.draw();
+							
+							Pannello aux2=new FrameDecorator(aux1,"Gestione certificati medici clienti","/view/img/cuore 1 frame.png");
+							Pannello aux3=aux2.draw();
+							
+							InterfacciaSegretaria.segFrame.getContentPane().add(aux3,	BorderLayout.CENTER);
 
 							// internalFrame.setVisible(true);
 							InterfacciaSegretaria.segFrame.getContentPane().revalidate();
@@ -120,47 +209,47 @@ public class GestioneCertificatiMediciView extends Pannello {
 					});
 					//buttonRicarica.setIcon(new ImageIcon(AggiungiCertificatoMedicoView.class.getResource("/view/img/lente.png")));
 					buttonRicarica.setBounds(300, 51, 100, 20);
-					p.add(buttonRicarica);
+					add(buttonRicarica);
 				}
 				{
 					labelNoClientiFiltro = new JLabel("");
 					labelNoClientiFiltro.setBounds(55, 125, 307, 14);
-					p.add(labelNoClientiFiltro);
+					add(labelNoClientiFiltro);
 				}
 				{
 					lblCodiceFiscale = new JLabel("CODICE FISCALE");
 					lblCodiceFiscale.setFont(new Font("Tahoma", Font.BOLD, 13));
 					lblCodiceFiscale.setBounds(55, 150, 123, 20);
-					p.add(lblCodiceFiscale);
+					add(lblCodiceFiscale);
 				}
 				{
 					lblNome = new JLabel("NOME");
 					lblNome.setFont(new Font("Tahoma", Font.BOLD, 13));
 					lblNome.setBounds(255, 150, 46, 20);
-					p.add(lblNome);
+					add(lblNome);
 				}
 				{
 					lblCognome_1 = new JLabel("COGNOME");
 					lblCognome_1.setFont(new Font("Tahoma", Font.BOLD, 13));
 					lblCognome_1.setBounds(455, 150, 86, 20);
-					p.add(lblCognome_1);
+					add(lblCognome_1);
 				}
 				{
 					lblDataScadenza = new JLabel("DATA SCADENZA");
 					lblDataScadenza.setFont(new Font("Tahoma", Font.BOLD, 13));
 					lblDataScadenza.setBounds(655, 150, 150, 20);
-					p.add(lblDataScadenza);
+					add(lblDataScadenza);
 				}
 				{
 					lblStato = new JLabel("STATO");
 					lblStato.setFont(new Font("Tahoma", Font.BOLD, 13));
 					lblStato.setBounds(855, 150, 86, 20);
-					p.add(lblStato);
+					add(lblStato);
 				}
 				{
 					separator = new JSeparator();
 					separator.setBounds(55, 180, 1000, 3);
-					p.add(separator);
+					add(separator);
 				}
 				HashMap<Integer,JLabel> map = new HashMap<Integer,JLabel>();
 				
@@ -193,23 +282,23 @@ public class GestioneCertificatiMediciView extends Pannello {
 						JLabel label1=new JLabel();
 						label1.setText(c.getCliente().getCodiceFiscale());
 						label1.setBounds(x, y, 200, 50);
-						p.add(label1);
+						add(label1);
 						x=x+200;
 						JLabel label2=new JLabel();
 						label2.setText(c.getCliente().getNome());
 						label2.setBounds(x, y, 200, 50);
-						p.add(label2);
+						add(label2);
 						x=x+200;
 						JLabel label3=new JLabel();
 						label3.setText(c.getCliente().getCognome());
 						label3.setBounds(x, y, 200, 50);
-						p.add(label3);
+						add(label3);
 						x=x+200;
 						JLabel label4=new JLabel();
 						//System.out.println(c.getScadenza());
 						label4.setText(c.getScadenza().toString());
 						label4.setBounds(x, y, 200, 50);
-						p.add(label4);
+						add(label4);
 						x=x+200;
 						JLabel label5=new JLabel();
 						java.util.Date datadioggi = java.util.GregorianCalendar.getInstance().getTime();
@@ -220,12 +309,12 @@ public class GestioneCertificatiMediciView extends Pannello {
 							label5.setIcon(new ImageIcon(GestioneCertificatiMediciView.class.getResource("/view/img/rosso.png")));
 						//label5.setText("stato");
 						label5.setBounds(x+10, y+10, 25, 25);
-						p.add(label5);
+						add(label5);
 						x=x+100;
 						b=y+12;
 						JButton bottone=new JButton("modifica");
 						bottone.setBounds(x, b, 100, 20);
-						p.add(bottone);
+						add(bottone);
 						
 						map.put(b,label1);
 						
@@ -254,7 +343,7 @@ public class GestioneCertificatiMediciView extends Pannello {
 	
 	
 	
-	private void stampaElencoClientiCertificati(JPanel p) {
+	private void stampaElencoClientiCertificati() {
 		
 		HashMap<Integer,JLabel> map = new HashMap<Integer,JLabel>();
 		
@@ -283,24 +372,24 @@ public class GestioneCertificatiMediciView extends Pannello {
 				JLabel label1=new JLabel();
 				label1.setText(elencoCertificati[j].getCliente().getCodiceFiscale());
 				label1.setBounds(x, y, 200, 50);
-				p.add(label1);
+				add(label1);
 				x=x+200;
 				JLabel label2=new JLabel();
 				label2.setText(elencoCertificati[j].getCliente().getNome());
 				label2.setBounds(x, y, 200, 50);
-				p.add(label2);
+				add(label2);
 				x=x+200;
 				JLabel label3=new JLabel();
 				label3.setText(elencoCertificati[j].getCliente().getCognome());
 				label3.setBounds(x, y, 200, 50);
-				p.add(label3);
+				add(label3);
 				x=x+200;
 				JLabel label4=new JLabel();
 				DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
 				String data = df.format(elencoCertificati[j].getScadenza());
 				label4.setText(data);
 				label4.setBounds(x, y, 200, 50);
-				p.add(label4);
+				add(label4);
 				x=x+200;
 				JLabel label5=new JLabel();
 				java.util.Date datadioggi = java.util.GregorianCalendar.getInstance().getTime();
@@ -311,12 +400,12 @@ public class GestioneCertificatiMediciView extends Pannello {
 					label5.setIcon(new ImageIcon(GestioneCertificatiMediciView.class.getResource("/view/img/rosso.png")));
 				//label5.setText("stato");
 				label5.setBounds(x+10, y+10, 25, 25);
-				p.add(label5);
+				add(label5);
 				x=x+100;
 				b=y+12;
 				JButton bottone=new JButton("modifica");
 				bottone.setBounds(x, b, 100, 20);
-				p.add(bottone);
+				add(bottone);
 				
 				map.put(b,label1);
 				
@@ -338,92 +427,21 @@ public class GestioneCertificatiMediciView extends Pannello {
 
 
 	@Override
-	public JPanel draw() {
-		
-		JPanel p= new JPanel();
-		
-		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-	    int x=(screen.width);
-	    int y=(screen.height);
-	    p.setPreferredSize(new Dimension(x,y));
-		
-		p.setLayout(null);
-		{
-			lblCognome = new JLabel("cognome");
-			lblCognome.setBounds(55, 54, 72, 14);
-			p.add(lblCognome);
-		}
-		{
-			textField = new JTextField();
-			textField.addFocusListener(new FocusAdapter() {
-				@Override
-				public void focusGained(FocusEvent arg0) {
-					labelNoCertificati.setText("");
-				}
-			});
-			textField.setBounds(137, 51, 102, 20);
-			p.add(textField);
-			textField.setColumns(10);
-		}
-		{
-			button = new JButton("");
-			button.setBackground(SystemColor.control);
-			button.setBorderPainted(false);
-			ascoltatoreFiltraCertificatiCognome(p);
-			button.setIcon(new ImageIcon(AggiungiCertificatoMedicoView.class.getResource("/view/img/lente.png")));
-			button.setBounds(243, 51, 20, 20);
-			p.add(button);
-		}
-		{
-			lblCodiceFiscale = new JLabel("CODICE FISCALE");
-			lblCodiceFiscale.setFont(new Font("Tahoma", Font.BOLD, 13));
-			lblCodiceFiscale.setBounds(55, 150, 123, 20);
-			p.add(lblCodiceFiscale);
-		}
-		{
-			lblNome = new JLabel("NOME");
-			lblNome.setFont(new Font("Tahoma", Font.BOLD, 13));
-			lblNome.setBounds(255, 150, 46, 20);
-			p.add(lblNome);
-		}
-		{
-			lblCognome_1 = new JLabel("COGNOME");
-			lblCognome_1.setFont(new Font("Tahoma", Font.BOLD, 13));
-			lblCognome_1.setBounds(455, 150, 86, 20);
-			p.add(lblCognome_1);
-		}
-		{
-			lblDataScadenza = new JLabel("DATA SCADENZA");
-			lblDataScadenza.setFont(new Font("Tahoma", Font.BOLD, 13));
-			lblDataScadenza.setBounds(655, 150, 150, 20);
-			p.add(lblDataScadenza);
-		}
-		{
-			lblStato = new JLabel("STATO");
-			lblStato.setFont(new Font("Tahoma", Font.BOLD, 13));
-			lblStato.setBounds(855, 150, 86, 20);
-			p.add(lblStato);
-		}
-		{
-			separator = new JSeparator();
-			separator.setBounds(55, 180, 1000, 3);
-			p.add(separator);
-		}
-		{
-			labelNoCertificati = new JLabel("");
-			labelNoCertificati.setBounds(55, 125, 307, 14);
-			p.add(labelNoCertificati);
-		}
-		
-		{
-			stampaElencoClientiCertificati(p);
-		}
-		{
-			{
-	
-			}
-		}
-		
-		return p;
+	public Pannello draw() {
+		return new GestioneCertificatiMediciView();
+	}
+
+
+
+
+
+
+
+
+
+
+	@Override
+	public Pannello drawEmpty() {
+		return new GestioneCertificatiMediciView(true);
 	}
 }

@@ -7,10 +7,13 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 
 import view.utility.Message;
+import view.utility.decorator.Pannello;
 import ngs.controller.ConfAbbCorsiHandler;
 import ngs.controller.ErogaAbbonamentoHandler;
 import ngs.persistentmodel.CategoriaCliente;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusAdapter;
@@ -19,7 +22,7 @@ import java.util.ArrayList;
 
 import javax.swing.JComboBox;
 
-public class VerificaCategoriaClienteView extends JPanel {
+public class VerificaCategoriaClienteView extends Pannello {
 	private JLabel lblCodice;
 	private JTextField textField;
 	private JButton btnVerifica;
@@ -27,10 +30,24 @@ public class VerificaCategoriaClienteView extends JPanel {
 	private JComboBox comboBox;
 	private JLabel lblCategoria;
 
+	
+	
+	public VerificaCategoriaClienteView(Boolean aux) {
+		
+	}
+	
+	
 	/**
 	 * Create the panel.
 	 */
 	public VerificaCategoriaClienteView() {
+		
+		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+        int x = (screen.width-WIDTH);
+        int y = (screen.height-HEIGHT);
+		//System.out.println(x+"x"+y);
+		setPreferredSize(new Dimension(x,y));
+		
 		setLayout(null);
 		{
 			lblCodice = new JLabel("codice");
@@ -126,5 +143,19 @@ public class VerificaCategoriaClienteView extends JPanel {
 			}
 		});
 		
+	}
+
+
+
+	@Override
+	public Pannello draw() {
+		return new VerificaCategoriaClienteView();
+	}
+
+
+
+	@Override
+	public Pannello drawEmpty() {
+		return new VerificaCategoriaClienteView(true);
 	}
 }

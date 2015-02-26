@@ -8,21 +8,19 @@ public abstract class Decorator extends Pannello {
 	
 	
 	public Decorator(Pannello c){
-		//System.out.println(c.getClass());
-		//System.out.println(c.getComponentCount());
 		component=c;
 		
 
 	}
 	
 
-	public JPanel draw() {
-		
-	if(component!=null)
+	public Pannello draw() {
+		if(component.countComponents()==0)
 			return component.draw();
-	else
-		return component;
-		
+		else
+			return component;
 	}
+	
+	
 
 }

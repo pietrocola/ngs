@@ -12,4 +12,5 @@ public class CostantMediator {
 		public static final String AZZERA_LABEL_POLITICHE = "azzPol";
 		public static final String FOCUS_RADIO = "focRad";
 		public static final String CALCOLO_NON_POSSIBILE= "noCal";
+		public static final String PREVENTIVO_PRESENTE = "prevPres";
 	}

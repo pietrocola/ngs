@@ -9,6 +9,7 @@ import javax.swing.JMenu;
 import javax.swing.JPanel;
 import javax.swing.JToolBar;
 import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 
 import java.awt.BorderLayout;
 
@@ -34,15 +35,25 @@ import view.content.ImpostaCategoriaClienteView;
 import view.content.ImpostaPoliticaScontoFissoView;
 import view.content.ImpostaPoliticaScontoPercentualeView;
 import view.content.ImpostaTipologiaCorsoView;
-import view.content.VECCHIACreaPreventivoView;
 import view.content.CreaPreventivoView;
+
 import view.utility.ProvaMap;
+import view.utility.decorator.FrameDecorator;
 import view.utility.decorator.Pannello;
 import view.utility.decorator.ScrollDecorator;
 
+import javax.swing.border.BevelBorder;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
+import javax.swing.border.MatteBorder;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.border.TitledBorder;
 
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Rectangle;
 import java.awt.Toolkit;
 
 import javax.swing.JSplitPane;
@@ -57,9 +68,14 @@ import javax.swing.JLabel;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 
+import java.awt.Font;
+
 public class InterfacciaAmministratore {
 
-	public JFrame frmNextgensportAmministratore;
+	private Pannello pannello;
+	
+	
+	public static JFrame frmNextgensportAmministratore;
 	private JMenuBar menuBar;
 	private JMenu mnFile;
 	private JMenu mnModifica;
@@ -169,12 +185,14 @@ public class InterfacciaAmministratore {
 			{
 				{
 					btnHome = new JButton("HOME ");
+					btnHome.setFont(new Font("Tahoma", Font.BOLD, 12));
 					btnHome.setFocusable(false);
 					btnHome.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							clearMainPanel(frmNextgensportAmministratore);
 							
 							HomeView home = new HomeView();
+	
 							
 							frmNextgensportAmministratore.getContentPane().add(home,	BorderLayout.CENTER);
 				
@@ -191,6 +209,7 @@ public class InterfacciaAmministratore {
 			}
 			{
 				btnCorsi = new JButton("GESTIONE CORSI");
+				btnCorsi.setFont(new Font("Tahoma", Font.BOLD, 12));
 				btnCorsi.setFocusable(false);
 				btnCorsi.setIcon(new ImageIcon(InterfacciaAmministratore.class.getResource("/view/img/yoga50.png")));
 				btnCorsi.setBorderPainted(false);
@@ -241,6 +260,7 @@ public class InterfacciaAmministratore {
 			}
 			{
 				btnAbbonamenti = new JButton("GESTIONE ABBONAMENTI");
+				btnAbbonamenti.setFont(new Font("Tahoma", Font.BOLD, 12));
 				btnAbbonamenti.setFocusable(false);
 				btnAbbonamenti.setBorderPainted(false);
 				btnAbbonamenti.addActionListener(new ActionListener() {
@@ -276,6 +296,7 @@ public class InterfacciaAmministratore {
 			
 			{
 				btnPreventiviAbbonamenti = new JButton("PREVENTIVI ABBONAMENTI ");
+				btnPreventiviAbbonamenti.setFont(new Font("Tahoma", Font.BOLD, 12));
 				btnPreventiviAbbonamenti.setFocusable(false);
 				btnPreventiviAbbonamenti.setBorderPainted(false);
 				btnPreventiviAbbonamenti.addActionListener(new ActionListener() {
@@ -308,6 +329,7 @@ public class InterfacciaAmministratore {
 			}
 			{
 				btnClienti = new JButton("CLIENTI ");
+				btnClienti.setFont(new Font("Tahoma", Font.BOLD, 12));
 				btnClienti.setFocusable(false);
 				btnClienti.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
@@ -361,6 +383,7 @@ public class InterfacciaAmministratore {
 			}
 			{
 				btnStruttura = new JButton("STRUTTURA ");
+				btnStruttura.setFont(new Font("Tahoma", Font.BOLD, 12));
 				btnStruttura.setFocusable(false);
 				btnStruttura.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
@@ -382,6 +405,7 @@ public class InterfacciaAmministratore {
 			}
 			{
 				btnPersonale = new JButton("PERSONALE ");
+				btnPersonale.setFont(new Font("Tahoma", Font.BOLD, 12));
 				btnPersonale.setFocusable(false);
 				btnPersonale.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
@@ -412,6 +436,7 @@ public class InterfacciaAmministratore {
 			clearMainPanel(frmNextgensportAmministratore);
 			
 			HomeView home = new HomeView();
+
 			// internalFrame.getContentPane().add(itc,BorderLayout.CENTER);
 			frmNextgensportAmministratore.getContentPane().add(home,	BorderLayout.CENTER);
 
@@ -425,19 +450,16 @@ public class InterfacciaAmministratore {
 		mntmScontoFisso.addActionListener(new ActionListener() {
 			public void actionPerformed(
 					ActionEvent e) {
-						// JInternalFrame internalFrame =
-						// new JInternalFrame("home->corso->imposta tipologia corso");		
+			
 						clearMainPanel(frmNextgensportAmministratore);
 		
-						ImpostaPoliticaScontoFissoView psf = new ImpostaPoliticaScontoFissoView();
-						// internalFrame.getContentPane().add(itc,BorderLayout.CENTER);
+						pannello= new ImpostaPoliticaScontoFissoView(true);
+						
+						pannello=new FrameDecorator(pannello,"IMPOSTA POLITICA SCONTO FISSO CLIENTE","/view/img/cliente frame.png");
+						pannello=pannello.draw();
 		
-						frmNextgensportAmministratore.getContentPane().add(psf,
-								BorderLayout.CENTER);
-		
-						// internalFrame.setVisible(true);
+						frmNextgensportAmministratore.getContentPane().add(pannello,BorderLayout.CENTER);
 						frmNextgensportAmministratore.getContentPane().revalidate();
-		
 						frmNextgensportAmministratore.repaint();
 
 				}
@@ -451,11 +473,13 @@ public class InterfacciaAmministratore {
 			public void actionPerformed(ActionEvent arg0) {
 				clearMainPanel(frmNextgensportAmministratore);
 				
-				ImpostaCategoriaClienteView cfv = new ImpostaCategoriaClienteView();
-				// internalFrame.getContentPane().add(itc,BorderLayout.CENTER);
-				frmNextgensportAmministratore.getContentPane().add(cfv,	BorderLayout.CENTER);
-
-				// internalFrame.setVisible(true);
+	
+				pannello = new ImpostaCategoriaClienteView(true);
+				
+			    pannello=new FrameDecorator(pannello,"IMPOSTA CATEGORIA CLIENTE","/view/img/cliente frame.png");
+			    pannello=pannello.draw();
+			
+				frmNextgensportAmministratore.getContentPane().add(pannello,	BorderLayout.CENTER);
 				frmNextgensportAmministratore.getContentPane().revalidate();
 				frmNextgensportAmministratore.repaint();
 			}
@@ -470,22 +494,22 @@ public class InterfacciaAmministratore {
 			public void actionPerformed(ActionEvent e) {
 				clearMainPanel(frmNextgensportAmministratore);
 				
+				pannello= new CreaPreventivoView(true);
 				
-				CreaPreventivoView panelAux= new CreaPreventivoView();
+				pannello=new ScrollDecorator(pannello);
+				pannello=pannello.draw();
 				
-				//Pannello vtv = new CreaPreventivoView();
-				//Pannello aux=new ScrollDecorator(vtv);
-				//JPanel panelAux=aux.draw();
-				// internalFrame.getContentPane().add(itc,BorderLayout.CENTER);
-				frmNextgensportAmministratore.getContentPane().add(panelAux,	BorderLayout.CENTER);
-	
-				// internalFrame.setVisible(true);
+				pannello=new FrameDecorator(pannello, "CALCOLA PREZZI - CREA PREVENTIVO ABBONAMENTO", "/view/img/calcolatrice 5 frame.png" );
+				pannello=pannello.draw();
+				
+                frmNextgensportAmministratore.getContentPane().add((Component) pannello,	BorderLayout.CENTER);
 				frmNextgensportAmministratore.getContentPane().revalidate();
 				frmNextgensportAmministratore.repaint();
 			}
 		});
 		
 	}
+
 
 	/*
 	 * ascoltatore per la viusalizzazione del menu pop up collegato alla toolbar
@@ -516,15 +540,13 @@ public class InterfacciaAmministratore {
 						// new JInternalFrame("home->corso->imposta tipologia corso");		
 						clearMainPanel(frmNextgensportAmministratore);
 		
-						ImpostaTipologiaCorsoView itc = new ImpostaTipologiaCorsoView();
-						// internalFrame.getContentPane().add(itc,BorderLayout.CENTER);
-		
-						frmNextgensportAmministratore.getContentPane().add(itc,
-								BorderLayout.CENTER);
-		
-						// internalFrame.setVisible(true);
+						pannello = new ImpostaTipologiaCorsoView();
+
+						pannello=new FrameDecorator(pannello,"AGGIUNGI TIPOLOGIA CORSO","/view/img/yoga50 frame.png");
+						pannello=pannello.draw();
+						
+						frmNextgensportAmministratore.getContentPane().add(pannello,BorderLayout.CENTER);
 						frmNextgensportAmministratore.getContentPane().revalidate();
-		
 						frmNextgensportAmministratore.repaint();
 
 				}
@@ -538,19 +560,16 @@ public class InterfacciaAmministratore {
 		mntmScontoPercentuale.addActionListener(new ActionListener() {
 			public void actionPerformed(
 					ActionEvent e) {
-						// JInternalFrame internalFrame =
-						// new JInternalFrame("home->corso->imposta tipologia corso");		
+		
 						clearMainPanel(frmNextgensportAmministratore);
 		
-						ImpostaPoliticaScontoPercentualeView psp = new ImpostaPoliticaScontoPercentualeView();
-						// internalFrame.getContentPane().add(itc,BorderLayout.CENTER);
+						pannello = new ImpostaPoliticaScontoPercentualeView(true);
+						
+						pannello=new FrameDecorator(pannello,"IMPOSTA POLITICA SCONTO PERCENTUALE CLIENTE","/view/img/cliente frame.png");
+						pannello=pannello.draw();
 		
-						frmNextgensportAmministratore.getContentPane().add(psp,
-								BorderLayout.CENTER);
-		
-						// internalFrame.setVisible(true);
+						frmNextgensportAmministratore.getContentPane().add(pannello,BorderLayout.CENTER);
 						frmNextgensportAmministratore.getContentPane().revalidate();
-		
 						frmNextgensportAmministratore.repaint();
 
 				}
@@ -566,11 +585,12 @@ public class InterfacciaAmministratore {
 
 				clearMainPanel(frmNextgensportAmministratore);
 
-				ConfiguraCorsoView cfv = new ConfiguraCorsoView();
-				// internalFrame.getContentPane().add(itc,BorderLayout.CENTER);
-				frmNextgensportAmministratore.getContentPane().add(cfv,	BorderLayout.CENTER);
-
-				// internalFrame.setVisible(true);
+				pannello = new ConfiguraCorsoView(true);
+				
+				pannello=new FrameDecorator(pannello,"CONFIGURA CORSO","/view/img/yoga50 frame.png");
+				pannello=pannello.draw();
+				
+				frmNextgensportAmministratore.getContentPane().add(pannello,	BorderLayout.CENTER);
 				frmNextgensportAmministratore.getContentPane().revalidate();
 				frmNextgensportAmministratore.repaint();
 
@@ -591,11 +611,15 @@ public class InterfacciaAmministratore {
 	
 				clearMainPanel(frame);
 	
-				ConfiguraAbbonamentoView cfv = new ConfiguraAbbonamentoView(frame);
-				// internalFrame.getContentPane().add(itc,BorderLayout.CENTER);
-				frame.getContentPane().add(cfv,	BorderLayout.CENTER);
-	
-				// internalFrame.setVisible(true);
+				pannello = new ConfiguraAbbonamentoView(true);
+				
+				pannello= new ScrollDecorator(pannello);
+				pannello=pannello.draw();
+				
+				pannello=new FrameDecorator(pannello,"CONFIGURA ABBONAMENTO","/view/img/abbonamento1 frame.png");
+				pannello=pannello.draw();
+			
+				frame.getContentPane().add(pannello,	BorderLayout.CENTER);
 				frame.getContentPane().revalidate();
 				frame.repaint();
 	

@@ -9,18 +9,21 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 
 import view.utility.Message;
+import view.utility.decorator.Pannello;
 import ngs.controller.ConfAbbCorsiHandler;
 import ngs.model.M_CategoriaCliente;
 import ngs.persistentmodel.CategoriaCliente;
 
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.util.ArrayList;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class ImpostaPoliticaScontoPercentualeView extends JPanel {
+public class ImpostaPoliticaScontoPercentualeView extends Pannello {
 	private JLabel lblNewLabel;
 	private JComboBox comboBox;
 	private JLabel lblNomePolitcaSconto;
@@ -32,10 +35,24 @@ public class ImpostaPoliticaScontoPercentualeView extends JPanel {
 	private JButton btnSalva;
 	private JLabel label;
 
+	
+	public ImpostaPoliticaScontoPercentualeView(Boolean aux) {
+		
+	}
+	
+	
+	
 	/**
 	 * Create the panel.
 	 */
 	public ImpostaPoliticaScontoPercentualeView() {
+		
+		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+        int x = (screen.width-WIDTH);
+        int y = (screen.height-HEIGHT);
+		//System.out.println(x+"x"+y);
+		setPreferredSize(new Dimension(x,y));
+		
 		setLayout(null);
 		setSize(800, 600);
 		{
@@ -213,5 +230,17 @@ public void resetLabelConfermaInserimento(JTextField tf){
 			}
 		});
 	}
+
+
+@Override
+public Pannello draw() {
+	return new ImpostaPoliticaScontoPercentualeView();
+}
+
+
+@Override
+public Pannello drawEmpty() {
+	return new ImpostaPoliticaScontoPercentualeView(true);
+}
 
 }

@@ -12,14 +12,17 @@ import ngs.controller.ConfAbbCorsiHandler;
 import ngs.model.M_CategoriaCliente;
 import ngs.persistentmodel.CategoriaCliente;
 import view.utility.Message;
+import view.utility.decorator.Pannello;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.util.ArrayList;
 
-public class ImpostaPoliticaScontoFissoView extends JPanel {
+public class ImpostaPoliticaScontoFissoView extends Pannello {
 	private JLabel lblNewLabel;
 	private JComboBox comboBox;
 	private JLabel lblNomePoliticaSconto;
@@ -31,10 +34,24 @@ public class ImpostaPoliticaScontoFissoView extends JPanel {
 	private JButton btnSalva;
 	private JLabel lblConfermaSalvataggio;
 
+	
+	
+	public ImpostaPoliticaScontoFissoView(Boolean aux) {
+		
+	}
+	
+	
 	/**
 	 * Create the panel.
 	 */
 	public ImpostaPoliticaScontoFissoView() {
+		
+		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+        int x = (screen.width-WIDTH);
+        int y = (screen.height-HEIGHT);
+		//System.out.println(x+"x"+y);
+		setPreferredSize(new Dimension(x,y));
+		
 		setLayout(null);
 		{
 			lblNewLabel = new JLabel("categoria cliente");
@@ -197,6 +214,22 @@ public class ImpostaPoliticaScontoFissoView extends JPanel {
 			}
 			
 		});
+	}
+
+
+
+
+	@Override
+	public Pannello draw() {
+		return new ImpostaPoliticaScontoFissoView();
+	}
+
+
+
+
+	@Override
+	public Pannello drawEmpty() {
+		return new ImpostaPoliticaScontoFissoView(true);
 	}
 	
 	

@@ -11,6 +11,7 @@ import java.util.Iterator;
 
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JList;
@@ -76,6 +77,15 @@ public class CreaPreventivoView extends Pannello{
 	RadioButtonProCliente rdbtnProCliente;
 	RadioButtonProCentro rdbtnProCentro;
 	private JLabel lblNoPoliticheSconto;
+	
+	
+	
+	public CreaPreventivoView(Boolean aux){
+		
+	}
+	
+	
+	
 	/**
 	 * Create the panel.
 	 */
@@ -86,7 +96,9 @@ public class CreaPreventivoView extends Pannello{
 	    int y=(screen.height);
 	    setPreferredSize(new Dimension(x,y));
 		
-		med = new ConcreteMediator();
+	
+	    
+	    med = new CreaPreventivoMediator();
 		
 		setLayout(null);
 		
@@ -99,18 +111,18 @@ public class CreaPreventivoView extends Pannello{
 		{
 			lblNoCategorie = new LabelNoCategorieClienti(med, "");
 			lblNoCategorie.setVerticalAlignment(SwingConstants.TOP);
-			lblNoCategorie.setBounds(319, 70, 194, 14);
+			lblNoCategorie.setBounds(364, 70, 194, 14);
 			add(lblNoCategorie);
 		}
 		{
 			lblNoPoliticheSconto = new LabelNoPoliticheSconto(med, "");
 			lblNoPoliticheSconto.setVerticalAlignment(SwingConstants.TOP);
-			lblNoPoliticheSconto.setBounds(529, 75, 354, 53);
+			lblNoPoliticheSconto.setBounds(621, 76, 460, 23);
 			add(lblNoPoliticheSconto);
 		}
 		{
 			scrollPane = new JScrollPane();
-			scrollPane.setBounds(29, 117, 249, 123);
+			scrollPane.setBounds(29, 110, 249, 123);
 			add(scrollPane);
 			{
 				ArrayList<DescrizioneAbbonamento> elencoAbb=ConfAbbCorsiHandler.getInstance().getDescrizioniAbbonamenti();
@@ -138,7 +150,7 @@ public class CreaPreventivoView extends Pannello{
 		}
 		{
 			scrollPane_1 = new JScrollPane();
-			scrollPane_1.setBounds(319, 117, 140, 123);
+			scrollPane_1.setBounds(364, 110, 167, 123);
 			add(scrollPane_1);
 			{
 				ArrayList<CategoriaCliente> elencoCat=ConfAbbCorsiHandler.getInstance().getCategorieClienti();
@@ -180,27 +192,29 @@ public class CreaPreventivoView extends Pannello{
 		
 			
 			scrollPane_2 = new JScrollPane();
-			scrollPane_2.setBounds(531, 117, 120, 123);
+			scrollPane_2.setBounds(621, 110, 85, 123);
 			add(scrollPane_2);
 			{
 				rdbtnProCliente = new RadioButtonProCliente(med, "pro cliente");
+				rdbtnProCliente.setEnabled(false);
 				rdbtnProCliente.addFocusListener(new FocusAdapter() {
 					@Override
 					public void focusGained(FocusEvent arg0) {
 						rdbtnProCliente.invia(CostantMediator.FOCUS_RADIO);
 					}
 				});
-				rdbtnProCliente.setBounds(770, 117, 109, 23);
+				rdbtnProCliente.setBounds(822, 110, 109, 23);
 				add(rdbtnProCliente);
 			
 				rdbtnProCentro = new RadioButtonProCentro(med, "pro centro");
+				rdbtnProCentro.setEnabled(false);
 				rdbtnProCentro.addFocusListener(new FocusAdapter() {
 					@Override
 					public void focusGained(FocusEvent e) {
 						rdbtnProCentro.invia(CostantMediator.FOCUS_RADIO);
 					}
 				});
-				rdbtnProCentro.setBounds(881, 117, 109, 23);
+				rdbtnProCentro.setBounds(933, 110, 109, 23);
 				add(rdbtnProCentro);
 				
 				ButtonGroup group = new ButtonGroup();
@@ -211,44 +225,44 @@ public class CreaPreventivoView extends Pannello{
 				btnprezzo = new BtnPrezzo(med, "calcola prezzo");
 				btnprezzo.setEnabled(false);
 				ascoltatoreCalcolaPrezzo();
-				btnprezzo.setBounds(770, 163, 134, 23);
+				btnprezzo.setBounds(822, 156, 134, 23);
 				add(btnprezzo);				
 			}
 			{
 				labelPrezzo = new LabelPrezzo(med,"");
-				labelPrezzo.setBounds(942, 163, 67, 14);
+				labelPrezzo.setBounds(994, 160, 67, 14);
 				add(labelPrezzo);
 			}
 			{
 				btnsalva = new BtnSalva(med,"salva preventivo");
 				btnsalva.setEnabled(false);
 				ascoltatoreSalvaPreventivo();
-				btnsalva.setBounds(770, 208, 134, 23);
+				btnsalva.setBounds(822, 201, 134, 23);
 				add(btnsalva);				
 			}
 			{				
 				labelConferma = new LabelConferma(med, "");
-				labelConferma.setBounds(942, 217, 204, 14);
+				labelConferma.setBounds(994, 206, 204, 14);
 				add(labelConferma);
 			}
 			
 		}
 		{
 			lblAbbonamenti = new JLabel("ABBONAMENTI");
-			lblAbbonamenti.setFont(new Font("Tahoma", Font.BOLD, 13));
+			lblAbbonamenti.setFont(new Font("Tahoma", Font.BOLD, 14));
 			lblAbbonamenti.setBounds(29, 45, 134, 14);
 			add(lblAbbonamenti);
 		}
 		{
 			lblCategoriaCliente = new JLabel("CATEGORIA CLIENTE");
-			lblCategoriaCliente.setFont(new Font("Tahoma", Font.BOLD, 13));
-			lblCategoriaCliente.setBounds(319, 45, 151, 14);
+			lblCategoriaCliente.setFont(new Font("Tahoma", Font.BOLD, 14));
+			lblCategoriaCliente.setBounds(364, 45, 167, 14);
 			add(lblCategoriaCliente);
 		}
 		{
 			lblNumeroMesi = new JLabel("NUMERO MESI");
-			lblNumeroMesi.setFont(new Font("Tahoma", Font.BOLD, 13));
-			lblNumeroMesi.setBounds(531, 45, 109, 14);
+			lblNumeroMesi.setFont(new Font("Tahoma", Font.BOLD, 14));
+			lblNumeroMesi.setBounds(621, 45, 109, 14);
 			add(lblNumeroMesi);
 		}
 		{			
@@ -278,17 +292,40 @@ public class CreaPreventivoView extends Pannello{
 	private void ascoltatoreSalvaPreventivo() {
 		btnsalva.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
 				DescrizioneAbbonamento descAbb= (DescrizioneAbbonamento) listAbbonamenti.getSelectedValue();
 				CategoriaCliente catCliente= (CategoriaCliente) listCatCliente.getSelectedValue();
 				int numMesi=(int) listNumMesi.getSelectedValue();
 				String p=labelPrezzo.getText();
 				float prezzo=Float.parseFloat(p);
 				
-				Boolean aux=ConfAbbCorsiHandler.getInstance().creaPreventivoAbbonamento(descAbb, catCliente, numMesi, prezzo);
 				
-				if(aux==true)
-					btnsalva.invia(CostantMediator.SALVA);
-					//Message.confirmLabel("Preventivo salvato", true, labelConferma);					
+				
+				if(ConfAbbCorsiHandler.getInstance().verificaPreventivo(descAbb, catCliente, numMesi)==true)
+				{
+					String riepilogo="Confermare il salvataggio del preventivo?\n   ABBONAMENTO: "+descAbb+
+							 "\n   CATEGORIA CLIENTE: "+catCliente.getNomeCat()+
+							 "\n   NUMERO MESI: "+numMesi+"\n   PREZZO: "+prezzo+" €\n\n";
+					int risposta=Message.questionConfirmMessage("CONFERMA",riepilogo);
+					if(risposta==JOptionPane.YES_OPTION) 
+					{
+						Boolean aux=ConfAbbCorsiHandler.getInstance().creaPreventivoAbbonamento(descAbb, catCliente, numMesi, prezzo);
+						if(aux)
+						{
+							btnsalva.invia(CostantMediator.SALVA);
+						}
+						else
+						{
+							//Message.noConnectionDBMessage("ERRORE CONNESSIONE", "Connessione al database non riuscita");
+						}
+					}
+				}
+				else
+				{
+					btnsalva.invia(CostantMediator.PREVENTIVO_PRESENTE);
+					//Message.errorMessage("ERRORE", "Preventivo già presente");
+				}
+						
 			}
 		});
 		
@@ -302,28 +339,27 @@ public class CreaPreventivoView extends Pannello{
 		btnprezzo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				int numMesi=0;
-				DescrizioneAbbonamento descAbb= (DescrizioneAbbonamento) listAbbonamenti.getSelectedValue();
-				CategoriaCliente cat=(CategoriaCliente) listCatCliente.getSelectedValue();
-				 numMesi=(int) listNumMesi.getSelectedValue();
-				
-				//if(listNumMesi.isSelectionEmpty()==true || listCatCliente.isSelectionEmpty()==true || listAbbonamenti.isSelectionEmpty()==true)
-				if(descAbb==null || cat==null || numMesi==0)
-					btnprezzo.invia(CostantMediator.CALCOLO_NON_POSSIBILE);
-				else{
-					
 
 				
-				Boolean proContro=null;
-				if(rdbtnProCliente.isSelected()==false && rdbtnProCentro.isSelected()==false)
-					Message.errorMessage("ERRORE", "Scegliere una strategia pro/contro");
-				else{
-				  if(rdbtnProCliente.isSelected())
-					proContro=true;
-				  if(rdbtnProCentro.isSelected())
-					proContro=false;
 				
-				ArrayList<PoliticaScontoAbbonamento> elencoPoliticheSconto= ConfAbbCorsiHandler.getInstance().getPoliticheSconto(cat, numMesi);
+				DescrizioneAbbonamento descAbb= (DescrizioneAbbonamento) listAbbonamenti.getSelectedValue();
+				CategoriaCliente cat=(CategoriaCliente) listCatCliente.getSelectedValue();
+				int numMesi=(int) listNumMesi.getSelectedValue();
+				
+				
+
+				
+					Boolean proContro=null;
+					if(rdbtnProCliente.isSelected()==false && rdbtnProCentro.isSelected()==false)
+						Message.errorMessage("ERRORE", "Scegliere una strategia pro/contro");
+					else{
+						if(rdbtnProCliente.isSelected())
+							proContro=true;
+						if(rdbtnProCentro.isSelected())
+							proContro=false;
+					
+				   
+					ArrayList<PoliticaScontoAbbonamento> elencoPoliticheSconto= ConfAbbCorsiHandler.getInstance().getPoliticheSconto(cat, numMesi);
 				
 
 					float prezzo=ConfAbbCorsiHandler.getInstance().calcolaPrezzoAbbonamento(descAbb, elencoPoliticheSconto, proContro);
@@ -332,8 +368,8 @@ public class CreaPreventivoView extends Pannello{
 				
 					btnprezzo.invia(CostantMediator.CALCOLA);  //abilita salva preventivo con il pulsanet calcola prezzo
 					labelPrezzo.setText(p);
-				}
-				}
+					}
+				
 			}
 		});
 		
@@ -484,9 +520,23 @@ public class CreaPreventivoView extends Pannello{
 	}
 
 
+
+
+
 	@Override
-	public JPanel draw() {
-		// TODO Auto-generated method stub
-		return null;
+	public Pannello draw() {
+		return new CreaPreventivoView();
 	}
+
+
+
+
+
+	@Override
+	public Pannello drawEmpty() {
+		return new CreaPreventivoView(true);
+	}
+
+
+
 }

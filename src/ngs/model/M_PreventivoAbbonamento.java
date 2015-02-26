@@ -13,18 +13,18 @@ public class M_PreventivoAbbonamento extends AModel {
 	}
 
 	
-	/* RIVEDERE !!!!
-	public boolean verificaPreventivo(DescrizioneAbbonamento descAbb,PoliticaScontoAbbonamento politicaSconto) {
+
+	public boolean verificaPreventivo(DescrizioneAbbonamento descAbb,CategoriaCliente cat, int numMesi) {
 		
 		PreventivoAbbonamento[] pa=PreventivoAbbonamentoDAO.listPreventivoAbbonamentoByQuery(null, null);
 		for(int i=0;i<pa.length;i++){
-			if(pa[i].getDescAbb().equals(descAbb) && pa[i].getPoliticaSconto().equals(politicaSconto))
+			if(pa[i].getDescAbb().equals(descAbb) && pa[i].getCategoriaCliente().equals(cat) && pa[i].getNumeroMesi()==numMesi)
 				return false;
 		}
 		
 		return true;	
 	}
-	*/
+	
 
 	/**
 	 * 

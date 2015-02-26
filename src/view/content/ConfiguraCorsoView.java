@@ -24,13 +24,18 @@ import java.util.ArrayList;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
 import javax.swing.JDialog;
+
 import java.awt.Window.Type;
 import java.awt.Font;
 
 import view.utility.Message;
+import view.utility.decorator.Pannello;
 
-public class ConfiguraCorsoView extends JPanel {
+public class ConfiguraCorsoView extends Pannello {
 	private JLabel lblNomeCorso;
 	private JLabel lblTipologia;
 	private JComboBox comboBox;
@@ -40,10 +45,24 @@ public class ConfiguraCorsoView extends JPanel {
 	private JTextField textField;
 	private JLabel label;
 
+	
+	
+	public ConfiguraCorsoView(Boolean aux){
+		
+	}
+	
 	/**
 	 * Create the panel.
 	 */
 	public ConfiguraCorsoView() {
+		
+		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+        int x = (screen.width-WIDTH);
+        int y = (screen.height-HEIGHT);
+		//System.out.println(x+"x"+y);
+		setPreferredSize(new Dimension(x,y));
+		
+		
 		setLayout(null);
 		{
 			lblNomeCorso = new JLabel("nome corso");
@@ -191,6 +210,16 @@ public class ConfiguraCorsoView extends JPanel {
 				}
 			//}
 		});
+	}
+
+	@Override
+	public Pannello draw() {
+		return new ConfiguraCorsoView();
+	}
+
+	@Override
+	public Pannello drawEmpty() {
+		return new ConfiguraCorsoView(true);
 	}
 }
 

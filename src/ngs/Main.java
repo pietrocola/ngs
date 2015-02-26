@@ -23,6 +23,8 @@ import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 import ngs.factory.ServicesCreatorFactory;
 import ngs.model.M_ElencoAbbonamenti;
@@ -50,6 +52,8 @@ public class Main {
 	 * @throws InterruptedException 
 	 */
 	public static void main(String[] args) throws InterruptedException {
+		
+
 		
 		ServicesCreatorFactory.getInstance().inizializzaElencoAbbonamenti();
 	

@@ -7,9 +7,12 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 
 import view.utility.Message;
+import view.utility.decorator.Pannello;
 import ngs.controller.ConfAbbCorsiHandler;
 import ngs.controller.ErogaAbbonamentoHandler;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -18,7 +21,7 @@ import javax.swing.JSeparator;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 
-public class RegistraClienteView extends JPanel {
+public class RegistraClienteView extends Pannello{
 	private JLabel lblCodiceFiscale;
 	private JTextField textField;
 	private JButton btnVerificaSePresente;
@@ -34,10 +37,25 @@ public class RegistraClienteView extends JPanel {
 	private JLabel labelVerificaCF;
 	private JLabel labelConfermaRegistrazione;
 
+	
+	
+	public RegistraClienteView(Boolean aux) {
+		
+	}
+	
+	
 	/**
 	 * Create the panel.
 	 */
 	public RegistraClienteView() {
+		
+		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+        int x = (screen.width-WIDTH);
+        int y = (screen.height-HEIGHT);
+		//System.out.println(x+"x"+y);
+		setPreferredSize(new Dimension(x,y));
+		
+		
 		setLayout(null);
 		{
 			lblCodiceFiscale = new JLabel("codice fiscale");
@@ -234,5 +252,15 @@ public class RegistraClienteView extends JPanel {
 			}
 		});
 		
+	}
+
+	@Override
+	public Pannello draw() {
+		return new RegistraClienteView();
+	}
+
+	@Override
+	public Pannello drawEmpty() {
+		return new RegistraClienteView(true);
 	}
 }
