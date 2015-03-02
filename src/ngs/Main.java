@@ -24,6 +24,7 @@ import javax.swing.ImageIcon;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import ngs.factory.ServicesCreatorFactory;
@@ -52,8 +53,21 @@ public class Main {
 	 * @throws InterruptedException 
 	 */
 	public static void main(String[] args) throws InterruptedException {
+			
 		
-
+		/*
+		LookAndFeelInfo [] looks = UIManager.getInstalledLookAndFeels();
+		for(int i=0;i<looks.length;i++)
+			System.out.println(looks[i].getClassName());
+		
+		try {
+			UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
+		} catch (ClassNotFoundException | InstantiationException
+				| IllegalAccessException | UnsupportedLookAndFeelException e) {
+			
+			e.printStackTrace();
+		}
+		*/
 		
 		ServicesCreatorFactory.getInstance().inizializzaElencoAbbonamenti();
 	

@@ -1,15 +1,32 @@
 package view.utility.decorator;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Rectangle;
+import java.awt.SystemColor;
 import java.awt.Toolkit;
 import java.beans.PropertyVetoException;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.LineBorder;
+import javax.swing.border.MatteBorder;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.border.TitledBorder;
+import javax.swing.plaf.ButtonUI;
+
+import com.sun.java.swing.plaf.motif.*;
 
 import view.InterfacciaAmministratore;
 
@@ -34,7 +51,10 @@ public class FrameDecorator extends Decorator{
 	
 public Pannello draw() {
 
+	    //for(int i=0;i<1000;i++)
+	    	//this.titolo=this.titolo+" ";
 	
+
 		
 		Pannello p=super.draw();
 		
@@ -47,7 +67,16 @@ public Pannello draw() {
 			e1.printStackTrace();
 		}
 		frame.setFrameIcon(new ImageIcon(InterfacciaAmministratore.class.getResource(this.img)));
-		frame.setBorder(new EmptyBorder(15, 0, 0, 0));
+		//frame.setBorder(new EmptyBorder(25, 0, 0, 0));
+		
+		//frame.setBorder((Border) new EtchedBorder(EtchedBorder.RAISED, null, null)); // ok
+		frame.setBorder(new LineBorder(Color.GRAY, 2, false)); // ok
+		//frame.setBorder(new MatteBorder(10, 10, 10, 10, Color.GRAY));
+		//frame.setBorder(UIManager.getBorder("RadioButtonMenuItem.border"));
+		//frame.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		//frame.setBorder(new TitledBorder(null, "CALCOLA PREZZI - CREA PREVENTIVO ABBONAMENTO", TitledBorder.LEFT, TitledBorder.TOP, null, null));
+		//frame.setNormalBounds(new Rectangle(0, 0, 0, 0));
+		
 		frame.setVisible(true);
 		
 		

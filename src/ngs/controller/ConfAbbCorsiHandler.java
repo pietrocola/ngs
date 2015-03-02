@@ -25,6 +25,7 @@ public class ConfAbbCorsiHandler {
 	//PATTERN SINGLETON
 	public static ConfAbbCorsiHandler instance;
 	M_DescrizioneAbbonamento descAbb;
+	M_PreventivoAbbonamento prevAbb;
 	M_CategoriaCliente catCliente;
 	M_SalaPesi salaPesi;
 	ScontoPercentualeStrategy scontoPercentuale;
@@ -115,12 +116,9 @@ public class ConfAbbCorsiHandler {
 	 */
 	public boolean impostaCategoriaCliente(String nomeCat) {
 		
-	    CategoriaCliente cc=CategoriaClienteDAO.createCategoriaCliente();
-	    cc.setNomeCat(nomeCat);
-
-	    return CategoriaClienteDAO.save(cc);
+		prevAbb= new M_PreventivoAbbonamento();
+		return prevAbb.impostaCategoriaCliente(nomeCat);
 		
-		//throw new UnsupportedOperationException();
 	}
 
 
@@ -162,12 +160,9 @@ public class ConfAbbCorsiHandler {
 	 * @return
 	 */
 	public boolean configuraAbbonamento(String nomeAbb, float prezzoBaseMensile, Set<DescrizioneCorso> elencoCorsiSelezionati, Set<SalaPesi> elencoSalePesiSelezionate) {
-	    DescrizioneAbbonamento da=DescrizioneAbbonamentoDAO.createDescrizioneAbbonamento();
-	    da.setNomeAbbonamento(nomeAbb);
-	    da.setPrezzoBaseMensile(prezzoBaseMensile);
-	    da.setElencoCorsi(elencoCorsiSelezionati);
-	    da.setElencoSalePesi(elencoSalePesiSelezionate);
-	    return DescrizioneAbbonamentoDAO.save(da);
+	    prevAbb=new M_PreventivoAbbonamento();
+	    return prevAbb.configuraAbbonamento(nomeAbb,prezzoBaseMensile,elencoCorsiSelezionati,elencoSalePesiSelezionate);
+
 	}
 
 

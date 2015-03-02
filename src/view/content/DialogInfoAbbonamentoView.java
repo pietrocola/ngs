@@ -25,6 +25,7 @@ import ngs.controller.ConfAbbCorsiHandler;
 import ngs.controller.ErogaAbbonamentoHandler;
 import view.utility.Message;
 import ngs.persistentmodel.*;
+import java.awt.Dialog.ModalityType;
 
 public class DialogInfoAbbonamentoView extends JDialog {
 

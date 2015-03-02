@@ -32,15 +32,7 @@ public class M_Abbonamento extends AModel {
 		//throw new UnsupportedOperationException();
 	}
 
-	/**
-	 * 
-	 * @param dataPagamento
-	 * @param importo
-	 * @param stato
-	 */
-	public Pagamento creaPagamento(Date dataPagamento, float importo, Boolean stato) {
-		throw new UnsupportedOperationException();
-	}
+
 
 	@Override
 	public APersistentModel getPersistentModel() {

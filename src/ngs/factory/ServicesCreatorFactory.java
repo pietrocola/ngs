@@ -7,6 +7,7 @@ import java.util.Date;
 import ngs.model.M_ElencoAbbonamenti;
 import ngs.model.Adapter.*;
 import ngs.persistentmodel.AbbonamentoDAO;
+import ngs.persistentmodel.CategoriaCliente;
 import ngs.persistentmodel.CertificatoMedico;
 import ngs.persistentmodel.CertificatoMedicoDAO;
 import ngs.persistentmodel.Cliente;
@@ -44,8 +45,17 @@ public class ServicesCreatorFactory {
 	
 	
 	
-	public IVerificaCategoriaClienteAdapter getCategoriaClienteAdapter() {
-		throw new UnsupportedOperationException();
+	public Boolean verificaCategoriaCliente(CategoriaCliente cat,String codice) {
+		if(cat.getNomeCat().equals("univ")){
+			IccAdapter= new ClienteUniversitarioAdapter();
+		}else
+			if(cat.getNomeCat().equals("dipendente alenia")){
+				IccAdapter= new ClienteDipendenteAleniaSpazioAdapter();
+		    }else{
+		    	//catClienteAdapter=null;
+		    }
+		
+		return IccAdapter.verificaCategoriaCliente(codice);
 	}
 
 	

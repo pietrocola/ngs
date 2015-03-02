@@ -17,7 +17,7 @@ import ngs.factory.*;
 
 public class ErogaAbbonamentoHandler {
 
-	IVerificaCategoriaClienteAdapter catClienteAdapter;
+	//IVerificaCategoriaClienteAdapter catClienteAdapter;
 	M_PreventivoAbbonamento preventivoAbb;
 	M_Cliente cliente;
 	M_Abbonamento abbonamento;
@@ -48,17 +48,9 @@ public class ErogaAbbonamentoHandler {
 	public Boolean verificaCategoriaCliente(CategoriaCliente cat,String codice) {
 		
 		
-		if(cat.getNomeCat().equals("univ")){
-			catClienteAdapter= new ClienteUniversitarioAdapter();
-		}else
-			if(cat.getNomeCat().equals("dipendente alenia")){
-				catClienteAdapter= new ClienteDipendenteAleniaSpazioAdapter();
-		    }else{
-		    	//catClienteAdapter=null;
-		    }
+		return ServicesCreatorFactory.getInstance().verificaCategoriaCliente(cat, codice);
 		
-		return catClienteAdapter.verificaCategoriaCliente(codice);
-		
+
 	}
 
 	/**

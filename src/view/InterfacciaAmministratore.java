@@ -69,6 +69,7 @@ import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 
 import java.awt.Font;
+import java.awt.Insets;
 
 public class InterfacciaAmministratore {
 
@@ -153,6 +154,7 @@ public class InterfacciaAmministratore {
 		frmNextgensportAmministratore.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		{
 			menuBar = new JMenuBar();
+			
 			frmNextgensportAmministratore.setJMenuBar(menuBar);
 			{
 				mnFile = new JMenu("File");
@@ -180,6 +182,8 @@ public class InterfacciaAmministratore {
 		}
 		{
 			toolBar = new JToolBar();
+
+			toolBar.setForeground(Color.BLACK);
 			toolBar.setFloatable(false);
 			frmNextgensportAmministratore.getContentPane().add(toolBar, BorderLayout.NORTH);
 			{
@@ -476,7 +480,7 @@ public class InterfacciaAmministratore {
 	
 				pannello = new ImpostaCategoriaClienteView(true);
 				
-			    pannello=new FrameDecorator(pannello,"IMPOSTA CATEGORIA CLIENTE","/view/img/cliente frame.png");
+			    pannello=new FrameDecorator(pannello,"AGGIUNGI CATEGORIA CLIENTE","/view/img/cliente frame.png");
 			    pannello=pannello.draw();
 			
 				frmNextgensportAmministratore.getContentPane().add(pannello,	BorderLayout.CENTER);

@@ -116,7 +116,7 @@ public class CreaAbbonamentoView extends Pannello {
 			panel = new JPanel();
 			panel.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
 			panel.setBackground(Color.WHITE);
-			panel.setBounds(36, 148, 284, 104);
+			panel.setBounds(37, 118, 284, 104);
 			add(panel);
 			panel.setLayout(null);
 			{

@@ -71,19 +71,19 @@ public class ConfiguraCorsoView extends Pannello {
 		}
 		{
 			lblTipologia = new JLabel("tipologia");
-			lblTipologia.setBounds(40, 99, 78, 14);
+			lblTipologia.setBounds(40, 103, 78, 14);
 			add(lblTipologia);
 		}
 		{
 			comboBox = new JComboBox();
 			ascoltatoreGetTipologie();
-			comboBox.setBounds(193, 96, 102, 20);
+			comboBox.setBounds(193, 100, 102, 20);
 			
 			add(comboBox);
 		}
 		{
 			lblPrenotazione = new JLabel("prenotazione");
-			lblPrenotazione.setBounds(40, 139, 89, 14);
+			lblPrenotazione.setBounds(40, 157, 89, 14);
 			add(lblPrenotazione);
 		}
 		{
@@ -94,7 +94,7 @@ public class ConfiguraCorsoView extends Pannello {
 					label.setText("");
 				}
 			});
-			comboBox_1.setBounds(193, 136, 52, 20);
+			comboBox_1.setBounds(193, 154, 52, 20);
 			comboBox_1.addItem("si");
 			comboBox_1.addItem("no");
 			add(comboBox_1);
@@ -102,7 +102,7 @@ public class ConfiguraCorsoView extends Pannello {
 		{
 			btnSalva = new JButton("salva");
 			ascoltatoreSalvaCorso();
-			btnSalva.setBounds(193, 181, 89, 23);
+			btnSalva.setBounds(193, 199, 89, 23);
 			add(btnSalva);
 		}
 		{
@@ -121,7 +121,7 @@ public class ConfiguraCorsoView extends Pannello {
 			label = new JLabel("");
 			label.setFont(new Font("Tahoma", Font.BOLD, 15));
 			label.setForeground(new Color(0, 128, 0));
-			label.setBounds(324, 185, 338, 14);
+			label.setBounds(324, 203, 338, 14);
 			add(label);
 		}
 		

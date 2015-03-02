@@ -297,7 +297,10 @@ public class CreaPreventivoView extends Pannello{
 				CategoriaCliente catCliente= (CategoriaCliente) listCatCliente.getSelectedValue();
 				int numMesi=(int) listNumMesi.getSelectedValue();
 				String p=labelPrezzo.getText();
-				float prezzo=Float.parseFloat(p);
+
+				String p1 = p.substring(0,p.length()-1);
+
+				float prezzo=Float.parseFloat(p1);
 				
 				
 				
@@ -367,7 +370,7 @@ public class CreaPreventivoView extends Pannello{
 				
 				
 					btnprezzo.invia(CostantMediator.CALCOLA);  //abilita salva preventivo con il pulsanet calcola prezzo
-					labelPrezzo.setText(p);
+					labelPrezzo.setText(p+" €");
 					}
 				
 			}
@@ -459,7 +462,7 @@ public class CreaPreventivoView extends Pannello{
 			public void valueChanged(ListSelectionEvent e) {
 				int y = 120;
 				DescrizioneAbbonamento descAbb=(DescrizioneAbbonamento) listAbbonamenti.getSelectedValue();
-				descAbb=ConfAbbCorsiHandler.getInstance().getDescrizioneAbbonamento(descAbb.toString());
+				//descAbb=ConfAbbCorsiHandler.getInstance().getDescrizioneAbbonamento(descAbb.toString());
 				String abb="<html> NOME ABBONAMENTO: "+descAbb.getNomeAbbonamento()+"<br /><br />"+
 							" PREZZO BASE MENSILE: "+descAbb.getPrezzoBaseMensile()+" €<br /><br />";
 							//"Corsi: "+descAbb.getElencoCorsi()+"\n"+"Sale pesi: "+riepilogoAbb.setText(abb)+"\n";

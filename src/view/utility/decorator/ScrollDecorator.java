@@ -27,6 +27,7 @@ public class ScrollDecorator extends Decorator {
 		Pannello p=super.draw();
 
 		JScrollPane scroll = new JScrollPane(p);
+		scroll.setBorder(null);
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		scroll.setVisible(true);
