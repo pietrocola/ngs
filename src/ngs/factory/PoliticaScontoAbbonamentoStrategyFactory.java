@@ -2,6 +2,7 @@ package ngs.factory;
 
 import java.util.ArrayList;
 
+import view.utility.observer.IListener;
 import ngs.controller.ConfAbbCorsiHandler;
 import ngs.model.strategy.*;
 import ngs.model.strategy.composite.CompositePrezzoProCentroStrategy;
@@ -11,6 +12,72 @@ import ngs.persistentmodel.*;
 
 public class PoliticaScontoAbbonamentoStrategyFactory {
 
+	// PATTERN OBSERVER
+	public ArrayList<IListener> elencoAscoltatori=new ArrayList<IListener>();
+	
+	public void addListener(IListener a){
+		elencoAscoltatori.add(a);
+	}
+	
+	public void publishEvent(String nome,float prezzo){
+		for(IListener a:elencoAscoltatori){
+			a.actionAfterEvent(this, nome, prezzo);
+		}
+			
+	}
+	
+	
+	public float calcolaPrezzoAbbonamento(float pbm,ArrayList<PoliticaScontoAbbonamento> elencoPoliticheSconto, boolean proContro){
+		
+		if(proContro==true) // pro cliente
+			cps=new CompositePrezzoProClienteStrategy();
+		
+		if(proContro==false) // pro cliente
+			cps=new CompositePrezzoProCentroStrategy();
+		
+		for(PoliticaScontoAbbonamento psa: elencoPoliticheSconto){
+			if(psa instanceof ScontoPercentuale){
+				ScontoPercentualeStrategy sps=new ScontoPercentualeStrategy();
+				sps.setPercentuale(((ScontoPercentuale) psa).getScontoPercentuale());
+				sps.setNumeroMesi(((ScontoPercentuale) psa).getNumeroMesi());
+				cps.addStrategiaPrezzo(sps);
+			}
+			if(psa instanceof ScontoFisso){
+				ScontoFissoStrategy sfs=new ScontoFissoStrategy();
+				sfs.setScontoFisso(((ScontoFisso) psa).getScontoFisso());
+				sfs.setNumeroMesi(((ScontoFisso) psa).getNumeroMesi());
+				cps.addStrategiaPrezzo(sfs);
+			}
+		}
+		
+		PoliticaScontoAbbonamento politicaSconto=null;
+
+		
+		this.publishEvent("prezzoAbb", cps.calcolaPrezzoAbbonamento(pbm, politicaSconto));
+		
+		return cps.calcolaPrezzoAbbonamento(pbm, politicaSconto);
+		
+		
+		//int numMesi=politicaScontoAbbStrategy.getNumeroMesi(politicaSconto);
+		//float percentuale=politicaScontoAbbStrategy.getPercentuale(politicaSconto);
+		//return ((pbm*numMesi)-(((pbm*numMesi)*percentuale)/100));
+		//System.out.println(politicaSconto.getClass());
+		
+		/*
+		if(politicaSconto instanceof ScontoPercentuale)
+		   politicaScontoAbbStrategy= new ScontoPercentualeStrategy();
+		
+		if(politicaSconto instanceof ScontoFisso)
+			politicaScontoAbbStrategy= new ScontoFissoStrategy();
+		*/
+		
+		//return politicaScontoAbbStrategy.calcolaPrezzoAbbonamento(pbm, politicaSconto);
+		
+
+	}
+	// fine OBSERVER
+	
+	
 	//PATTERN SINGLETON
 	public static PoliticaScontoAbbonamentoStrategyFactory instance;
 	IPoliticaScontoAbbonamentoStrategy politicaScontoAbbStrategy;
@@ -71,51 +138,6 @@ public class PoliticaScontoAbbonamentoStrategyFactory {
 	
 	
 	
-	public float calcolaPrezzoAbbonamento(float pbm,ArrayList<PoliticaScontoAbbonamento> elencoPoliticheSconto, boolean proContro){
-		
-		if(proContro==true) // pro cliente
-			cps=new CompositePrezzoProClienteStrategy();
-		
-		if(proContro==false) // pro cliente
-			cps=new CompositePrezzoProCentroStrategy();
-		
-		
-		
-		for(PoliticaScontoAbbonamento psa: elencoPoliticheSconto){
-			if(psa instanceof ScontoPercentuale){
-				ScontoPercentualeStrategy sps=new ScontoPercentualeStrategy();
-				sps.setPercentuale(((ScontoPercentuale) psa).getScontoPercentuale());
-				sps.setNumeroMesi(((ScontoPercentuale) psa).getNumeroMesi());
-				cps.addStrategiaPrezzo(sps);
-			}
-			if(psa instanceof ScontoFisso){
-				ScontoFissoStrategy sfs=new ScontoFissoStrategy();
-				sfs.setScontoFisso(((ScontoFisso) psa).getScontoFisso());
-				sfs.setNumeroMesi(((ScontoFisso) psa).getNumeroMesi());
-				cps.addStrategiaPrezzo(sfs);
-			}
-		}
-		
-		
-		
-		//int numMesi=politicaScontoAbbStrategy.getNumeroMesi(politicaSconto);
-		//float percentuale=politicaScontoAbbStrategy.getPercentuale(politicaSconto);
-		//return ((pbm*numMesi)-(((pbm*numMesi)*percentuale)/100));
-		//System.out.println(politicaSconto.getClass());
-		
-		/*
-		if(politicaSconto instanceof ScontoPercentuale)
-		   politicaScontoAbbStrategy= new ScontoPercentualeStrategy();
-		
-		if(politicaSconto instanceof ScontoFisso)
-			politicaScontoAbbStrategy= new ScontoFissoStrategy();
-		*/
-		
-		//return politicaScontoAbbStrategy.calcolaPrezzoAbbonamento(pbm, politicaSconto);
-		
-		PoliticaScontoAbbonamento politicaSconto=null;
-		return cps.calcolaPrezzoAbbonamento(pbm, politicaSconto);
-	}
 
 
 }

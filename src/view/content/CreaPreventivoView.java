@@ -17,11 +17,15 @@ import javax.swing.JScrollPane;
 import javax.swing.JList;
 
 import ngs.controller.ConfAbbCorsiHandler;
+import ngs.factory.PoliticaScontoAbbonamentoStrategyFactory;
+import ngs.model.M_PreventivoAbbonamento;
 import ngs.persistentmodel.CategoriaCliente;
 import ngs.persistentmodel.DescrizioneAbbonamento;
 import ngs.persistentmodel.DescrizioneCorso;
 import ngs.persistentmodel.PoliticaScontoAbbonamento;
 import ngs.persistentmodel.SalaPesi;
+import ngs.persistentmodel.ScontoFisso;
+import ngs.persistentmodel.ScontoPercentuale;
 
 import javax.swing.border.LineBorder;
 import javax.swing.event.ListSelectionListener;
@@ -30,6 +34,7 @@ import javax.swing.event.ListSelectionEvent;
 import view.utility.Message;
 import view.utility.decorator.Pannello;
 import view.utility.mediator.*;
+import view.utility.observer.LabelPrezzoAbbonamento;
 
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
@@ -70,7 +75,7 @@ public class CreaPreventivoView extends Pannello{
 	ListCatCliente listCatCliente;
 	ListNumMesi listNumMesi;
 	LabelConferma labelConferma;
-	LabelPrezzo labelPrezzo;
+	//LabelPrezzo labelPrezzo;
 	LabelFrecciaAbb labelFrecciaAbb;
 	LabelNoAbbonamento lblNoAbbonamento;
 	LabelNoCategorieClienti lblNoCategorie;
@@ -78,7 +83,9 @@ public class CreaPreventivoView extends Pannello{
 	RadioButtonProCentro rdbtnProCentro;
 	private JLabel lblNoPoliticheSconto;
 	
-	
+	private LabelPrezzoAbbonamento labelPrezzoAbbonamento;
+	private JLabel lblPolitiche;
+	private JLabel lblFrecciaPolitiche;
 	
 	public CreaPreventivoView(Boolean aux){
 		
@@ -96,7 +103,9 @@ public class CreaPreventivoView extends Pannello{
 	    int y=(screen.height);
 	    setPreferredSize(new Dimension(x,y));
 		
-	
+		//PATTERN OBSERVER
+		//M_PreventivoAbbonamento prevAbb=new M_PreventivoAbbonamento();
+		M_PreventivoAbbonamento.getInstance().addInPublisher(PoliticaScontoAbbonamentoStrategyFactory.getInstance());
 	    
 	    med = new CreaPreventivoMediator();
 		
@@ -140,6 +149,7 @@ public class CreaPreventivoView extends Pannello{
 					public void focusGained(FocusEvent arg0) {						
 							//APPLICO MEDIATOR
 						listAbbonamenti.invia(CostantMediator.FOCUS_LISTA_ABBONAMENTI);
+						labelPrezzoAbbonamento.setText("");// no mediator 
 						
 					}
 					});
@@ -160,6 +170,7 @@ public class CreaPreventivoView extends Pannello{
 					defList.addElement(ec);
 				}
 				listCatCliente = new ListCatCliente(med, defList);
+				listCatCliente.setEnabled(false); // disabilitata al caricamento
 				if(elencoCat.size()==0)
 					listCatCliente.invia(CostantMediator.LISTA_CATEGORIE_VUOTA);
 				else{
@@ -174,6 +185,10 @@ public class CreaPreventivoView extends Pannello{
 								//listCatCliente.invia(CostantMediator.NO_POLITICHE_SCONTO);
 							
 							listCatCliente.invia(CostantMediator.FOCUS_LISTA_CATEGORIA);
+							labelPrezzoAbbonamento.setText(""); // no mediator 
+							lblPolitiche.setText("");//no mediator
+							lblFrecciaPolitiche.setVisible(false);//no mediator
+							listNumMesi.removeSelectionInterval(0, 1000); // no mediator
 							/*
 							lblInfoPoliticaSelezionata.setText("");
 							lblFrecciaPolitica.setVisible(false);
@@ -192,7 +207,7 @@ public class CreaPreventivoView extends Pannello{
 		
 			
 			scrollPane_2 = new JScrollPane();
-			scrollPane_2.setBounds(621, 110, 85, 123);
+			scrollPane_2.setBounds(621, 110, 167, 123);
 			add(scrollPane_2);
 			{
 				rdbtnProCliente = new RadioButtonProCliente(med, "pro cliente");
@@ -201,9 +216,10 @@ public class CreaPreventivoView extends Pannello{
 					@Override
 					public void focusGained(FocusEvent arg0) {
 						rdbtnProCliente.invia(CostantMediator.FOCUS_RADIO);
+						labelPrezzoAbbonamento.setText(""); // no mediator 
 					}
 				});
-				rdbtnProCliente.setBounds(822, 110, 109, 23);
+				rdbtnProCliente.setBounds(914, 110, 109, 23);
 				add(rdbtnProCliente);
 			
 				rdbtnProCentro = new RadioButtonProCentro(med, "pro centro");
@@ -212,9 +228,10 @@ public class CreaPreventivoView extends Pannello{
 					@Override
 					public void focusGained(FocusEvent e) {
 						rdbtnProCentro.invia(CostantMediator.FOCUS_RADIO);
+						labelPrezzoAbbonamento.setText(""); // no mediator 
 					}
 				});
-				rdbtnProCentro.setBounds(933, 110, 109, 23);
+				rdbtnProCentro.setBounds(1025, 110, 109, 23);
 				add(rdbtnProCentro);
 				
 				ButtonGroup group = new ButtonGroup();
@@ -225,24 +242,32 @@ public class CreaPreventivoView extends Pannello{
 				btnprezzo = new BtnPrezzo(med, "calcola prezzo");
 				btnprezzo.setEnabled(false);
 				ascoltatoreCalcolaPrezzo();
-				btnprezzo.setBounds(822, 156, 134, 23);
+				btnprezzo.setBounds(914, 156, 134, 23);
 				add(btnprezzo);				
 			}
 			{
-				labelPrezzo = new LabelPrezzo(med,"");
-				labelPrezzo.setBounds(994, 160, 67, 14);
-				add(labelPrezzo);
+				//labelPrezzo = new LabelPrezzo(med,"");
+				//labelPrezzo.setBounds(994, 160, 67, 14);
+				//add(labelPrezzo);
+			}
+			{
+				labelPrezzoAbbonamento = new LabelPrezzoAbbonamento();
+				labelPrezzoAbbonamento.setText("");
+				labelPrezzoAbbonamento.addInPublisher(PoliticaScontoAbbonamentoStrategyFactory.getInstance());
+
+				labelPrezzoAbbonamento.setBounds(1086, 160, 67, 14);
+				add(labelPrezzoAbbonamento);
 			}
 			{
 				btnsalva = new BtnSalva(med,"salva preventivo");
 				btnsalva.setEnabled(false);
 				ascoltatoreSalvaPreventivo();
-				btnsalva.setBounds(822, 201, 134, 23);
+				btnsalva.setBounds(914, 201, 134, 23);
 				add(btnsalva);				
 			}
 			{				
 				labelConferma = new LabelConferma(med, "");
-				labelConferma.setBounds(994, 206, 204, 14);
+				labelConferma.setBounds(1086, 206, 204, 14);
 				add(labelConferma);
 			}
 			
@@ -279,6 +304,19 @@ public class CreaPreventivoView extends Pannello{
 			lblInfoAbbSelezionato.setBounds(29, 312, 249, 14);
 			add(lblInfoAbbSelezionato);
 		}
+		{
+			lblPolitiche = new JLabel("");
+			lblPolitiche.setVerticalAlignment(SwingConstants.TOP);
+			lblPolitiche.setBounds(621, 312, 215, 192);
+			add(lblPolitiche);
+		}
+		{
+			lblFrecciaPolitiche = new JLabel("");
+			lblFrecciaPolitiche.setVisible(false);
+			lblFrecciaPolitiche.setIcon(new ImageIcon(CreaPreventivoView.class.getResource("/view/img/freccia.png")));
+			lblFrecciaPolitiche.setBounds(687, 264, 40, 21);
+			add(lblFrecciaPolitiche);
+		}
 
 
 		
@@ -293,16 +331,20 @@ public class CreaPreventivoView extends Pannello{
 		btnsalva.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
+
+				
+				
 				DescrizioneAbbonamento descAbb= (DescrizioneAbbonamento) listAbbonamenti.getSelectedValue();
 				CategoriaCliente catCliente= (CategoriaCliente) listCatCliente.getSelectedValue();
 				int numMesi=(int) listNumMesi.getSelectedValue();
-				String p=labelPrezzo.getText();
-
-				String p1 = p.substring(0,p.length()-1);
-
-				float prezzo=Float.parseFloat(p1);
 				
+				//String p=labelPrezzo.getText();
+				//String p=labelPrezzoAbbonamento.getText();
+				//String p1 = p.substring(0,p.length()-1);
+				//float prezzo=Float.parseFloat(p1);
 				
+				float prezzo=M_PreventivoAbbonamento.getInstance().getPrezzo(); // prezzo ricavato con observer
+
 				
 				if(ConfAbbCorsiHandler.getInstance().verificaPreventivo(descAbb, catCliente, numMesi)==true)
 				{
@@ -349,9 +391,7 @@ public class CreaPreventivoView extends Pannello{
 				CategoriaCliente cat=(CategoriaCliente) listCatCliente.getSelectedValue();
 				int numMesi=(int) listNumMesi.getSelectedValue();
 				
-				
 
-				
 					Boolean proContro=null;
 					if(rdbtnProCliente.isSelected()==false && rdbtnProCentro.isSelected()==false)
 						Message.errorMessage("ERRORE", "Scegliere una strategia pro/contro");
@@ -365,15 +405,25 @@ public class CreaPreventivoView extends Pannello{
 					ArrayList<PoliticaScontoAbbonamento> elencoPoliticheSconto= ConfAbbCorsiHandler.getInstance().getPoliticheSconto(cat, numMesi);
 				
 
+					//PoliticaScontoAbbonamentoStrategyFactory psasf = new PoliticaScontoAbbonamentoStrategyFactory();
+					//labelPrezzoAbbonamento.inizializza(PoliticaScontoAbbonamentoStrategyFactory.getInstance());
+					
+					//PATTERN OBSERVER
+					//M_PreventivoAbbonamento prevAbb=new M_PreventivoAbbonamento();
+					//M_PreventivoAbbonamento.getInstance().inizializza(PoliticaScontoAbbonamentoStrategyFactory.getInstance());
+					
 					float prezzo=ConfAbbCorsiHandler.getInstance().calcolaPrezzoAbbonamento(descAbb, elencoPoliticheSconto, proContro);
 					String p=Float.toString(prezzo);
 				
 				
 					btnprezzo.invia(CostantMediator.CALCOLA);  //abilita salva preventivo con il pulsanet calcola prezzo
-					labelPrezzo.setText(p+" €");
+					
+
+					
+					//labelPrezzo.setText(p+" €");
 					}
-				
-			}
+				}
+			
 		});
 		
 	}
@@ -407,6 +457,8 @@ public class CreaPreventivoView extends Pannello{
 						@Override
 						public void focusGained(FocusEvent arg0) {	
 							listNumMesi.invia(CostantMediator.FOCUS_LISTA_MESI);
+							labelPrezzoAbbonamento.setText(""); // no mediator 
+
 							
 							}
 					});
@@ -439,7 +491,33 @@ public class CreaPreventivoView extends Pannello{
 					//cat=new CategoriaCliente();
 					//cat.setNomeCat("over 60");						
 					 ArrayList<PoliticaScontoAbbonamento> elencoPolitiche=ConfAbbCorsiHandler.getInstance().getPoliticheSconto(cat,numMesi);
-					// if(elencoPolitiche.size()!=0)
+					
+					 lblFrecciaPolitiche.setVisible(true);
+					
+					 String politiche="";
+					 
+					 
+					 
+					 for(PoliticaScontoAbbonamento psa: elencoPolitiche){
+						 if(psa instanceof ScontoPercentuale){
+							
+							 politiche=politiche+"<html> NOME POLITICA SCONTO: &nbsp;<br />"+((ScontoPercentuale) psa).getNomePolitica()+"<br />"+
+										"&nbsp;&nbsp;&nbsp;&nbsp;-Numero Mesi:&nbsp;&nbsp; <font color=\"#19BFE8\">"+((ScontoPercentuale) psa).getNumeroMesi()+"</font><br />"+
+										"&nbsp;&nbsp;&nbsp;&nbsp;-Sconto Percentuale:&nbsp;&nbsp; "+((ScontoPercentuale) psa).getScontoPercentuale()+" %<br /><br /><br />";
+
+						 }	
+					     if(psa instanceof ScontoFisso){
+							 politiche=politiche+"<html> NOME POLITICA SCONTO:&nbsp;<br />"+((ScontoFisso) psa).getNomePolitica()+"<br />"+
+										"&nbsp;&nbsp;&nbsp;&nbsp;-Numero Mesi: &nbsp;&nbsp;<font color=\"#19BFE8\">"+((ScontoFisso) psa).getNumeroMesi()+"</font><br />"+
+										"&nbsp;&nbsp;&nbsp;&nbsp;-Sconto Fisso:&nbsp;&nbsp; "+((ScontoFisso) psa).getScontoFisso()+" €<br /><br /><br />";
+				
+					     }
+					 }
+					 
+					 lblPolitiche.setText(politiche);
+					 
+					 
+					 // if(elencoPolitiche.size()!=0)
 					 //{
 						 DefaultListModel defList = new DefaultListModel();
 						 for(PoliticaScontoAbbonamento psa: elencoPolitiche)
@@ -481,7 +559,7 @@ public class CreaPreventivoView extends Pannello{
 					while(iter.hasNext())
 					 {								
 						DescrizioneCorso dc = iter.next();
-						abb=abb+" -"+dc.getNomeCorso()+"<br />";
+						abb=abb+"&nbsp;&nbsp;&nbsp;&nbsp;-"+dc.getNomeCorso()+"<br />";
 						y=y+30;
 					 }
 				}
@@ -500,7 +578,7 @@ public class CreaPreventivoView extends Pannello{
 					while(iter.hasNext())
 					 {								
 						SalaPesi dc = iter.next();
-						abb=abb+" -"+dc.getNomeSala()+"<br />";
+						abb=abb+" &nbsp;&nbsp;&nbsp;&nbsp;-"+dc.getNomeSala()+"<br />";
 						y=y+30;
 					 }
 				}			
@@ -539,7 +617,4 @@ public class CreaPreventivoView extends Pannello{
 	public Pannello drawEmpty() {
 		return new CreaPreventivoView(true);
 	}
-
-
-
 }

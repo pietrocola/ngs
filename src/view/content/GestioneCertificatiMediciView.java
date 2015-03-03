@@ -296,7 +296,9 @@ public class GestioneCertificatiMediciView extends Pannello {
 						x=x+200;
 						JLabel label4=new JLabel();
 						//System.out.println(c.getScadenza());
-						label4.setText(c.getScadenza().toString());
+						DateFormat df=new SimpleDateFormat("dd-MM-yyyy");
+						String data=df.format(c.getScadenza());
+						label4.setText(data);
 						label4.setBounds(x, y, 200, 50);
 						add(label4);
 						x=x+200;

@@ -116,9 +116,9 @@ public class ConfAbbCorsiHandler {
 	 */
 	public boolean impostaCategoriaCliente(String nomeCat) {
 		
-		prevAbb= new M_PreventivoAbbonamento();
-		return prevAbb.impostaCategoriaCliente(nomeCat);
-		
+		//prevAbb= new M_PreventivoAbbonamento();
+		//return prevAbb.impostaCategoriaCliente(nomeCat);
+		return M_PreventivoAbbonamento.getInstance().impostaCategoriaCliente(nomeCat);
 	}
 
 
@@ -160,8 +160,8 @@ public class ConfAbbCorsiHandler {
 	 * @return
 	 */
 	public boolean configuraAbbonamento(String nomeAbb, float prezzoBaseMensile, Set<DescrizioneCorso> elencoCorsiSelezionati, Set<SalaPesi> elencoSalePesiSelezionate) {
-	    prevAbb=new M_PreventivoAbbonamento();
-	    return prevAbb.configuraAbbonamento(nomeAbb,prezzoBaseMensile,elencoCorsiSelezionati,elencoSalePesiSelezionate);
+	    //prevAbb=new M_PreventivoAbbonamento();
+	    return M_PreventivoAbbonamento.getInstance().configuraAbbonamento(nomeAbb,prezzoBaseMensile,elencoCorsiSelezionati,elencoSalePesiSelezionate);
 
 	}
 
@@ -286,12 +286,21 @@ public class ConfAbbCorsiHandler {
 	 * @param prezzo
 	 */
 	public boolean creaPreventivoAbbonamento(DescrizioneAbbonamento descAbb,CategoriaCliente catCliente, int numMesi, float prezzo) {
+			
+		
+			//PATTERN OBSERVER
+			//prevAbb=new M_PreventivoAbbonamento();
+			//float prezzoObserver=prevAbb.getPrezzo();
+		    //float prezzoObserver=M_PreventivoAbbonamento.getInstance().getPrezzo();	
+			//System.out.println(prezzoObserver);
+		
 			//int numMesi=politicaScontoAbbStrategy.getNumeroMesi(politicaSconto);
 			PreventivoAbbonamento pa=PreventivoAbbonamentoDAO.createPreventivoAbbonamento();
 	    
 		    pa.setDescAbb(descAbb);
 		    pa.setCategoriaCliente(catCliente);
 		    //pa.setPoliticaSconto(politicaSconto);
+		    //pa.setPrezzo(prezzo);
 		    pa.setPrezzo(prezzo);
 		    pa.setNumeroMesi(numMesi);
 		    return PreventivoAbbonamentoDAO.save(pa);
@@ -333,9 +342,9 @@ public class ConfAbbCorsiHandler {
 	
 	
 	public boolean verificaPreventivo(DescrizioneAbbonamento descAbb, CategoriaCliente cat, int numMesi) {
-		M_PreventivoAbbonamento prevAbb = new M_PreventivoAbbonamento();
-		return prevAbb.verificaPreventivo(descAbb,cat,numMesi);
-		
+		//M_PreventivoAbbonamento prevAbb = new M_PreventivoAbbonamento();
+		//return prevAbb.verificaPreventivo(descAbb,cat,numMesi);
+		return M_PreventivoAbbonamento.getInstance().verificaPreventivo(descAbb,cat,numMesi);	
 		/*
 		if(PreventivoAbbonamentoDAO.listPreventivoAbbonamentoByQuery("PoliticaScontoAbbonamentoID = '" + politicaSconto + "' AND DescrizioneAbbonamentoID = '" + descAbb + "'", "ID").length!=0)
 	    {return true;}

@@ -118,6 +118,7 @@ public class InterfacciaSegretaria {
 		segFrame.setIconImage(Toolkit.getDefaultToolkit().getImage(InterfacciaSegretaria.class.getResource("/view/img/segretaria.png")));
 		segFrame.setTitle("nextGenSport - SEGRETARIA");
 		segFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		segFrame.setBounds(0, 0, 1300, 500);
 		segFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		segFrame.setVisible(true);
 		{

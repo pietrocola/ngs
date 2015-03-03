@@ -13,7 +13,7 @@ public class CreaPreventivoMediator extends Mediator {
     ListAbbonamenti listAbbonamenti;
     ListNumMesi listNumMesi;
     ListCatCliente listCatCliente;
-    LabelPrezzo labelPrezzo;
+    //LabelPrezzo labelPrezzo;
     LabelConferma labelConferma;
     LabelFrecciaAbb labelFrecciaAbb;
     LabelNoAbbonamento labelNoAbbonamento;
@@ -51,11 +51,13 @@ public class CreaPreventivoMediator extends Mediator {
     	listCatCliente=listCatCliente1;		
 	}
 
-	@Override
+	/*
+    @Override
 	public void registraLabelPrezzo(LabelPrezzo labelPrezzo1) 
 	{
 		labelPrezzo=labelPrezzo1;		
 	}
+	*/
 
 	@Override
 	public void registraLabelConferma(LabelConferma labelConferma1) 
@@ -82,25 +84,28 @@ public class CreaPreventivoMediator extends Mediator {
 			btnsalva.setEnabled(false); 
 			//btnprezzo.setEnabled(true);
 			//btnprezzo.setEnabled(false);
-			labelPrezzo.setText("");
+			//labelPrezzo.setText("");
 			labelConferma.setText("");
 			labelFrecciaAbb.setVisible(true);
+			listCatCliente.setEnabled(true);
 		}
 		else if(messaggio.equals(CostantMediator.FOCUS_LISTA_CATEGORIA))
 		{
+
+			
 			btnsalva.setEnabled(false);
 			btnprezzo.setEnabled(false);
 			radioButtonProCliente.setEnabled(false);
 			radioButtonProCentro.setEnabled(false);
-			labelPrezzo.setText("");
+			//labelPrezzo.setText("");
 			labelConferma.setText("");
 			listNumMesi.setSelectionBackground(Color.WHITE);
-			
+
 		}
 		else if(messaggio.equals(CostantMediator.FOCUS_LISTA_MESI))
 		{
 			labelConferma.setText("");
-			labelPrezzo.setText("");
+			//labelPrezzo.setText("");
 			btnsalva.setEnabled(false);
 			radioButtonProCliente.setEnabled(true);
 			radioButtonProCentro.setEnabled(true);
@@ -119,10 +124,11 @@ public class CreaPreventivoMediator extends Mediator {
 			btnprezzo.setEnabled(false);
 			radioButtonProCliente.setEnabled(false);
 			radioButtonProCentro.setEnabled(false);
+			listNumMesi.setEnabled(false);
 		}else if(messaggio.equals(CostantMediator.AZZERA_LABEL_POLITICHE)){
 			labelNoPoliticheSconto.setText("");
 		}else if(messaggio.equals(CostantMediator.FOCUS_RADIO)){
-			labelPrezzo.setText("");
+			//labelPrezzo.setText("");
 			labelConferma.setText("");
 			btnsalva.setEnabled(false);
 		}else if(messaggio.equals(CostantMediator.CALCOLO_NON_POSSIBILE)){

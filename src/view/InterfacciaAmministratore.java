@@ -144,16 +144,23 @@ public class InterfacciaAmministratore {
 	 * @throws PropertyVetoException
 	 */
 	private void initialize(JFrame logFrame) throws PropertyVetoException {
+		
+
+		
 		frmNextgensportAmministratore = new JFrame();
+		frmNextgensportAmministratore.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		//frmNextgensportAmministratore.setResizable(false);
 		frmNextgensportAmministratore.setTitle("nextGenSport - AMMINISTRATORE");
 		frmNextgensportAmministratore.setIconImage(Toolkit.getDefaultToolkit().getImage(InterfacciaAmministratore.class.getResource("/view/img/user_icon.png")));
-		frmNextgensportAmministratore.setBounds(100, 100, 450, 300);
+		frmNextgensportAmministratore.setBounds(0, 0, 1300, 500);
 
 		//frmNextgensportAmministratore.setSize(1000, 599);
-		frmNextgensportAmministratore.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		//frmNextgensportAmministratore.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frmNextgensportAmministratore.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		{
 			menuBar = new JMenuBar();
+	
+			menuBar.setForeground(new Color(0,0,0));
 			
 			frmNextgensportAmministratore.setJMenuBar(menuBar);
 			{
@@ -183,8 +190,9 @@ public class InterfacciaAmministratore {
 		{
 			toolBar = new JToolBar();
 
-			toolBar.setForeground(Color.BLACK);
 			toolBar.setFloatable(false);
+
+			toolBar.setForeground(Color.BLACK);
 			frmNextgensportAmministratore.getContentPane().add(toolBar, BorderLayout.NORTH);
 			{
 				{
@@ -448,6 +456,7 @@ public class InterfacciaAmministratore {
 			frmNextgensportAmministratore.getContentPane().revalidate();
 			frmNextgensportAmministratore.repaint();
 		}
+
 	}
 
 	private void ascoltatoreScontoFisso() {

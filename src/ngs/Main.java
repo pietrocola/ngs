@@ -84,6 +84,7 @@ public class Main {
 		splash.setVisible(false);  		//spalsh screen
 		
 		logFrame = new JFrame();
+		logFrame.setBounds(0, 0, 1300, 500);
 		logFrame.setIconImage(Toolkit.getDefaultToolkit().getImage(Main.class.getResource("/view/img/lucchetto 4.png")));
 		logFrame.setTitle("nextGenSport - LOGIN");
 		//logFrame.setUndecorated(true);

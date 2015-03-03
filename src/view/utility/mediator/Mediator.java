@@ -14,7 +14,7 @@ public abstract class Mediator {
 
 	public abstract void registraListNumMesi(ListNumMesi listNumMesi);
 
-	public abstract void registraLabelPrezzo(LabelPrezzo labelPrezzo);
+	//public abstract void registraLabelPrezzo(LabelPrezzo labelPrezzo);
 
 	public abstract void registraLabelConferma(LabelConferma labelConferma);
 

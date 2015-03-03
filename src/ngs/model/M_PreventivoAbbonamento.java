@@ -3,16 +3,57 @@ package ngs.model;
 import java.util.ArrayList;
 import java.util.Set;
 
+import view.utility.observer.IListener;
+import ngs.controller.ConfAbbCorsiHandler;
+import ngs.factory.PoliticaScontoAbbonamentoStrategyFactory;
 import ngs.persistentmodel.*;
 
-public class M_PreventivoAbbonamento extends AModel {
+public class M_PreventivoAbbonamento extends AModel implements IListener{
 
+	//PATTER SINGLETON
+	public static M_PreventivoAbbonamento instance;
+	
+	public static M_PreventivoAbbonamento getInstance()
+	{
+		if(instance==null)
+		{
+			instance = new M_PreventivoAbbonamento();
+		}
+		return instance;
+	}
+	
+	
+	
 	@Override
 	public APersistentModel getPersistentModel() {
 
 		return this.model;
 	}
+	
+	
+	
+	
+	// PATTERN OBSERVER
+	
+	private float prezzo;
+	
+	
+	public float getPrezzo(){
+		return this.prezzo;
+	}
+	
+	
+	public void addInPublisher(PoliticaScontoAbbonamentoStrategyFactory psasf){
+		psasf.addListener(this);
+	}
+	
+	@Override
+	public void actionAfterEvent(PoliticaScontoAbbonamentoStrategyFactory politicaScontoAbbonamentoStrategyFactory,String nome, float prezzo) {
+		if(nome.equals("prezzoAbb"))
+			this.prezzo=prezzo;
+	}
 
+	//fine OBSERVER
 	
 
 	public boolean verificaPreventivo(DescrizioneAbbonamento descAbb,CategoriaCliente cat, int numMesi) {
@@ -60,6 +101,9 @@ public class M_PreventivoAbbonamento extends AModel {
 	    da.setElencoSalePesi(elencoSalePesiSelezionate);
 	    return DescrizioneAbbonamentoDAO.save(da);
 	}
+
+
+
 
 
 

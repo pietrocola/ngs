@@ -51,11 +51,6 @@ public class FrameDecorator extends Decorator{
 	
 public Pannello draw() {
 
-	    //for(int i=0;i<1000;i++)
-	    	//this.titolo=this.titolo+" ";
-	
-
-		
 		Pannello p=super.draw();
 		
 		JInternalFrame frame = new JInternalFrame();
