@@ -30,33 +30,38 @@ public class PoliticaScontoAbbonamentoStrategyFactory {
 	public float calcolaPrezzoAbbonamento(float pbm,ArrayList<PoliticaScontoAbbonamento> elencoPoliticheSconto, boolean proContro){
 		
 		if(proContro==true) // pro cliente
-			cps=new CompositePrezzoProClienteStrategy();
+			politicaScontoAbbStrategy=new CompositePrezzoProClienteStrategy();
 		
 		if(proContro==false) // pro cliente
-			cps=new CompositePrezzoProCentroStrategy();
+			politicaScontoAbbStrategy=new CompositePrezzoProCentroStrategy();
 		
 		for(PoliticaScontoAbbonamento psa: elencoPoliticheSconto){
 			if(psa instanceof ScontoPercentuale){
 				ScontoPercentualeStrategy sps=new ScontoPercentualeStrategy();
 				sps.setPercentuale(((ScontoPercentuale) psa).getScontoPercentuale());
 				sps.setNumeroMesi(((ScontoPercentuale) psa).getNumeroMesi());
-				cps.addStrategiaPrezzo(sps);
+				//cps.addStrategiaPrezzo(sps);
+				((CompositePrezzoStrategy) politicaScontoAbbStrategy).addStrategiaPrezzo(sps);
 			}
 			if(psa instanceof ScontoFisso){
 				ScontoFissoStrategy sfs=new ScontoFissoStrategy();
 				sfs.setScontoFisso(((ScontoFisso) psa).getScontoFisso());
 				sfs.setNumeroMesi(((ScontoFisso) psa).getNumeroMesi());
-				cps.addStrategiaPrezzo(sfs);
+				//cps.addStrategiaPrezzo(sfs);
+				((CompositePrezzoStrategy) politicaScontoAbbStrategy).addStrategiaPrezzo(sfs);
 			}
 		}
 		
 		PoliticaScontoAbbonamento politicaSconto=null;
 
 		
-		this.publishEvent("prezzoAbb", cps.calcolaPrezzoAbbonamento(pbm, politicaSconto));
+		float prezzo=politicaScontoAbbStrategy.calcolaPrezzoAbbonamento(pbm, politicaSconto);
 		
-		return cps.calcolaPrezzoAbbonamento(pbm, politicaSconto);
+		//this.publishEvent("prezzoAbb", cps.calcolaPrezzoAbbonamento(pbm, politicaSconto)); // pattern observer
+		this.publishEvent("prezzoAbb", prezzo); // pattern observer
 		
+		//return cps.calcolaPrezzoAbbonamento(pbm, politicaSconto);
+		return prezzo;
 		
 		//int numMesi=politicaScontoAbbStrategy.getNumeroMesi(politicaSconto);
 		//float percentuale=politicaScontoAbbStrategy.getPercentuale(politicaSconto);
@@ -80,9 +85,10 @@ public class PoliticaScontoAbbonamentoStrategyFactory {
 	
 	//PATTERN SINGLETON
 	public static PoliticaScontoAbbonamentoStrategyFactory instance;
+	
 	IPoliticaScontoAbbonamentoStrategy politicaScontoAbbStrategy;
 
-	CompositePrezzoStrategy cps;
+	//CompositePrezzoStrategy cps;
 	
 	
 	public static PoliticaScontoAbbonamentoStrategyFactory getInstance(){

@@ -187,8 +187,11 @@ public class CreaPreventivoView extends Pannello{
 							listCatCliente.invia(CostantMediator.FOCUS_LISTA_CATEGORIA);
 							labelPrezzoAbbonamento.setText(""); // no mediator 
 							lblPolitiche.setText("");//no mediator
-							lblFrecciaPolitiche.setVisible(false);//no mediator
+							
 							listNumMesi.removeSelectionInterval(0, 1000); // no mediator
+							lblFrecciaPolitiche.setVisible(false);//no mediator
+
+							
 							/*
 							lblInfoPoliticaSelezionata.setText("");
 							lblFrecciaPolitica.setVisible(false);
@@ -487,7 +490,15 @@ public class CreaPreventivoView extends Pannello{
 
 				{
 					CategoriaCliente cat=(CategoriaCliente) listCatCliente.getSelectedValue();
-					int numMesi=(int) listNumMesi.getSelectedValue();
+					
+					
+					
+					//int numMesi=(int) listNumMesi.getSelectedValue();
+					
+					int numMesi=-1;
+					if(listNumMesi.getSelectedValues().length!=0)
+						numMesi=(int) listNumMesi.getSelectedValue();
+					
 					//cat=new CategoriaCliente();
 					//cat.setNomeCat("over 60");						
 					 ArrayList<PoliticaScontoAbbonamento> elencoPolitiche=ConfAbbCorsiHandler.getInstance().getPoliticheSconto(cat,numMesi);
@@ -501,15 +512,15 @@ public class CreaPreventivoView extends Pannello{
 					 for(PoliticaScontoAbbonamento psa: elencoPolitiche){
 						 if(psa instanceof ScontoPercentuale){
 							
-							 politiche=politiche+"<html> NOME POLITICA SCONTO: &nbsp;<br />"+((ScontoPercentuale) psa).getNomePolitica()+"<br />"+
-										"&nbsp;&nbsp;&nbsp;&nbsp;-Numero Mesi:&nbsp;&nbsp; <font color=\"#19BFE8\">"+((ScontoPercentuale) psa).getNumeroMesi()+"</font><br />"+
-										"&nbsp;&nbsp;&nbsp;&nbsp;-Sconto Percentuale:&nbsp;&nbsp; "+((ScontoPercentuale) psa).getScontoPercentuale()+" %<br /><br /><br />";
+							 politiche=politiche+"<html> NOME POLITICA SCONTO: &nbsp;<br /><i>"+((ScontoPercentuale) psa).getNomePolitica()+"</i><br />"+
+										"&nbsp;&nbsp;&nbsp;&nbsp;-NUMERO MESI:&nbsp;&nbsp; <font color=\"#19BFE8\">"+((ScontoPercentuale) psa).getNumeroMesi()+"</font><br />"+
+										"&nbsp;&nbsp;&nbsp;&nbsp;-SCONTO PERCENTUALE:&nbsp;&nbsp; "+((ScontoPercentuale) psa).getScontoPercentuale()+" %<br /><br /><br />";
 
 						 }	
 					     if(psa instanceof ScontoFisso){
-							 politiche=politiche+"<html> NOME POLITICA SCONTO:&nbsp;<br />"+((ScontoFisso) psa).getNomePolitica()+"<br />"+
-										"&nbsp;&nbsp;&nbsp;&nbsp;-Numero Mesi: &nbsp;&nbsp;<font color=\"#19BFE8\">"+((ScontoFisso) psa).getNumeroMesi()+"</font><br />"+
-										"&nbsp;&nbsp;&nbsp;&nbsp;-Sconto Fisso:&nbsp;&nbsp; "+((ScontoFisso) psa).getScontoFisso()+" €<br /><br /><br />";
+							 politiche=politiche+"<html> NOME POLITICA SCONTO:&nbsp;<br /><i>"+((ScontoFisso) psa).getNomePolitica()+"</i><br />"+
+										"&nbsp;&nbsp;&nbsp;&nbsp;-NUMERO MESI: &nbsp;&nbsp;<font color=\"#19BFE8\">"+((ScontoFisso) psa).getNumeroMesi()+"</font><br />"+
+										"&nbsp;&nbsp;&nbsp;&nbsp;-SCONTO FISSO:&nbsp;&nbsp; "+((ScontoFisso) psa).getScontoFisso()+" €<br /><br /><br />";
 				
 					     }
 					 }
@@ -541,13 +552,13 @@ public class CreaPreventivoView extends Pannello{
 				int y = 120;
 				DescrizioneAbbonamento descAbb=(DescrizioneAbbonamento) listAbbonamenti.getSelectedValue();
 				//descAbb=ConfAbbCorsiHandler.getInstance().getDescrizioneAbbonamento(descAbb.toString());
-				String abb="<html> NOME ABBONAMENTO: "+descAbb.getNomeAbbonamento()+"<br /><br />"+
-							" PREZZO BASE MENSILE: "+descAbb.getPrezzoBaseMensile()+" €<br /><br />";
+				String abb="<html> NOME ABBONAMENTO: &nbsp;&nbsp;<i>"+descAbb.getNomeAbbonamento()+"</i><br /><br />"+
+							" PREZZO BASE MENSILE: &nbsp;&nbsp;"+descAbb.getPrezzoBaseMensile()+" €<br /><br />";
 							//"Corsi: "+descAbb.getElencoCorsi()+"\n"+"Sale pesi: "+riepilogoAbb.setText(abb)+"\n";
 													
 				if(descAbb.getElencoCorsi().isEmpty())
 				{
-					abb=abb+"CORSI: Non sono presenti corsi <br />";
+					abb=abb+"CORSI: &nbsp;&nbsp;Non sono presenti corsi <br />";
 					y=y+20;
 				}
 				else
@@ -559,14 +570,14 @@ public class CreaPreventivoView extends Pannello{
 					while(iter.hasNext())
 					 {								
 						DescrizioneCorso dc = iter.next();
-						abb=abb+"&nbsp;&nbsp;&nbsp;&nbsp;-"+dc.getNomeCorso()+"<br />";
+						abb=abb+"&nbsp;&nbsp;&nbsp;&nbsp;-<i>"+dc.getNomeCorso()+"</i><br />";
 						y=y+30;
 					 }
 				}
 				
 				if(descAbb.getElencoSalePesi().isEmpty())
 				{
-					abb=abb+"<br /> SALE PESI: Non sono presenti sale pesi <br /><br />";
+					abb=abb+"<br /> SALE PESI: &nbsp;&nbsp;Non sono presenti sale pesi <br /><br />";
 					y=y+20;
 				}
 				else
@@ -578,7 +589,7 @@ public class CreaPreventivoView extends Pannello{
 					while(iter.hasNext())
 					 {								
 						SalaPesi dc = iter.next();
-						abb=abb+" &nbsp;&nbsp;&nbsp;&nbsp;-"+dc.getNomeSala()+"<br />";
+						abb=abb+" &nbsp;&nbsp;&nbsp;&nbsp;-<i>"+dc.getNomeSala()+"</i><br />";
 						y=y+30;
 					 }
 				}			
